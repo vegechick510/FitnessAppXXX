@@ -24,6 +24,7 @@ app.use(cookieParser())
 
 app.use(express.static('./assets'));
 
+app.use(express.static('./public'))
 
 app.use(expressLayouts);
 
@@ -35,7 +36,7 @@ app.set('layout extractScripts', true);
 
 app.set('view engine', 'ejs');
 
-app.set('views','./views');
+app.set('views','./public');
 
 app.use(session({
     name: 'caloriesapp',

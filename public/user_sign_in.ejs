@@ -1,9 +1,30 @@
-<h1>Sign In</h1>
-
-<form action="/users/create-session" method="POST">
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <input type="submit" value="Sign In">
-
-
+<form action=" /users/create-session" method="POST">
+    <div class="form-group" >
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+
+
+
+<!--<form action="/users/create-session" method="POST">
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Log In</legend>
+        <div class="form-group">
+            <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter password" required>
+        </div>
+    <div class="border-top pt-3">
+        <input type="submit" value = "Submit">
+    </div>
+</form>
+-->

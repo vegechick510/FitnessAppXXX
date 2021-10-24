@@ -51,7 +51,6 @@ def login():
                     temp['pwd']) or temp['temp'] == form.password.data):
                 flash('You have been logged in!', 'success')
                 session['email'] = temp['email']
-                session['login_type'] = form.type.data
                 return redirect(url_for('dashboard'))
             else:
                 flash(

@@ -30,7 +30,21 @@ app.config['MAIL_USERNAME'] = "bogusdummy123@gmail.com"
 app.config['MAIL_PASSWORD'] = "helloworld123!"
 mail = Mail(app)
 
+
 @app.route("/")
+@app.route("/home")
+def home():
+############################ 
+# home() function displays the homepage of our website.
+# route "/home" will redirect to home() function. 
+# input: The function takes session as the input 
+# Output: Out function will redirect to the login page
+# ########################## 
+    if session.get('email'):
+        return "Session Active"
+    else:
+        return redirect(url_for('login'))
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
 # ############################ 
@@ -44,14 +58,15 @@ def login():
         form = LoginForm()
         if form.validate_on_submit():
             temp = mongo.db.user.find_one({'email': form.email.data}, {
-                                         'email', 'pwd', 'temp'})
+                                         'email', 'pwd'})
             if temp is not None and temp['email'] == form.email.data and (
                 bcrypt.checkpw(
                     form.password.data.encode("utf-8"),
                     temp['pwd']) or temp['temp'] == form.password.data):
                 flash('You have been logged in!', 'success')
                 session['email'] = temp['email']
-                return redirect(url_for('dashboard'))
+                #session['login_type'] = form.type.data
+                return redirect(url_for('home'))
             else:
                 flash(
                     'Login Unsuccessful. Please check username and password',
@@ -61,9 +76,7 @@ def login():
     return render_template(
         'login.html',
         title='Login',
-        form=form,
-        type=form.type.data)
-
+        form=form)
 
 
 @app.route("/logout", methods=['GET', 'POST'])
@@ -93,8 +106,8 @@ def register():
                 username = request.form.get('username')
                 email = request.form.get('email')
                 password = request.form.get('password')
-                id = mongo.db.user.insert({'name': username, 'email': email, 'pwd': bcrypt.hashpw(
-                    password.encode("utf-8"), bcrypt.gensalt()), 'temp': None})
+                mongo.db.user.insert({'name': username, 'email': email, 'pwd': bcrypt.hashpw(
+                    password.encode("utf-8"), bcrypt.gensalt())})
             flash(f'Account created for {form.username.data}!', 'success')
             return redirect(url_for('home'))
     else:

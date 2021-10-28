@@ -101,8 +101,13 @@ def register():
         return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
 
+@app.route("/dashboard", methods=['GET', 'POST'])
+def dashboard():
+    return render_template('dashboard.html', title='Dashboard')
 
-
+@app.route("/common", methods=['GET', 'POST'])
+def common():
+    return render_template('common.html', title='Common')
 
 
 

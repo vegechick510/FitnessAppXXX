@@ -1,6 +1,7 @@
-from datetime import datetime
+from datetime import date, datetime
 #from types import MethodDescriptorType
 from bson.objectid import ObjectId
+from flask.json.tag import JSONTag
 
 from flask_wtf import form
 #from utilities import Utilities
@@ -10,11 +11,12 @@ from flask_pymongo import PyMongo
 from flask.helpers import make_response
 #from flask.json import jsonify
 from flask_mail import Mail, Message
-from forms import RegistrationForm, LoginForm, CalorieForm
+from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm
 import bcrypt
 #from apps import App
 from flask_login import LoginManager, login_required
 from bson.objectid import ObjectId
+from flask import json
 
 
 app = Flask(__name__)
@@ -134,13 +136,33 @@ def calories():
                 if temp is not None:
                     mongo.db.calories.update({'email':email},{'$set':{'calories':temp['calories']+cals,'burnout':temp['burnout']+int(burn)}})
                 else:
-                    mongo.db.calories.insert({'email':email,'calories':cals,'burnout':int(burn)})
+                    mongo.db.calories.insert({'date':now,'email':email,'calories':cals,'burnout':int(burn)})
                 flash(f'Successfully updated the data', 'success')
                 return redirect(url_for('calories'))
     else:
         return redirect(url_for('home'))
     return render_template('calories.html',form=form,time=now)
-    
+
+@app.route("/history", methods=['GET'])
+def history():
+    email = get_session = session.get('email')
+    if get_session is not None:
+        form = HistoryForm()
+    return render_template('history.html',form=form)
+
+@app.route("/ajaxhistory", methods=['POST'])
+def ajaxhistory():
+    email = get_session = session.get('email')
+    print(email)
+    if get_session is not None:
+        if request.method=="POST":
+            date = request.form.get('date')
+            res = mongo.db.calories.find_one({'email':email, 'date':date},{'date','email','calories','burnout'})
+            if res:
+                return json.dumps({'date':res['date'],'email':res['email'],'burnout':res['burnout'],'calories':res['calories'] }), 200, {'ContentType': 'application/json'}
+            else:
+                return json.dumps({'date':"",'email':"",'burnout':"",'calories':"" }), 200, {'ContentType': 'application/json'}
+
 
 @app.route("/dashboard", methods=['GET', 'POST'])
 def dashboard():

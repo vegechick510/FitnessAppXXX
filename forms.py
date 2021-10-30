@@ -1,6 +1,9 @@
+from datetime import date
+from re import sub
+from flask import app
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.fields.core import SelectField
+from wtforms.fields.core import DateField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from apps import App
 
@@ -52,4 +55,11 @@ class CalorieForm(FlaskForm):
     
     burnout = StringField('Burn Out',validators=[DataRequired()])
     submit = SubmitField('Save')
+
+class HistoryForm(FlaskForm):
+    app = App()
+    mongo = app.mongo
+    date = DateField()
+    submit = SubmitField('Fetch')
+
 

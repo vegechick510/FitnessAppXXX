@@ -20,7 +20,7 @@ class RegistrationForm(FlaskForm):
         app_object = App()
         mongo = app_object.mongo
 
-        temp = mongo.db.ath.find_one({'email': email.data}, {'email', 'pwd'})
+        temp = mongo.db.user.find_one({'email': email.data}, {'email', 'pwd'})
         if temp:
             raise ValidationError('Email already exists!')
 
@@ -31,3 +31,25 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
+class CalorieForm(FlaskForm):
+    app = App()
+    mongo = app.mongo
+
+    cursor = mongo.db.food.find()
+    get_docs = []
+    for record in cursor:
+        get_docs.append(record)
+
+    result = []
+    temp = ""
+    for i in get_docs:
+        temp = i['food']+' ('+i['calories']+')'
+        result.append((temp,temp))
+
+    food = SelectField(
+        'Select Food', choices=result)
+    
+    burnout = StringField('Burn Out',validators=[DataRequired()])
+    submit = SubmitField('Save')
+

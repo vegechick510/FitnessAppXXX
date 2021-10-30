@@ -1,6 +1,5 @@
-"""from datetime import datetime, timedelta
-from types import MethodDescriptorType
-"""
+from datetime import datetime
+#from types import MethodDescriptorType
 from bson.objectid import ObjectId
 
 from flask_wtf import form
@@ -11,7 +10,7 @@ from flask_pymongo import PyMongo
 from flask.helpers import make_response
 #from flask.json import jsonify
 from flask_mail import Mail, Message
-from forms import RegistrationForm, LoginForm
+from forms import RegistrationForm, LoginForm, CalorieForm
 import bcrypt
 #from apps import App
 from flask_login import LoginManager, login_required
@@ -66,7 +65,7 @@ def login():
                 flash('You have been logged in!', 'success')
                 session['email'] = temp['email']
                 #session['login_type'] = form.type.data
-                return redirect(url_for('home'))
+                return redirect(url_for('dashboard'))
             else:
                 flash(
                     'Login Unsuccessful. Please check username and password',
@@ -114,6 +113,35 @@ def register():
         return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
 
+@app.route("/calories", methods=['GET','POST'])
+def calories():
+    now = datetime.now()
+    now = now.strftime('%Y-%m-%d')
+
+    get_session = session.get('email')
+    if get_session is not None:
+        form = CalorieForm()
+        if form.validate_on_submit():
+            if request.method== 'POST':
+                email = session.get('email')
+                food = request.form.get('food')
+                cals = food.split(" ")
+                cals = int(cals[1][1:len(cals[1])-1])
+                burn = request.form.get('burnout')
+
+                temp = mongo.db.calories.find_one({'email': email}, {
+                                         'email', 'calories', 'burnout'})
+                if temp is not None:
+                    mongo.db.calories.update({'email':email},{'$set':{'calories':temp['calories']+cals,'burnout':temp['burnout']+int(burn)}})
+                else:
+                    mongo.db.calories.insert({'email':email,'calories':cals,'burnout':int(burn)})
+                flash(f'Successfully updated the data', 'success')
+                return redirect(url_for('calories'))
+    else:
+        return redirect(url_for('home'))
+    return render_template('calories.html',form=form,time=now)
+    
+
 @app.route("/dashboard", methods=['GET', 'POST'])
 def dashboard():
     return render_template('dashboard.html', title='Dashboard')
@@ -121,7 +149,6 @@ def dashboard():
 @app.route("/common", methods=['GET', 'POST'])
 def common():
     return render_template('common.html', title='Common')
-
 
 
 if __name__ == '__main__':

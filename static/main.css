@@ -126,3 +126,10 @@
       padding: 0 350px;
     }
     
+    .carousel-fade .carousel-item, .carousel-item img  {
+      max-height: 90vh;
+    }
+
+    .btn {
+      text-align: center;
+    }

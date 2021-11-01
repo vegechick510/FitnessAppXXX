@@ -38,6 +38,7 @@
             <div class="navbar-nav mr-4">
               <a class="nav-item nav-link" href="{{ url_for('calories') }}">Enter Calories</a>
               <a class="nav-item nav-link" href="{{ url_for('history') }}">History</a>
+              <a class="nav-item nav-link" href="{url_for('friends')}">Friends</a>
             </div>
             <div class="navbar-nav ml-auto">
               <a class="nav-item nav-link">Welcome, {{ session.get("email") }}</a>

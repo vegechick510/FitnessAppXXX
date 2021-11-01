@@ -1,3 +1,5 @@
+const { load } = require("mime");
+
 function addToLocalStorage(key,data){
     localStorage.setItem(key) = data;
 }
@@ -41,6 +43,48 @@ function history(e){
             $("#burnout").empty().append(resdata.burnout)
 
             $("#history-data").empty().append(JSON.stringify(response));
+        }
+    })
+}
+
+function sendRequest(e,clickedId){
+    $.ajax({
+        type: "POST",
+        url: "/ajaxsendrequest",
+        data:{
+            "receiver":clickedId
+        },
+        success: function(response){
+            location.reload()
+            console.log(JSON.parse(response))
+        }
+    })
+}
+
+function cancelRequest(e,clickedId){
+    $.ajax({
+        type: "POST",
+        url: "/ajaxcancelrequest",
+        data:{
+            "receiver":clickedId
+        },
+        success: function(response){
+            location.reload()
+            console.log(JSON.parse(response))
+        }
+    })
+}
+
+function approveRequest(e,clickedId){
+    $.ajax({
+        type: "POST",
+        url: "/ajaxapproverequest",
+        data:{
+            "receiver":clickedId
+        },
+        success: function(response){
+            location.reload()
+            console.log(JSON.parse(response))
         }
     })
 }

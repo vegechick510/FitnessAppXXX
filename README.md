@@ -1,5 +1,3 @@
-# calorieApp_server
+# BurnOut
 
-## This is the backend repo for the Burnout project.
-## The link to the frontend repo is
-### https://github.com/shantanu109/calorieapp_frontend
+

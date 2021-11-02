@@ -11,7 +11,7 @@ from flask_pymongo import PyMongo
 from flask.helpers import make_response
 #from flask.json import jsonify
 from flask_mail import Mail, Message
-from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm
+from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm
 import bcrypt
 #from apps import App
 from flask_login import LoginManager, login_required
@@ -142,6 +142,37 @@ def calories():
     else:
         return redirect(url_for('home'))
     return render_template('calories.html',form=form,time=now)
+
+
+
+@app.route("/user_profile", methods=['GET', 'POST'])
+def user_profile():
+    if session.get('email'):
+        form=UserProfileForm()
+        if form.validate_on_submit():
+            if request.method== 'POST':
+                email=session.get('email')
+                weight= request.form.get('weight')
+                height= request.form.get('height')
+                goal= request.form.get('goal')
+                target_weight= request.form.get('target_weight')
+                temp = mongo.db.profile.find_one({'email': email}, {
+                                         'height', 'weight', 'goal','target_weight'})
+                if temp is not None:
+                    mongo.db.profile.update({'email':email},{'$set':{'weight':temp['weight'],'height':temp['height'],'goal':temp['goal'],'target_weight': temp['target_weight']}})
+                else:
+                    mongo.db.profile.insert({'email':email,'height':height,'weight':weight,'goal':goal, 'target_weight':target_weight})
+                 
+            flash(f'User profile Updated', 'success')
+            return redirect(url_for('user_profile'))
+    else:
+        return redirect(url_for('login'))        
+    return render_template('user_profile.html', status=True, form=form)
+
+
+
+
+
 
 @app.route("/history", methods=['GET'])
 def history():

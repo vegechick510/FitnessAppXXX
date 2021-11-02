@@ -56,6 +56,14 @@ class CalorieForm(FlaskForm):
     burnout = StringField('Burn Out',validators=[DataRequired()])
     submit = SubmitField('Save')
 
+
+class UserProfileForm(FlaskForm):
+    weight= StringField('Weight', validators=[DataRequired(), Length(min=2, max=20)])
+    height= StringField('Height', validators=[DataRequired(), Length(min=2, max=20)])
+    goal= StringField('Goal', validators=[DataRequired(), Length(min=2, max=20)])
+    target_weight= StringField('Target Weight', validators=[DataRequired(), Length(min=2, max=20)])
+    submit= SubmitField('Save Profile')
+
 class HistoryForm(FlaskForm):
     app = App()
     mongo = app.mongo

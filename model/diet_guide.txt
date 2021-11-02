@@ -1,0 +1,18 @@
+Consume one of these items ['Acerola', 'Arugula', 'Chives', 'Nori'] * 5 times
+Consume one of these items ['Black Olives', 'Green Olives', 'Greengage', 'Olives', 'Physalis'] * 1 times
+Consume one of these items ['Cherries', 'Garlic', 'Okra'] * 9 times
+Consume one of these items ['Tamarind'] * 2 times
+Consume one of these items ['Beef Bouillon', 'Horseradish', 'Lychee', 'Lychees', 'Rambutan', 'Red Cabbage'] * 3 times
+Consume one of these items ['Brussels Sprouts', 'Maraschino Cherries', 'Prickly Pear'] * 2 times
+Consume one of these items ['Chard', 'Gherkin'] * 5 times
+Consume one of these items ['Chicken Bouillon', 'Green Onion', 'Iceberg Lettuce', 'Radishes', 'Shirataki Noodles', 'Wheat Gluten'] * 2 times
+Consume one of these items ['Rhubarb'] * 4 times
+Consume one of these items ['Capsicum', 'Collard Greens', 'Vegetable Broth', 'Vegetable Stock'] * 1 times
+Consume one of these items ['Collard Greens', 'Kumquat'] * 6 times
+Consume one of these items ['Celery', 'Leaf Lettuce', 'Lemon', 'Mustard Greens', 'Noni'] * 2 times
+Consume one of these items ['Cucumber', 'Prawn Crackers'] * 3 times
+Consume one of these items ['Apricot', 'Maracuya', 'Passion Fruit'] * 6 times
+Consume one of these items ['Shallots', 'Tomato'] * 1 times
+Consume one of these items ['Acai', 'Asparagus', 'Cherry Tomato', 'Dates', 'Green Beans', 'Grissini', 'Lime', 'Mushrooms', 'Pepper', 'Summer Squash'] * 3 times
+Consume one of these items ['Jujube'] * 5 times
+Consume one of these items ['Cantaloupe', 'Cantaloupe Melon', 'Feijoa', 'Muskmelon', 'Roast Beef'] * 3 times

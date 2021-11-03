@@ -42,7 +42,7 @@ def home():
 # Output: Out function will redirect to the login page
 # ########################## 
     if session.get('email'):
-        return "Session Active"
+        return redirect(url_for('dashboard'))
     else:
         return redirect(url_for('login'))
 
@@ -168,11 +168,6 @@ def user_profile():
     else:
         return redirect(url_for('login'))        
     return render_template('user_profile.html', status=True, form=form)
-
-
-
-
-
 
 @app.route("/history", methods=['GET'])
 def history():

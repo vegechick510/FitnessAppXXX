@@ -262,8 +262,8 @@ def ajaxapproverequest():
 def dashboard():
     return render_template('dashboard.html', title='Dashboard')
 
-@app.route("/common", methods=['GET', 'POST'])
-def common():           
+@app.route("/yoga", methods=['GET', 'POST'])
+def yoga():           
     email = get_session = session.get('email')
     if get_session is not None:
         form = EnrollForm()
@@ -272,23 +272,24 @@ def common():
                 enroll = "Enrolled into Yoga"
                 mongo.db.user.insert({'Email':email, 'Status': enroll})
             flash(f' You have Succesfully {enroll}!', 'success')
-            return redirect(url_for('dashboard'))
+            return render_template('new_dashboard.html',form=form)
+            # return redirect(url_for('dashboard'))
     else:
         return redirect(url_for('dashboard'))
-    return render_template('common.html', title='Common', form = form)
+    return render_template('yoga.html', title='Yoga', form = form)
 
 
-# @app.route("/ajaxdashboard", methods=['POST'])
-# def ajaxdashboard():
-#     email = get_session = session.get('email')
-#     print(email)
-#     if get_session is not None:
-#         if request.method=="POST":
-#             result = mongo.db.user.find_one({'email':email},{'date','email','calories','burnout'})
-#             if res:
-#                 return json.dumps({'date':res['date'],'email':res['email'],'burnout':res['burnout'],'calories':res['calories'] }), 200, {'ContentType': 'application/json'}
-#             else:
-#                 return json.dumps({'date':"",'email':"",'burnout':"",'calories':"" }), 200, {'ContentType': 'application/json'}
+@app.route("/ajaxdashboard", methods=['POST'])
+def ajaxdashboard():
+    email = get_session = session.get('email')
+    print(email)
+    if get_session is not None:
+        if request.method=="POST":
+            result = mongo.db.user.find_one({'email':email},{'email','Status'})
+            if result:
+                return json.dumps({'email':result['email'],'Status':result['result']}), 200, {'ContentType': 'application/json'}
+            else:
+                return json.dumps({'email':"",'Status':""}), 200, {'ContentType': 'application/json'}
 
 if __name__ == '__main__':
     app.run(debug=True)

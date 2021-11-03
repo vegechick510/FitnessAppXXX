@@ -88,3 +88,20 @@ function approveRequest(e,clickedId){
         }
     })
 }
+
+function dashboard(e, email){
+    $.ajax({
+        type: "POST",
+        url: "/ajaxdashboard",
+        data:{
+            "email":email
+        },
+        success: function(response){
+            console.log(response)
+            resdata = JSON.parse(response)
+            
+            $("#enroll_legend").empty().append("ENrolled: ")
+            $("#enroll").empty().append(resdata.enroll)
+        }
+    })
+}

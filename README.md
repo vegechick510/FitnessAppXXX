@@ -73,7 +73,16 @@ https://user-images.githubusercontent.com/89509351/140233566-78a1c729-e14b-4f57-
 https://user-images.githubusercontent.com/89509351/140233630-c746f7b6-3d06-4ca7-b79c-c511c63726e6.mp4
 
 
- 
+## Enter Calories in and burnt
 
-  
+https://user-images.githubusercontent.com/89509351/140234074-47fb2fb3-6542-4cec-89d6-b2ec5f7359bc.mp4
+
+
+## Check history
+
+https://user-images.githubusercontent.com/89509351/140234173-c279e3e8-7b67-4d6b-9e20-268a99108622.mp4
+
+ ## Adding Friends 
+ 
+https://user-images.githubusercontent.com/89509351/140234231-35b85d94-2293-48a8-86f8-fdc485f31cd1.mp4
 

@@ -11,7 +11,7 @@ from flask_pymongo import PyMongo
 from flask.helpers import make_response
 #from flask.json import jsonify
 from flask_mail import Mail, Message
-from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm
+from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm
 import bcrypt
 #from apps import App
 from flask_login import LoginManager, login_required
@@ -263,9 +263,32 @@ def dashboard():
     return render_template('dashboard.html', title='Dashboard')
 
 @app.route("/common", methods=['GET', 'POST'])
-def common():
-    return render_template('common.html', title='Common')
+def common():           
+    email = get_session = session.get('email')
+    if get_session is not None:
+        form = EnrollForm()
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                enroll = "Enrolled into Yoga"
+                mongo.db.user.insert({'Email':email, 'Status': enroll})
+            flash(f' You have Succesfully {enroll}!', 'success')
+            return redirect(url_for('dashboard'))
+    else:
+        return redirect(url_for('dashboard'))
+    return render_template('common.html', title='Common', form = form)
 
+
+# @app.route("/ajaxdashboard", methods=['POST'])
+# def ajaxdashboard():
+#     email = get_session = session.get('email')
+#     print(email)
+#     if get_session is not None:
+#         if request.method=="POST":
+#             result = mongo.db.user.find_one({'email':email},{'date','email','calories','burnout'})
+#             if res:
+#                 return json.dumps({'date':res['date'],'email':res['email'],'burnout':res['burnout'],'calories':res['calories'] }), 200, {'ContentType': 'application/json'}
+#             else:
+#                 return json.dumps({'date':"",'email':"",'burnout':"",'calories':"" }), 200, {'ContentType': 'application/json'}
 
 if __name__ == '__main__':
     app.run(debug=True)

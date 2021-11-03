@@ -70,4 +70,9 @@ class HistoryForm(FlaskForm):
     date = DateField()
     submit = SubmitField('Fetch')
 
+class EnrollForm(FlaskForm):
+    app = App()
+    mongo = app.mongo
+    submit = SubmitField('Enroll')
+
 

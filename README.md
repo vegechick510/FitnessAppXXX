@@ -14,11 +14,12 @@ BurnOut is an easy to use application that keeps track of a user's daily calorie
 # Table of Contents  
 
 - [Why use BurnOut?](#why-use-burnout)
+- [Implementation](#implementation)
 - [TechStack Used for the Development of Project:](#techstack-used-for-the-development-of-project)
 - [Core Functionalities of the Application:](#core-functionalities)
   - [Register](#register)
   - [Login](#login)
-  - [Update User Profile](#set-user-profile)
+  - [Set User Profile](#set-user-profile)
   - [Enter Calories in and burnt](#enter-calories-in-and-burnt)
   - [Check History](#check-history)
   - [User History Plot](#user-history-plot)
@@ -26,7 +27,6 @@ BurnOut is an easy to use application that keeps track of a user's daily calorie
   - [Enrolling into several programs](#enrolling-into-several-programs)
 - [Steps for Execution:](#steps-for-execution)
 - [Source Code](#source-code)
-- [Additional commands for React App](#additional-commands-for-react-app)
 - [Future Scope](#future-scope)
 - [Team Members](#team-members)
 - [Contribution](#contribution)
@@ -42,4 +42,38 @@ BurnOut is an easy to use application that keeps track of a user's daily calorie
  - Enrollment into numerous yoga and workout sessions.
  - Accessible to everyone and easy to use.
 
+# Implementation
+
+Link to the implementation video of the BurnOut application:
+
+https://user-images.githubusercontent.com/89509351/140230712-749bbc0d-d2dd-4c5b-9ec3-6ee51f918aac.mp4
+
+# TechStack Used for the Development of Project
+
+ <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="python" width="20" height="20"/> Python </br>
+ <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="mongo" width="20" height="20"/> MongoDB </br>
+ <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-plain.svg" alt="html" width="20" height="20"> CSS3 </br>
+ <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-plain.svg" alt="css" width="20" height="20">  HTML 5 </br>
+ 
+ # Core Functionalities of the Application
+ 
+ ## Register
+ 
+
+https://user-images.githubusercontent.com/89509351/140233499-0dba701b-1896-4285-918b-cfee1c63be5a.mp4
+
+
+ ## Login
+
+https://user-images.githubusercontent.com/89509351/140233566-78a1c729-e14b-4f57-9fa1-b2f84be26b6f.mp4
+
+ 
+ ## Set User Profile
+ 
+https://user-images.githubusercontent.com/89509351/140233630-c746f7b6-3d06-4ca7-b79c-c511c63726e6.mp4
+
+
+ 
+
+  
 

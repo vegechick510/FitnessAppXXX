@@ -2,7 +2,7 @@ import unittest
 import application
 
 
-class testcases(unittest.TestCase):
+class BasicTestCase(unittest.TestCase):
 
     def test_home(self):
         self.app = application.app.test_client()

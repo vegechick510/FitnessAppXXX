@@ -35,6 +35,7 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
+
 class CalorieForm(FlaskForm):
     app = App()
     mongo = app.mongo
@@ -47,22 +48,35 @@ class CalorieForm(FlaskForm):
     result = []
     temp = ""
     for i in get_docs:
-        temp = i['food']+' ('+i['calories']+')'
-        result.append((temp,temp))
+        temp = i['food'] + ' (' + i['calories'] + ')'
+        result.append((temp, temp))
 
     food = SelectField(
         'Select Food', choices=result)
-    
-    burnout = StringField('Burn Out',validators=[DataRequired()])
+
+    burnout = StringField('Burn Out', validators=[DataRequired()])
     submit = SubmitField('Save')
 
 
 class UserProfileForm(FlaskForm):
-    weight= StringField('Weight', validators=[DataRequired(), Length(min=2, max=20)])
-    height= StringField('Height', validators=[DataRequired(), Length(min=2, max=20)])
-    goal= StringField('Goal', validators=[DataRequired(), Length(min=2, max=20)])
-    target_weight= StringField('Target Weight', validators=[DataRequired(), Length(min=2, max=20)])
-    submit= SubmitField('Save Profile')
+    weight = StringField(
+        'Weight', validators=[
+            DataRequired(), Length(
+                min=2, max=20)])
+    height = StringField(
+        'Height', validators=[
+            DataRequired(), Length(
+                min=2, max=20)])
+    goal = StringField(
+        'Goal', validators=[
+            DataRequired(), Length(
+                min=2, max=20)])
+    target_weight = StringField(
+        'Target Weight', validators=[
+            DataRequired(), Length(
+                min=2, max=20)])
+    submit = SubmitField('Save Profile')
+
 
 class HistoryForm(FlaskForm):
     app = App()
@@ -70,9 +84,8 @@ class HistoryForm(FlaskForm):
     date = DateField()
     submit = SubmitField('Fetch')
 
+
 class EnrollForm(FlaskForm):
     app = App()
     mongo = app.mongo
     submit = SubmitField('Enroll')
-
-

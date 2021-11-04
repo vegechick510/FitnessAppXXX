@@ -79,6 +79,23 @@ https://user-images.githubusercontent.com/89509351/140234074-47fb2fb3-6542-4cec-
 
 https://user-images.githubusercontent.com/89509351/140234173-c279e3e8-7b67-4d6b-9e20-268a99108622.mp4
 
+
+
+
+
+
+
+## User History Plot
+
+We have used python in the backend to fetch the current weight and goal weight of a person from python collection. We have also implemented a diet recommendation model which gives the user a 30 day diet plan stored in [diet_guide.txt](https://github.com/atharva1996/calorieApp_server/blob/main/model/diet_guide.txt) and intend to integrate this with the application in the further stage of this project. The graphs below demonstrate weight loss prediction if the diet is followed as prescribed.
+
+![alt-text-1](https://user-images.githubusercontent.com/62328699/140241250-b972c6fa-550d-433f-aaa7-04fc0df97a8a.png "title-1") ![alt-text-2](https://user-images.githubusercontent.com/62328699/140241265-f3bb552a-cdfe-47ed-9184-f78a082441c8.png "title-2")
+
+
+
+
+
+
  ## Adding Friends 
  
 https://user-images.githubusercontent.com/89509351/140234231-35b85d94-2293-48a8-86f8-fdc485f31cd1.mp4

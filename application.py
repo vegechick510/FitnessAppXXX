@@ -119,6 +119,13 @@ def register():
 
 @app.route("/calories", methods=['GET', 'POST'])
 def calories():
+    # ############################
+    # calorie() function displays the Calorieform (calories.html) template
+    # route "/calories" will redirect to calories() function.
+    # CalorieForm() called and if the form is submitted then various values are fetched and updated into the database entries
+    # Input: Email, date, food, burnout
+    # Output: Value update in database and redirected to home page
+    # ##########################
     now = datetime.now()
     now = now.strftime('%Y-%m-%d')
 
@@ -150,6 +157,13 @@ def calories():
 
 @app.route("/user_profile", methods=['GET', 'POST'])
 def user_profile():
+    # ############################
+    # user_profile() function displays the UserProfileForm (user_profile.html) template
+    # route "/user_profile" will redirect to user_profile() function.
+    # user_profile() called and if the form is submitted then various values are fetched and updated into the database entries
+    # Input: Email, height, weight, goal, Target weight
+    # Output: Value update in database and redirected to home login page
+    # ##########################
     if session.get('email'):
         form = UserProfileForm()
         if form.validate_on_submit():
@@ -183,6 +197,13 @@ def user_profile():
 
 @app.route("/history", methods=['GET'])
 def history():
+    # ############################
+    # history() function displays the Historyform (history.html) template
+    # route "/history" will redirect to history() function.
+    # HistoryForm() called and if the form is submitted then various values are fetched and update into the database entries
+    # Input: Email, date
+    # Output: Value fetched and displayed
+    # ##########################
     email = get_session = session.get('email')
     if get_session is not None:
         form = HistoryForm()
@@ -191,6 +212,13 @@ def history():
 
 @app.route("/ajaxhistory", methods=['POST'])
 def ajaxhistory():
+    # ############################
+    # ajaxhistory() is a POST function displays the fetches the various information from database
+    # route "/ajaxhistory" will redirect to ajaxhistory() function.
+    # Details corresponding to given email address are fetched from the database entries
+    # Input: Email, date
+    # Output: date, email, calories, burnout
+    # ##########################
     email = get_session = session.get('email')
     print(email)
     if get_session is not None:
@@ -208,6 +236,14 @@ def ajaxhistory():
 
 @app.route("/friends", methods=['GET'])
 def friends():
+    # ############################
+    # friends() function displays the list of friends corrsponding to given email
+    # route "/friends" will redirect to friends() function which redirects to friends.html page.
+    # friends() function will show a list of "My friends", "Add Friends" functionality, "send Request" and Pending Approvals" functionality
+    # Details corresponding to given email address are fetched from the database entries
+    # Input: Email
+    # Output: My friends, Pending Approvals, Sent Requests and Add new friends
+    # ##########################
     email = session.get('email')
 
     myFriends = list(mongo.db.friends.find(
@@ -241,6 +277,13 @@ def friends():
 
 @app.route("/ajaxsendrequest", methods=['POST'])
 def ajaxsendrequest():
+    # ############################
+    # ajaxsendrequest() is a function that updates friend request information into database
+    # route "/ajaxsendrequest" will redirect to ajaxsendrequest() function.
+    # Details corresponding to given email address are fetched from the database entries and send request details updated
+    # Input: Email, receiver
+    # Output: DB entry of receiver info into database and return TRUE if success and FALSE otherwise
+    # ##########################
     email = get_session = session.get('email')
     if get_session is not None:
         receiver = request.form.get('receiver')
@@ -255,6 +298,13 @@ def ajaxsendrequest():
 
 @app.route("/ajaxcancelrequest", methods=['POST'])
 def ajaxcancelrequest():
+    # ############################
+    # ajaxcancelrequest() is a function that updates friend request information into database
+    # route "/ajaxcancelrequest" will redirect to ajaxcancelrequest() function.
+    # Details corresponding to given email address are fetched from the database entries and cancel request details updated
+    # Input: Email, receiver
+    # Output: DB deletion of receiver info into database and return TRUE if success and FALSE otherwise
+    # ##########################
     email = get_session = session.get('email')
     if get_session is not None:
         receiver = request.form.get('receiver')
@@ -269,6 +319,13 @@ def ajaxcancelrequest():
 
 @app.route("/ajaxapproverequest", methods=['POST'])
 def ajaxapproverequest():
+    # ############################
+    # ajaxapproverequest() is a function that updates friend request information into database
+    # route "/ajaxapproverequest" will redirect to ajaxapproverequest() function.
+    # Details corresponding to given email address are fetched from the database entries and approve request details updated
+    # Input: Email, receiver
+    # Output: DB updation of accept as TRUE info into database and return TRUE if success and FALSE otherwise
+    # ##########################
     email = get_session = session.get('email')
     if get_session is not None:
         receiver = request.form.get('receiver')
@@ -286,11 +343,24 @@ def ajaxapproverequest():
 
 @app.route("/dashboard", methods=['GET', 'POST'])
 def dashboard():
+    # ############################
+    # dashboard() function displays the dashboard.html template
+    # route "/dashboard" will redirect to dashboard() function.
+    # dashboard() called and displays the list of activities
+    # Output: redirected to dashboard.html
+    # ##########################
     return render_template('dashboard.html', title='Dashboard')
 
 
 @app.route("/yoga", methods=['GET', 'POST'])
 def yoga():
+    # ############################
+    # yoga() function displays the yoga.html template
+    # route "/yoga" will redirect to yoga() function.
+    # A page showing details about yoga is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+    # Input: Email
+    # Output: DB entry about enrollment and redirected to new dashboard
+    # ##########################
     email = get_session = session.get('email')
     if get_session is not None:
         form = EnrollForm()
@@ -310,6 +380,13 @@ def yoga():
 
 @app.route("/swim", methods=['GET', 'POST'])
 def swim():
+    # ############################
+    # swim() function displays the swim.html template
+    # route "/swim" will redirect to swim() function.
+    # A page showing details about swimming is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+    # Input: Email
+    # Output: DB entry about enrollment and redirected to new dashboard
+    # ##########################
     email = get_session = session.get('email')
     if get_session is not None:
         form = EnrollForm()
@@ -329,6 +406,13 @@ def swim():
 
 @app.route("/gym", methods=['GET', 'POST'])
 def gym():
+    # ############################
+    # gym() function displays the gym.html template
+    # route "/gym" will redirect to gym() function.
+    # A page showing details about gym plan is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+    # Input: Email
+    # Output: DB entry about enrollment and redirected to new dashboard
+    # ##########################
     email = get_session = session.get('email')
     if get_session is not None:
         form = EnrollForm()
@@ -345,21 +429,102 @@ def gym():
         return redirect(url_for('dashboard'))
     return render_template('gym.html', title='Gym', form=form)
 
-
-@app.route("/ajaxdashboard", methods=['POST'])
-def ajaxdashboard():
+@app.route("/walk", methods=['GET', 'POST'])
+def walk():
+    # ############################
+    # walk() function displays the walk.html template
+    # route "/walk" will redirect to walk() function.
+    # A page showing details about walk plan is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+    # Input: Email
+    # Output: DB entry about enrollment and redirected to new dashboard
+    # ##########################
     email = get_session = session.get('email')
-    print(email)
     if get_session is not None:
-        if request.method == "POST":
-            result = mongo.db.user.find_one(
-                {'email': email}, {'email', 'Status'})
-            if result:
-                return json.dumps({'email': result['email'], 'Status': result['result']}), 200, {
-                    'ContentType': 'application/json'}
-            else:
-                return json.dumps({'email': "", 'Status': ""}), 200, {
-                    'ContentType': 'application/json'}
+        form = EnrollForm()
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                enroll = "walk"
+                mongo.db.user.insert({'Email': email, 'Status': enroll})
+            flash(
+                f' You have succesfully enrolled in our {enroll} plan!',
+                'success')
+            return render_template('new_dashboard.html', form=form)
+            # return redirect(url_for('dashboard'))
+    else:
+        return redirect(url_for('dashboard'))
+    return render_template('walk.html', title='Walk', form=form)
+
+@app.route("/dance", methods=['GET', 'POST'])
+def dance():
+    # ############################
+    # dance() function displays the dance.html template
+    # route "/dance" will redirect to dance() function.
+    # A page showing details about dance plan is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+    # Input: Email
+    # Output: DB entry about enrollment and redirected to new dashboard
+    # ##########################
+    email = get_session = session.get('email')
+    if get_session is not None:
+        form = EnrollForm()
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                enroll = "dance"
+                mongo.db.user.insert({'Email': email, 'Status': enroll})
+            flash(
+                f' You have succesfully enrolled in our {enroll} plan!',
+                'success')
+            return render_template('new_dashboard.html', form=form)
+            # return redirect(url_for('dashboard'))
+    else:
+        return redirect(url_for('dashboard'))
+    return render_template('dance.html', title='Dance', form=form)
+
+# @app.route("/gym", methods=['GET', 'POST'])
+# def gym():
+#     # ############################
+#     # gym() function displays the gym.html template
+#     # route "/gym" will redirect to gym() function.
+#     # A page showing details about gym plan is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+#     # Input: Email
+#     # Output: DB entry about enrollment and redirected to new dashboard
+#     # ##########################
+#     email = get_session = session.get('email')
+#     if get_session is not None:
+#         form = EnrollForm()
+#         if form.validate_on_submit():
+#             if request.method == 'POST':
+#                 enroll = "gym"
+#                 mongo.db.user.insert({'Email': email, 'Status': enroll})
+#             flash(
+#                 f' You have succesfully enrolled in our {enroll} plan!',
+#                 'success')
+#             return render_template('new_dashboard.html', form=form)
+#             # return redirect(url_for('dashboard'))
+#     else:
+#         return redirect(url_for('dashboard'))
+#     return render_template('gym.html', title='Gym', form=form)
+
+# @app.route("/ajaxdashboard", methods=['POST'])
+# def ajaxdashboard():
+#     # ############################
+#     # login() function displays the Login form (login.html) template
+#     # route "/login" will redirect to login() function.
+#     # LoginForm() called and if the form is submitted then various values are fetched and verified from the database entries
+#     # Input: Email, Password, Login Type
+#     # Output: Account Authentication and redirecting to Dashboard
+#     # ##########################
+#     email = get_session = session.get('email')
+#     print(email)
+#     if get_session is not None:
+#         if request.method == "POST":
+#             result = mongo.db.user.find_one(
+#                 {'email': email}, {'email', 'Status'})
+#             if result:
+#                 return json.dumps({'email': result['email'], 'Status': result['result']}), 200, {
+#                     'ContentType': 'application/json'}
+#             else:
+#                 return json.dumps({'email': "", 'Status': ""}), 200, {
+#                     'ContentType': 'application/json'}
 
 
 if __name__ == '__main__':

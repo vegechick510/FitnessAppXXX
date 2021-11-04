@@ -264,14 +264,46 @@ def yoga():
         form = EnrollForm()
         if form.validate_on_submit():
             if request.method == 'POST':
-                enroll = "Enrolled into Yoga"
+                enroll = "yoga"
                 mongo.db.user.insert({'Email':email, 'Status': enroll})
-            flash(f' You have Succesfully {enroll}!', 'success')
+            flash(f' You have succesfully enrolled in our {enroll} plan!', 'success')
             return render_template('new_dashboard.html',form=form)
             # return redirect(url_for('dashboard'))
     else:
         return redirect(url_for('dashboard'))
     return render_template('yoga.html', title='Yoga', form = form)
+
+@app.route("/swim", methods=['GET', 'POST'])
+def swim():           
+    email = get_session = session.get('email')
+    if get_session is not None:
+        form = EnrollForm()
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                enroll = "swimming"
+                mongo.db.user.insert({'Email':email, 'Status': enroll})
+            flash(f' You have succesfully enrolled in our {enroll} plan!', 'success')
+            return render_template('new_dashboard.html',form=form)
+            # return redirect(url_for('dashboard'))
+    else:
+        return redirect(url_for('dashboard'))
+    return render_template('swim.html', title='Swim', form = form)
+
+@app.route("/gym", methods=['GET', 'POST'])
+def gym():           
+    email = get_session = session.get('email')
+    if get_session is not None:
+        form = EnrollForm()
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                enroll = "gym"
+                mongo.db.user.insert({'Email':email, 'Status': enroll})
+            flash(f' You have succesfully enrolled in our {enroll} plan!', 'success')
+            return render_template('new_dashboard.html',form=form)
+            # return redirect(url_for('dashboard'))
+    else:
+        return redirect(url_for('dashboard'))
+    return render_template('gym.html', title='Gym', form = form)
 
 
 @app.route("/ajaxdashboard", methods=['POST'])

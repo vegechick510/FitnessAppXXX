@@ -1,15 +1,15 @@
 from datetime import date, datetime
-#from types import MethodDescriptorType
+from types import MethodDescriptorType
 from bson.objectid import ObjectId
 from flask.json.tag import JSONTag
 
 from flask_wtf import form
-#from utilities import Utilities
+from utilities import Utilities
 from flask import app, render_template, session, url_for, flash, redirect, request, Response, Flask
 from flask_pymongo import PyMongo
-#from flask import json
+from flask import json
 from flask.helpers import make_response
-#from flask.json import jsonify
+from flask.json import jsonify
 from flask_mail import Mail, Message
 from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm
 import bcrypt
@@ -21,7 +21,8 @@ from flask import json
 
 app = Flask(__name__)
 app.secret_key = 'secret'
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/test'
+app.config['MONGO_URI'] = 'mongodb://127.0.0.1:27017/test'
+app.config['MONGO_CONNECT'] = False
 mongo = PyMongo(app)
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'

@@ -16,11 +16,10 @@ list_record = list(records)
 
 df_profile = pd.DataFrame(list_record)
 cur_wt_list = df_profile['weight'].tolist()
-goal_wt_list = df_profile['goal'].tolist()
+goal_wt_list = df_profile['target_weight'].tolist()
 
 food = df['Food'].tolist()
 calories = df['Calories'].tolist()
-
 
 def find_subset(weight: list, req_sum: int):
     l = len(weight)

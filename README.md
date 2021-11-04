@@ -31,7 +31,7 @@ BurnOut is an easy to use application that keeps track of a user's daily calorie
 - [Team Members](#team-members)
 - [Contribution](#contribution)
 - [License](#license)
-- [Support](#support)
+
 
 # Why use BurnOut?
  - User can keep a track of their calorie intake.
@@ -55,34 +55,103 @@ https://user-images.githubusercontent.com/89509351/140230712-749bbc0d-d2dd-4c5b-
  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-plain.svg" alt="html" width="20" height="20"> CSS3 </br>
  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-plain.svg" alt="css" width="20" height="20">  HTML 5 </br>
  
- # Core Functionalities of the Application
+# Core Functionalities of the Application
  
  ## Register
  
-
 https://user-images.githubusercontent.com/89509351/140233499-0dba701b-1896-4285-918b-cfee1c63be5a.mp4
-
 
  ## Login
 
 https://user-images.githubusercontent.com/89509351/140233566-78a1c729-e14b-4f57-9fa1-b2f84be26b6f.mp4
 
- 
  ## Set User Profile
  
 https://user-images.githubusercontent.com/89509351/140233630-c746f7b6-3d06-4ca7-b79c-c511c63726e6.mp4
 
 
-## Enter Calories in and burnt
+ ## Enter Calories in and burnt
 
 https://user-images.githubusercontent.com/89509351/140234074-47fb2fb3-6542-4cec-89d6-b2ec5f7359bc.mp4
 
 
-## Check history
+ ## Check history
 
 https://user-images.githubusercontent.com/89509351/140234173-c279e3e8-7b67-4d6b-9e20-268a99108622.mp4
 
  ## Adding Friends 
  
 https://user-images.githubusercontent.com/89509351/140234231-35b85d94-2293-48a8-86f8-fdc485f31cd1.mp4
+  
+ ## Enrolling into several programs
+ 
+https://user-images.githubusercontent.com/89509351/140234538-8f5eca90-08d1-4f36-a83b-47ffdc8005cd.mp4
+
+ # Steps for execution
+ 
+ Step 1:
+ Install MongoDB using the following link:
+ 
+ https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows
+ 
+ Step 2: 
+  Git Clone the Repository 
+  
+    git clone https://github.com/atharva1996/calorieApp_server.git
+    
+  (OR) Download the .zip file on your local machine
+  
+    https://github.com/atharva1996/calorieApp_server.git
+  
+ Step 3:
+   Install the required packages by running the following command in the terminal 
+   
+    pip install -r requirements.txt
+    
+ Step 4:
+    Run the following command in the terminal
+    
+    python application.py
+    
+ Step 5:
+    Open the URL in your browser:  
+      http://127.0.0.1:5000/
+      
+      
+  # Source Code
+  
+  Link to the repository:
+  https://github.com/atharva1996/calorieApp_server
+  
+  # Future Scope
+  
+  The  following features can be implemented in the future scope of this application:
+  
+   1. Predicting workout plans for users based on their history and fitness reports.
+   2. Create a mobile application for the web version of the application.
+   3. Make the website view port adaptable - the website should look good on phone, tablet and computer.
+   4. Chat functionality for friends
+   5. Share workout plans with friends
+   
+   # Team Members
+   
+  <table>
+  <tr>
+    <td align="center"><a href="https://github.com/atharva1996"><img src="https://avatars.githubusercontent.com/u/16671348?v=4" width="100px;" alt=""/><br /><sub>     <b>Atharva Patil</b></sub></a></td>
+    <td align="center"><a href="https://github.com/AtharvaJ10"><img src="https://avatars.githubusercontent.com/u/49825649?v=4" width="100px;" alt=""/><br /><sub>       <b>Atharva Joshi</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/Banpreet13"><img src="https://avatars.githubusercontent.com/u/78414515?v=4" width="100px;" alt=""/><br /><sub>       <b>Banpreet Singh</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/vaish68"><img src="https://avatars.githubusercontent.com/u/89509351?v=4" width="100px;" alt=""/><br /><sub>        <b>Vaishnavi Patil</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/shivam-pednekar"><img src="https://avatars.githubusercontent.com/u/62328699?v=4" width="100px;" alt=""/><br />       <sub><b>Shivam Pednekar</b></sub></a><br /></td>
+  </tr>
+</table>
+  
+  # Contribution
+  
+  Please refer the CONTRIBUTING.md file for instructions on how to contribute to our repository.
+
+  # License
+  
+  This project is licensed under the MIT License.
+  
+  
 

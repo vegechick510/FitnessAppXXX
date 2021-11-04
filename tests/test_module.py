@@ -1,7 +1,6 @@
 import unittest
 import application
 
-"""
 class BasicTestCase(unittest.TestCase):
     
     def test_home(self):
@@ -38,4 +37,3 @@ class BasicTestCase(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-"""

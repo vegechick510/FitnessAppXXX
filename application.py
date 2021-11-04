@@ -21,7 +21,7 @@ from flask import json
 
 app = Flask(__name__)
 app.secret_key = 'secret'
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/test?ssl=true&ssl_cert_reqs=CERT_NONE'
+app.config['MONGO_URI'] = 'mongodb://127.0.0.1:27017/test'
 mongo = PyMongo(app)
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'

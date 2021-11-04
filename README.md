@@ -102,7 +102,8 @@ https://user-images.githubusercontent.com/89509351/140234231-35b85d94-2293-48a8-
   
  ## Enrolling into several programs
  
-https://user-images.githubusercontent.com/89509351/140234538-8f5eca90-08d1-4f36-a83b-47ffdc8005cd.mp4
+https://user-images.githubusercontent.com/89509351/140389545-6cbeae48-4e5d-4166-a455-912e58972838.mp4
+
 
  # Steps for execution
  

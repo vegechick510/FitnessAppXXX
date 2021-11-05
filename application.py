@@ -480,30 +480,30 @@ def dance():
         return redirect(url_for('dashboard'))
     return render_template('dance.html', title='Dance', form=form)
 
-# @app.route("/gym", methods=['GET', 'POST'])
-# def gym():
-#     # ############################
-#     # gym() function displays the gym.html template
-#     # route "/gym" will redirect to gym() function.
-#     # A page showing details about gym plan is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
-#     # Input: Email
-#     # Output: DB entry about enrollment and redirected to new dashboard
-#     # ##########################
-#     email = get_session = session.get('email')
-#     if get_session is not None:
-#         form = EnrollForm()
-#         if form.validate_on_submit():
-#             if request.method == 'POST':
-#                 enroll = "gym"
-#                 mongo.db.user.insert({'Email': email, 'Status': enroll})
-#             flash(
-#                 f' You have succesfully enrolled in our {enroll} plan!',
-#                 'success')
-#             return render_template('new_dashboard.html', form=form)
-#             # return redirect(url_for('dashboard'))
-#     else:
-#         return redirect(url_for('dashboard'))
-#     return render_template('gym.html', title='Gym', form=form)
+@app.route("/hrx", methods=['GET', 'POST'])
+def hrx():
+    # ############################
+    # hrx() function displays the hrx.html template
+    # route "/hrx" will redirect to hrx() function.
+    # A page showing details about hrx plan is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+    # Input: Email
+    # Output: DB entry about enrollment and redirected to new dashboard
+    # ##########################
+    email = get_session = session.get('email')
+    if get_session is not None:
+        form = EnrollForm()
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                enroll = "hrx"
+                mongo.db.user.insert({'Email': email, 'Status': enroll})
+            flash(
+                f' You have succesfully enrolled in our {enroll} plan!',
+                'success')
+            return render_template('new_dashboard.html', form=form)
+            # return redirect(url_for('dashboard'))
+    else:
+        return redirect(url_for('dashboard'))
+    return render_template('hrx.html', title='HRX', form=form)
 
 # @app.route("/ajaxdashboard", methods=['POST'])
 # def ajaxdashboard():

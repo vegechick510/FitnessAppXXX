@@ -3,6 +3,11 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Build Status](https://app.travis-ci.com/atharva1996/calorieApp_server.svg?branch=main)](https://app.travis-ci.com/atharva1996/calorieApp_server)
 ![Code Coverage](https://github.com/atharva1996/calorieApp_server/blob/main/coverage.svg)
+[![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
+![Issues](https://img.shields.io/github/issues/atharva1996/calorieApp_server)
+![last commit](https://img.shields.io/github/last-commit/atharva1996/calorieApp_server)
+![total lines](https://img.shields.io/tokei/lines/github/atharva1996/calorieApp_server)
+
 
 
 # BurnOut
@@ -150,6 +155,8 @@ https://user-images.githubusercontent.com/89509351/140389545-6cbeae48-4e5d-4166-
    3. Make the website view port adaptable - the website should look good on phone, tablet and computer.
    4. Chat functionality for friends
    5. Share workout plans with friends
+   6. Creating an Activities dashboard based on user enrollment
+   7. Track user progress for each activity he/she enrolled for.
    
    # Team Members
    
@@ -157,12 +164,11 @@ https://user-images.githubusercontent.com/89509351/140389545-6cbeae48-4e5d-4166-
   <tr>
     <td align="center"><a href="https://github.com/atharva1996"><img src="https://avatars.githubusercontent.com/u/16671348?v=4" width="100px;" alt=""/><br /><sub>     <b>Atharva Patil</b></sub></a></td>
     <td align="center"><a href="https://github.com/AtharvaJ10"><img src="https://avatars.githubusercontent.com/u/49825649?v=4" width="100px;" alt=""/><br /><sub>       <b>Atharva Joshi</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/Banpreet13"><img src="https://avatars.githubusercontent.com/u/78414515?v=4" width="100px;" alt=""/><br /><sub>       <b>Banpreet Singh</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/Banpreet123"><img src="https://avatars.githubusercontent.com/u/64312538?s=400&u=f4bb34b674d6dcf2491e8051303835fb79d0f45f&v=4" width="100px;" alt=""/><br /><sub>       <b>Banpreet Singh</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/vaish68"><img src="https://avatars.githubusercontent.com/u/89509351?v=4" width="100px;" alt=""/><br /><sub>        <b>Vaishnavi Patil</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/shivam-pednekar"><img src="https://avatars.githubusercontent.com/u/62328699?v=4" width="100px;" alt=""/><br />       <sub><b>Shivam Pednekar</b></sub></a><br /></td>
   </tr>
 </table>
-  
   # Contribution
   
   Please refer the CONTRIBUTING.md file for instructions on how to contribute to our repository.

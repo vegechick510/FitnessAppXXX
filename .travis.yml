@@ -1,4 +1,6 @@
 language: python
 python:
   - "3.8.2"
-script: python3 insert_food_data.py && python3 -m unittest discover
+script: >
+        python3 insert_food_data.py && 
+        python3 -m unittest discover

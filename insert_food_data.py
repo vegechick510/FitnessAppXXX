@@ -2,7 +2,7 @@ from apps import App
 app = App()
 mongo = app.mongo
 
-f = open('food_data/calories.csv', 'r')
+f = open('food_data/calories.csv', 'r', encoding = "ISO-8859-1")
 l = f.readlines()
 
 for i in range(1, len(l)):

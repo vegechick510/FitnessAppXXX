@@ -1,23 +1,14 @@
-from datetime import date, datetime
-from types import MethodDescriptorType
-from bson.objectid import ObjectId
-from flask.json.tag import JSONTag
+from datetime import datetime
 
-from flask_wtf import form
-#from utilities import Utilities
-from flask import app, render_template, session, url_for, flash, redirect, request, Response, Flask
-from flask_pymongo import PyMongo
-from flask import json
-from flask.helpers import make_response
-from flask.json import jsonify
-from flask_mail import Mail, Message
-from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm
 import bcrypt
-#from apps import App
-from flask_login import LoginManager, login_required
-from bson.objectid import ObjectId
+# from apps import App
 from flask import json
+# from utilities import Utilities
+from flask import render_template, session, url_for, flash, redirect, request, Flask
+from flask_mail import Mail
+from flask_pymongo import PyMongo
 
+from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm
 
 app = Flask(__name__)
 app.secret_key = 'secret'

@@ -10,7 +10,7 @@
 ![github workflow](https://github.com/deekay2310/calorieApp_server/actions/workflows/unit_test.yml/badge.svg)
 ![github workflow](https://github.com/deekay2310/calorieApp_server/actions/workflows/style_checker.yml/badge.svg)
 ![github workflow](https://github.com/deekay2310/calorieApp_server/actions/workflows/syntax_checker.yml/badge.svg)
-![github workflow](https://github.com/deekay2310/calorieApp_server/actions/workflows/close_as_a_feature.yml/badge.svg)
+![github workflow](https://github.com/deekay2310/calorieApp_server/actions/workflows/code_formatter.yml/badge.svg)
 <!--Badges-->
 <a href="https://github.com/deekay2310/calorieApp_server/fork" target="blank">
 <img src="https://img.shields.io/github/forks/deekay2310/calorieApp_server?style=flat-square" alt="calorieApp_server forks"/>
@@ -42,11 +42,6 @@
 <a href="https://img.shields.io/github/repo-size/deekay2310/calorieApp_server" alt="repo size">
 <img src="https://img.shields.io/github/repo-size/deekay2310/calorieApp_server" /></a>
 
-<p align="center">
-    <a href="https://github.com/deekay2310/Simplii/issues/new/choose">Report Bug</a>
-    /
-    <a href="https://github.com/deekay2310/Simplii/issues/new/choose">Request Feature</a>
-</p>
 
 
 # BurnOut
@@ -207,10 +202,17 @@ https://user-images.githubusercontent.com/89509351/140389545-6cbeae48-4e5d-4166-
     <td align="center"><a href="https://github.com/vaish68"><img src="https://avatars.githubusercontent.com/u/89509351?v=4" width="100px;" alt=""/><br /><sub>        <b>Vaishnavi Patil</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/shivam-pednekar"><img src="https://avatars.githubusercontent.com/u/62328699?v=4" width="100px;" alt=""/><br />       <sub><b>Shivam Pednekar</b></sub></a><br /></td>
   </tr>
-</table>
+  </table>
+
   # Contribution
   
   Please refer the CONTRIBUTING.md file for instructions on how to contribute to our repository.
+
+  <p align="center">
+    <a href="https://github.com/deekay2310/Simplii/issues/new/choose">Report Bug</a>
+    /
+    <a href="https://github.com/deekay2310/Simplii/issues/new/choose">Request Feature</a>
+  </p>
 
   # License
   

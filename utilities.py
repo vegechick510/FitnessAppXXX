@@ -1,14 +1,7 @@
-from datetime import time
-from io import StringIO
 import random
 
-import bcrypt
-from forms import ResetPasswordForm
-from flask import render_template
 from flask_mail import Message
-from threading import Thread
 from apps import App
-import jwt
 import string
 
 

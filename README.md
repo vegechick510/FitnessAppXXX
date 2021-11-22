@@ -2,11 +2,44 @@
 [![DOI](https://www.zenodo.org/badge/419132821.svg)](https://www.zenodo.org/badge/latestdoi/419132821)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Build Status](https://app.travis-ci.com/atharva1996/calorieApp_server.svg?branch=main)](https://app.travis-ci.com/atharva1996/calorieApp_server)
-![Code Coverage](https://github.com/atharva1996/calorieApp_server/blob/main/coverage.svg)
+<!-- [![codecov](https://codecov.io/gh/deekay2310/calorieApp_server/branch/main/graph/badge.svg?token=IQW5PLLE22)](https://codecov.io/gh/deekay2310/calorieApp_server) -->
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 ![Issues](https://img.shields.io/github/issues/atharva1996/calorieApp_server)
 ![last commit](https://img.shields.io/github/last-commit/atharva1996/calorieApp_server)
 ![total lines](https://img.shields.io/tokei/lines/github/atharva1996/calorieApp_server)
+![github workflow](https://github.com/deekay2310/calorieApp_server/actions/workflows/unit_test.yml/badge.svg)
+![github workflow](https://github.com/deekay2310/calorieApp_server/actions/workflows/style_checker.yml/badge.svg)
+![github workflow](https://github.com/deekay2310/calorieApp_server/actions/workflows/syntax_checker.yml/badge.svg)
+<!--Badges-->
+<a href="https://github.com/deekay2310/calorieApp_server/fork" target="blank">
+<img src="https://img.shields.io/github/forks/deekay2310/calorieApp_server?style=flat-square" alt="calorieApp_server forks"/>
+</a>
+<a href="https://github.com/deekay2310/calorieApp_server/stargazers" target="blank">
+<img src="https://img.shields.io/github/stars/deekay2310/calorieApp_server?style=flat-square" alt="calorieApp_server stars"/>
+</a>
+<a href="https://github.com/deekay2310/calorieApp_server/issues" target="blank">
+<img src="https://img.shields.io/github/issues/deekay2310/calorieApp_server?style=flat-square" alt="calorieApp_server issues"/>
+</a>
+<a href="https://github.com/deekay2310/calorieApp_server/issues" target="blank">
+<img src="https://img.shields.io/github/issues-closed/deekay2310/calorieApp_server" alt="calorieApp_server issues closed"/>
+</a>
+<a href="https://github.com/deekay2310/calorieApp_server/pulls" target="blank">
+<img src="https://img.shields.io/github/issues-pr/deekay2310/calorieApp_server?style=flat-square" alt="cheapBuy pull-requests"/>
+</a>
+<a href="https://github.com/deekay2310/calorieApp_server/graphs/contributors" alt="Contributors">
+<img src="https://img.shields.io/github/contributors/deekay2310/calorieApp_server" /></a>
+
+<a href="https://github.com/deekay2310/calorieApp_server/milestones" alt="milestones">
+<img src="https://img.shields.io/github/milestones/all/deekay2310/calorieApp_server" /></a> 
+
+<a href="https://github.com/deekay2310/calorieApp_server/graphs/commit-activity" alt="commit activity">
+<img src="https://img.shields.io/github/commit-activity/w/deekay2310/calorieApp_server" /></a> 
+
+<a href="https://github.com/deekay2310/calorieApp_server/discussions" alt="discussion">
+<img src="https://img.shields.io/github/discussions/deekay2310/calorieApp_server" /></a> 
+
+<a href="https://img.shields.io/github/repo-size/deekay2310/calorieApp_server" alt="repo size">
+<img src="https://img.shields.io/github/repo-size/deekay2310/calorieApp_server" /></a>
 
 
 
@@ -168,10 +201,17 @@ https://user-images.githubusercontent.com/89509351/140389545-6cbeae48-4e5d-4166-
     <td align="center"><a href="https://github.com/vaish68"><img src="https://avatars.githubusercontent.com/u/89509351?v=4" width="100px;" alt=""/><br /><sub>        <b>Vaishnavi Patil</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/shivam-pednekar"><img src="https://avatars.githubusercontent.com/u/62328699?v=4" width="100px;" alt=""/><br />       <sub><b>Shivam Pednekar</b></sub></a><br /></td>
   </tr>
-</table>
+  </table>
+
   # Contribution
   
   Please refer the CONTRIBUTING.md file for instructions on how to contribute to our repository.
+
+  <p align="center">
+    <a href="https://github.com/deekay2310/Simplii/issues/new/choose">Report Bug</a>
+    /
+    <a href="https://github.com/deekay2310/Simplii/issues/new/choose">Request Feature</a>
+  </p>
 
   # License
   

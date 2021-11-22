@@ -396,6 +396,82 @@ def swim():
     return render_template('swim.html', title='Swim', form=form)
 
 
+@app.route("/abbs", methods=['GET', 'POST'])
+def abbs():
+    # ############################
+    # abbs() function displays the abbs.html template
+    # route "/abbs" will redirect to abbs() function.
+    # A page showing details about abbs workout is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+    # Input: Email
+    # Output: DB entry about enrollment and redirected to new dashboard
+    # ##########################
+    email = get_session = session.get('email')
+    if get_session is not None:
+        form = EnrollForm()
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                enroll = "abbs"
+                mongo.db.user.insert({'Email': email, 'Status': enroll})
+            flash(
+                f' You have succesfully enrolled in our {enroll} plan!',
+                'success')
+            return render_template('new_dashboard.html', form=form)
+    else:
+        return redirect(url_for('dashboard'))
+    return render_template('abbs.html', title='Abbs Smash!', form=form)
+
+
+@app.route("/belly", methods=['GET', 'POST'])
+def belly():
+    # ############################
+    # belly() function displays the belly.html template
+    # route "/belly" will redirect to belly() function.
+    # A page showing details about belly workout is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+    # Input: Email
+    # Output: DB entry about enrollment and redirected to new dashboard
+    # ##########################
+    email = get_session = session.get('email')
+    if get_session is not None:
+        form = EnrollForm()
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                enroll = "belly"
+                mongo.db.user.insert({'Email': email, 'Status': enroll})
+            flash(
+                f' You have succesfully enrolled in our {enroll} plan!',
+                'success')
+            return render_template('new_dashboard.html', form=form)
+            # return redirect(url_for('dashboard'))
+    else:
+        return redirect(url_for('dashboard'))
+    return render_template('belly.html', title='Belly Burner', form=form)
+
+
+@app.route("/core", methods=['GET', 'POST'])
+def core():
+    # ############################
+    # core() function displays the belly.html template
+    # route "/core" will redirect to core() function.
+    # A page showing details about core workout is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+    # Input: Email
+    # Output: DB entry about enrollment and redirected to new dashboard
+    # ##########################
+    email = get_session = session.get('email')
+    if get_session is not None:
+        form = EnrollForm()
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                enroll = "core"
+                mongo.db.user.insert({'Email': email, 'Status': enroll})
+            flash(
+                f' You have succesfully enrolled in our {enroll} plan!',
+                'success')
+            return render_template('new_dashboard.html', form=form)
+    else:
+        return redirect(url_for('dashboard'))
+    return render_template('core.html', title='Core Conditioning', form=form)
+
+
 @app.route("/gym", methods=['GET', 'POST'])
 def gym():
     # ############################

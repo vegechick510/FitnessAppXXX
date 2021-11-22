@@ -7,7 +7,46 @@
 ![Issues](https://img.shields.io/github/issues/atharva1996/calorieApp_server)
 ![last commit](https://img.shields.io/github/last-commit/atharva1996/calorieApp_server)
 ![total lines](https://img.shields.io/tokei/lines/github/atharva1996/calorieApp_server)
+![github workflow](https://github.com/deekay2310/calorieApp_server/actions/workflows/unit_test.yml/badge.svg)
+![github workflow](https://github.com/deekay2310/calorieApp_server/actions/workflows/style_checker.yml/badge.svg)
+![github workflow](https://github.com/deekay2310/calorieApp_server/actions/workflows/syntax_checker.yml/badge.svg)
+![github workflow](https://github.com/deekay2310/calorieApp_server/actions/workflows/close_as_a_feature.yml/badge.svg)
+<!--Badges-->
+<a href="https://github.com/deekay2310/calorieApp_server/fork" target="blank">
+<img src="https://img.shields.io/github/forks/deekay2310/calorieApp_server?style=flat-square" alt="calorieApp_server forks"/>
+</a>
+<a href="https://github.com/deekay2310/calorieApp_server/stargazers" target="blank">
+<img src="https://img.shields.io/github/stars/deekay2310/calorieApp_server?style=flat-square" alt="calorieApp_server stars"/>
+</a>
+<a href="https://github.com/deekay2310/calorieApp_server/issues" target="blank">
+<img src="https://img.shields.io/github/issues/deekay2310/calorieApp_server?style=flat-square" alt="calorieApp_server issues"/>
+</a>
+<a href="https://github.com/deekay2310/calorieApp_server/issues" target="blank">
+<img src="https://img.shields.io/github/issues-closed/deekay2310/calorieApp_server" alt="calorieApp_server issues closed"/>
+</a>
+<a href="https://github.com/deekay2310/calorieApp_server/pulls" target="blank">
+<img src="https://img.shields.io/github/issues-pr/deekay2310/calorieApp_server?style=flat-square" alt="cheapBuy pull-requests"/>
+</a>
+<a href="https://github.com/deekay2310/calorieApp_server/graphs/contributors" alt="Contributors">
+<img src="https://img.shields.io/github/contributors/deekay2310/calorieApp_server" /></a>
 
+<a href="https://github.com/deekay2310/calorieApp_server/milestones" alt="milestones">
+<img src="https://img.shields.io/github/milestones/all/deekay2310/calorieApp_server" /></a> 
+
+<a href="https://github.com/deekay2310/calorieApp_server/graphs/commit-activity" alt="commit activity">
+<img src="https://img.shields.io/github/commit-activity/w/deekay2310/calorieApp_server" /></a> 
+
+<a href="https://github.com/deekay2310/calorieApp_server/discussions" alt="discussion">
+<img src="https://img.shields.io/github/discussions/deekay2310/calorieApp_server" /></a> 
+
+<a href="https://img.shields.io/github/repo-size/deekay2310/calorieApp_server" alt="repo size">
+<img src="https://img.shields.io/github/repo-size/deekay2310/calorieApp_server" /></a>
+
+<p align="center">
+    <a href="https://github.com/deekay2310/Simplii/issues/new/choose">Report Bug</a>
+    /
+    <a href="https://github.com/deekay2310/Simplii/issues/new/choose">Request Feature</a>
+</p>
 
 
 # BurnOut

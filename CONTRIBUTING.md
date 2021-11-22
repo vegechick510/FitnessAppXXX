@@ -131,7 +131,7 @@ Everyone participating in this project needs to abide by the aPAS - A Personal A
     * Reference class methods with `{ClassName.methodName}`
 
 
-  ## Git Commit Messages
+## Git Commit Messages
 
   - Describe why any particular modification is being made.
 
@@ -143,7 +143,7 @@ Everyone participating in this project needs to abide by the aPAS - A Personal A
 
   - Link an issue to the change
 
-  ## Python Style Guides :
+## Python Style Guides :
 
   All Python code is linted with Pylint. Ensure that before you commit any changes, your code passes all the default pylint checks. Pylint can be installed with
   `pip install pylint`.

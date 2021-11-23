@@ -32,7 +32,11 @@ class BasicTestCase(unittest.TestCase):
         self.app= app.test_client()
         ans=self.app.get('/friends')
         self.assertEqual(ans.status_code,200)
-     
+
+    def test_calories(self):
+        self.app= app.test_client()
+        ans=self.app.get('/calories')
+        self.assertEqual(ans.status_code,200)
 
 if __name__ == '__main__':
     unittest.main()

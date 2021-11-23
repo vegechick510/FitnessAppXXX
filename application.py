@@ -180,7 +180,7 @@ def user_profile():
                                              'goal': goal,
                                              'target_weight': target_weight})
 
-            flash(f'User profile Updated', 'success')
+            flash(f'User Profile Updated', 'success')
             return render_template('display_profile.html', status=True, form=form)
     else:
         return redirect(url_for('login'))

@@ -24,8 +24,9 @@ jobs:
         echo requirements installed
     - name: Run the tests
       run: |
+        python application.py &
+        sleep 5
         cd tests
-        python -m unittest test
         pytest --cov=./
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1

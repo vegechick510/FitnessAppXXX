@@ -27,8 +27,9 @@ jobs:
         python application.py &
         sleep 5
         cd tests
-        pytest --cov=./
+        coverage run test_module.py
+        coverage.xml
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
+      uses: codecov/codecov-action@v2
       with:
         token: ${{ secrets.CODECOV_TOKEN }}

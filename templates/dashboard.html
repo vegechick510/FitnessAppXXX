@@ -1,5 +1,15 @@
+<body onload="WeightAlert()">
 {% extends "layout.html" %}
 {% block content %}
+<script>
+  
+  function WeightAlert() {
+    
+    setTimeout(function(){ alert ("Tracking progress is vital. Don't forget to log your weight today!");}, 3000)
+   
+    
+  }
+ </script>
 <div></div>
 
     <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
@@ -174,3 +184,4 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
+</body>

@@ -86,13 +86,13 @@ def logout():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    # ############################
-    # register() function displays the Registration portal (register.html) template
-    # route "/register" will redirect to register() function.
-    # RegistrationForm() called and if the form is submitted then various values are fetched and updated into database
-    # Input: Username, Email, Password, Confirm Password
-    # Output: Value update in database and redirected to home login page
-    # ##########################
+    """
+    register() function displays the Registration portal (register.html) template
+    route "/register" will redirect to register() function.
+    RegistrationForm() called and if the form is submitted then various values are fetched and updated into database
+    Input: Username, Email, Password, Confirm Password
+    Output: Value update in database and redirected to home login page
+    """
     if not session.get('email'):
         form = RegistrationForm()
         if form.validate_on_submit():
@@ -111,13 +111,13 @@ def register():
 
 @app.route("/calories", methods=['GET', 'POST'])
 def calories():
-    # ############################
-    # calorie() function displays the Calorieform (calories.html) template
-    # route "/calories" will redirect to calories() function.
-    # CalorieForm() called and if the form is submitted then various values are fetched and updated into the database entries
-    # Input: Email, date, food, burnout
-    # Output: Value update in database and redirected to home page
-    # ##########################
+    """
+    calorie() function displays the Calorieform (calories.html) template
+    route "/calories" will redirect to calories() function.
+    CalorieForm() called and if the form is submitted then various values are fetched and updated into the database entries
+    Input: Email, date, food, burnout
+    Output: Value update in database and redirected to home page
+    """
     now = datetime.now()
     now = now.strftime('%Y-%m-%d')
 
@@ -149,13 +149,13 @@ def calories():
 
 @app.route("/user_profile", methods=['GET', 'POST'])
 def user_profile():
-    # ############################
-    # user_profile() function displays the UserProfileForm (user_profile.html) template
-    # route "/user_profile" will redirect to user_profile() function.
-    # user_profile() called and if the form is submitted then various values are fetched and updated into the database entries
-    # Input: Email, height, weight, goal, Target weight
-    # Output: Value update in database and redirected to home login page
-    # ##########################
+    """
+    user_profile() function displays the UserProfileForm (user_profile.html) template
+    route "/user_profile" will redirect to user_profile() function.
+    user_profile() called and if the form is submitted then various values are fetched and updated into the database entries
+    Input: Email, height, weight, goal, Target weight
+    Output: Value update in database and redirected to home login page
+    """
     if session.get('email'):
         form = UserProfileForm()
         if form.validate_on_submit():

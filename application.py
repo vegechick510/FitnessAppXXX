@@ -27,12 +27,12 @@ mail = Mail(app)
 @app.route("/")
 @app.route("/home")
 def home():
-    ############################
-    # home() function displays the homepage of our website.
-    # route "/home" will redirect to home() function.
-    # input: The function takes session as the input
-    # Output: Out function will redirect to the login page
-    # ##########################
+    """
+    home() function displays the homepage of our website.
+    route "/home" will redirect to home() function.
+    input: The function takes session as the input
+    Output: Out function will redirect to the login page
+    """
     if session.get('email'):
         return redirect(url_for('dashboard'))
     else:
@@ -41,13 +41,13 @@ def home():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    # ############################
-    # login() function displays the Login form (login.html) template
-    # route "/login" will redirect to login() function.
-    # LoginForm() called and if the form is submitted then various values are fetched and verified from the database entries
-    # Input: Email, Password, Login Type
-    # Output: Account Authentication and redirecting to Dashboard
-    # ##########################
+    """"
+    login() function displays the Login form (login.html) template
+    route "/login" will redirect to login() function.
+    LoginForm() called and if the form is submitted then various values are fetched and verified from the database entries
+    Input: Email, Password, Login Type
+    Output: Account Authentication and redirecting to Dashboard
+    """
     if not session.get('email'):
         form = LoginForm()
         if form.validate_on_submit():
@@ -75,11 +75,11 @@ def login():
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
-    # ############################
-    # logout() function just clears out the session and returns success
-    # route "/logout" will redirect to logout() function.
-    # Output: session clear
-    # ##########################
+    """
+    logout() function just clears out the session and returns success
+    route "/logout" will redirect to logout() function.
+    Output: session clear
+    """
     session.clear()
     return "success"
 

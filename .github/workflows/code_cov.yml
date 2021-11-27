@@ -29,6 +29,6 @@ jobs:
         cd tests
         coverage run test_module.py
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}

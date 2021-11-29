@@ -320,9 +320,9 @@ def send_email():
         {'receiver': email, 'accept': False}, {'sender', 'receiver', 'accept'}))
     for p in pendingApprovals:
         pendingApproves.append(p['sender'])
-
-
-
+        
+    return render_template('friends.html', allUsers=allUsers, pendingRequests=pendingRequests, active=email,
+                           pendingReceivers=pendingReceivers, pendingApproves=pendingApproves, myFriends=myFriends, myFriendsList=myFriendsList)
 
 
 

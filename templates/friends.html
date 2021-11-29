@@ -46,6 +46,21 @@
         <br>    
     {% endfor %}
 </details>
+<br>
+<details>
+    <summary>Share data with Friends (Type friend's email ID comma separated)</summary>
+    
+        <div>
+            
+				<form method="POST" action="/send_email">
+				<textarea id="share" name="share"></textarea>
+				<button type="submit" class="btn btn-success inline ml-5">Share Calorie History with Friends</button>
+				</form>
+        </div>
+        <br>
+    
+</details>
+<br>
 
 
 {% endblock content %}

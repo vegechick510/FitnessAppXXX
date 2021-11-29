@@ -12,13 +12,13 @@
 |.5|Number of commits: by different people  | in GH: https://github.com/deekay2310/Simplii/graphs/contributors https://github.com/deekay2310/Simplii/pulse|0.5|
 |1|issues are being closed | https://github.com/deekay2310/Simplii/issues?q=is%3Aissue+is%3Aclosed|1|
 |.5|issues are discussed before they are closed | Scheduled regular zoom meetings and met in person to discuss about various issues, implementations and tasks. Reviewed each other's changes before wrapping up issues. Had continuous discussions over team WhatsApp group as well.|0.5|
-|.5|Use of syntax checkers. | https://github.com/deekay2310/Simplii/blob/main/.github/workflows/syntax_checker.yml|0.5|
+|.5|Use of syntax checkers. | https://github.com/deekay2310/calorieApp_server/blob/main/.github/workflows/syntax_checker.yml|0.5|
 |1|Issues reports: there are many  |https://github.com/deekay2310/Simplii/issues?q=is%3Aopen+is%3Aissue |1|
-|.5|Use of code formatters. | https://github.com/deekay2310/Simplii/blob/main/.github/workflows/code_formatter.yml|0.5|
-|.5|Use of style checkers | https://github.com/deekay2310/Simplii/blob/main/.github/workflows/style_checker.yml|0.5|
+|.5|Use of code formatters. | https://github.com/deekay2310/calorieApp_server/blob/main/.github/workflows/code_formatter.yml|0.5|
+|.5|Use of style checkers | https://github.com/deekay2310/calorieApp_server/blob/main/.github/workflows/style_checker.yml|0.5|
 |.5|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code. | ||
 |.5|test cases exist  | https://github.com/deekay2310/Simplii/tree/main/test|0.5|
-|.5|Use of code coverage  | https://github.com/deekay2310/Simplii/blob/main/.github/workflows/code_cov.yml|0.5|
+|.5|Use of code coverage  | https://github.com/deekay2310/calorieApp_server/blob/main/.github/workflows/code_cov.yml|0.5|
 |.5|other automated analysis tools  | https://github.com/deekay2310/Simplii/blob/main/.github/workflows/close_as_a_feature.yml|0.5|
 |.5|test cases:.a large proportion of the issues related to handling failing cases. | if a test case fails, open an issue and fix it||
 |.5|test cases are routinely executed | https://github.com/deekay2310/Simplii/blob/main/.travis.yml|0.5|

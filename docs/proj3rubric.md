@@ -19,7 +19,7 @@
 |.5|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code. | ||
 |.5|test cases exist  | https://github.com/deekay2310/Simplii/tree/main/test|0.5|
 |.5|Use of code coverage  | https://github.com/deekay2310/calorieApp_server/blob/main/.github/workflows/code_cov.yml|0.5|
-|.5|other automated analysis tools  | https://github.com/deekay2310/Simplii/blob/main/.github/workflows/close_as_a_feature.yml|0.5|
+|.5|other automated analysis tools  | https://github.com/deekay2310/calorieApp_server/blob/main/.github/workflows/close_as_a_feature.yml|0.5|
 |.5|test cases:.a large proportion of the issues related to handling failing cases. | if a test case fails, open an issue and fix it||
 |.5|test cases are routinely executed | https://github.com/deekay2310/Simplii/blob/main/.travis.yml|0.5|
 |1|Documentation describing how this version improves on the older version|https://github.com/deekay2310/Simplii/blob/main/docs/enhancements.md|1|

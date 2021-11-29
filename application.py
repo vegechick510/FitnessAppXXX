@@ -303,6 +303,12 @@ def send_email():
     myFriends = list(mongo.db.friends.find(
         {'sender': email, 'accept': True}, {'sender', 'receiver', 'accept'}))
     myFriendsList = list()
+    
+    for f in myFriends:
+        myFriendsList.append(f['receiver'])
+
+    allUsers = list(mongo.db.user.find({}, {'name', 'email'}))
+
 
 
 

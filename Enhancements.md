@@ -6,6 +6,6 @@
 
 ### <li> Included short workout demos and added a seperate button for further information about each workout plan.
 
-### <li> Enabled e-mail feature.
+### <li> Enabled data sharing with friends via e-mail, using which users can share their progress with friends.
 
 

@@ -300,6 +300,10 @@ def send_email():
         
     server.quit()
     
+    myFriends = list(mongo.db.friends.find(
+        {'sender': email, 'accept': True}, {'sender', 'receiver', 'accept'}))
+    myFriendsList = list()
+
 
 
 

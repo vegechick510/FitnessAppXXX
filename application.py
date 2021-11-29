@@ -1,13 +1,15 @@
 from datetime import datetime
 
 import bcrypt
+import smtplib
+
 # from apps import App
 from flask import json
 # from utilities import Utilities
 from flask import render_template, session, url_for, flash, redirect, request, Flask
 from flask_mail import Mail
 from flask_pymongo import PyMongo
-
+from tabulate import tabulate
 from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm
 
 app = Flask(__name__)

@@ -1,5 +1,7 @@
 # Added Features in the Burnout v3.0 (What's new?)
 
+### <li> Bug fixes.
+
 ### <li> Created a chatbot for user interaction.
 
 ### <li> Incorporated a reminder/alert to ensure users don't forget to track their progress by adding their weight data regularly.

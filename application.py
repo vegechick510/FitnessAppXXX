@@ -270,6 +270,13 @@ def friends():
 
 
 @app.route("/send_email", methods=['GET','POST'])
+def send_email():
+    # ############################
+    # send_email() function shares Calorie History with friend's email
+    # route "/send_email" will redirect to send_email() function which redirects to friends.html page.
+    # Input: Email
+    # Output: Calorie History Received on specified email
+    # ##########################
 
 
 

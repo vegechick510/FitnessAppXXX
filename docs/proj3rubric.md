@@ -9,8 +9,7 @@
 |.5|evidence that the whole team is using the same tools (e.g. config files in the repo, updated by lots of different people) |All team members are making use of PyCharm, Github Desktop, etc |0.5|
 |.5|evidence that the members of the team are working across multiple places in the code base | ||
 |1|Docs: what: point descriptions of each class/function (in isolation)  | https://github.com/deekay2310/Simplii/blob/main/Function%20Description.md|1|
-|.5|Number of commits: by different people  | in GH: https://github.com/deekay2310/calorieApp_server/graphs/contributors
-https://github.com/deekay2310/calorieApp_server/pulse|0.5|
+|.5|Number of commits: by different people  | in GH: https://github.com/deekay2310/calorieApp_server/graphs/contributors|0.5|
 |1|issues are being closed | https://github.com/deekay2310/calorieApp_server/issues?q=is%3Aissue+is%3Aclosed|1|
 |.5|issues are discussed before they are closed | Scheduled regular zoom meetings and met in person to discuss about various issues, implementations and tasks. Reviewed each other's changes before wrapping up issues. Had continuous discussions over team WhatsApp group as well.|0.5|
 |.5|Use of syntax checkers. | https://github.com/deekay2310/calorieApp_server/blob/main/.github/workflows/syntax_checker.yml|0.5|

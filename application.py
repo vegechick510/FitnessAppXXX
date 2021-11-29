@@ -277,7 +277,13 @@ def send_email():
     # Input: Email
     # Output: Calorie History Received on specified email
     # ##########################
-
+    email = session.get('email')
+    data = list(mongo.db.calories.find({'email': email}, {'date','email','calories','burnout'}))
+    table = [['Date','Email ID','Calories','Burnout']]
+    for a in data:
+        tmp = [a['date'],a['email'],a['calories'],a['burnout']] 
+        table.append(tmp) 
+    
 
 
 

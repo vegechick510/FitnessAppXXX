@@ -7,7 +7,7 @@
 |.5|the files CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up  |https://github.com/deekay2310/calorieApp_server/blob/main/CONTRIBUTING.md|0.5|
 |.5|Docs: doco generated , format not ugly  | in GH: https://github.com/deekay2310/calorieApp_server/tree/main/docs|0.5|
 |.5|evidence that the whole team is using the same tools (e.g. config files in the repo, updated by lots of different people) |All team members are making use of PyCharm, Github Desktop, etc |0.5|
-|.5|evidence that the members of the team are working across multiple places in the code base | ||
+|.5|evidence that the members of the team are working across multiple places in the code base | |0.5|
 |1|Docs: what: point descriptions of each class/function (in isolation)  | https://github.com/deekay2310/calorieApp_server/blob/main/function_description.md|1|
 |.5|Number of commits: by different people  | in GH: https://github.com/deekay2310/calorieApp_server/graphs/contributors|0.5|
 |1|issues are being closed | https://github.com/deekay2310/calorieApp_server/issues?q=is%3Aissue+is%3Aclosed|1|

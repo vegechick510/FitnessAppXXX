@@ -1,6 +1,6 @@
 ### Review
 | Score | Notes | Evidence| Self Assessment| 
-| -------------- | ---------- |----------|----------|
+| ---------- | ---------- |----------|----------|
 |.5| short release cycles|https://github.com/deekay2310/calorieApp_server/releases/|0.5|
 |.5| workload is spread over the whole team (so one team member is often Xtimes more productive than the others...|https://github.com/deekay2310/calorieApp_server/pulse|0.5|
 |.5|Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing |https://github.com/deekay2310/calorieApp_server/blob/main/README.md |0.5|
@@ -17,7 +17,7 @@
 |.5|Use of code formatters. | https://github.com/deekay2310/calorieApp_server/blob/main/.github/workflows/code_formatter.yml|0.5|
 |.5|Use of style checkers | https://github.com/deekay2310/calorieApp_server/blob/main/.github/workflows/style_checker.yml|0.5|
 |.5|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code. | ||
-|.5|test cases exist  | https://github.com/deekay2310/Simplii/tree/main/test|0.5|
+|.5|test cases exist  | https://github.com/deekay2310/calorieApp_server/tree/main/tests|0.5|
 |.5|Use of code coverage  | https://github.com/deekay2310/calorieApp_server/blob/main/.github/workflows/code_cov.yml|0.5|
 |.5|other automated analysis tools  | https://github.com/deekay2310/calorieApp_server/blob/main/.github/workflows/close_as_a_feature.yml|0.5|
 |.5|test cases:.a large proportion of the issues related to handling failing cases. | if a test case fails, open an issue and fix it||

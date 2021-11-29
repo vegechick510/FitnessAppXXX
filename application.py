@@ -1,13 +1,15 @@
 from datetime import datetime
 
 import bcrypt
+import smtplib
+
 # from apps import App
 from flask import json
 # from utilities import Utilities
 from flask import render_template, session, url_for, flash, redirect, request, Flask
 from flask_mail import Mail
 from flask_pymongo import PyMongo
-
+from tabulate import tabulate
 from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm
 
 app = Flask(__name__)
@@ -27,12 +29,12 @@ mail = Mail(app)
 @app.route("/")
 @app.route("/home")
 def home():
-    ############################
-    # home() function displays the homepage of our website.
-    # route "/home" will redirect to home() function.
-    # input: The function takes session as the input
-    # Output: Out function will redirect to the login page
-    # ##########################
+    """
+    home() function displays the homepage of our website.
+    route "/home" will redirect to home() function.
+    input: The function takes session as the input
+    Output: Out function will redirect to the login page
+    """
     if session.get('email'):
         return redirect(url_for('dashboard'))
     else:
@@ -41,13 +43,13 @@ def home():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    # ############################
-    # login() function displays the Login form (login.html) template
-    # route "/login" will redirect to login() function.
-    # LoginForm() called and if the form is submitted then various values are fetched and verified from the database entries
-    # Input: Email, Password, Login Type
-    # Output: Account Authentication and redirecting to Dashboard
-    # ##########################
+    """"
+    login() function displays the Login form (login.html) template
+    route "/login" will redirect to login() function.
+    LoginForm() called and if the form is submitted then various values are fetched and verified from the database entries
+    Input: Email, Password, Login Type
+    Output: Account Authentication and redirecting to Dashboard
+    """
     if not session.get('email'):
         form = LoginForm()
         if form.validate_on_submit():
@@ -75,24 +77,24 @@ def login():
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
-    # ############################
-    # logout() function just clears out the session and returns success
-    # route "/logout" will redirect to logout() function.
-    # Output: session clear
-    # ##########################
+    """
+    logout() function just clears out the session and returns success
+    route "/logout" will redirect to logout() function.
+    Output: session clear
+    """
     session.clear()
     return "success"
 
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    # ############################
-    # register() function displays the Registration portal (register.html) template
-    # route "/register" will redirect to register() function.
-    # RegistrationForm() called and if the form is submitted then various values are fetched and updated into database
-    # Input: Username, Email, Password, Confirm Password
-    # Output: Value update in database and redirected to home login page
-    # ##########################
+    """
+    register() function displays the Registration portal (register.html) template
+    route "/register" will redirect to register() function.
+    RegistrationForm() called and if the form is submitted then various values are fetched and updated into database
+    Input: Username, Email, Password, Confirm Password
+    Output: Value update in database and redirected to home login page
+    """
     if not session.get('email'):
         form = RegistrationForm()
         if form.validate_on_submit():
@@ -111,13 +113,13 @@ def register():
 
 @app.route("/calories", methods=['GET', 'POST'])
 def calories():
-    # ############################
-    # calorie() function displays the Calorieform (calories.html) template
-    # route "/calories" will redirect to calories() function.
-    # CalorieForm() called and if the form is submitted then various values are fetched and updated into the database entries
-    # Input: Email, date, food, burnout
-    # Output: Value update in database and redirected to home page
-    # ##########################
+    """
+    calorie() function displays the Calorieform (calories.html) template
+    route "/calories" will redirect to calories() function.
+    CalorieForm() called and if the form is submitted then various values are fetched and updated into the database entries
+    Input: Email, date, food, burnout
+    Output: Value update in database and redirected to home page
+    """
     now = datetime.now()
     now = now.strftime('%Y-%m-%d')
 
@@ -149,13 +151,13 @@ def calories():
 
 @app.route("/user_profile", methods=['GET', 'POST'])
 def user_profile():
-    # ############################
-    # user_profile() function displays the UserProfileForm (user_profile.html) template
-    # route "/user_profile" will redirect to user_profile() function.
-    # user_profile() called and if the form is submitted then various values are fetched and updated into the database entries
-    # Input: Email, height, weight, goal, Target weight
-    # Output: Value update in database and redirected to home login page
-    # ##########################
+    """
+    user_profile() function displays the UserProfileForm (user_profile.html) template
+    route "/user_profile" will redirect to user_profile() function.
+    user_profile() called and if the form is submitted then various values are fetched and updated into the database entries
+    Input: Email, height, weight, goal, Target weight
+    Output: Value update in database and redirected to home login page
+    """
     if session.get('email'):
         form = UserProfileForm()
         if form.validate_on_submit():
@@ -265,6 +267,63 @@ def friends():
     # print(pendingRequests)
     return render_template('friends.html', allUsers=allUsers, pendingRequests=pendingRequests, active=email,
                            pendingReceivers=pendingReceivers, pendingApproves=pendingApproves, myFriends=myFriends, myFriendsList=myFriendsList)
+
+
+@app.route("/send_email", methods=['GET','POST'])
+def send_email():
+    # ############################
+    # send_email() function shares Calorie History with friend's email
+    # route "/send_email" will redirect to send_email() function which redirects to friends.html page.
+    # Input: Email
+    # Output: Calorie History Received on specified email
+    # ##########################
+    email = session.get('email')
+    data = list(mongo.db.calories.find({'email': email}, {'date','email','calories','burnout'}))
+    table = [['Date','Email ID','Calories','Burnout']]
+    for a in data:
+        tmp = [a['date'],a['email'],a['calories'],a['burnout']] 
+        table.append(tmp) 
+    
+    friend_email = str(request.form.get('share')).strip()
+    friend_email = str(friend_email).split(',')
+    server = smtplib.SMTP_SSL("smtp.gmail.com",465)
+    #Storing sender's email address and password
+    sender_email = "calorie.app.server@gmail.com"
+    sender_password = "Temp@1234"
+    
+    #Logging in with sender details
+    server.login(sender_email,sender_password)
+    message = 'Subject: Calorie History\n\n Your Friend wants to share their calorie history with you!\n {}'.format(tabulate(table))
+    for e in friend_email:
+        print(e)
+        server.sendmail(sender_email,e,message)
+        
+    server.quit()
+    
+    myFriends = list(mongo.db.friends.find(
+        {'sender': email, 'accept': True}, {'sender', 'receiver', 'accept'}))
+    myFriendsList = list()
+    
+    for f in myFriends:
+        myFriendsList.append(f['receiver'])
+
+    allUsers = list(mongo.db.user.find({}, {'name', 'email'}))
+    
+    pendingRequests = list(mongo.db.friends.find(
+        {'sender': email, 'accept': False}, {'sender', 'receiver', 'accept'}))
+    pendingReceivers = list()
+    for p in pendingRequests:
+        pendingReceivers.append(p['receiver'])
+
+    pendingApproves = list()
+    pendingApprovals = list(mongo.db.friends.find(
+        {'receiver': email, 'accept': False}, {'sender', 'receiver', 'accept'}))
+    for p in pendingApprovals:
+        pendingApproves.append(p['sender'])
+        
+    return render_template('friends.html', allUsers=allUsers, pendingRequests=pendingRequests, active=email,
+                           pendingReceivers=pendingReceivers, pendingApproves=pendingApproves, myFriends=myFriends, myFriendsList=myFriendsList)
+
 
 
 @app.route("/ajaxsendrequest", methods=['POST'])

@@ -308,6 +308,19 @@ def send_email():
         myFriendsList.append(f['receiver'])
 
     allUsers = list(mongo.db.user.find({}, {'name', 'email'}))
+    
+    pendingRequests = list(mongo.db.friends.find(
+        {'sender': email, 'accept': False}, {'sender', 'receiver', 'accept'}))
+    pendingReceivers = list()
+    for p in pendingRequests:
+        pendingReceivers.append(p['receiver'])
+
+    pendingApproves = list()
+    pendingApprovals = list(mongo.db.friends.find(
+        {'receiver': email, 'accept': False}, {'sender', 'receiver', 'accept'}))
+    for p in pendingApprovals:
+        pendingApproves.append(p['sender'])
+
 
 
 

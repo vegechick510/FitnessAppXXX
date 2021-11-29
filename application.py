@@ -269,6 +269,11 @@ def friends():
                            pendingReceivers=pendingReceivers, pendingApproves=pendingApproves, myFriends=myFriends, myFriendsList=myFriendsList)
 
 
+@app.route("/send_email", methods=['GET','POST'])
+
+
+
+
 @app.route("/ajaxsendrequest", methods=['POST'])
 def ajaxsendrequest():
     # ############################

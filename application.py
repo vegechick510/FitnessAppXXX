@@ -291,6 +291,15 @@ def send_email():
     sender_email = "calorie.app.server@gmail.com"
     sender_password = "Temp@1234"
     
+    #Logging in with sender details
+    server.login(sender_email,sender_password)
+    message = 'Subject: Calorie History\n\n Your Friend wants to share their calorie history with you!\n {}'.format(tabulate(table))
+    for e in friend_email:
+        print(e)
+        server.sendmail(sender_email,e,message)
+        
+    server.quit()
+    
 
 
 

@@ -284,6 +284,13 @@ def send_email():
         tmp = [a['date'],a['email'],a['calories'],a['burnout']] 
         table.append(tmp) 
     
+    friend_email = str(request.form.get('share')).strip()
+    friend_email = str(friend_email).split(',')
+    server = smtplib.SMTP_SSL("smtp.gmail.com",465)
+    #Storing sender's email address and password
+    sender_email = "calorie.app.server@gmail.com"
+    sender_password = "Temp@1234"
+    
 
 
 

@@ -28,3 +28,6 @@ history()
 
 friends()
 - This function allows user to accept friend requests and display all friends
+
+yoga()/swim()/abbs()/belly()/core()/gym()/walk()/dance()/hrx()
+- This function allows user to enroll in different plans

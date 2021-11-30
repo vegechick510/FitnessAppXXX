@@ -13,6 +13,10 @@ register()
 homePage()
 - This function renders the home page
 
+send_email()
+- This function is used to send an email to user's friends containing calorie history of user
+- The user will fill a textarea with their friends email IDs (comma seperated if multiple)
+
 calories()
 - This function will add calories consumed/burned for the data selected.
 

@@ -6,6 +6,10 @@ logout()
 - This function is used for logout by the user
 - logout() function just clears the session
 
+register()
+- This function is used for registering new users
+- Details of new users are stored in the database and the user is redirected to login page
+
 calories()
 - This function will add calories consumed/burned for the data selected.
 

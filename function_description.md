@@ -1,5 +1,6 @@
-function()
-- The function description
+login()
+- This function is used for login by the user
+- Using email ID and passoword is validated and the user is directed to home
 
 calories()
 - This function will add calories consumed/burned for the data selected.

@@ -102,21 +102,19 @@ https://user-images.githubusercontent.com/89509351/140230712-749bbc0d-d2dd-4c5b-
  
  ## Register
  
-https://user-images.githubusercontent.com/89509351/140233499-0dba701b-1896-4285-918b-cfee1c63be5a.mp4
+https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.41.18%20PM.png
 
  ## Login
 
-https://user-images.githubusercontent.com/89509351/140233566-78a1c729-e14b-4f57-9fa1-b2f84be26b6f.mp4
+https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.30.27%20PM.png
 
  ## Set User Profile
  
-https://user-images.githubusercontent.com/89509351/140233630-c746f7b6-3d06-4ca7-b79c-c511c63726e6.mp4
+https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.35.05%20PM.png
 
 
  ## Enter Calories in and burnt
-
-https://user-images.githubusercontent.com/89509351/140234074-47fb2fb3-6542-4cec-89d6-b2ec5f7359bc.mp4
-
+https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.32.44%20PM.png
 
  ## Check history
 

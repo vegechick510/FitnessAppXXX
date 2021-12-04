@@ -8,7 +8,7 @@ from flask import render_template, session, url_for, flash, redirect, request, F
 from flask_mail import Mail
 from flask_pymongo import PyMongo
 
-from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm
+from forms import RegistrationForm, LoginForm, UserProfileForm
 
 app = Flask(__name__)
 app.secret_key = 'secret'
@@ -186,7 +186,7 @@ def user_profile():
         return redirect(url_for('login'))
     return render_template('user_profile.html', status=True, form=form)
 
-
+"""
 @app.route("/history", methods=['GET'])
 def history():
     # ############################
@@ -224,7 +224,7 @@ def ajaxhistory():
             else:
                 return json.dumps({'date': "", 'email': "", 'burnout': "", 'calories': ""}), 200, {
                     'ContentType': 'application/json'}
-
+"""
 
 @app.route("/friends", methods=['GET'])
 def friends():
@@ -342,258 +342,6 @@ def dashboard():
     # Output: redirected to dashboard.html
     # ##########################
     return render_template('dashboard.html', title='Dashboard')
-
-
-@app.route("/yoga", methods=['GET', 'POST'])
-def yoga():
-    # ############################
-    # yoga() function displays the yoga.html template
-    # route "/yoga" will redirect to yoga() function.
-    # A page showing details about yoga is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
-    # Input: Email
-    # Output: DB entry about enrollment and redirected to new dashboard
-    # ##########################
-    email = get_session = session.get('email')
-    if get_session is not None:
-        form = EnrollForm()
-        if form.validate_on_submit():
-            if request.method == 'POST':
-                enroll = "yoga"
-                mongo.db.user.insert({'Email': email, 'Status': enroll})
-            flash(
-                f' You have succesfully enrolled in our {enroll} plan!',
-                'success')
-            return render_template('new_dashboard.html', form=form)
-            # return redirect(url_for('dashboard'))
-    else:
-        return redirect(url_for('dashboard'))
-    return render_template('yoga.html', title='Yoga', form=form)
-
-
-@app.route("/swim", methods=['GET', 'POST'])
-def swim():
-    # ############################
-    # swim() function displays the swim.html template
-    # route "/swim" will redirect to swim() function.
-    # A page showing details about swimming is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
-    # Input: Email
-    # Output: DB entry about enrollment and redirected to new dashboard
-    # ##########################
-    email = get_session = session.get('email')
-    if get_session is not None:
-        form = EnrollForm()
-        if form.validate_on_submit():
-            if request.method == 'POST':
-                enroll = "swimming"
-                mongo.db.user.insert({'Email': email, 'Status': enroll})
-            flash(
-                f' You have succesfully enrolled in our {enroll} plan!',
-                'success')
-            return render_template('new_dashboard.html', form=form)
-            # return redirect(url_for('dashboard'))
-    else:
-        return redirect(url_for('dashboard'))
-    return render_template('swim.html', title='Swim', form=form)
-
-
-@app.route("/abbs", methods=['GET', 'POST'])
-def abbs():
-    # ############################
-    # abbs() function displays the abbs.html template
-    # route "/abbs" will redirect to abbs() function.
-    # A page showing details about abbs workout is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
-    # Input: Email
-    # Output: DB entry about enrollment and redirected to new dashboard
-    # ##########################
-    email = get_session = session.get('email')
-    if get_session is not None:
-        form = EnrollForm()
-        if form.validate_on_submit():
-            if request.method == 'POST':
-                enroll = "abbs"
-                mongo.db.user.insert({'Email': email, 'Status': enroll})
-            flash(
-                f' You have succesfully enrolled in our {enroll} plan!',
-                'success')
-            return render_template('new_dashboard.html', form=form)
-    else:
-        return redirect(url_for('dashboard'))
-    return render_template('abbs.html', title='Abbs Smash!', form=form)
-
-
-@app.route("/belly", methods=['GET', 'POST'])
-def belly():
-    # ############################
-    # belly() function displays the belly.html template
-    # route "/belly" will redirect to belly() function.
-    # A page showing details about belly workout is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
-    # Input: Email
-    # Output: DB entry about enrollment and redirected to new dashboard
-    # ##########################
-    email = get_session = session.get('email')
-    if get_session is not None:
-        form = EnrollForm()
-        if form.validate_on_submit():
-            if request.method == 'POST':
-                enroll = "belly"
-                mongo.db.user.insert({'Email': email, 'Status': enroll})
-            flash(
-                f' You have succesfully enrolled in our {enroll} plan!',
-                'success')
-            return render_template('new_dashboard.html', form=form)
-            # return redirect(url_for('dashboard'))
-    else:
-        return redirect(url_for('dashboard'))
-    return render_template('belly.html', title='Belly Burner', form=form)
-
-
-@app.route("/core", methods=['GET', 'POST'])
-def core():
-    # ############################
-    # core() function displays the belly.html template
-    # route "/core" will redirect to core() function.
-    # A page showing details about core workout is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
-    # Input: Email
-    # Output: DB entry about enrollment and redirected to new dashboard
-    # ##########################
-    email = get_session = session.get('email')
-    if get_session is not None:
-        form = EnrollForm()
-        if form.validate_on_submit():
-            if request.method == 'POST':
-                enroll = "core"
-                mongo.db.user.insert({'Email': email, 'Status': enroll})
-            flash(
-                f' You have succesfully enrolled in our {enroll} plan!',
-                'success')
-            return render_template('new_dashboard.html', form=form)
-    else:
-        return redirect(url_for('dashboard'))
-    return render_template('core.html', title='Core Conditioning', form=form)
-
-
-@app.route("/gym", methods=['GET', 'POST'])
-def gym():
-    # ############################
-    # gym() function displays the gym.html template
-    # route "/gym" will redirect to gym() function.
-    # A page showing details about gym plan is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
-    # Input: Email
-    # Output: DB entry about enrollment and redirected to new dashboard
-    # ##########################
-    email = get_session = session.get('email')
-    if get_session is not None:
-        form = EnrollForm()
-        if form.validate_on_submit():
-            if request.method == 'POST':
-                enroll = "gym"
-                mongo.db.user.insert({'Email': email, 'Status': enroll})
-            flash(
-                f' You have succesfully enrolled in our {enroll} plan!',
-                'success')
-            return render_template('new_dashboard.html', form=form)
-            # return redirect(url_for('dashboard'))
-    else:
-        return redirect(url_for('dashboard'))
-    return render_template('gym.html', title='Gym', form=form)
-
-@app.route("/walk", methods=['GET', 'POST'])
-def walk():
-    # ############################
-    # walk() function displays the walk.html template
-    # route "/walk" will redirect to walk() function.
-    # A page showing details about walk plan is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
-    # Input: Email
-    # Output: DB entry about enrollment and redirected to new dashboard
-    # ##########################
-    email = get_session = session.get('email')
-    if get_session is not None:
-        form = EnrollForm()
-        if form.validate_on_submit():
-            if request.method == 'POST':
-                enroll = "walk"
-                mongo.db.user.insert({'Email': email, 'Status': enroll})
-            flash(
-                f' You have succesfully enrolled in our {enroll} plan!',
-                'success')
-            return render_template('new_dashboard.html', form=form)
-            # return redirect(url_for('dashboard'))
-    else:
-        return redirect(url_for('dashboard'))
-    return render_template('walk.html', title='Walk', form=form)
-
-@app.route("/dance", methods=['GET', 'POST'])
-def dance():
-    # ############################
-    # dance() function displays the dance.html template
-    # route "/dance" will redirect to dance() function.
-    # A page showing details about dance plan is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
-    # Input: Email
-    # Output: DB entry about enrollment and redirected to new dashboard
-    # ##########################
-    email = get_session = session.get('email')
-    if get_session is not None:
-        form = EnrollForm()
-        if form.validate_on_submit():
-            if request.method == 'POST':
-                enroll = "dance"
-                mongo.db.user.insert({'Email': email, 'Status': enroll})
-            flash(
-                f' You have succesfully enrolled in our {enroll} plan!',
-                'success')
-            return render_template('new_dashboard.html', form=form)
-            # return redirect(url_for('dashboard'))
-    else:
-        return redirect(url_for('dashboard'))
-    return render_template('dance.html', title='Dance', form=form)
-
-@app.route("/hrx", methods=['GET', 'POST'])
-def hrx():
-    # ############################
-    # hrx() function displays the hrx.html template
-    # route "/hrx" will redirect to hrx() function.
-    # A page showing details about hrx plan is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
-    # Input: Email
-    # Output: DB entry about enrollment and redirected to new dashboard
-    # ##########################
-    email = get_session = session.get('email')
-    if get_session is not None:
-        form = EnrollForm()
-        if form.validate_on_submit():
-            if request.method == 'POST':
-                enroll = "hrx"
-                mongo.db.user.insert({'Email': email, 'Status': enroll})
-            flash(
-                f' You have succesfully enrolled in our {enroll} plan!',
-                'success')
-            return render_template('new_dashboard.html', form=form)
-            # return redirect(url_for('dashboard'))
-    else:
-        return redirect(url_for('dashboard'))
-    return render_template('hrx.html', title='HRX', form=form)
-
-# @app.route("/ajaxdashboard", methods=['POST'])
-# def ajaxdashboard():
-#     # ############################
-#     # login() function displays the Login form (login.html) template
-#     # route "/login" will redirect to login() function.
-#     # LoginForm() called and if the form is submitted then various values are fetched and verified from the database entries
-#     # Input: Email, Password, Login Type
-#     # Output: Account Authentication and redirecting to Dashboard
-#     # ##########################
-#     email = get_session = session.get('email')
-#     print(email)
-#     if get_session is not None:
-#         if request.method == "POST":
-#             result = mongo.db.user.find_one(
-#                 {'email': email}, {'email', 'Status'})
-#             if result:
-#                 return json.dumps({'email': result['email'], 'Status': result['result']}), 200, {
-#                     'ContentType': 'application/json'}
-#             else:
-#                 return json.dumps({'email': "", 'Status': ""}), 200, {
-#                     'ContentType': 'application/json'}
-
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -89,7 +89,7 @@ BurnOut is an easy to use application that keeps track of a user's daily calorie
 
 Link to the implementation video of the BurnOut application:
 
-https://user-images.githubusercontent.com/89509351/140230712-749bbc0d-d2dd-4c5b-9ec3-6ee51f918aac.mp4
+https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.30.48%20PM.png
 
 # TechStack Used for the Development of Project
 

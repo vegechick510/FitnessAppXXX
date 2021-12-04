@@ -102,19 +102,19 @@ https://user-images.githubusercontent.com/89509351/140230712-749bbc0d-d2dd-4c5b-
  
  ## Register
  
-https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.41.18%20PM.png
+<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.41.18%20PM.png>
 
  ## Login
 
-https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.30.27%20PM.png
+<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.30.27%20PM.png>
 
  ## Set User Profile
  
-https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.35.05%20PM.png
+<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.35.05%20PM.png>
 
 
  ## Enter Calories in and burnt
-https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.32.44%20PM.png
+<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.32.44%20PM.png>
 
  ## Check history
 
@@ -126,11 +126,7 @@ https://user-images.githubusercontent.com/89509351/140234173-c279e3e8-7b67-4d6b-
 
 
 
-## User History Plot
 
-We have used python in the backend to fetch the current weight and goal weight of a person from python collection. We have also implemented a diet recommendation model which gives the user a 30 day diet plan stored in [diet_guide.txt](https://github.com/atharva1996/calorieApp_server/blob/main/model/diet_guide.txt) and intend to integrate this with the application in the further stage of this project. The graphs below demonstrate weight loss prediction if the diet is followed as prescribed.
-
-![alt-text-1](https://user-images.githubusercontent.com/62328699/140241250-b972c6fa-550d-433f-aaa7-04fc0df97a8a.png "title-1") ![alt-text-2](https://user-images.githubusercontent.com/62328699/140241265-f3bb552a-cdfe-47ed-9184-f78a082441c8.png "title-2")
 
 
 
@@ -143,7 +139,7 @@ https://user-images.githubusercontent.com/89509351/140234231-35b85d94-2293-48a8-
   
  ## Enrolling into several programs
  
-https://user-images.githubusercontent.com/89509351/140389545-6cbeae48-4e5d-4166-a455-912e58972838.mp4
+<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.32.08%20PM.png>
 
 
  # Steps for execution

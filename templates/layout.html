@@ -39,8 +39,8 @@
               <a class="nav-item nav-link" href="{{ url_for('calories') }}">Enter Calories</a>
               <a class="nav-item nav-link" href="{{ url_for('history') }}">History</a>
               <a class="nav-item nav-link" href="{{url_for('friends')}}">Friends</a>
-              <a class="nav-item nav-link btn btn-link" href="{{ url_for('user_profile') }}" >Profile</button>
-              </div>
+              <a class="nav-item nav-link btn btn-link" href="{{ url_for('user_profile') }}">Profile</button>
+            </div>
             </div>
             <div class="navbar-nav ml-auto">
               <a class="nav-item nav-link">Welcome, {{ session.get("email") }}</a>
@@ -67,6 +67,67 @@
         </div>
       </div>
     </main>
+
+    <footer class="w-100 py-4 flex-shrink-0 nav-color fixed">
+        <div class="container py-4">
+            <div class="row gy-4 gx-5">
+                <div class="col-lg-6 col-md-6">
+                    <h5 class="h1 text-white">BURNOUT</h5>
+                    <p class="small text-white">Turning excuses into results.....</p>
+                    <p class="small text-white mb-0">&copy; Copyrights. All rights reserved. <!-- <a class="text-primary" href="#">Bootstrapious.com</a> --></p>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <h5 class="text-white mb-3">Quick links</h5>
+                    <!-- Navbar Right Side -->
+                    {% if not session.get("email"): %}
+                    <div class="navbar-nav ml-auto">
+                        <ul class="list-unstyled text-muted">
+                        <li><a class="nav-item nav-link" href="{{ url_for('login') }}" id="login">Login</a></li>
+                        <li><a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a></li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <div class="col-lg-6 col-md-6">
+                        <ul class="list-unstyled text-muted">
+                        <li><a class="nav-item nav-link" href="{{ url_for('calories') }}">Enter Calories</a></li>
+                        <li><a class="nav-item nav-link" href="{{ url_for('history') }}">History</a></li>
+                        <li><a class="nav-item nav-link" href="{{url_for('friends')}}">Friends</a></li>
+                        <li><a class="nav-item nav-link" href="{{ url_for('user_profile') }}">Profile</a></li>
+                        </ul>
+                    </div>
+                    </div>
+                    {% endif %}
+                    <!--<div >
+
+                        <ul class="list-unstyled text-muted">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Get started</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div> -->
+                <!-- <div class="col-lg-2 col-md-6">
+                    <h5 class="text-white mb-3">Quick links</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Get started</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div> -->
+                <!-- <div class="col-lg-4 col-md-6">
+                    <h5 class="text-white mb-3">Newsletter</h5>
+                    <p class="small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                    <form action="#">
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-primary" id="button-addon2" type="button"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </form>
+                </div> -->
+            </div>
+        </div>
+    </footer>
 
 
     <!-- Optional JavaScript -->

@@ -108,7 +108,7 @@ def register():
         return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
 
-
+"""
 @app.route("/calories", methods=['GET', 'POST'])
 def calories():
     # ############################
@@ -145,7 +145,7 @@ def calories():
     else:
         return redirect(url_for('home'))
     return render_template('calories.html', form=form, time=now)
-
+"""
 
 @app.route("/user_profile", methods=['GET', 'POST'])
 def user_profile():

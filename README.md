@@ -116,11 +116,9 @@ https://user-images.githubusercontent.com/89509351/140230712-749bbc0d-d2dd-4c5b-
  ## Enter Calories in and burnt
 <img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.32.44%20PM.png>
 
- ## Check history
+ ## Chatbot
 
-https://user-images.githubusercontent.com/89509351/140234173-c279e3e8-7b67-4d6b-9e20-268a99108622.mp4
-
-
+<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.31.54%20PM.png>
 
 
 
@@ -133,9 +131,11 @@ https://user-images.githubusercontent.com/89509351/140234173-c279e3e8-7b67-4d6b-
 
 
 
- ## Adding Friends 
+
+
+ ## Add weight alert
  
-https://user-images.githubusercontent.com/89509351/140234231-35b85d94-2293-48a8-86f8-fdc485f31cd1.mp4
+<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.30.48%20PM.png>
   
  ## Enrolling into several programs
  

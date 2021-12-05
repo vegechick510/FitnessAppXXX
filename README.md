@@ -65,7 +65,6 @@ BurnOut is an easy to use application that keeps track of a user's daily calorie
   - [Set User Profile](#set-user-profile)
   - [Enter Calories in and burnt](#enter-calories-in-and-burnt)
   - [Check History](#check-history)
-  - [User History Plot](#user-history-plot)
   - [Adding Friends](#adding-friends)
   - [Enrolling into several programs](#enrolling-into-several-programs)
 - [Steps for Execution:](#steps-for-execution)
@@ -128,7 +127,9 @@ Link to the implementation video of the BurnOut application:
 
 
 
+ ## Check History
 
+<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/history.png>
 
 
 
@@ -136,7 +137,11 @@ Link to the implementation video of the BurnOut application:
  ## Add weight alert
  
 <img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.30.48%20PM.png>
-  
+
+ ## Adding Friends
+
+<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/friends.png>
+
  ## Enrolling into several programs
  
 <img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.32.08%20PM.png>
@@ -178,16 +183,13 @@ Link to the implementation video of the BurnOut application:
   Link to the repository:
   https://github.com/deekay2310/calorieApp_server
   
-  # Features implemented in Phase 3 (from Future Scope of previous group)
-  
-  The  following features can be implemented in the future scope of this application:
-  
+  # Enhancements
+
    1. Make the website view port adaptable - the website should look good on phone, tablet and computer.
    2. Chatbot to guide through the application.
    3. Share workout plans with friends via email.
    4. Bug Fixes
-   <!-- 4. 6. Creating an Activities dashboard based on user enrollment.
-   7. Track user progress for each activity he/she enrolled for. -->
+
    
    # Team Members
    

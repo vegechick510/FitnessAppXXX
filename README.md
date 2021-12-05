@@ -184,7 +184,8 @@ Link to the implementation video of the BurnOut application:
   
    1. Make the website view port adaptable - the website should look good on phone, tablet and computer.
    2. Chatbot to guide through the application.
-   3. Share workout plans with friends. 
+   3. Share workout plans with friends via email.
+   4. Bug Fixes
    <!-- 4. 6. Creating an Activities dashboard based on user enrollment.
    7. Track user progress for each activity he/she enrolled for. -->
    

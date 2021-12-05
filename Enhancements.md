@@ -10,4 +10,6 @@
 
 ### <li> Enabled data sharing with friends via e-mail, using which users can share their progress with friends.
 
+### <li> Added user profile page to display the details like height, weight and target weight
+
 

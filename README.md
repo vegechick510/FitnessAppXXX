@@ -176,7 +176,7 @@ Link to the implementation video of the BurnOut application:
   # Source Code
   
   Link to the repository:
-  https://github.com/atharva1996/calorieApp_server
+  https://github.com/deekay2310/calorieApp_server
   
   # Future Scope
   
@@ -206,12 +206,12 @@ Link to the implementation video of the BurnOut application:
 
   # Contribution
   
-  Please refer the CONTRIBUTING.md file for instructions on how to contribute to our repository.
+  Please refer the [CONTRIBUTING.md](https://github.com/deekay2310/calorieApp_server/blob/main/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
 
   <p align="center">
-    <a href="https://github.com/deekay2310/Simplii/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/deekay2310/calorieApp_server/issues/new/choose">Report Bug</a>
     /
-    <a href="https://github.com/deekay2310/Simplii/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/deekay2310/calorieApp_server/issues/new/choose">Request Feature</a>
   </p>
 
   # License

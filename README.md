@@ -178,17 +178,15 @@ Link to the implementation video of the BurnOut application:
   Link to the repository:
   https://github.com/deekay2310/calorieApp_server
   
-  # Future Scope
+  # Features implemented in Phase 3 (from Future Scope of previous group)
   
   The  following features can be implemented in the future scope of this application:
   
-   1. Predicting workout plans for users based on their history and fitness reports.
-   2. Create a mobile application for the web version of the application.
-   3. Make the website view port adaptable - the website should look good on phone, tablet and computer.
-   4. Chat functionality for friends
-   5. Share workout plans with friends
-   6. Creating an Activities dashboard based on user enrollment
-   7. Track user progress for each activity he/she enrolled for.
+   1. Make the website view port adaptable - the website should look good on phone, tablet and computer.
+   2. Chatbot to guide through the application.
+   3. Share workout plans with friends. 
+   <!-- 4. 6. Creating an Activities dashboard based on user enrollment.
+   7. Track user progress for each activity he/she enrolled for. -->
    
    # Team Members
    

@@ -11,7 +11,8 @@ from flask_mail import Mail
 from flask_pymongo import PyMongo
 from tabulate import tabulate
 from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm
-
+#Vibhav
+from insert_food_data import insertfooddata
 app = Flask(__name__)
 app.secret_key = 'secret'
 app.config['MONGO_URI'] = 'mongodb://127.0.0.1:27017/test'
@@ -25,6 +26,8 @@ app.config['MAIL_USERNAME'] = "bogusdummy123@gmail.com"
 app.config['MAIL_PASSWORD'] = "helloworld123!"
 mail = Mail(app)
 
+#Vibhav
+insertfooddata()
 
 @app.route("/")
 @app.route("/home")
@@ -131,7 +134,9 @@ def calories():
                 email = session.get('email')
                 food = request.form.get('food')
                 cals = food.split(" ")
-                cals = int(cals[1][1:len(cals[1]) - 1])
+                #Vibhav
+                cals = int(cals[-1][1:-1])
+                #cals = int(cals[1][1:len(cals[1]) - 1])
                 burn = request.form.get('burnout')
 
                 temp = mongo.db.calories.find_one({'email': email}, {

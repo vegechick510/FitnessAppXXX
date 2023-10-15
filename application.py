@@ -285,6 +285,7 @@ def send_email():
     # Output: Calorie History Received on specified email
     # ##########################
     email = session.get('email')
+    temp = mongo.db.user.find_one({'email': email}, {'name'})
     data = list(mongo.db.calories.find({'email': email}, {'date','email','calories','burnout'}))
     table = [['Date','Email ID','Calories','Burnout']]
     for a in data:
@@ -296,12 +297,12 @@ def send_email():
     server = smtplib.SMTP_SSL("smtp.gmail.com",465)
     #Vibhav
     #Storing sender's email address and password
-    sender_email = "vbs02022000@gmail.com"
-    sender_password = "fvwexmzwjtryyvei"
+    sender_email = "burnoutapp2023@gmail.com"
+    sender_password = "jgny mtda gguq shnw"
     
     #Logging in with sender details
     server.login(sender_email,sender_password)
-    message = 'Subject: Calorie History\n\n Your Friend wants to share their calorie history with you!\n {}'.format(tabulate(table))
+    message = 'Subject: Calorie History\n\n Your Friend '+str(temp['name'])+' has shared their calorie history with you!\n {}'.format(tabulate(table))
     for e in friend_email:
         print(e)
         server.sendmail(sender_email,e,message)

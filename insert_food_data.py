@@ -2,7 +2,7 @@ from apps import App
 app = App()
 mongo = app.mongo
 
-#Vibhav
+
 def insertfooddata():
     f = open('food_data/calories.csv', 'r', encoding = "ISO-8859-1")
     l = f.readlines()
@@ -12,4 +12,4 @@ def insertfooddata():
 
     for i in range(1, len(l)):
         temp = l[i].split(",")
-        mongo.db.food.insert_one({'food': temp[0], 'calories': temp[1]})
+        mongo.db.food.update_one({'food': temp[0]},{'$set': {'calories': temp[1]}},upsert=True)

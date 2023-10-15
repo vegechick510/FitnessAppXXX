@@ -57,7 +57,7 @@ def login():
         form = LoginForm()
         if form.validate_on_submit():
             temp = mongo.db.user.find_one({'email': form.email.data}, {
-                'email', 'pwd'})
+                'email', 'pwd','name'})
             if temp is not None and temp['email'] == form.email.data and (
                 bcrypt.checkpw(
                     form.password.data.encode("utf-8"),
@@ -65,6 +65,7 @@ def login():
                 flash('You have been logged in!', 'success')
                 print(temp)
                 session['email'] = temp['email']
+                session['name']=temp['name']
                 #session['login_type'] = form.type.data
                 return redirect(url_for('dashboard'))
             else:

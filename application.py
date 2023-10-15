@@ -143,7 +143,7 @@ def calories():
                 temp = mongo.db.calories.find_one({'email': email}, {'email', 'calories', 'burnout', 'date'})
                 print(temp)
                 if temp is not None and temp['date']==str(now):
-                    mongo.db.calories.update({'email': email}, {'$set': {'calories': temp['calories'] + cals, 'burnout': temp['burnout'] + int(burn)}})
+                    mongo.db.calories.update_many({'email': email}, {'$set': {'calories': temp['calories'] + cals, 'burnout': temp['burnout'] + int(burn)}})
                 else:
                     mongo.db.calories.insert({'date': now, 'email': email, 'calories': cals, 'burnout': int(burn)})
                 flash(f'Successfully updated the data', 'success')
@@ -173,12 +173,14 @@ def user_profile():
                 target_weight = request.form.get('target_weight')
                 temp = mongo.db.profile.find_one({'email': email}, {
                     'height', 'weight', 'goal', 'target_weight'})
+                print(temp)
                 if temp is not None:
-                    mongo.db.profile.update({'email': email},
-                                            {'$set': {'weight': temp['weight'],
-                                                      'height': temp['height'],
-                                                      'goal': temp['goal'],
-                                                      'target_weight': temp['target_weight']}})
+                    mongo.db.profile.update_one({'email': email},
+                                            {'$set': {
+                                                'weight': weight,
+                                                'height': height,
+                                                'goal': goal,
+                                                'target_weight':target_weight}})
                 else:
                     mongo.db.profile.insert({'email': email,
                                              'height': height,

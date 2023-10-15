@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <div class="main-content">
+            <p>
+                Body Mass Index (BMI) is a measure of body fat based on your weight and height.
+                It is a simple and useful tool to estimate whether you are underweight, at a healthy weight,
+                overweight, or obese.
+            </p>
+            <p>
+                To calculate your BMI, enter your weight (in kilograms) and height (in centimeters) below:
+            </p>
+            <form class="pure-form" method="POST" action="/bmi_calc" id="bmi-form">
+                Weight in kgs:<br>
+                <input type="text" name="weight" id="weight"><br>
+                Height in cms:<br>
+                <input type="text" name="height" id="height"><br>
+                <button type="submit" class="pure-button pure-button-primary" value="Submit">Calculate BMI</button>
+            </form>
+            <p>Your BMI is {{ bmi }}.</p>
+            <p>
+                {% if bmi_category == 'Underweight' %}You are <span class="underweight">{{ bmi_category }}</span>
+                {% elif bmi_category == 'Normal Weight' %}You are <span class="normal">{{ bmi_category }}</span>
+                {% elif bmi_category == 'Overweight' %}You are <span class="overweight">{{ bmi_category }}</span>
+                {% elif bmi_category == 'Obese' %}You are <span class="obese">{{ bmi_category }}</span>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+{% endblock content %}

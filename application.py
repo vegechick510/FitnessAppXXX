@@ -1,5 +1,7 @@
 from datetime import datetime
-
+import plotly.express as px
+import plotly.graph_objects as go
+from bson import ObjectId
 import bcrypt
 import smtplib
 
@@ -162,6 +164,9 @@ def user_profile():
     Input: Email, height, weight, goal, Target weight
     Output: Value update in database and redirected to home login page
     """
+    now = datetime.now()
+    now = now.strftime('%Y-%m-%d')
+
     if session.get('email'):
         form = UserProfileForm()
         if form.validate_on_submit():
@@ -171,11 +176,9 @@ def user_profile():
                 height = request.form.get('height')
                 goal = request.form.get('goal')
                 target_weight = request.form.get('target_weight')
-                temp = mongo.db.profile.find_one({'email': email}, {
-                    'height', 'weight', 'goal', 'target_weight'})
-                print(temp)
+                temp = mongo.db.profile.find_one({'email': email, 'date': now}, {'height', 'weight', 'goal', 'target_weight'})
                 if temp is not None:
-                    mongo.db.profile.update_one({'email': email},
+                    mongo.db.profile.update_one({'email': email, 'date': now},
                                             {'$set': {
                                                 'weight': weight,
                                                 'height': height,
@@ -183,14 +186,34 @@ def user_profile():
                                                 'target_weight':target_weight}})
                 else:
                     mongo.db.profile.insert({'email': email,
+                                             'date': now,
                                              'height': height,
                                              'weight': weight,
                                              'goal': goal,
                                              'target_weight': target_weight})
             
             flash(f'User Profile Updated', 'success')
-            user_data = mongo.db.profile.find_one({'email': email})
-            return render_template('display_profile.html', status=True, form=form, user_data=user_data)
+            user_data = mongo.db.profile.find_one({'email': email, 'date': now})
+            target_weight=float(user_data['target_weight'])
+            user_data_hist = list(mongo.db.profile.find({'email': email}))
+
+            for entry in user_data_hist:
+                entry['date'] = datetime.strptime(entry['date'], '%Y-%m-%d').date()
+
+            sorted_user_data_hist = sorted(user_data_hist, key=lambda x: x['date'])
+            # Extracting data for the graph
+            dates = [entry['date'] for entry in sorted_user_data_hist]
+            weights = [float(entry['weight']) for entry in sorted_user_data_hist]
+
+            # Plotting Graph
+            fig = px.line(x=dates, y=weights, labels={'x': 'Date', 'y': 'Weight'}, title='Progress',markers=True,line_shape='spline')
+            fig.add_trace(go.Scatter(x=dates, y=[target_weight] * len(dates),mode='lines', line=dict(color='green', width=1, dash='dot'), name='Target Weight'))
+            fig.update_yaxes(range=[min(min(weights),target_weight) - 5, max(max(weights),target_weight) + 5])
+            fig.update_xaxes(range=[min(dates),now]) 
+            # Converting to JSON
+            graph_html = fig.to_html(full_html=False)
+
+            return render_template('display_profile.html', status=True, form=form, user_data=user_data, graph_html=graph_html)
     else:
         return redirect(url_for('login'))
     return render_template('user_profile.html', status=True, form=form)

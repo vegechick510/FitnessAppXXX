@@ -37,6 +37,14 @@
                 </div>
             </div>
         </div>
+        <div>
+            {{ graph_html|safe }}
+            <ul>
+                {% for entry in user_data_hist %}
+                    <li>Date: {{ entry['date'] }}, Weight: {{ entry['weight'] }}</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </section>
 </html>

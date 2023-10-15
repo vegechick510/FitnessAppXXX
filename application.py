@@ -142,7 +142,6 @@ def calories():
                 burn = request.form.get('burnout')
 
                 temp = mongo.db.calories.find_one({'email': email}, {'email', 'calories', 'burnout', 'date'})
-                print(temp)
                 if temp is not None and temp['date']==str(now):
                     mongo.db.calories.update_many({'email': email}, {'$set': {'calories': temp['calories'] + cals, 'burnout': temp['burnout'] + int(burn)}})
                 else:

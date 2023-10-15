@@ -63,6 +63,7 @@ def login():
                     form.password.data.encode("utf-8"),
                     temp['pwd']) or temp['temp'] == form.password.data):
                 flash('You have been logged in!', 'success')
+                print(temp)
                 session['email'] = temp['email']
                 #session['login_type'] = form.type.data
                 return redirect(url_for('dashboard'))
@@ -186,9 +187,10 @@ def user_profile():
                                              'weight': weight,
                                              'goal': goal,
                                              'target_weight': target_weight})
-
+            
             flash(f'User Profile Updated', 'success')
-            return render_template('display_profile.html', status=True, form=form)
+            user_data = mongo.db.profile.find_one({'email': email})
+            return render_template('display_profile.html', status=True, form=form, user_data=user_data)
     else:
         return redirect(url_for('login'))
     return render_template('user_profile.html', status=True, form=form)
@@ -292,9 +294,10 @@ def send_email():
     friend_email = str(request.form.get('share')).strip()
     friend_email = str(friend_email).split(',')
     server = smtplib.SMTP_SSL("smtp.gmail.com",465)
+    #Vibhav
     #Storing sender's email address and password
-    sender_email = "calorie.app.server@gmail.com"
-    sender_password = "Temp@1234"
+    sender_email = "vbs02022000@gmail.com"
+    sender_password = "fvwexmzwjtryyvei"
     
     #Logging in with sender details
     server.login(sender_email,sender_password)

@@ -140,14 +140,12 @@ def calories():
                 #cals = int(cals[1][1:len(cals[1]) - 1])
                 burn = request.form.get('burnout')
 
-                temp = mongo.db.calories.find_one({'email': email}, {
-                    'email', 'calories', 'burnout'})
-                if temp is not None:
-                    mongo.db.calories.update({'email': email}, {'$set': {
-                                             'calories': temp['calories'] + cals, 'burnout': temp['burnout'] + int(burn)}})
+                temp = mongo.db.calories.find_one({'email': email}, {'email', 'calories', 'burnout', 'date'})
+                print(temp)
+                if temp is not None and temp['date']==str(now):
+                    mongo.db.calories.update({'email': email}, {'$set': {'calories': temp['calories'] + cals, 'burnout': temp['burnout'] + int(burn)}})
                 else:
-                    mongo.db.calories.insert(
-                        {'date': now, 'email': email, 'calories': cals, 'burnout': int(burn)})
+                    mongo.db.calories.insert({'date': now, 'email': email, 'calories': cals, 'burnout': int(burn)})
                 flash(f'Successfully updated the data', 'success')
                 return redirect(url_for('calories'))
     else:

@@ -155,6 +155,44 @@ def calories():
     return render_template('calories.html', form=form, time=now)
 
 
+@app.route("/display_profile", methods=['GET', 'POST'])
+def display_profile():
+    """
+    Display user profile and graph
+    """
+    now = datetime.now()
+    now = now.strftime('%Y-%m-%d')
+
+    if session.get('email'):
+        email = session.get('email')
+        user_data = mongo.db.profile.find_one({'email': email, 'date': now})
+        target_weight=float(user_data['target_weight'])
+        user_data_hist = list(mongo.db.profile.find({'email': email}))
+
+        for entry in user_data_hist:
+            entry['date'] = datetime.strptime(entry['date'], '%Y-%m-%d').date()
+
+        sorted_user_data_hist = sorted(user_data_hist, key=lambda x: x['date'])
+        # Extracting data for the graph
+        dates = [entry['date'] for entry in sorted_user_data_hist]
+        weights = [float(entry['weight']) for entry in sorted_user_data_hist]
+
+        # Plotting Graph 
+        fig = px.line(x=dates, y=weights, labels={'x': 'Date', 'y': 'Weight'}, title='Progress',markers=True,line_shape='spline')
+        fig.add_trace(go.Scatter(x=dates, y=[target_weight] * len(dates),mode='lines', line=dict(color='green', width=1, dash='dot'), name='Target Weight'))
+        fig.update_yaxes(range=[min(min(weights),target_weight) - 5, max(max(weights),target_weight) + 5])
+        fig.update_xaxes(range=[min(dates),now]) 
+        # Converting to JSON
+        graph_html = fig.to_html(full_html=False)
+
+        last_10_entries = sorted_user_data_hist[-10:]
+
+        return render_template('display_profile.html', status=True, user_data=user_data, graph_html=graph_html, last_10_entries=last_10_entries)
+    else:
+        return redirect(url_for('login'))
+    #return render_template('user_profile.html', status=True, form=form)#
+
+
 @app.route("/user_profile", methods=['GET', 'POST'])
 def user_profile():
     """
@@ -162,7 +200,7 @@ def user_profile():
     route "/user_profile" will redirect to user_profile() function.
     user_profile() called and if the form is submitted then various values are fetched and updated into the database entries
     Input: Email, height, weight, goal, Target weight
-    Output: Value update in database and redirected to home login page
+    Output: Value update in database and redirected to home login page.
     """
     now = datetime.now()
     now = now.strftime('%Y-%m-%d')
@@ -170,7 +208,9 @@ def user_profile():
     if session.get('email'):
         form = UserProfileForm()
         if form.validate_on_submit():
+            print('validated')
             if request.method == 'POST':
+                print('post')
                 email = session.get('email')
                 weight = request.form.get('weight')
                 height = request.form.get('height')
@@ -191,29 +231,10 @@ def user_profile():
                                              'weight': weight,
                                              'goal': goal,
                                              'target_weight': target_weight})
-            
-            flash(f'User Profile Updated', 'success')
-            user_data = mongo.db.profile.find_one({'email': email, 'date': now})
-            target_weight=float(user_data['target_weight'])
-            user_data_hist = list(mongo.db.profile.find({'email': email}))
+                
+                flash(f'User Profile Updated', 'success')
 
-            for entry in user_data_hist:
-                entry['date'] = datetime.strptime(entry['date'], '%Y-%m-%d').date()
-
-            sorted_user_data_hist = sorted(user_data_hist, key=lambda x: x['date'])
-            # Extracting data for the graph
-            dates = [entry['date'] for entry in sorted_user_data_hist]
-            weights = [float(entry['weight']) for entry in sorted_user_data_hist]
-
-            # Plotting Graph
-            fig = px.line(x=dates, y=weights, labels={'x': 'Date', 'y': 'Weight'}, title='Progress',markers=True,line_shape='spline')
-            fig.add_trace(go.Scatter(x=dates, y=[target_weight] * len(dates),mode='lines', line=dict(color='green', width=1, dash='dot'), name='Target Weight'))
-            fig.update_yaxes(range=[min(min(weights),target_weight) - 5, max(max(weights),target_weight) + 5])
-            fig.update_xaxes(range=[min(dates),now]) 
-            # Converting to JSON
-            graph_html = fig.to_html(full_html=False)
-
-            return render_template('display_profile.html', status=True, form=form, user_data=user_data, graph_html=graph_html)
+                return redirect(url_for('display_profile'))
     else:
         return redirect(url_for('login'))
     return render_template('user_profile.html', status=True, form=form)

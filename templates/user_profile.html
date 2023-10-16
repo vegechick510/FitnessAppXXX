@@ -3,10 +3,10 @@
 <html>
   
         <div class="content-section">
-            <form method="POST" action="" name="UserProfileForm()">
+            <form method="POST" action="{{ url_for('user_profile') }}" name="UserProfileForm()">
                 {{ form.hidden_tag() }}
                 <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">User Profile</legend>
+                    <legend class="border-bottom mb-4">Update your data</legend>
                     <div class="form-group">
                         
                         {{ form.height.label(class="form-control-label") }} (cms)
@@ -44,7 +44,7 @@
                         {% endif %}
                         {{ form.target_weight.label(class="form-control-label") }} (kgs)
                         {% if form.target_weight.errors %}
-                            {{ form.goal(class="form-control form-control-lg is-invalid") }}
+                            {{ form.target_weight(class="form-control form-control-lg is-invalid") }}
                             <div class="invalid-feedback">
                                 {% for error in form.target_weight.errors %}
                                     <span>{{ error }}</span>

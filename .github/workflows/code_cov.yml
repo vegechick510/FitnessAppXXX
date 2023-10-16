@@ -19,6 +19,9 @@ jobs:
         python-version: 3.9.18
     - name: Install dependencies
       run: |
+        pip uninstall bson
+        pip uninstall pymongo
+        pip install pymongo
         pip install pytest-cov
         pip install -r requirements.txt
         echo requirements installed

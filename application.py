@@ -6,7 +6,7 @@ import bcrypt
 import smtplib
 
 # from apps import App
-from flask import json
+from flask import json,jsonify
 # from utilities import Utilities
 from flask import render_template, session, url_for, flash, redirect, request, Flask
 from flask_mail import Mail
@@ -14,7 +14,7 @@ from flask_pymongo import PyMongo
 from tabulate import tabulate
 from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm
 #Vibhav
-from insert_food_data import insertfooddata
+from insert_food_data import insertfooddata,insertexercisedata
 app = Flask(__name__)
 app.secret_key = 'secret'
 app.config['MONGO_URI'] = 'mongodb://127.0.0.1:27017/test'
@@ -30,7 +30,7 @@ mail = Mail(app)
 
 #Vibhav
 insertfooddata()
-
+insertexercisedata()
 @app.route("/")
 @app.route("/home")
 def home():
@@ -500,8 +500,67 @@ def dashboard():
     # dashboard() called and displays the list of activities
     # Output: redirected to dashboard.html
     # ##########################
-    return render_template('dashboard.html', title='Dashboard')
+    exercises = [
+        {"id": 1, "name": "Yoga"},
+        {"id": 2, "name": "Swimming"},
+        ]
+    return render_template('dashboard.html', title='Dashboard', exercises=exercises)
 
+
+@app.route('/add_favorite', methods=['POST'])
+def add_favorite():
+    email = get_session = session.get('email')
+    if session.get('email'):
+        data = request.get_json()
+        exercise_id = data.get('exercise_id')
+        print(exercise_id)
+        action = data.get('action')
+        exercise = mongo.db.your_exercise_collection.find_one({"exercise_id": exercise_id})
+        print(exercise)
+        if exercise:
+            if action=="add":
+            # Create a new document in the favorites schema (you can customize this schema)
+                favorite = {
+                    "exercise_id":exercise.get("exercise_id"),
+                    "email": email,
+                    "image": exercise.get("image"),
+                    "video_link": exercise.get("video_link"),
+                    "name": exercise.get("name"),
+                    "description": exercise.get("description"),
+                    "href": exercise.get("href")
+                }
+
+            # Insert the exercise into the favorites collection
+                mongo.db.favorites.insert_one(favorite)
+                return jsonify({"status": "success"})
+            elif action=="remove":
+                print(exercise.get("exercise_id"))
+                print("iamhere1")
+                mongo.db.favorites.delete_one({"email": email, "exercise_id": exercise.get("exercise_id")})
+                return jsonify({"status": "success"})
+
+
+        else:
+            return jsonify({"status": "error", "message": "Exercise not found"})
+    else:
+        return redirect(url_for('login'))
+
+    return json.dumps({'status': False}), 500, {
+        'ContentType:': 'application/json'
+    }
+
+@app.route('/favorites')
+def favorites():
+    email = session.get('email')
+    if not email:
+        # Redirect the user to the login page or show an error message
+        return redirect(url_for('login'))
+
+    # Query MongoDB to get the user's favorite exercises
+    favorite_exercises = mongo.db.favorites.find({"email": email})
+
+    return render_template('favorites.html', favorite_exercises=favorite_exercises)
+    
 
 @app.route("/yoga", methods=['GET', 'POST'])
 def yoga():

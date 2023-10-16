@@ -4,17 +4,17 @@ import plotly.graph_objects as go
 from bson import ObjectId
 import bcrypt
 import smtplib
-
-# from apps import App
-from flask import json
-# from utilities import Utilities
+from flask import json,Flask
 from flask import render_template, session, url_for, flash, redirect, request, Flask
-from flask_mail import Mail
+from flask_mail import Mail, Message
 from flask_pymongo import PyMongo
 from tabulate import tabulate
 from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm
-#Vibhav
 from insert_food_data import insertfooddata
+import schedule
+from threading import Thread
+import time
+
 app = Flask(__name__)
 app.secret_key = 'secret'
 app.config['MONGO_URI'] = 'mongodb://127.0.0.1:27017/test'
@@ -24,12 +24,46 @@ mongo = PyMongo(app)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = "bogusdummy123@gmail.com"
-app.config['MAIL_PASSWORD'] = "helloworld123!"
+app.config['MAIL_USERNAME'] = "burnoutapp2023@gmail.com"
+app.config['MAIL_PASSWORD'] = "jgny mtda gguq shnw"
 mail = Mail(app)
 
-#Vibhav
 insertfooddata()
+
+def send_email():
+    with app.app_context():
+        try:
+            time.sleep(10)
+            print('in send mail')
+            recipientlst = list(mongo.db.user.distinct('email'))
+            print(recipientlst)
+            
+            server = smtplib.SMTP_SSL("smtp.gmail.com",465)
+            sender_email = "burnoutapp2023@gmail.com"
+            sender_password = "jgny mtda gguq shnw"
+
+            server.login(sender_email,sender_password)
+            message = 'Subject: Daily Reminder to Exercise'
+            for e in recipientlst:
+                print(e)
+                server.sendmail(sender_email,e,message)
+                
+            server.quit()
+        
+        except KeyboardInterrupt:
+            print("Thread interrupted")
+
+schedule.every().day.at("08:00").do(send_email)
+
+# Run the scheduler
+def schedule_process():
+    while True:
+        schedule.run_pending()
+        time.sleep(10)
+
+
+Thread(target=schedule_process).start()
+  
 
 @app.route("/")
 @app.route("/home")
@@ -158,9 +192,7 @@ def calories():
                 email = session.get('email')
                 food = request.form.get('food')
                 cals = food.split(" ")
-                #Vibhav
                 cals = int(cals[-1][1:-1])
-                #cals = int(cals[1][1:len(cals[1]) - 1])
                 burn = request.form.get('burnout')
 
                 temp = mongo.db.calories.find_one({'email': email}, {'email', 'calories', 'burnout', 'date'})
@@ -386,7 +418,6 @@ def send_email():
     friend_email = str(request.form.get('share')).strip()
     friend_email = str(friend_email).split(',')
     server = smtplib.SMTP_SSL("smtp.gmail.com",465)
-    #Vibhav
     #Storing sender's email address and password
     sender_email = "burnoutapp2023@gmail.com"
     sender_password = "jgny mtda gguq shnw"

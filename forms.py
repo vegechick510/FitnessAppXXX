@@ -17,6 +17,26 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField(
         'Confirm Password', validators=[
             DataRequired(), EqualTo('password')])
+    
+    weight = StringField(
+        'Weight', validators=[
+            DataRequired(), Length(
+                min=2, max=20)])
+    
+    height = StringField(
+        'Height', validators=[
+            DataRequired(), Length(
+                min=2, max=20)])
+    
+    goal = StringField(
+        'Goal (Weight Loss/ Muscle Gain)', validators=[
+            DataRequired(), Length(
+                min=2, max=20)])
+    
+    target_weight = StringField(
+        'Target Weight', validators=[
+            DataRequired(), Length(
+                min=2, max=20)])
     submit = SubmitField('Sign Up')
 
     def validate_email(self, email):

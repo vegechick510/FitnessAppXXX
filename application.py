@@ -102,6 +102,9 @@ def register():
     Input: Username, Email, Password, Confirm Password
     Output: Value update in database and redirected to home login page
     """
+    now = datetime.now()
+    now = now.strftime('%Y-%m-%d')
+
     if not session.get('email'):
         form = RegistrationForm()
         if form.validate_on_submit():
@@ -109,8 +112,25 @@ def register():
                 username = request.form.get('username')
                 email = request.form.get('email')
                 password = request.form.get('password')
+
                 mongo.db.user.insert({'name': username, 'email': email, 'pwd': bcrypt.hashpw(
                     password.encode("utf-8"), bcrypt.gensalt())})
+                
+                weight = request.form.get('weight')
+                height = request.form.get('height')
+                goal = request.form.get('goal')
+                target_weight = request.form.get('target_weight')
+                temp = mongo.db.profile.find_one({'email': email, 'date': now}, {'height', 'weight', 'goal', 'target_weight'})
+                mongo.db.profile.insert({'email': email,
+                                             'date': now,
+                                             'height': height,
+                                             'weight': weight,
+                                             'goal': goal,
+                                             'target_weight': target_weight})
+                
+
+
+
             flash(f'Account created for {form.username.data}!', 'success')
             return redirect(url_for('home'))
     else:

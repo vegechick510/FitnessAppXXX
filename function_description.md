@@ -29,5 +29,23 @@ history()
 friends()
 - This function allows user to accept friend requests and display all friends
 
+bmi_calci()
+- This function returns the Body Mass Index of the user whenever they enter their height and weight
+
+calc_bmi()
+- This function calculates the BMI mathematically which is returned to the the bmi_calci() function
+
+get_bmi_category()
+- This function will designate the BMI category of the user based on the calculated BMI value
+
+send_email()
+- This function shares the calorie details of the user to their friends via email.
+
+add_favorite()
+- This function allows the user to record and store their favourite exercises
+
+favorites()
+- This function displays the favourite exercises of the users
+
 yoga()/swim()/abbs()/belly()/core()/gym()/walk()/dance()/hrx()
 - This function allows user to enroll in different plans

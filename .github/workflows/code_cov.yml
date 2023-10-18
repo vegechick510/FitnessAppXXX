@@ -22,9 +22,9 @@ jobs:
         pip install pytest-cov
         pip install -r requirements.txt
         echo requirements installed
-        pip uninstall bson
-        pip uninstall pymongo
-        pip install pymongo
+        # pip uninstall bson
+        # pip uninstall pymongo
+        # pip install pymongo
     - name: Run the tests
       run: |
         python application.py &

@@ -1,6 +1,6 @@
-# Contributing to BurnOut 3.0!!
+# Contributing to BurnOut 4.0!!
 <h3>Hello!👋</h3>
-<p>Firstly, thank you so much for showing interest in BurnOut 3.0 and contributing to our project.👍</p>
+<p>Firstly, thank you so much for showing interest in BurnOut 4.0 and contributing to our project.👍</p>
 The following are a set of guidelines for contributing to BurnOut. We are open to suggestions to enhance our project so feel free to propose changes to this document in a pull request.
 
 
@@ -27,7 +27,7 @@ Everyone participating in this project needs to abide by the aPAS - A Personal A
 
   ## Reporting Bugs
 
-  This section guides you through submitting a bug report for SE Group 26. 
+  This section guides you through submitting a bug report for SE Group 53 of Fall 2023. 
 
   When you are creating a bug report, please ensure that you include as many details as possible to understand the issue.
 
@@ -57,7 +57,7 @@ Everyone participating in this project needs to abide by the aPAS - A Personal A
   ## Pull Requests Methods
   The process described here has several goals: 
 
-  - Maintain BurnOut 3.0 quality
+  - Maintain BurnOut 4.0 quality
   - Fix problems that are important to the users 
   - Engage the community in working towards the best possible BurnOut 
   - Enable a sustainable system for Atom's maintainers to review contributions
@@ -75,22 +75,7 @@ Everyone participating in this project needs to abide by the aPAS - A Personal A
 * Limit the first line to 72 characters or less
 * Reference issues and pull requests liberally after the first line
 * When only changing documentation, include `[ci skip]` in the commit title
-* Consider starting the commit message with an applicable emoji:
-    * :art: `:art:` when improving the format/structure of the code
-    * :racehorse: `:racehorse:` when improving performance
-    * :non-potable_water: `:non-potable_water:` when plugging memory leaks
-    * :memo: `:memo:` when writing docs
-    * :penguin: `:penguin:` when fixing something on Linux
-    * :apple: `:apple:` when fixing something on macOS
-    * :checkered_flag: `:checkered_flag:` when fixing something on Windows
-    * :bug: `:bug:` when fixing a bug
-    * :fire: `:fire:` when removing code or files
-    * :green_heart: `:green_heart:` when fixing the CI build
-    * :white_check_mark: `:white_check_mark:` when adding tests
-    * :lock: `:lock:` when dealing with security
-    * :arrow_up: `:arrow_up:` when upgrading dependencies
-    * :arrow_down: `:arrow_down:` when downgrading dependencies
-    * :shirt: `:shirt:` when removing linter warnings
+
 
 #### CoffeeScript Styleguide
 
@@ -150,7 +135,7 @@ Everyone participating in this project needs to abide by the aPAS - A Personal A
 
 
 ### <h2>Need Additional Help?</h2>
-<p>Due to any reason, if you feel like you have reservations related to the process, feel free to reach us out at [apatil25@ncsu.edu] Github process can be a bit complex and we don't want to lose your valuable contributions because of that reason. We are extremely glad that you have visited us and will make our project much better.</p>
+<p>Due to any reason, if you feel like you have reservations related to the process, feel free to reach us out at [burnoutapp2023@gmail.com] Github process can be a bit complex and we don't want to lose your valuable contributions because of that reason. We are extremely glad that you have visited us and will make our project much better.</p>
 
 
 ## References

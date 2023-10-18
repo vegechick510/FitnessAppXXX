@@ -26,7 +26,9 @@
          {% if not session.get("email") %}
             <a class="navbar-brand fs-4 mr-4 text-white" href="{{url_for('login')}}">BURNOUT</a>
           {% else %}
-            <a class="navbar-brand mr-4 text-white" href="{{url_for('dashboard')}}">BURNOUT</a>
+            <a class="navbar-brand mr-4 text-white" href="{{url_for('dashboard')}}">
+              <img src="static\img\fire.gif" alt="Computer man" style="width:98px;height:38px;">
+              BURNOUT</a>
           {% endif %}
 
           <div class="collapse navbar-collapse" id="navbarToggle">

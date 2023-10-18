@@ -10,7 +10,7 @@ from flask_mail import Mail, Message
 from flask_pymongo import PyMongo
 from tabulate import tabulate
 from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm,ReviewForm
-from insert_food_data import insertfooddata,insertexercisedata
+from insert_db_data import insertfooddata,insertexercisedata
 import schedule
 from threading import Thread
 import time

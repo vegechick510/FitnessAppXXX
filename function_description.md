@@ -1,3 +1,6 @@
+reminder_email()
+- This function sends an automated email to all the users as a daily reminder to exercise
+
 login()
 - This function is used for login by the user
 - Using email ID and passoword is validated and the user is directed to home

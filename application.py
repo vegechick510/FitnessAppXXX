@@ -30,7 +30,11 @@ mail = Mail(app)
 
 insertfooddata()
 insertexercisedata()
-def send_email():
+
+def reminder_email():
+    """
+    reminder_email() will send a reminder to users for doing their workout.
+    """
     with app.app_context():
         try:
             time.sleep(10)
@@ -46,21 +50,18 @@ def send_email():
             message = 'Subject: Daily Reminder to Exercise'
             for e in recipientlst:
                 print(e)
-                server.sendmail(sender_email,e,message)
-                
-            server.quit()
-        
+                server.sendmail(sender_email,e,message)                
+            server.quit()        
         except KeyboardInterrupt:
             print("Thread interrupted")
 
-schedule.every().day.at("08:00").do(send_email)
+schedule.every().day.at("08:00").do(reminder_email)
 
 # Run the scheduler
 def schedule_process():
     while True:
         schedule.run_pending()
         time.sleep(10)
-
 
 Thread(target=schedule_process).start()
   
@@ -161,10 +162,6 @@ def register():
                                              'weight': weight,
                                              'goal': goal,
                                              'target_weight': target_weight})
-                
-
-
-
             flash(f'Account created for {form.username.data}!', 'success')
             return redirect(url_for('home'))
     else:

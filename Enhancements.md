@@ -10,5 +10,7 @@
 
 ### <li> Enhanced the history functionality to highlight the progress made by the user through graphs
 
+### <li> Added a feature for collecting and displaying user reviews
+
 ### <li> Enhanced the user interface to make the website more appealing
 

@@ -1,5 +1,3 @@
-from datetime import datetime
-
 import bcrypt
 # from apps import App
 from flask import json
@@ -86,13 +84,13 @@ def logout():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    # ############################
-    # register() function displays the Registration portal (register.html) template
-    # route "/register" will redirect to register() function.
-    # RegistrationForm() called and if the form is submitted then various values are fetched and updated into database
-    # Input: Username, Email, Password, Confirm Password
-    # Output: Value update in database and redirected to home login page
-    # ##########################
+    """
+    register() function displays the Registration portal (register.html) template
+    route "/register" will redirect to register() function.
+    RegistrationForm() called and if the form is submitted then various values are fetched and updated into database
+    Input: Username, Email, Password, Confirm Password
+    Output: Value update in database and redirected to home login page
+    """
     if not session.get('email'):
         form = RegistrationForm()
         if form.validate_on_submit():
@@ -149,13 +147,13 @@ def calories():
 
 @app.route("/user_profile", methods=['GET', 'POST'])
 def user_profile():
-    # ############################
+    """
     # user_profile() function displays the UserProfileForm (user_profile.html) template
     # route "/user_profile" will redirect to user_profile() function.
     # user_profile() called and if the form is submitted then various values are fetched and updated into the database entries
     # Input: Email, height, weight, goal, Target weight
     # Output: Value update in database and redirected to home login page
-    # ##########################
+    """
     if session.get('email'):
         form = UserProfileForm()
         if form.validate_on_submit():
@@ -228,14 +226,14 @@ def ajaxhistory():
 
 @app.route("/friends", methods=['GET'])
 def friends():
-    # ############################
+    """
     # friends() function displays the list of friends corrsponding to given email
     # route "/friends" will redirect to friends() function which redirects to friends.html page.
-    # friends() function will show a list of "My friends", "Add Friends" functionality, "send Request" and Pending Approvals" functionality
+    # Show a list of "My friends", "Add Friends" functionality, "send Request" and Pending Approvals" functionality
     # Details corresponding to given email address are fetched from the database entries
     # Input: Email
     # Output: My friends, Pending Approvals, Sent Requests and Add new friends
-    # ##########################
+    """
     email = session.get('email')
 
     myFriends = list(mongo.db.friends.find(
@@ -269,13 +267,13 @@ def friends():
 
 @app.route("/ajaxsendrequest", methods=['POST'])
 def ajaxsendrequest():
-    # ############################
+    """
     # ajaxsendrequest() is a function that updates friend request information into database
     # route "/ajaxsendrequest" will redirect to ajaxsendrequest() function.
     # Details corresponding to given email address are fetched from the database entries and send request details updated
     # Input: Email, receiver
     # Output: DB entry of receiver info into database and return TRUE if success and FALSE otherwise
-    # ##########################
+    """
     email = get_session = session.get('email')
     if get_session is not None:
         receiver = request.form.get('receiver')
@@ -290,13 +288,13 @@ def ajaxsendrequest():
 
 @app.route("/ajaxcancelrequest", methods=['POST'])
 def ajaxcancelrequest():
-    # ############################
+    """
     # ajaxcancelrequest() is a function that updates friend request information into database
     # route "/ajaxcancelrequest" will redirect to ajaxcancelrequest() function.
     # Details corresponding to given email address are fetched from the database entries and cancel request details updated
     # Input: Email, receiver
     # Output: DB deletion of receiver info into database and return TRUE if success and FALSE otherwise
-    # ##########################
+    """
     email = get_session = session.get('email')
     if get_session is not None:
         receiver = request.form.get('receiver')
@@ -311,13 +309,13 @@ def ajaxcancelrequest():
 
 @app.route("/ajaxapproverequest", methods=['POST'])
 def ajaxapproverequest():
-    # ############################
+    """
     # ajaxapproverequest() is a function that updates friend request information into database
     # route "/ajaxapproverequest" will redirect to ajaxapproverequest() function.
     # Details corresponding to given email address are fetched from the database entries and approve request details updated
     # Input: Email, receiver
     # Output: DB updation of accept as TRUE info into database and return TRUE if success and FALSE otherwise
-    # ##########################
+    """
     email = get_session = session.get('email')
     if get_session is not None:
         receiver = request.form.get('receiver')
@@ -335,23 +333,23 @@ def ajaxapproverequest():
 
 @app.route("/dashboard", methods=['GET', 'POST'])
 def dashboard():
-    # ############################
+    """
     # dashboard() function displays the dashboard.html template
     # route "/dashboard" will redirect to dashboard() function.
     # dashboard() called and displays the list of activities
     # Output: redirected to dashboard.html
-    # ##########################
+    """
     return render_template('dashboard.html', title='Dashboard')
 
 @app.route("/review", methods=['GET', 'POST'])
 def submit_reviews():
-    # ############################
+    """
     # submit_reviews() function collects and displays the reviews submitted by different users
     # route "/review" will redirect to submit_review() function which redirects to review.html page.
     # Reviews are stored into a MongoDB collection and then retrieved immediately
     # Input: Email
     # Output: Name, Review
-    # ##########################
+    """
     existing_reviews = mongo.db.reviews.find()
     if session.get('email'):
         print("Imhere2")

@@ -1,10 +1,13 @@
+""""Importing app from apps.py"""
 from apps import App
 app = App()
 mongo = app.mongo
 
 
 def insertfooddata():
-    f = open('food_data/calories.csv', 'r', encoding = "ISO-8859-1")
+    """Inserting the food data from CSV file to MongoDB"""
+    with open("food_data/calories.csv", "r", encoding="ISO-8859-1") as file:
+        f = file.read()
     l = f.readlines()
 
     for i in range(1, len(l)):
@@ -12,11 +15,12 @@ def insertfooddata():
 
     for i in range(1, len(l)):
         temp = l[i].split(",")
-        mongo.db.food.update_one({'food': temp[0]},{'$set': {'calories': temp[1]}},upsert=True)
+        mongo.db.food.update_one(
+            {'food': temp[0]}, {'$set': {'calories': temp[1]}}, upsert=True)
+
 
 def insertexercisedata():
-    
-# Define exercise data for all 9 exercises
+    """Define exercise data for all 9 exercises"""
     exercise_data = [
         {
             "email": "email",
@@ -110,6 +114,3 @@ def insertexercisedata():
         query = {"exercise_id": exercise["exercise_id"]}
         update = {"$set": exercise}
         collection.update_one(query, update, upsert=True)
-
-
-

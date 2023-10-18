@@ -343,5 +343,27 @@ def dashboard():
     # ##########################
     return render_template('dashboard.html', title='Dashboard')
 
+@app.route("/review", methods=['GET', 'POST'])
+def submit_reviews():
+    print("IMHERE1")
+    existing_reviews = mongo.db.reviews.find()
+    if session.get('email'):
+        form = ReviewForm()
+        if form.validate_on_submit():
+            print('validated')
+            if request.method == 'POST':
+                print('post')
+                email = session.get('email')
+                user = mongo.db.user.find_one({'email': email})
+                name = user['name']
+                review = request.form.get('review')
+                print(name,review)
+                mongo.db.reviews.insert_one({'name': name, 'review': review})
+                print("ffsvs")
+                
+                return render_template("review.html",form=form)
+    return render_template('review.html',form=form,existing_reviews=existing_reviews)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

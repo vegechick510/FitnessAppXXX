@@ -9,7 +9,7 @@ from flask import render_template, session, url_for, flash, redirect, request, F
 from flask_mail import Mail, Message
 from flask_pymongo import PyMongo
 from tabulate import tabulate
-from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm
+from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm,ReviewForm
 from insert_food_data import insertfooddata,insertexercisedata
 import schedule
 from threading import Thread
@@ -843,6 +843,29 @@ def hrx():
 #                 return json.dumps({'email': "", 'Status': ""}), 200, {
 #                     'ContentType': 'application/json'}
 
+@app.route("/review", methods=['GET', 'POST'])
+def submit_reviews():
+    existing_reviews = mongo.db.reviews.find()
 
+    if session.get('email'):
+        print("Imhere2")
+        if request.method == 'POST':  # Check if it's a POST request
+            form = ReviewForm(request.form)  # Initialize the form with form data
+            if form.validate_on_submit():
+                print("imehere1")
+                email = session.get('email')
+                user = mongo.db.user.find_one({'email': email})
+                name = request.form.get('name')
+                review = request.form.get('review')  # Correct the field name
+                mongo.db.reviews.insert_one({'name': name, 'review': review})
+                return render_template("review.html", form=form, existing_reviews=existing_reviews)
+
+        else:
+            form = ReviewForm()  # Create an empty form for GET requests
+
+        return render_template('review.html', form=form, existing_reviews=existing_reviews)
+    else:
+        return "User not logged in"
+    
 if __name__ == '__main__':
     app.run(debug=True)

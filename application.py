@@ -842,8 +842,14 @@ def hrx():
 
 @app.route("/review", methods=['GET', 'POST'])
 def submit_reviews():
+    # ############################
+    # submit_reviews() function collects and displays the reviews submitted by different users
+    # route "/review" will redirect to submit_review() function which redirects to review.html page.
+    # Reviews are stored into a MongoDB collection and then retrieved immediately
+    # Input: Email
+    # Output: Name, Review
+    # ##########################
     existing_reviews = mongo.db.reviews.find()
-
     if session.get('email'):
         print("Imhere2")
         if request.method == 'POST':  # Check if it's a POST request
@@ -856,10 +862,8 @@ def submit_reviews():
                 review = request.form.get('review')  # Correct the field name
                 mongo.db.reviews.insert_one({'name': name, 'review': review})
                 return render_template("review.html", form=form, existing_reviews=existing_reviews)
-
         else:
             form = ReviewForm()  # Create an empty form for GET requests
-
         return render_template('review.html', form=form, existing_reviews=existing_reviews)
     else:
         return "User not logged in"

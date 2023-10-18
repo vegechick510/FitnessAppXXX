@@ -35,6 +35,9 @@ friends()
 bmi_calci()
 - This function returns the Body Mass Index of the user whenever they enter their height and weight
 
+submit_reviews()
+- This function returns the exiting reviews and also insert the new reviews submitted by user
+
 calc_bmi()
 - This function calculates the BMI mathematically which is returned to the the bmi_calci() function
 

@@ -11,18 +11,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Install Python 3.11.5
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: 3.11.5
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
           echo requirements installed
-          pip uninstall bson
-          pip uninstall pymongo
-          pip install pymongo
       - name: Run tests
         run: |
           cd tests

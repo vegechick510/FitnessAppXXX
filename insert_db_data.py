@@ -8,15 +8,15 @@ def insertfooddata():
     """Inserting the food data from CSV file to MongoDB"""
     with open("food_data/calories.csv", "r", encoding="ISO-8859-1") as file:
         f = file.read()
-    l = f.readlines()
+        l = f.readlines()
 
-    for i in range(1, len(l)):
-        l[i] = l[i][1:len(l[i]) - 2]
+        for i in range(1, len(l)):
+            l[i] = l[i][1:len(l[i]) - 2]
 
-    for i in range(1, len(l)):
-        temp = l[i].split(",")
-        mongo.db.food.update_one(
-            {'food': temp[0]}, {'$set': {'calories': temp[1]}}, upsert=True)
+        for i in range(1, len(l)):
+            temp = l[i].split(",")
+            mongo.db.food.update_one(
+                {'food': temp[0]}, {'$set': {'calories': temp[1]}}, upsert=True)
 
 
 def insertexercisedata():

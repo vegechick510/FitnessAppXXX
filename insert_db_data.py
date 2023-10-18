@@ -6,9 +6,15 @@ mongo = app.mongo
 
 def insertfooddata():
     """Inserting the food data from CSV file to MongoDB"""
+<<<<<<< Updated upstream
     with open("food_data/calories.csv", "r", encoding="ISO-8859-1") as file:
         f = file.read()
         l = f.readlines()
+=======
+    #with open("food_data/calories.csv", "r", encoding="ISO-8859-1") as file:
+    f = open("food_data/calories.csv", "r", encoding="ISO-8859-1")
+    l = f.readlines()
+>>>>>>> Stashed changes
 
         for i in range(1, len(l)):
             l[i] = l[i][1:len(l[i]) - 2]

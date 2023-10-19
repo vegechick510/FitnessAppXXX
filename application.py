@@ -15,7 +15,7 @@ import schedule
 from threading import Thread
 import time
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 app.secret_key = 'secret'
 app.config['MONGO_URI'] = 'mongodb://127.0.0.1:27017/test'
 app.config['MONGO_CONNECT'] = False

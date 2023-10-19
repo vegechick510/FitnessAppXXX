@@ -11,34 +11,43 @@
       To calculate your BMI, enter your weight (in kilograms) and height (in
       centimeters) below:
     </p>
-    <form
-      style="color: white"
-      class="pure-form"
-      method="POST"
-      action="/bmi_calc"
-      id="bmi-form"
-    >
-      Weight in kgs:<br />
-      <input type="text" name="weight" id="weight" /><br />
-      Height in cms:<br />
-      <input type="text" name="height" id="height" /><br />
-      <button
-        type="submit"
-        class="pure-button pure-button-primary"
-        value="Submit"
+
+    <div class="content-section">
+      <form class="pure-form" method="POST" action="/bmi_calc" id="bmi-form">
+        Weight in kgs:<br />
+        <input type="text" name="weight" id="weight" /><br />
+        Height in cms:<br />
+        <input type="text" name="height" id="height" /><br />
+        <button
+          type="submit"
+          class="pure-button pure-button-primary"
+          value="Submit"
+        >
+          Calculate BMI
+        </button>
+      </form>
+    </div>
+    <p style="color: white; text-align: center" class="display-4">
+      Your BMI is {{ bmi }}.
+    </p>
+    <p style="color: white; text-align: center" class="display-6">You are</p>
+    <p style="color: white; text-align: center" style="color: white">
+      {% if bmi_category == 'Underweight' %}
+      <span class="underweight display-6; text-align: center"
+        >{{ bmi_category }}</span
       >
-        Calculate BMI
-      </button>
-    </form>
-    <p style="color: white">Your BMI is {{ bmi }}.</p>
-    <p style="color: white">
-      {% if bmi_category == 'Underweight' %}You are
-      <span class="underweight">{{ bmi_category }}</span> {% elif bmi_category
-      == 'Normal Weight' %}You are
-      <span class="normal">{{ bmi_category }}</span> {% elif bmi_category ==
-      'Overweight' %}You are
-      <span class="overweight">{{ bmi_category }}</span> {% elif bmi_category ==
-      'Obese' %}You are <span class="obese">{{ bmi_category }}</span>
+      {% elif bmi_category == 'Normal Weight' %}
+      <span class="normal display-6; text-align: center"
+        >{{ bmi_category }}</span
+      >
+      {% elif bmi_category == 'Overweight' %}
+      <span class="overweight display-6; text-align: center"
+        >{{ bmi_category }}</span
+      >
+      {% elif bmi_category == 'Obese' %}
+      <span class="obese display-6; text-align: center display-6"
+        >{{ bmi_category }}</span
+      >
       {% endif %}
     </p>
   </div>

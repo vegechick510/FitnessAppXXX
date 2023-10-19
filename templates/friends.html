@@ -1,22 +1,22 @@
 {% extends "layout.html" %} {% block content %}
 <h1 style="color: white">Manange Friends</h1>
 <details>
-  <summary>My Friends</summary>
+  <summary style="color: white">My Friends</summary>
   {% for friend in myFriends %}
   <div>
-    <span>{{friend.receiver}}</span>
+    <span> {{friend.receiver}}</span>
   </div>
   <br />
   {% endfor %}
 </details>
 <br />
 <details>
-  <summary>Add Friends</summary>
+  <summary style="color: white">Add Friends</summary>
   {% for friend in allUsers %} {% if friend.email != active and friend.email not
   in pendingReceivers and friend.email not in pendingApproves and friend.email
   not in myFriendsList %}
   <details style="margin: 5px; background: white">
-    <summary>{{friend.name}}</summary>
+    <summary style="color: white">{{friend.name}}</summary>
     <p class="article-content" name="friend">{{friend.email}}</p>
     <button
       type="button"
@@ -31,7 +31,7 @@
 </details>
 <br />
 <details>
-  <summary>Sent Requests</summary>
+  <summary style="color: white">Sent Requests</summary>
   {% for req in pendingRequests %}
   <div>
     <span>{{req.receiver}}</span>
@@ -49,7 +49,7 @@
 
 <br />
 <details>
-  <summary>Pending Approvals</summary>
+  <summary style="color: white">Pending Approvals</summary>
   {% for req in pendingApproves %}
   <div>
     <span>{{req}}</span>
@@ -66,7 +66,7 @@
 </details>
 <br />
 <details>
-  <summary>
+  <summary style="color: white">
     Share data with Friends (Type friend's email ID comma separated)
   </summary>
 

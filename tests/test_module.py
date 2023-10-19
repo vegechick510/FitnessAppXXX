@@ -10,5 +10,5 @@ class TestLoginRoute(unittest.TestCase):
         response = self.app.get('/login')
         self.assertEqual(response.status_code, 200)
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     unittest.main()

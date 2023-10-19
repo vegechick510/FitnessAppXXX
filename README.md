@@ -91,7 +91,7 @@ Link to the implementation video of the BurnOut application:
 
 ## Register
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/registerPic.PNG?raw=true>
+<img src=https://raw.githubusercontent.com/VibhavDeo/FitnessApp/main/static/img/registerPic.PNG>
 
 ## Login
 

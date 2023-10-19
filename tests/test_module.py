@@ -1,5 +1,5 @@
 import unittest
-from your_flask_app import app
+from application import app
 
 class TestLoginRoute(unittest.TestCase):
     def setUp(self):

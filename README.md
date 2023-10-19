@@ -95,7 +95,7 @@ Link to the implementation video of the BurnOut application:
 
 ## Login
 
-<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.30.27%20PM.png>
+<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/loginPic.PNG>
 
 ## Set User Profile
 

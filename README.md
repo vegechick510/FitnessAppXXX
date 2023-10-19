@@ -38,10 +38,7 @@ https://drive.google.com/drive/folders/1M5vdCwH11C-MqK8X-Dkf5bPR0SaWA5Yc?usp=sha
 <img src="https://img.shields.io/github/milestones/all/VibhavDeo/FitnessApp" /></a> 
 
 <a href="https://github.com/VibhavDeo/FitnessApp/graphs/commit-activity" alt="commit activity">
-<img src="https://img.shields.io/github/commit-activity/w/VibhavDeo/FitnessApp" /></a> 
-
-<a href="https://github.com/VibhavDeo/FitnessApp/discussions" alt="discussion">
-<img src="https://img.shields.io/github/discussions/VibhavDeo/FitnessApp" /></a> 
+<img src="https://img.shields.io/github/commit-activity/w/VibhavDeo/FitnessApp" /></a>  
 
 <a href="https://img.shields.io/github/repo-size/VibhavDeo/FitnessApp" alt="repo size">
 <img src="https://img.shields.io/github/repo-size/VibhavDeo/FitnessApp" /></a>

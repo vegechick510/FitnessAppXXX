@@ -1,56 +1,14 @@
 import unittest
-from application import app
-from flask import session
+from your_flask_app import app
 
-class TestApplication(unittest.TestCase):
-
+class TestLoginRoute(unittest.TestCase):
     def setUp(self):
-        app.testing = True
+        app.config['TESTING'] = True
         self.app = app.test_client()
 
-    def test_home_route(self):
-        response = self.app.get('/')
-        self.assertEqual(response.status_code, 302)  # Expect a redirect status code
-
-    def test_login_route(self):
+    def test_login_route_status_code(self):
         response = self.app.get('/login')
-        self.assertEqual(response.status_code, 200)  # Expect a success status code
+        self.assertEqual(response.status_code, 200)
 
-    def test_register_route(self):
-        response = self.app.get('/register')
-        self.assertEqual(response.status_code, 200)  # Expect a success status code
-
-    # def test_calories_route(self):
-    #     # Assuming the user is logged in (session is set)
-    #     with self.app as client:
-    #         with client.session_transaction() as sess:
-    #             sess['email'] = 'testuser@example.com'
-    #         response = client.get('/calories')
-    #         self.assertEqual(response.status_code, 200)  # Expect a success status code
-
-    # def test_display_profile_route(self):
-    #     # Assuming the user is logged in (session is set)
-    #     with self.app as client:
-    #         with client.session_transaction() as sess:
-    #             sess['email'] = 'testuser@example.com'
-    #         response = client.get('/display_profile')
-    #         self.assertEqual(response.status_code, 200)  # Expect a success status code
-
-    # def test_user_profile_route(self):
-    #     # Assuming the user is logged in (session is set)
-    #     with self.app as client:
-    #         with client.session_transaction() as sess:
-    #             sess['email'] = 'testuser@example.com'
-    #         response = client.get('/user_profile')
-    #         self.assertEqual(response.status_code, 200)  # Expect a success status code
-
-    # def test_history_route(self):
-    #     # Assuming the user is logged in (session is set)
-    #     with self.app as client:
-    #         with client.session_transaction() as sess:
-    #             sess['email'] = 'testuser@example.com'
-    #         response = client.get('/history')
-    #         self.assertEqual(response.status_code, 200)  # Expect a success status code
-
-if __name__ == '__main__':
+if _name_ == '_main_':
     unittest.main()

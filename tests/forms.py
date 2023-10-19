@@ -1,6 +1,7 @@
-from datetime import date
-from re import sub
-from flask import app
+# from datetime import date
+# from re import sub
+# from flask import app
+"""Importing modules to create forms"""
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.fields.core import DateField, SelectField
@@ -9,6 +10,7 @@ from apps import App
 
 
 class RegistrationForm(FlaskForm):
+    """Form to collect the registration data of the user"""
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
@@ -17,9 +19,26 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField(
         'Confirm Password', validators=[
             DataRequired(), EqualTo('password')])
+    weight = StringField(
+        'Weight', validators=[
+            DataRequired(), Length(
+                min=2, max=20)])
+    height = StringField(
+        'Height', validators=[
+            DataRequired(), Length(
+                min=2, max=20)])
+    goal = StringField(
+        'Goal (Weight Loss/ Muscle Gain)', validators=[
+            DataRequired(), Length(
+                min=2, max=20)])
+    target_weight = StringField(
+        'Target Weight', validators=[
+            DataRequired(), Length(
+                min=2, max=20)])
     submit = SubmitField('Sign Up')
 
     def validate_email(self, email):
+        """Function to validate the entered email"""
         app_object = App()
         mongo = app_object.mongo
 
@@ -29,15 +48,16 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
+    """Login form to log in to the application"""
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
-    """
 
 class CalorieForm(FlaskForm):
+    """Form to rcord the calorie intake details of the user"""
     app = App()
     mongo = app.mongo
 
@@ -58,10 +78,9 @@ class CalorieForm(FlaskForm):
     burnout = StringField('Burn Out', validators=[DataRequired()])
     submit = SubmitField('Save')
 
-"""
-    
-    
+
 class UserProfileForm(FlaskForm):
+    """Form to input user details to store their height, weight, goal and target weight"""
     weight = StringField(
         'Weight', validators=[
             DataRequired(), Length(
@@ -71,17 +90,18 @@ class UserProfileForm(FlaskForm):
             DataRequired(), Length(
                 min=2, max=20)])
     goal = StringField(
-        'Goal', validators=[
+        'Goal (Weight Loss/ Muscle Gain)', validators=[
             DataRequired(), Length(
                 min=2, max=20)])
     target_weight = StringField(
         'Target Weight', validators=[
             DataRequired(), Length(
                 min=2, max=20)])
-    submit = SubmitField('Save Profile')
+    submit = SubmitField('Update')
 
-"""
+
 class HistoryForm(FlaskForm):
+    """Form to input the date for which the history needs to be displayed"""
     app = App()
     mongo = app.mongo
     date = DateField()
@@ -89,12 +109,13 @@ class HistoryForm(FlaskForm):
 
 
 class EnrollForm(FlaskForm):
+    """Form to enroll into a particular exercise/event"""
     app = App()
     mongo = app.mongo
     submit = SubmitField('Enroll')
-"""
 
 class ResetPasswordForm(FlaskForm):
+    """Form to reset the account password"""
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField(
         'Confirm Password', validators=[
@@ -102,6 +123,7 @@ class ResetPasswordForm(FlaskForm):
     submit = SubmitField('Reset')
 
 class ReviewForm(FlaskForm):
+    """Form to input the different reviews about the application"""
     review = StringField(
         'Review', validators=[
             DataRequired(), Length(

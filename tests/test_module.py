@@ -83,5 +83,28 @@ class TestApplication(unittest.TestCase):
             response = client.post('/ajaxapproverequest', data={'receiver': 'friend@example.com'})
             self.assertEqual(response.status_code, 200) 
    
+    def test_dashboard_route(self):
+    # Assuming the user is logged in (session is set)
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            response = client.get('/dashboard')
+            self.assertEqual(response.status_code, 200)  # Expect a success status code
+
+    def test_add_favorite_route(self):
+        # Assuming the user is logged in (session is set)
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            response = client.post('/add_favorite', json={'exercise_id': '123', 'action': 'add'})
+            self.assertEqual(response.status_code, 200)  # Expect a success status code
+
+    def test_favorites_route(self):
+        # Assuming the user is logged in (session is set)
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            response = client.get('/favorites')
+            self.assertEqual(response.status_code, 200)  # Expect a success status code
 if __name__ == '__main__':
     unittest.main()

@@ -1,8 +1,8 @@
 # Link to demo/walkthrough video:
+
 https://drive.google.com/drive/folders/1M5vdCwH11C-MqK8X-Dkf5bPR0SaWA5Yc?usp=sharing
 <br>
 <br>
-
 
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![DOI](https://zenodo.org/badge/692868088.svg)](https://zenodo.org/doi/10.5281/zenodo.10023046)
@@ -35,20 +35,18 @@ https://drive.google.com/drive/folders/1M5vdCwH11C-MqK8X-Dkf5bPR0SaWA5Yc?usp=sha
 <img src="https://img.shields.io/github/contributors/VibhavDeo/FitnessApp" /></a>
 
 <a href="https://github.com/VibhavDeo/FitnessApp/graphs/commit-activity" alt="commit activity">
-<img src="https://img.shields.io/github/commit-activity/w/VibhavDeo/FitnessApp" /></a>  
+<img src="https://img.shields.io/github/commit-activity/w/VibhavDeo/FitnessApp" /></a>
 
 <a href="https://img.shields.io/github/repo-size/VibhavDeo/FitnessApp" alt="repo size">
 <img src="https://img.shields.io/github/repo-size/VibhavDeo/FitnessApp" /></a>
-
-
 
 # BurnOut
 
 ![WhatsApp Image 2021-09-28 at 2 48 00 PM](https://user-images.githubusercontent.com/25662536/135546154-cfae1d2e-439a-4edc-b0bb-57f693ef5a83.jpeg)
 
-BurnOut is an easy to use application that keeps track of a user's daily calories gained and burnt. It can help the user to set goals such as weight loss/gain. Users can edit their profile by entering their height, weight, goal and target-weight. Users can enroll into numerous programs involving fitness such as yoga classes and workout sessions. Users can now connect with their friends by sending a friend-request and share their progress. This document provides a major perspective for the users to understand and take up the project as an Open source software and add on multiple features before releasing to the market. Also, the document aids the developers in understanding the code and acts as a reference point for continuing the project. 
+BurnOut is an easy to use application that keeps track of a user's daily calories gained and burnt. It can help the user to set goals such as weight loss/gain. Users can edit their profile by entering their height, weight, goal and target-weight. Users can enroll into numerous programs involving fitness such as yoga classes and workout sessions. Users can now connect with their friends by sending a friend-request and share their progress. This document provides a major perspective for the users to understand and take up the project as an Open source software and add on multiple features before releasing to the market. Also, the document aids the developers in understanding the code and acts as a reference point for continuing the project.
 
-# Table of Contents  
+# Table of Contents
 
 - [Why use BurnOut?](#why-use-burnout)
 - [Implementation](#implementation)
@@ -68,125 +66,109 @@ BurnOut is an easy to use application that keeps track of a user's daily calorie
 - [Contribution](#contribution)
 - [License](#license)
 
-
 # Why use BurnOut?
- - User can keep a track of their calorie intake.
- - User just needs to input the food they've had, calories get calculated automatically.
- - Displays a record of calories in and calories burnt out day wise in History tab.
- - Helps user to figure out how much to eat/exercise according to their desired goal(weight loss/gain).
- - Users can connect with their friends and keep track of each other's progress
- - Enrollment into numerous yoga and workout sessions.
- - Accessible to everyone and easy to use.
+
+- User can keep a track of their calorie intake.
+- User just needs to input the food they've had, calories get calculated automatically.
+- Displays a record of calories in and calories burnt out day wise in History tab.
+- Helps user to figure out how much to eat/exercise according to their desired goal(weight loss/gain).
+- Users can connect with their friends and keep track of each other's progress
+- Enrollment into numerous yoga and workout sessions.
+- Accessible to everyone and easy to use.
 
 # Implementation
 
 Link to the implementation video of the BurnOut application:
 
-
-
 # TechStack Used for the Development of Project
 
- <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="python" width="20" height="20"/> Python </br>
- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="mongo" width="20" height="20"/> MongoDB </br>
- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-plain.svg" alt="html" width="20" height="20"> CSS3 </br>
- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-plain.svg" alt="css" width="20" height="20">  HTML 5 </br>
- 
-# Core Functionalities of the Application
- 
- ## Register
- 
-<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.41.18%20PM.png>
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="python" width="20" height="20"/> Python </br>
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="mongo" width="20" height="20"/> MongoDB </br>
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-plain.svg" alt="html" width="20" height="20"> CSS3 </br>
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-plain.svg" alt="css" width="20" height="20"> HTML 5 </br>
 
- ## Login
+# Core Functionalities of the Application
+
+## Register
+
+<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/registerPic.PNG?raw=true>
+
+## Login
 
 <img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.30.27%20PM.png>
 
- ## Set User Profile
- 
+## Set User Profile
+
 <img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.35.05%20PM.png>
 
+## Enter Calories in and burnt
 
- ## Enter Calories in and burnt
 <img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/calories.png>
 
- ## Chatbot
+## Chatbot
 
 <img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.31.54%20PM.png>
 
-
-
-
-
-
-
-
-
- ## Check History
+## Check History
 
 <img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/history.png>
 
+## Add weight alert
 
-
-
- ## Add weight alert
- 
 <img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.30.48%20PM.png>
 
- ## Adding Friends
+## Adding Friends
 
 <img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/friends.png>
 
- ## Enrolling into several programs
- 
+## Enrolling into several programs
+
 <img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.32.08%20PM.png>
 
+# Steps for execution
 
- # Steps for execution
- 
- Step 1:
- Install MongoDB using the following link:
- 
- https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows
- 
- Step 2: 
-  Git Clone the Repository 
-  
+Step 1:
+Install MongoDB using the following link:
+
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows
+
+Step 2:
+Git Clone the Repository
+
     git clone https://github.com/VibhavDeo/FitnessApp.git
-    
-  (OR) Download the .zip file on your local machine
-  
+
+(OR) Download the .zip file on your local machine
+
     https://github.com/VibhavDeo/FitnessApp.git
-  
- Step 3:
-   Install the required packages by running the following command in the terminal 
-   
+
+Step 3:
+Install the required packages by running the following command in the terminal
+
     pip install -r requirements.txt
-    
- Step 4:
-    Run the following command in the terminal
-    
+
+Step 4:
+Run the following command in the terminal
+
     python application.py
-    
- Step 5:
-    Open the URL in your browser:  
-      http://127.0.0.1:5000/
-      
-      
-  # Source Code
-  
-  Link to the repository:
-  https://github.com/VibhavDeo/FitnessApp
-  
-  # Enhancements
 
-   1. Make the website view port adaptable - the website should look good on phone, tablet and computer.
-   2. Chatbot to guide through the application.
-   3. Share workout plans with friends via email.
-   4. Bug Fixes
+Step 5:
+Open the URL in your browser:  
+ http://127.0.0.1:5000/
 
-   
-   # Team Members
-   
+# Source Code
+
+Link to the repository:
+https://github.com/VibhavDeo/FitnessApp
+
+# Enhancements
+
+1.  Make the website view port adaptable - the website should look good on phone, tablet and computer.
+2.  Chatbot to guide through the application.
+3.  Share workout plans with friends via email.
+4.  Bug Fixes
+
+# Team Members
+
 <center>
   <table>
     <tr>
@@ -199,9 +181,9 @@ Link to the implementation video of the BurnOut application:
   </table>
 </center>
 
-  # Contribution
-  
-  Please refer the [CONTRIBUTING.md](https://github.com/VibhavDeo/FitnessApp/blob/main/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
+# Contribution
+
+Please refer the [CONTRIBUTING.md](https://github.com/VibhavDeo/FitnessApp/blob/main/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
 
   <p align="center">
     <a href="https://github.com/VibhavDeo/FitnessApp/issues/new/choose">Report Bug</a>
@@ -209,9 +191,6 @@ Link to the implementation video of the BurnOut application:
     <a href="https://github.com/VibhavDeo/FitnessApp/issues/new/choose">Request Feature</a>
   </p>
 
-  # License
-  
-  This project is licensed under the MIT License.
-  
-  
+# License
 
+This project is licensed under the MIT License.

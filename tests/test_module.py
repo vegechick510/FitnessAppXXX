@@ -4,8 +4,8 @@ import os,sys,inspect
 # parentdir = os.path.dirname(currentdir)
 # sys.path.insert(0, parentdir)
 from application import app
-
-
+import json
+from bs4 import BeautifulSoup
 from flask import session
 
 class TestApplication(unittest.TestCase):
@@ -55,6 +55,10 @@ class TestApplication(unittest.TestCase):
             response = client.get('/history')
     
             self.assertEqual(response.status_code, 200)  # Expect a success status code
-            
+    def test_bmi_calci_post(self):
+        response = self.app.post('/bmi_calc', data={'weight': 70, 'height': 175})
+        self.assertEqual(response.status_code, 200)
+    
+   
 if __name__ == '__main__':
     unittest.main()

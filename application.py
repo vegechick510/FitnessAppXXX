@@ -214,7 +214,7 @@ def display_profile():
 
     if session.get('email'):
         email = session.get('email')
-        user_data = mongo.db.profile.find_one({'email': email, 'date': now})
+        user_data = mongo.db.profile.find_one({'email': email})
         target_weight=float(user_data['target_weight'])
         user_data_hist = list(mongo.db.profile.find({'email': email}))
 

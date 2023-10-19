@@ -58,7 +58,30 @@ class TestApplication(unittest.TestCase):
     def test_bmi_calci_post(self):
         response = self.app.post('/bmi_calc', data={'weight': 70, 'height': 175})
         self.assertEqual(response.status_code, 200)
+
+    def test_ajaxsendrequest_route(self):
     
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            response = client.post('/ajaxsendrequest', data={'receiver': 'friend@example.com'})
+            self.assertEqual(response.status_code, 200)  
+
+    def test_ajaxcancelrequest_route(self):
+        
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            response = client.post('/ajaxcancelrequest', data={'receiver': 'friend@example.com'})
+            self.assertEqual(response.status_code, 200)  
+
+    def test_ajaxapproverequest_route(self):
+        
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            response = client.post('/ajaxapproverequest', data={'receiver': 'friend@example.com'})
+            self.assertEqual(response.status_code, 200) 
    
 if __name__ == '__main__':
     unittest.main()

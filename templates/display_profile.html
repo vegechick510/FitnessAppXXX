@@ -6,7 +6,7 @@
     <title>Your Data</title>
 </head>
 <body>
-    <h1>Your Data</h1>
+    <h1 style="color: white;">Your Data</h1>
 
 </body>
 <section class="container-fluid ">
@@ -40,19 +40,19 @@
         <div>
             {{ graph_html|safe }}
 
-            <h2>Last 10 Entries</h2>
+            <h2 style="color: white;">Last 10 Entries</h2>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Weight</th>
+                        <th style="color: white;">Date</th>
+                        <th style="color: white;">Weight</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for entry in last_10_entries %}
                         <tr>
-                            <td>{{ entry['date'] }}</td>
-                            <td>{{ entry['weight'] }}</td>
+                            <td style="color: white;">{{ entry['date'] }}</td>
+                            <td style="color: white;">{{ entry['weight'] }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

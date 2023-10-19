@@ -4,8 +4,6 @@ import os,sys,inspect
 # parentdir = os.path.dirname(currentdir)
 # sys.path.insert(0, parentdir)
 from application import app
-import json
-from bs4 import BeautifulSoup
 from flask import session
 
 class TestApplication(unittest.TestCase):

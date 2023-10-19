@@ -196,7 +196,7 @@ Link to the implementation video of the BurnOut application:
 <center>
   <table>
     <tr>
-        <td align="center"><img src="https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/Rahleeboys.jpeg" width="500px;" alt=""/><br /><sub><b>Rahlee Boys(L to R) - <a href="https://github.com/nayaksyndrome">Chinmay Nayak</a>, <a href="https://github.com/Shubham-Saboo">Shubham Saboo</a>, <a href="https://github.com/RajatChandak2000"> Rajat Chandak</a>, <a href="https://github.com/VibhavDeo">Vibhav Deo</a></b></sub><br /></td>
+        <td align="center"><img src="https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/Rahleeboys.jpeg" width="300px;" alt=""/><br /><sub><b>Rahlee Boys(L to R) - <a href="https://github.com/nayaksyndrome">Chinmay Nayak</a>, <a href="https://github.com/Shubham-Saboo">Shubham Saboo</a>, <a href="https://github.com/RajatChandak2000"> Rajat Chandak</a>, <a href="https://github.com/VibhavDeo">Vibhav Deo</a></b></sub><br /></td>
       <!-- <td align="center"><a href="https://github.com/PrakruthiSomashekar"><img src="https://avatars.githubusercontent.com/u/62984587?v=4" width="100px;" alt=""/><br /><sub><b>Prakruthi Somashekar</b></sub></a></td>
     <td align="center"><a href="https://github.com/radhikaraman20"><img src="https://avatars.githubusercontent.com/u/89432698?s=400&v=4" width="100px;" alt=""/><br /><sub><b>Radhika Raman</b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/RohanSinha96"><img src="https://avatars.githubusercontent.com/u/15325746?v=4" width="100px;" alt=""/><br /><sub><b>Rohan Sinha</b></sub></a><br /></td>

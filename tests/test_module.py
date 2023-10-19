@@ -27,11 +27,8 @@ class TestApplication(unittest.TestCase):
 
     def test_calories_route(self):
         # Assuming the user is logged in (session is set)
-        with self.app as client:
-            with client.session_transaction() as sess:
-                sess['email'] = 'testuser@example.com'
-            response = client.get('/calories')
-            self.assertEqual(response.status_code, 200)  # Expect a success status code
+        response = self.app.get('/calories')
+        self.assertEqual(response.status_code, 200)  # Expect a success status code
 
     def test_display_profile_route(self):
         # Assuming the user is logged in (session is set)

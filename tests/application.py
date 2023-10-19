@@ -31,39 +31,39 @@ mail = Mail(app)
 # insertfooddata()
 # insertexercisedata()
 
-def reminder_email():
-    """
-    reminder_email() will send a reminder to users for doing their workout.
-    """
-    with app.app_context():
-        try:
-            time.sleep(10)
-            print('in send mail')
-            recipientlst = list(mongo.db.user.distinct('email'))
-            print(recipientlst)
+# def reminder_email():
+#     """
+#     reminder_email() will send a reminder to users for doing their workout.
+#     """
+#     with app.app_context():
+#         try:
+#             time.sleep(10)
+#             print('in send mail')
+#             recipientlst = list(mongo.db.user.distinct('email'))
+#             print(recipientlst)
             
-            server = smtplib.SMTP_SSL("smtp.gmail.com",465)
-            sender_email = "burnoutapp2023@gmail.com"
-            sender_password = "jgny mtda gguq shnw"
+#             server = smtplib.SMTP_SSL("smtp.gmail.com",465)
+#             sender_email = "burnoutapp2023@gmail.com"
+#             sender_password = "jgny mtda gguq shnw"
 
-            server.login(sender_email,sender_password)
-            message = 'Subject: Daily Reminder to Exercise'
-            for e in recipientlst:
-                print(e)
-                server.sendmail(sender_email,e,message)                
-            server.quit()        
-        except KeyboardInterrupt:
-            print("Thread interrupted")
+#             server.login(sender_email,sender_password)
+#             message = 'Subject: Daily Reminder to Exercise'
+#             for e in recipientlst:
+#                 print(e)
+#                 server.sendmail(sender_email,e,message)                
+#             server.quit()        
+#         except KeyboardInterrupt:
+#             print("Thread interrupted")
 
-schedule.every().day.at("08:00").do(reminder_email)
+# schedule.every().day.at("08:00").do(reminder_email)
 
-# Run the scheduler
-def schedule_process():
-    while True:
-        schedule.run_pending()
-        time.sleep(10)
+# # Run the scheduler
+# def schedule_process():
+#     while True:
+#         schedule.run_pending()
+#         time.sleep(10)
 
-Thread(target=schedule_process).start()
+# Thread(target=schedule_process).start()
   
 
 @app.route("/")

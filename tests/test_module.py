@@ -53,7 +53,8 @@ class TestApplication(unittest.TestCase):
             with client.session_transaction() as sess:
                 sess['email'] = 'testuser@example.com'
             response = client.get('/history')
+    
             self.assertEqual(response.status_code, 200)  # Expect a success status code
-
+            
 if __name__ == '__main__':
     unittest.main()

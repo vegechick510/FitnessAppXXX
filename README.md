@@ -69,6 +69,8 @@ BurnOut is an easy-to-use application designed to help users manage their daily 
 This document serves as a comprehensive reference point for users, giving them insight into the functionalities of BurnOut and encouraging them to participate in its development as an open-source software project. As an open-source project, the community can contribute additional features and enhancements to make BurnOut even more robust and tailored to individual needs before its official market release. Furthermore, it assists developers by providing a clear understanding of the codebase and serves as a valuable resource for the project's continued development.
 
 
+![gif](https://github.com/VibhavDeo/FitnessApp/blob/main/static/videos/setGif.gif)
+
 # Table of Contents
 
 - [Why use BurnOut?](#why-use-burnout)
@@ -157,11 +159,11 @@ This document serves as a comprehensive reference point for users, giving them i
 
 ## View User Profile
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/yourdataPic.PNG>
+<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/profile1.0.jpeg>
 
 ## View User Profile 2.0
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/yourdataPic1.PNG>
+<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/profile2.0.jpeg>
 
 # Steps for execution
 

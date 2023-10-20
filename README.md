@@ -109,7 +109,7 @@ Link to the implementation video of the BurnOut application:
 
 <img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/musttryworkoutPic.PNG>
 
-## Popolar Workout Section
+## Popular Workout Section
 
 <img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/popularworkoutPic.PNG>
 

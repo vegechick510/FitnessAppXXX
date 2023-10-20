@@ -1,3 +1,19 @@
+
+
+"""
+Copyright (c) 2023 Rajat Chandak, Shubham Saboo, Vibhav Deo, Chinmay Nayak
+This code is licensed under MIT license (see LICENSE for details)
+
+@author: Burnout
+
+
+This python file is used in and is part of the Burnout project.
+
+For more information about the Burnout project, visit:
+https://github.com/VibhavDeo/FitnessApp
+
+"""
+
 """Importing flask to connect to the database"""
 from flask import Flask
 from flask_pymongo import PyMongo

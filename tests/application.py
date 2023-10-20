@@ -1,3 +1,18 @@
+
+"""
+Copyright (c) 2023 Rajat Chandak, Shubham Saboo, Vibhav Deo, Chinmay Nayak
+This code is licensed under MIT license (see LICENSE for details)
+
+@author: Burnout
+
+
+This python file is used in and is part of the Burnout project.
+
+For more information about the Burnout project, visit:
+https://github.com/VibhavDeo/FitnessApp
+
+"""
+
 from datetime import datetime
 import plotly.express as px
 import plotly.graph_objects as go

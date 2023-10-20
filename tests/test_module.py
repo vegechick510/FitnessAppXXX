@@ -1,3 +1,17 @@
+
+"""
+Copyright (c) 2023 Rajat Chandak, Shubham Saboo, Vibhav Deo, Chinmay Nayak
+This code is licensed under MIT license (see LICENSE for details)
+
+@author: Burnout
+
+
+This python file is used in and is part of the Burnout project.
+
+For more information about the Burnout project, visit:
+https://github.com/VibhavDeo/FitnessApp
+
+"""
 import unittest
 import os,sys,inspect
 # currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))

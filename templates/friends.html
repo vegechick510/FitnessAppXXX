@@ -4,7 +4,7 @@
   <summary style="color: white">My Friends</summary>
   {% for friend in myFriends %}
   <div>
-    <span> {{friend.receiver}}</span>
+    <span style="color: white"> {{friend.receiver}}</span>
   </div>
   <br />
   {% endfor %}
@@ -16,8 +16,10 @@
   in pendingReceivers and friend.email not in pendingApproves and friend.email
   not in myFriendsList %}
   <details style="margin: 5px; background: white">
-    <summary style="color: white">{{friend.name}}</summary>
-    <p class="article-content" name="friend">{{friend.email}}</p>
+    <summary style="color: black">{{friend.name}}</summary>
+    <p class="article-content" name="friend" style="color: black">
+      {{friend.email}}
+    </p>
     <button
       type="button"
       class="btn btn-primary"
@@ -34,7 +36,7 @@
   <summary style="color: white">Sent Requests</summary>
   {% for req in pendingRequests %}
   <div>
-    <span>{{req.receiver}}</span>
+    <span style="color: white">{{req.receiver}}</span>
     <button
       onclick="return cancelRequest(event,this.id)"
       id="{{req.receiver}}"
@@ -52,7 +54,7 @@
   <summary style="color: white">Pending Approvals</summary>
   {% for req in pendingApproves %}
   <div>
-    <span>{{req}}</span>
+    <span style="color: white">{{req}}</span>
     <button
       onclick="return approveRequest(event,this.id)"
       id="{{req}}"

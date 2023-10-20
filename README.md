@@ -158,7 +158,7 @@ Link to the implementation video of the BurnOut application:
 
 ## Submit a Review
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/bmiPic.PNG>
+<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/reviewPic.jpeg>
 
 ## View User Profile
 
@@ -167,34 +167,6 @@ Link to the implementation video of the BurnOut application:
 ## View User Profile 2.0
 
 <img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/yourdataPic1.PNG>
-
-## Set User Profile
-
-<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.35.05%20PM.png>
-
-## Enter Calories in and burnt
-
-<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/calories.png>
-
-## Chatbot
-
-<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.31.54%20PM.png>
-
-## Check History
-
-<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/history.png>
-
-## Add weight alert
-
-<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.30.48%20PM.png>
-
-## Adding Friends
-
-<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/friends.png>
-
-## Enrolling into several programs
-
-<img src=https://github.com/deekay2310/calorieApp_server/blob/main/static/img/Screen%20Shot%202021-12-04%20at%206.32.08%20PM.png>
 
 # Steps for execution
 
@@ -226,6 +198,13 @@ Step 5:
 Open the URL in your browser:  
  http://127.0.0.1:5000/
 
+NOTE!!:
+If you get error regarding any of the following packages - pymongo and bson, then dont worry we have also been there. Run the following commands to resolve the error :
+
+    pip uninstall bson
+    pip uninstall pymongo
+    pip install pymongo
+    
 # Source Code
 
 Link to the repository:

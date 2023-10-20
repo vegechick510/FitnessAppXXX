@@ -71,7 +71,6 @@ BurnOut is an easy-to-use application designed to help users manage their daily 
 
 This document serves as a comprehensive reference point for users, giving them insight into the functionalities of BurnOut and encouraging them to participate in its development as an open-source software project. As an open-source project, the community can contribute additional features and enhancements to make BurnOut even more robust and tailored to individual needs before its official market release. Furthermore, it assists developers by providing a clear understanding of the codebase and serves as a valuable resource for the project's continued development.
 
-
 ![gif](https://github.com/VibhavDeo/FitnessApp/blob/main/static/videos/setGif.gif)
 
 # Table of Contents
@@ -94,14 +93,14 @@ This document serves as a comprehensive reference point for users, giving them i
 - [License](#license)
 
 # Why use BurnOut?
- - User can keep a track of their calorie intake.
- - User just needs to input the food they've had, calories get calculated automatically.
- - Displays a record of calories in and calories burnt out day wise in History tab.
- - Users can connect with their friends and keep track of each other's progress
- - Enrollment into numerous yoga and workout sessions.
- - Daily automated reminders for working out and exercising.
- - Accessible to everyone and easy to use.
 
+- User can keep a track of their calorie intake.
+- User just needs to input the food they've had, calories get calculated automatically.
+- Displays a record of calories in and calories burnt out day wise in History tab.
+- Users can connect with their friends and keep track of each other's progress
+- Enrollment into numerous yoga and workout sessions.
+- Daily automated reminders for working out and exercising.
+- Accessible to everyone and easy to use.
 
 # TechStack Used for the Development of Project
 
@@ -168,6 +167,10 @@ This document serves as a comprehensive reference point for users, giving them i
 
 <img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/profile2.0.jpeg>
 
+## Update Your Profile
+
+<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/updateProfile.jpeg>
+
 # Steps for execution
 
 Step 1:
@@ -204,7 +207,7 @@ If you get error regarding any of the following packages - pymongo and bson, the
     pip uninstall bson
     pip uninstall pymongo
     pip install pymongo
-    
+
 # Source Code
 
 Link to the repository:

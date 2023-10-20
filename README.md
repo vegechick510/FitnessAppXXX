@@ -115,6 +115,10 @@ Link to the implementation video of the BurnOut application:
 
 ## Enter Calories
 
+<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/historyPic.PNG>
+
+## Check History
+
 <img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/caloriesPic.PNG>
 
 ## Set User Profile

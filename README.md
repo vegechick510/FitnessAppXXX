@@ -48,6 +48,9 @@ https://drive.google.com/drive/folders/1M5vdCwH11C-MqK8X-Dkf5bPR0SaWA5Yc?usp=sha
 
 BurnOut is an easy-to-use application designed to help users manage their daily calorie intake and expenditure, and it has now been enhanced with additional features. This all-in-one wellness app is not only a user-friendly calorie tracker but also offers a comprehensive suite of tools to support individuals in achieving their fitness and weight management goals.
 
+<img src = "https://github.com/VibhavDeo/FitnessApp/assets/87267617/9e6f56f5-1652-4c8b-bd25-7f533dee2edf" width="700px">
+
+
 ## Key Features:
 
 1. **Calorie Tracking:** BurnOut allows users to effortlessly keep track of their daily calorie intake and calories burnt through physical activities, helping them maintain a healthy lifestyle.

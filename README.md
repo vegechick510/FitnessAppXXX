@@ -82,6 +82,7 @@ This document serves as a comprehensive reference point for users, giving them i
   - [Enter Calories in and burnt](#enter-calories-in-and-burnt)
   - [Check History](#check-history)
   - [Adding Friends](#adding-friends)
+  - [Add an Excercise to Favourites(#add-an-excercise-to-favourites)
   - [Enrolling into several programs](#enrolling-into-several-programs)
 - [Steps for Execution:](#steps-for-execution)
 - [Source Code](#source-code)

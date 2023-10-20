@@ -135,7 +135,7 @@ Link to the implementation video of the BurnOut application:
 
 ## Submit a Review
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/bmiPic.PNG>
+<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/reviewPic.jpeg>
 
 ## View User Profile
 

@@ -139,11 +139,11 @@ Link to the implementation video of the BurnOut application:
 
 ## View User Profile
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/bmiPic.PNG>
+<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/yourdataPic.PNG>
 
 ## View User Profile 2.0
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/bmiPic.PNG>
+<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/yourdataPic1.PNG>
 
 ## Set User Profile
 

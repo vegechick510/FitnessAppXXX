@@ -851,11 +851,9 @@ def submit_reviews():
     # ##########################
     existing_reviews = mongo.db.reviews.find()
     if session.get('email'):
-        print("Imhere2")
         if request.method == 'POST':  # Check if it's a POST request
             form = ReviewForm(request.form)  # Initialize the form with form data
             if form.validate_on_submit():
-                print("imehere1")
                 email = session.get('email')
                 user = mongo.db.user.find_one({'email': email})
                 name = request.form.get('name')

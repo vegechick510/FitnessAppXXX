@@ -105,4 +105,4 @@ Demo Video: https://youtu.be/CvR6jDlQnB8
 | Does your website or documentation include a project roadmap (a list of project and development milestones for the next 36 and 12 months)?                                                              | N         |                                                                                                                                                                                  |
 | Does your website or documentation describe how your project is fundedand the period over which funding is guaranteed?                                                                                  | N         |                                                                                                                                                                                  |
 
-| Do you make timely announcements of the deprecation of components, APIs,
+| Do you make timely announcements of the deprecation of components, APIs,||N|

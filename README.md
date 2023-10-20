@@ -72,7 +72,6 @@ This document serves as a comprehensive reference point for users, giving them i
 # Table of Contents
 
 - [Why use BurnOut?](#why-use-burnout)
-- [Implementation](#implementation)
 - [TechStack Used for the Development of Project:](#techstack-used-for-the-development-of-project)
 - [Core Functionalities of the Application:](#core-functionalities)
   - [Register](#register)
@@ -90,18 +89,14 @@ This document serves as a comprehensive reference point for users, giving them i
 - [License](#license)
 
 # Why use BurnOut?
+ - User can keep a track of their calorie intake.
+ - User just needs to input the food they've had, calories get calculated automatically.
+ - Displays a record of calories in and calories burnt out day wise in History tab.
+ - Users can connect with their friends and keep track of each other's progress
+ - Enrollment into numerous yoga and workout sessions.
+ - Daily automated reminders for working out and exercising.
+ - Accessible to everyone and easy to use.
 
-- User can keep a track of their calorie intake.
-- User just needs to input the food they've had, calories get calculated automatically.
-- Displays a record of calories in and calories burnt out day wise in History tab.
-- Helps user to figure out how much to eat/exercise according to their desired goal(weight loss/gain).
-- Users can connect with their friends and keep track of each other's progress
-- Enrollment into numerous yoga and workout sessions.
-- Accessible to everyone and easy to use.
-
-# Implementation
-
-Link to the implementation video of the BurnOut application:
 
 # TechStack Used for the Development of Project
 
@@ -222,11 +217,8 @@ https://github.com/VibhavDeo/FitnessApp
 <center>
   <table>
     <tr>
-        <td align="center"><img src="https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/Rahleeboys.jpeg" width="300px;" alt=""/><br /><sub><b>Left to Right -  <a href="https://github.com/nayaksyndrome">Chinmay Nayak</a>,  <a href="https://github.com/Shubham-Saboo">Shubham Saboo</a>, <a href="https://github.com/RajatChandak2000">  Rajat Chandak</a>,  <a href="https://github.com/VibhavDeo">Vibhav Deo</a></b></sub><br /></td>
-      <!-- <td align="center"><a href="https://github.com/PrakruthiSomashekar"><img src="https://avatars.githubusercontent.com/u/62984587?v=4" width="100px;" alt=""/><br /><sub><b>Prakruthi Somashekar</b></sub></a></td>
-    <td align="center"><a href="https://github.com/radhikaraman20"><img src="https://avatars.githubusercontent.com/u/89432698?s=400&v=4" width="100px;" alt=""/><br /><sub><b>Radhika Raman</b></sub></a><br /></td>
-      <td align="center"><a href="https://github.com/RohanSinha96"><img src="https://avatars.githubusercontent.com/u/15325746?v=4" width="100px;" alt=""/><br /><sub><b>Rohan Sinha</b></sub></a><br /></td>
-      <td align="center"><a href="https://github.com/SunidhiHegde"><img src="https://avatars.githubusercontent.com/u/62884191?v=4" width="100px;" alt=""/><br /><sub><b>Sunidhi Hegde</b></sub></a><br /></td> -->
+        <td align="center"><img src="https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/IMG-8118.jpg" width="300px;" alt=""/><br /><sub><b>Left to Right -  <a href="https://github.com/nayaksyndrome">Chinmay Nayak</a>,  <a href="https://github.com/Shubham-Saboo">Shubham Saboo</a>, <a href="https://github.com/RajatChandak2000">  Rajat Chandak</a>,  <a href="https://github.com/VibhavDeo">Vibhav Deo</a></b></sub><br /></td>
+      
     </tr>
   </table>
 </center>

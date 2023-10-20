@@ -175,6 +175,13 @@ Step 5:
 Open the URL in your browser:  
  http://127.0.0.1:5000/
 
+NOTE!!:
+If you get error regarding any of the following packages - pymongo and bson, then dont worry we have also been there. Run the following commands to resolve the error :
+
+   pip uninstall bson
+   pip uninstall pymongo
+   pip install pymongo
+
 NOTE!!
 If you get error regarding any of the following packages - pymongo and bson, then dont worry we have also been there. Run the following commands to resolve the error :
     pip uninstall bson

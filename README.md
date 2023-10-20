@@ -87,7 +87,6 @@ This document serves as a comprehensive reference point for users, giving them i
   - [View User Profile](#view-user-profile)
   - [View User Profile 2.0](#view-user-profile-2.0)
   - [Update Your Profile](#update-your-profile)
-  - [Steps for execution](#steps-for-execution)
 - [Steps for Execution:](#steps-for-execution)
 - [Source Code](#source-code)
 - [Future Scope](#future-scope)

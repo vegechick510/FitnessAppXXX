@@ -211,15 +211,13 @@ If you get error regarding any of the following packages - pymongo and bson, the
 Link to the repository:
 https://github.com/VibhavDeo/FitnessApp
 
-# Enhancements
+# Future Scope
 
-1. Created a favourites tab to enable quick access to the user's favourite exercises
-2. Enabled daily reminders via email to remind users to exercise
-3. Implemented a feature to calculate the BMI of the user based on their height and weight
-4. Enhanced the history functionality to highlight the progress made by the user through graphs
-5. Added a feature for collecting and displaying user reviews
-6. Enhanced the user interface to make the website more appealing
-7. Bug fixes
+1. Bug fixes
+2. Timer for every workout
+3. Email verification
+4. Login with social media
+5. Bot updates
 
 # Team Members
 

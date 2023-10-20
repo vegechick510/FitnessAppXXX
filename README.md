@@ -44,7 +44,30 @@ https://drive.google.com/drive/folders/1M5vdCwH11C-MqK8X-Dkf5bPR0SaWA5Yc?usp=sha
 
 ![WhatsApp Image 2021-09-28 at 2 48 00 PM](https://user-images.githubusercontent.com/25662536/135546154-cfae1d2e-439a-4edc-b0bb-57f693ef5a83.jpeg)
 
-BurnOut is an easy to use application that keeps track of a user's daily calories gained and burnt. It can help the user to set goals such as weight loss/gain. Users can edit their profile by entering their height, weight, goal and target-weight. Users can enroll into numerous programs involving fitness such as yoga classes and workout sessions. Users can now connect with their friends by sending a friend-request and share their progress. This document provides a major perspective for the users to understand and take up the project as an Open source software and add on multiple features before releasing to the market. Also, the document aids the developers in understanding the code and acts as a reference point for continuing the project.
+# BurnOut - Your Wellness Companion
+
+BurnOut is an easy-to-use application designed to help users manage their daily calorie intake and expenditure, and it has now been enhanced with additional features. This all-in-one wellness app is not only a user-friendly calorie tracker but also offers a comprehensive suite of tools to support individuals in achieving their fitness and weight management goals.
+
+## Key Features:
+
+1. **Calorie Tracking:** BurnOut allows users to effortlessly keep track of their daily calorie intake and calories burnt through physical activities, helping them maintain a healthy lifestyle.
+
+2. **Profile Customization:** Users can personalize their profiles by entering their height, weight, fitness goals (weight loss or gain), and target weight. This information is crucial for creating tailored fitness and dietary plans.
+
+3. **Fitness Programs:** BurnOut offers a variety of fitness programs, including yoga classes and workout sessions, catering to users with different fitness preferences and skill levels.
+
+4. **Social Connectivity:** The application facilitates social interaction among users. They can connect with friends by sending and accepting friend requests, enabling them to share their fitness journeys and progress, and provide support and motivation to one another.
+
+5. **Favorite Workouts:** Users can now add their favorite workouts to a dedicated list for quick and easy access, making it convenient to stick to their preferred exercise routines.
+
+6. **BMI Calculator:** The newly added BMI (Body Mass Index) calculator helps users understand their current physical health status and aids in setting realistic weight management goals.
+
+7. **Tracking User History:** BurnOut enables users to maintain a history of their fitness and dietary activities, providing insights into their progress over time and allowing for data-driven adjustments.
+
+8. **Reviews:** Users can leave reviews and feedback on the fitness programs they've participated in, sharing their experiences with the community and helping others make informed choices.
+
+This document serves as a comprehensive reference point for users, giving them insight into the functionalities of BurnOut and encouraging them to participate in its development as an open-source software project. As an open-source project, the community can contribute additional features and enhancements to make BurnOut even more robust and tailored to individual needs before its official market release. Furthermore, it assists developers by providing a clear understanding of the codebase and serves as a valuable resource for the project's continued development.
+
 
 # Table of Contents
 

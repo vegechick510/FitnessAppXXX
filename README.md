@@ -218,7 +218,6 @@ https://github.com/VibhavDeo/FitnessApp
   <table>
     <tr>
         <td align="center"><img src="https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/IMG-8118.jpg" width="300px;" alt=""/><br /><sub><b>Left to Right -  <a href="https://github.com/nayaksyndrome">Chinmay Nayak</a>,  <a href="https://github.com/Shubham-Saboo">Shubham Saboo</a>, <a href="https://github.com/RajatChandak2000">  Rajat Chandak</a>,  <a href="https://github.com/VibhavDeo">Vibhav Deo</a></b></sub><br /></td>
-      
     </tr>
   </table>
 </center>

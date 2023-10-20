@@ -71,8 +71,11 @@ BurnOut is an easy-to-use application designed to help users manage their daily 
 
 This document serves as a comprehensive reference point for users, giving them insight into the functionalities of BurnOut and encouraging them to participate in its development as an open-source software project. As an open-source project, the community can contribute additional features and enhancements to make BurnOut even more robust and tailored to individual needs before its official market release. Furthermore, it assists developers by providing a clear understanding of the codebase and serves as a valuable resource for the project's continued development.
 
+<<<<<<< Updated upstream
 ![gif](https://github.com/VibhavDeo/FitnessApp/blob/main/static/videos/setGif.gif)
 
+=======
+>>>>>>> Stashed changes
 # Table of Contents
 
 - [Why use BurnOut?](#why-use-burnout)
@@ -215,10 +218,13 @@ https://github.com/VibhavDeo/FitnessApp
 
 # Enhancements
 
-1.  Make the website view port adaptable - the website should look good on phone, tablet and computer.
-2.  Chatbot to guide through the application.
-3.  Share workout plans with friends via email.
-4.  Bug Fixes
+1. Created a favourites tab to enable quick access to the user's favourite exercises
+2. Enabled daily reminders via email to remind users to exercise
+3. Implemented a feature to calculate the BMI of the user based on their height and weight
+4. Enhanced the history functionality to highlight the progress made by the user through graphs
+5. Added a feature for collecting and displaying user reviews
+6. Enhanced the user interface to make the website more appealing
+7. Bug fixes
 
 # Team Members
 

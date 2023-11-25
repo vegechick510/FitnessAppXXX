@@ -881,6 +881,12 @@ def submit_reviews():
         return render_template('review.html', form=form, existing_reviews=existing_reviews)
     else:
         return "User not logged in"
-    
+
+@app.route('/blog')
+def blog():
+    # 处理 "blog" 页面的逻辑
+    return render_template('blog.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)

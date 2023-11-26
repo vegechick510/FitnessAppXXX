@@ -80,7 +80,7 @@ def schedule_process():
 Thread(target=schedule_process).start()
   
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 @app.route("/home")
 def home():
     """
@@ -317,7 +317,19 @@ def history():
         form = HistoryForm()
     return render_template('history.html', form=form)
 
-
+@app.route('/water', methods=['GET','POST'])
+def water():
+    intake = request.form.get('intake')
+    # Record the current time along with the intake
+    current_time = datetime.now()
+    email = session.get('email')
+    intakes = mongo.db.intake_collection.find({"email": email})
+    if request.method == 'POST':
+        mongo.db.intake_collection.insert_one({'intake': intake, 'time': current_time})       
+        records = mongo.db.intake_collection.find().sort("time", -1)  # Sorting by time, most recent first
+        return render_template('water_intake.html', records=records)
+    records = mongo.db.intake_collection.find().sort("time", -1)
+    return render_template('water_intake.html', records=records)
 
 @app.route("/ajaxhistory", methods=['POST'])
 def ajaxhistory():

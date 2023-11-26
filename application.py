@@ -317,40 +317,24 @@ def history():
         form = HistoryForm()
     return render_template('history.html', form=form)
 
-
-@app.route('/water', methods=['GET', 'POST'])
+@app.route('/water', methods=['GET','POST'])
 def water():
-    email = session.get('email')
     intake = request.form.get('intake')
-    if request.method == 'POST':
-
-        current_time = datetime.now()
-        # Insert the new record
-        mongo.db.intake_collection.insert_one({'intake': intake, 'time': current_time, 'email': email})
-
-    # Retrieving records for the logged-in user
-    records = mongo.db.intake_collection.find({"email": email}).sort("time", -1)
-
-    # IMPORTANT: We need to convert the cursor to a list to iterate over it multiple times
-    records_list = list(records)
-    if records_list:
-        average_intake = sum(int(record['intake']) for record in records_list) / len(records_list)
-    else:
-        average_intake = 0
-    # Calculate total intake
-    total_intake = sum(int(record['intake']) for record in records_list)
-
-    # Render template with records and total intake
-    return render_template('water_intake.html', records=records_list, total_intake=total_intake,average_intake=average_intake)
-
-@app.route('/clear-intake', methods=['POST'])
-def clear_intake():
+    # Record the current time along with the intake
+    current_time = datetime.now()
     email = session.get('email')
-    # 清除当前用户的所有水摄入量记录
-    mongo.db.intake_collection.delete_many({"email": email})
+    intakes = mongo.db.intake_collection.find({"email": email})
+    if request.method == 'POST':
+        mongo.db.intake_collection.insert_one({'intake': intake, 'time': current_time})       
+        records = mongo.db.intake_collection.find().sort("time", -1)  # Sorting by time, most recent first
+        return render_template('water_intake.html', records=records)
+    records = mongo.db.intake_collection.find().sort("time", -1)
+    return render_template('water_intake.html', records=records)
 
-    # 重定向回水摄入量追踪页面
-    return redirect(url_for('water'))
+@app.route('/shop')
+def shop():
+    return render_template('shop.html')
+
 @app.route("/ajaxhistory", methods=['POST'])
 def ajaxhistory():
     # ############################

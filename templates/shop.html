@@ -1,0 +1,164 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Home Workout Guide</title>
+        <style>
+            body {
+                padding-top: 70px;
+                color: white;
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+            }
+
+            .container {
+                width: 80%;
+                margin: auto;
+                overflow: hidden;
+            }
+
+            header {
+                background: #333;
+                color: white;
+                padding: 10px 0;
+                top: 0;
+                z-index: 1000;
+            }
+
+            header ul {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                padding: 0;
+            }
+
+            header ul li {
+                margin: 0 10px;
+            }
+
+            header ul li a {
+                color: white;
+                text-decoration: none;
+            }
+
+            .section {
+                padding: 30px;
+                margin: 20px 0;
+                border: 2px solid white;
+                border-radius: 10px;
+                background-color: #111;
+            }
+
+            .section h2 {
+                margin-top: 0;
+            }
+
+            .section ul {
+                list-style: square;
+                padding: 0;
+            }
+
+            .section ul li {
+                margin-bottom: 10px;
+            }
+
+            .section ul li a {
+                color: #e8491d;
+                text-decoration: none;
+            }
+
+            .section ul li p {
+                margin-top: 5px;
+                text-align: left;
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <div class="container">
+                <ul>
+                    <li><a href="#cardio">Cardio</a></li>
+                    <li><a href="#strength">Strength</a></li>
+                    <li><a href="#yoga">Yoga</a></li>
+                    <li><a href="#core">Core</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Cardio Section -->
+            <div id="cardio" class="section">
+                <h2>Cardio Workouts</h2>
+                <ul>
+                    <li>
+                        <a href="LINK_TO_JUMP_ROPE">Speed Jump Rope</a>
+                        <p>A lightweight and adjustable jump rope, ideal for fast-paced cardio and HIIT workouts.</p>
+                    </li>
+                    <li>
+                        <a href="LINK_TO_TREADMILL">Compact Treadmill</a>
+                        <p>Space-saving treadmill with variable speeds, perfect for home cardio sessions.</p>
+                    </li>
+                    <!-- More cardio links -->
+                </ul>
+            </div>
+
+            <!-- Strength Training Section -->
+            <div id="strength" class="section">
+                <h2>Strength Training</h2>
+                <ul>
+                    <li>
+                        <a href="LINK_TO_DUMBBELLS">Adjustable Dumbbells</a>
+                        <p>Versatile dumbbells with adjustable weights, suitable for a wide range of strength exercises.
+                        </p>
+                    </li>
+                    <li>
+                        <a href="LINK_TO_KETTLEBELLS">Kettlebells Set</a>
+                        <p>A set of kettlebells in various weights, great for building strength and endurance.</p>
+                    </li>
+                    <!-- More strength training links -->
+                </ul>
+            </div>
+
+            <!-- Yoga Section -->
+            <div id="yoga" class="section">
+                <h2>Yoga</h2>
+                <ul>
+                    <li>
+                        <a href="LINK_TO_YOGA_MAT">Eco-Friendly Yoga Mat</a>
+                        <p>Durable, non-slip yoga mat made from eco-friendly materials, providing comfort and stability.
+                        </p>
+                    </li>
+                    <li>
+                        <a href="LINK_TO_YOGA_STRAP">Yoga Strap</a>
+                        <p>Helpful for stretching and improving flexibility, this strap enhances yoga practice for
+                            beginners and advanced yogis alike.</p>
+                    </li>
+                    <!-- More yoga links -->
+                </ul>
+            </div>
+
+            <!-- Core Workouts Section -->
+            <div id="core" class="section">
+                <h2>Core Workouts</h2>
+                <ul>
+                    <li>
+                        <a href="LINK_TO_AB_ROLLER">Ab Roller Wheel</a>
+                        <p>An effective tool for core strengthening, this ab roller challenges your balance and
+                            stability.</p>
+                    </li>
+                    <li>
+                        <a href="LINK_TO_STABILITY_BALL">Stability Ball</a>
+                        <p>Enhances core workouts and improves posture and flexibility, suitable for all fitness levels.
+                        </p>
+                    </li>
+                    <!-- More core workout links -->
+                </ul>
+            </div>
+        </div>
+    </body>
+</div>
+{% endblock content %}

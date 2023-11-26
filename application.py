@@ -642,6 +642,58 @@ def yoga():
     return render_template('yoga.html', title='Yoga', form=form)
 
 
+@app.route("/headspace", methods=['GET', 'POST'])
+def headspace():
+    # ############################
+    # headspace() function displays the headspace.html template
+    # route "/headspace" will redirect to headspace() function.
+    # A page showing details about headspace is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+    # Input: Email
+    # Output: DB entry about enrollment and redirected to new dashboard
+    # ##########################
+    email = get_session = session.get('email')
+    if get_session is not None:
+        form = EnrollForm()
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                enroll = "headspace"
+                mongo.db.user.insert({'Email': email, 'Status': enroll})
+            flash(
+                f' You have succesfully enrolled in our {enroll} plan!',
+                'success')
+            return render_template('new_dashboard.html', form=form)
+            # return redirect(url_for('dashboard'))
+    else:
+        return redirect(url_for('dashboard'))
+    return render_template('Headspace.html', title='Headspace', form=form)
+
+
+@app.route("/mbsr", methods=['GET', 'POST'])
+def mbsr():
+    # ############################
+    # headspace() function displays the headspace.html template
+    # route "/headspace" will redirect to headspace() function.
+    # A page showing details about headspace is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+    # Input: Email
+    # Output: DB entry about enrollment and redirected to new dashboard
+    # ##########################
+    email = get_session = session.get('email')
+    if get_session is not None:
+        form = EnrollForm()
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                enroll = "mbsr"
+                mongo.db.user.insert({'Email': email, 'Status': enroll})
+            flash(
+                f' You have succesfully enrolled in our {enroll} plan!',
+                'success')
+            return render_template('new_dashboard.html', form=form)
+            # return redirect(url_for('dashboard'))
+    else:
+        return redirect(url_for('dashboard'))
+    return render_template('mbsr.html', title='mbsr', form=form)
+
+
 @app.route("/swim", methods=['GET', 'POST'])
 def swim():
     # ############################

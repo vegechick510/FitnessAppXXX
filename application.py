@@ -331,6 +331,10 @@ def water():
     records = mongo.db.intake_collection.find().sort("time", -1)
     return render_template('water_intake.html', records=records)
 
+@app.route('/shop')
+def shop():
+    return render_template('shop.html')
+
 @app.route("/ajaxhistory", methods=['POST'])
 def ajaxhistory():
     # ############################

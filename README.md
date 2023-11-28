@@ -161,6 +161,8 @@ This document serves as a comprehensive reference point for users, giving them i
 
 ## Shop workout gears
 
+<img src=https://github.com/token1029/FitnessApp/blob/main/static/img/shop.png>
+
 ## Check History
 
 <img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/caloriesPic.PNG>

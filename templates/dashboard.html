@@ -469,6 +469,93 @@
             </div>
           </div>
         </div>
+        <div class="col-4" style="margin-bottom: 20px; margin-top: 20">
+          <div
+            class="card"
+            style="
+              width: 400px;
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+              text-align: center;
+            "
+          >
+            <img class="img-thumbnail" src="../static/img/headspace.PNG" />
+            <div class="card-body">
+              <h4 class="card-title">Headspace</h4>
+              <button
+                class="btn btn-secondary btn-sm add-favorite"
+                data-exercise-id="10"
+              >
+                Add to Favorites
+              </button>
+              <button
+                class="btn btn-secondary btn-sm remove-favorite"
+                data-exercise-id="10"
+              >
+                Remove from Favorites
+              </button>
+              <p class="card-text">
+                <br />&nbsp;Discover guided meditations and programs that help you stress less
+                 and learn to handle new challenges with ease.<br /><br />
+              </p>
+              <a
+                class="btn btn-secondary btn-sm"
+                href="{{ url_for('headspace') }}"
+                role="button"
+                >More info</a
+              >
+              <a
+                class="btn btn-secondary btn-sm"
+                href="https://www.youtube.com/watch?v=5LMRrYqAAZI"
+                role="button"
+                >Tutorial</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-4" style="margin-bottom: 20px; margin-top: 20">
+          <div
+            class="card"
+            style="
+              width: 400px;
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+              text-align: center;
+            "
+          >
+            <img class="img-thumbnail" src="../static/img/mbsr.jpg" />
+            <div class="card-body">
+              <h4 class="card-title">MBSR</h4>
+              <button
+                class="btn btn-secondary btn-sm add-favorite"
+                data-exercise-id="11"
+              >
+                Add to Favorites
+              </button>
+              <button
+                class="btn btn-secondary btn-sm remove-favorite"
+                data-exercise-id="11"
+              >
+                Remove from Favorites
+              </button>
+              <p class="card-text">
+                <br />&nbsp;Get mindfulness meditation practices, research, and special offers from our Mindful community delivered to you.<br /><br />
+              </p>
+              <a
+                class="btn btn-secondary btn-sm"
+                href="{{ url_for('mbsr') }}"
+                role="button"
+                >More info</a
+              >
+              <a
+                class="btn btn-secondary btn-sm"
+                href="https://www.youtube.com/watch?v=507zwibbfRs"
+                role="button"
+                >Tutorial</a
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -585,6 +672,47 @@
           /></a>
           <div class="card-body">
             <h4 class="card-title">HIIT: Belly Burn</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container site-section" id="meditation-2">
+    <h2 style="color: white"><strong>Spirit Curation</strong></h2>
+    <div class="row" style="margin-top: 20px">
+      <div class="col-4">
+        <div
+          class="card"
+          style="
+            width: 325px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+              0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            text-align: center;
+          "
+        >
+          <a href="{{ url_for('headspace') }}"
+            ><img class="img-thumbnail" src="../static/img/headspace.PNG"
+          /></a>
+          <div class="card-body">
+            <h4 class="card-title">Headspace</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div
+          class="card"
+          style="
+            width: 325px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+              0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            text-align: center;
+          "
+        >
+          <a href="{{ url_for('mbsr') }}"
+            ><img class="img-thumbnail" src="../static/img/mbsr.jpg"
+          /></a>
+          <div class="card-body">
+            <h4 class="card-title">MBSR</h4>
           </div>
         </div>
       </div>

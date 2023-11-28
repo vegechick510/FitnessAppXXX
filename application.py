@@ -80,7 +80,7 @@ def schedule_process():
 Thread(target=schedule_process).start()
   
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 @app.route("/home")
 def home():
     """
@@ -317,7 +317,43 @@ def history():
         form = HistoryForm()
     return render_template('history.html', form=form)
 
+@app.route('/water', methods=['GET','POST'])
+def water():
+    email = session.get('email')
+    intake = request.form.get('intake')
+    if request.method == 'POST':
 
+        current_time = datetime.now()
+        # Insert the new record
+        mongo.db.intake_collection.insert_one({'intake': intake, 'time': current_time, 'email': email})
+
+    # Retrieving records for the logged-in user
+    records = mongo.db.intake_collection.find({"email": email}).sort("time", -1)
+
+    # IMPORTANT: We need to convert the cursor to a list to iterate over it multiple times
+    records_list = list(records)
+    if records_list:
+        average_intake = sum(int(record['intake']) for record in records_list) / len(records_list)
+    else:
+        average_intake = 0
+    # Calculate total intake
+    total_intake = sum(int(record['intake']) for record in records_list)
+
+    # Render template with records and total intake
+    return render_template('water_intake.html', records=records_list, total_intake=total_intake,average_intake=average_intake)
+
+@app.route('/clear-intake', methods=['POST'])
+def clear_intake():
+    email = session.get('email')
+    # 清除当前用户的所有水摄入量记录
+    mongo.db.intake_collection.delete_many({"email": email})
+
+    # 重定向回水摄入量追踪页面
+    return redirect(url_for('water'))
+
+@app.route('/shop')
+def shop():
+    return render_template('shop.html')
 
 @app.route("/ajaxhistory", methods=['POST'])
 def ajaxhistory():
@@ -630,6 +666,58 @@ def yoga():
     return render_template('yoga.html', title='Yoga', form=form)
 
 
+@app.route("/headspace", methods=['GET', 'POST'])
+def headspace():
+    # ############################
+    # headspace() function displays the headspace.html template
+    # route "/headspace" will redirect to headspace() function.
+    # A page showing details about headspace is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+    # Input: Email
+    # Output: DB entry about enrollment and redirected to new dashboard
+    # ##########################
+    email = get_session = session.get('email')
+    if get_session is not None:
+        form = EnrollForm()
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                enroll = "headspace"
+                mongo.db.user.insert({'Email': email, 'Status': enroll})
+            flash(
+                f' You have succesfully enrolled in our {enroll} plan!',
+                'success')
+            return render_template('new_dashboard.html', form=form)
+            # return redirect(url_for('dashboard'))
+    else:
+        return redirect(url_for('dashboard'))
+    return render_template('Headspace.html', title='Headspace', form=form)
+
+
+@app.route("/mbsr", methods=['GET', 'POST'])
+def mbsr():
+    # ############################
+    # headspace() function displays the headspace.html template
+    # route "/headspace" will redirect to headspace() function.
+    # A page showing details about headspace is shown and if clicked on enroll then DB updation done and redirected to new_dashboard
+    # Input: Email
+    # Output: DB entry about enrollment and redirected to new dashboard
+    # ##########################
+    email = get_session = session.get('email')
+    if get_session is not None:
+        form = EnrollForm()
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                enroll = "mbsr"
+                mongo.db.user.insert({'Email': email, 'Status': enroll})
+            flash(
+                f' You have succesfully enrolled in our {enroll} plan!',
+                'success')
+            return render_template('new_dashboard.html', form=form)
+            # return redirect(url_for('dashboard'))
+    else:
+        return redirect(url_for('dashboard'))
+    return render_template('mbsr.html', title='mbsr', form=form)
+
+
 @app.route("/swim", methods=['GET', 'POST'])
 def swim():
     # ############################
@@ -881,6 +969,12 @@ def submit_reviews():
         return render_template('review.html', form=form, existing_reviews=existing_reviews)
     else:
         return "User not logged in"
-    
+
+@app.route('/blog')
+def blog():
+    # 处理 "blog" 页面的逻辑
+    return render_template('blog.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)

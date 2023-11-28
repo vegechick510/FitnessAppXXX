@@ -86,6 +86,9 @@ This document serves as a comprehensive reference point for users, giving them i
   - [Login](#login)
   - [Set User Profile](#set-user-profile)
   - [Enter Calories in and burnt](#enter-calories-in-and-burnt)
+  - [Enter Water Intakes](#enter-water-intakes)
+  - [Blog](#blog)
+  - [Shop](#shop)
   - [Check History](#check-history)
   - [Adding Friends](#adding-friends)
   - [Add an Excercise to Favourites](#add-an-excercise-to-favourites)
@@ -144,9 +147,19 @@ This document serves as a comprehensive reference point for users, giving them i
 
 <img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/popularworkoutPic.PNG>
 
+## Spirit Curation Section
+
+
+
 ## Enter Calories
 
 <img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/historyPic.PNG>
+
+## Enter water intakes
+
+## Blog
+
+## Shop workout gears
 
 ## Check History
 
@@ -220,15 +233,14 @@ If you get error regarding any of the following packages - pymongo and bson, the
 # Source Code
 
 Link to the repository:
-https://github.com/VibhavDeo/FitnessApp
+https://github.com/token1029/FitnessApp
 
 # Future Scope
 
 1. Bug fixes
-2. Timer for every workout
-3. Email verification
-4. Login with social media
-5. Bot updates
+2. Show the enrollment lists for all the courses
+3. Email verification for loggin
+4. Use openAI api to enhance bot performance.
 
 # Team Members
 
@@ -243,12 +255,12 @@ https://github.com/VibhavDeo/FitnessApp
 
 # Contribution
 
-Please refer the [CONTRIBUTING.md](https://github.com/VibhavDeo/FitnessApp/blob/main/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
+Please refer the [CONTRIBUTING.md](https://github.com/token1029/FitnessApp/blob/main/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
 
   <p align="center">
-    <a href="https://github.com/VibhavDeo/FitnessApp/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/token1029/FitnessApp/issues/new/choose">Report Bug</a>
     /
-    <a href="https://github.com/VibhavDeo/FitnessApp/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/token1029/FitnessApp/issues/new/choose">Request Feature</a>
   </p>
 
 # License

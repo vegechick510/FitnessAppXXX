@@ -1,6 +1,6 @@
 |Notes|Scores|evidence|
 |-----|---------|--|
-|Video|3| video is updated for new function(https://www.youtube.com/watch?v=uIHnW8YmrsU)|
+|Video|3| video is updated for new function(https://www.youtube.com/watch?v=e3Jg1mSQiNs)|
 |Workload is spread over the whole team (one team member is often Xtimes more productive than the others... but nevertheless, here is a track record that everyone is contributing a lot)|3|workloads are spreaded evenly, evidence in (https://github.com/token1029/FitnessApp/graphs/contributors)|
 |Number of commits|3|evidence in(https://github.com/token1029/FitnessApp/graphs/contributors)|
 |Number of commits: by different people|3|evidence in(https://github.com/token1029/FitnessApp/graphs/contributors)|
@@ -10,7 +10,7 @@
 |Docs: what: point descriptions of each class/function (in isolation) |3|evidence in(https://github.com/token1029/FitnessApp/blob/main/function_description.md)|
 |Docs: how: for common use cases X,Y,Z mini-tutorials showing worked examples on how to do X,Y,Z|3|evidence in(https://github.com/token1029/FitnessApp)|
 |Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing|3|evidence in(https://github.com/token1029/FitnessApp/blob/main)|
-|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.|3|evidence in (https://www.youtube.com/watch?v=uIHnW8YmrsU)
+|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.|3|evidence in (https://www.youtube.com/watch?v=e3Jg1mSQiNs)
 |Use of version control tools|3|verified version control, evidence in (https://github.com/token1029/FitnessApp)|
 |Use of style checkers |3|config files in(https://github.com/token1029/FitnessApp/blob/main/.github/workflows/style_checker.yml)|
 |Use of code formatters. |3|evidence in(https://github.com/token1029/FitnessApp/blob/dev/.github/workflows/code_formatter.yml)|
@@ -26,14 +26,14 @@
 |Evidence that the whole team is using the same tools: everyone can get to all tools and files|3|information about tool:https://github.com/token1029/FitnessApp/blob/main/requirements.txt|
 |Evidence that the whole team is using the same tools (e.g. config files in the repo, updated by lots of different people)|3|evidence in(https://github.com/token1029/FitnessApp)|
 |Evidence that the whole team is using the same tools (e.g. tutor can ask anyone to share screen, they demonstrate the system running on their computer)|3|evidence in(https://github.com/token1029/FitnessApp)|
-|Evidence that the members of the team are working across multiple places in the code base|3|evidence in https://github.com/token1029/slashbot/graphs/contributors|
+|Evidence that the members of the team are working across multiple places in the code base|3|evidence in https://github.com/token1029/FitnessApp/graphs/contributors|
 |Short release cycles |3|evidence in (https://github.com/token1029/FitnessApp)|
 |Does your website and documentation provide a clear, high-level overview of your software?|3|evidence in(https://github.com/token1029/FitnessApp/blob/main)|
 |Does your website and documentation clearly describe the type of user who should use your software?|3|evidence in(https://github.com/token1029/FitnessApp/blob/main)|
 |Do you publish case studies to show how your software has been used by yourself and others?|3|evidence in(https://github.com/token1029/FitnessApp/blob/main)|
 |Is the name of your project/software unique?|3|YES|
 |Is your project/software name free from trademark violations?|3|Definitely|
-|Is your software available as a package that can be deployed without building it?|3|evidence in(https://github.com/token1029/slashbot/blob/main/setup.py)|
+|Is your software available as a package that can be deployed without building it?|3|evidence in(https://github.com/token1029/FitnessApp/blob/main)|
 |Is your software available for free?|3|evidence in(https://github.com/token1029/FitnessApp)|
 |Is your source code publicly available to download, either as a downloadable bundle or via access to a source code repository?|3|evidence in(https://github.com/token1029/FitnessApp)|
 |Is your software hosted in an established, third-party repository likeGitHub (https://github.com), BitBucket (https://bitbucket.org),LaunchPad (https://launchpad.net) orSourceForge (https://sourceforge.net)?|3|evidence in(https://github.com/token1029/FitnessApp)|

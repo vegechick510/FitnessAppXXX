@@ -149,7 +149,7 @@ This document serves as a comprehensive reference point for users, giving them i
 
 ## Spirit Curation Section
 
-
+<img src=https://github.com/token1029/FitnessApp/blob/main/static/img/spirit.PNG>
 
 ## Enter Calories
 

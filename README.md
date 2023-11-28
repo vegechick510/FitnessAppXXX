@@ -63,11 +63,17 @@ BurnOut is an easy-to-use application designed to help users manage their daily 
 
 5. **Favorite Workouts:** Users can now add their favorite workouts to a dedicated list for quick and easy access, making it convenient to stick to their preferred exercise routines.
 
-6. **BMI Calculator:** The newly added BMI (Body Mass Index) calculator helps users understand their current physical health status and aids in setting realistic weight management goals.
+6. **Water Intake:** Users can now record their daiy water intake to keep track of their drinking habits.
 
-7. **Tracking User History:** BurnOut enables users to maintain a history of their fitness and dietary activities, providing insights into their progress over time and allowing for data-driven adjustments.
+7. **Blog:** Introduce the beginner with the fitness and how to make effectively workout plan.
 
-8. **Reviews:** Users can leave reviews and feedback on the fitness programs they've participated in, sharing their experiences with the community and helping others make informed choices.
+8. **Shop:** Places where user can shop for workout gears.
+
+9. **BMI Calculator:** The newly added BMI (Body Mass Index) calculator helps users understand their current physical health status and aids in setting realistic weight management goals.
+
+10. **Tracking User History:** BurnOut enables users to maintain a history of their fitness and dietary activities, providing insights into their progress over time and allowing for data-driven adjustments.
+
+11. **Reviews:** Users can leave reviews and feedback on the fitness programs they've participated in, sharing their experiences with the community and helping others make informed choices.
 
 This document serves as a comprehensive reference point for users, giving them insight into the functionalities of BurnOut and encouraging them to participate in its development as an open-source software project. As an open-source project, the community can contribute additional features and enhancements to make BurnOut even more robust and tailored to individual needs before its official market release. Furthermore, it assists developers by providing a clear understanding of the codebase and serves as a valuable resource for the project's continued development.
 
@@ -96,10 +102,11 @@ This document serves as a comprehensive reference point for users, giving them i
 
 # Why use BurnOut?
 
-- User can keep a track of their calorie intake.
+- User can keep a track of their calorie intake and drinking habits.
 - User just needs to input the food they've had, calories get calculated automatically.
 - Displays a record of calories in and calories burnt out day wise in History tab.
-- Users can connect with their friends and keep track of each other's progress
+- Users can connect with their friends and keep track of each other's progress.
+- Provide users with places to shop workout gears.
 - Enrollment into numerous yoga and workout sessions.
 - Daily automated reminders for working out and exercising.
 - Accessible to everyone and easy to use.
@@ -225,13 +232,14 @@ https://github.com/VibhavDeo/FitnessApp
 
 # Team Members
 
-<center>
-  <table>
-    <tr>
-        <td align="center"><img src="https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/IMG-8118.jpg" width="300px;" alt=""/><br /><sub><b>Left to Right -  <a href="https://github.com/nayaksyndrome">Chinmay Nayak</a>,  <a href="https://github.com/Shubham-Saboo">Shubham Saboo</a>, <a href="https://github.com/RajatChandak2000">  Rajat Chandak</a>,  <a href="https://github.com/VibhavDeo">Vibhav Deo</a></b></sub><br /></td>
-    </tr>
-  </table>
-</center>
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/WeizhiGao"><img src="https://avatars.githubusercontent.com/u/57804858?v=4" width="75px;" alt=""/><br /><sub><b>Weizhi Gao</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/Itaru-Shin"><img src="https://avatars.githubusercontent.com/u/143905092?v=4" width="75px;" alt=""/><br /><sub><b>Fucheng Guo</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/KingBanshou"><img src="https://avatars.githubusercontent.com/u/143905049?v=4" width="75px;" alt=""/><br /><sub><b>Zikang Wang</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/token1029"><img src="https://avatars.githubusercontent.com/u/38797209?v=4" width="75px;" alt=""/><br /><sub><b>Dongming Wu</b></sub></a></td>
+  </tr>
+</table>
 
 # Contribution
 

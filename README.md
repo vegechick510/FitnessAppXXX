@@ -1,6 +1,6 @@
-# Link to demo/walkthrough video:
+# Link to new features video:
 
-https://youtu.be/CvR6jDlQnB8
+https://www.youtube.com/watch?v=e3Jg1mSQiNs
 <br>
 <br>
 

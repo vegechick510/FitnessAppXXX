@@ -157,7 +157,11 @@ This document serves as a comprehensive reference point for users, giving them i
 
 ## Enter water intakes
 
+<img src=https://github.com/token1029/FitnessApp/blob/main/static/img/water.PNG>
+
 ## Blog
+
+<img src=https://github.com/token1029/FitnessApp/blob/main/static/img/blog.PNG>
 
 ## Shop workout gears
 

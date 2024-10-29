@@ -483,6 +483,10 @@ def progress_history():
         return render_template('progress_history.html', progress_data=progress_data)
     else:
         return redirect(url_for('home'))
+    
+@app.route("/wellness_log", methods=['GET', 'POST'])
+def wellness_log():
+    return render_template('wellness_log.html')
 
 @app.route("/display_profile", methods=['GET', 'POST'])
 def display_profile():

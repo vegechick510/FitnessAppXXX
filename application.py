@@ -23,7 +23,7 @@ from flask import render_template, session, url_for, flash, redirect, request, F
 from flask_mail import Mail, Message
 from flask_pymongo import PyMongo
 from tabulate import tabulate
-from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm,ReviewForm
+from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm,ReviewForm, ProgressForm
 from insert_db_data import insertfooddata,insertexercisedata
 import schedule
 from threading import Thread
@@ -216,6 +216,60 @@ def calories():
     else:
         return redirect(url_for('home'))
     return render_template('calories.html', form=form, time=now)
+
+@app.route("/progress_monitor", methods=['GET', 'POST'])
+def progress_monitor():
+    now = datetime.now().strftime('%Y-%m-%d')
+    email = session.get('email')
+
+    if email is not None:
+        form = ProgressForm()
+        print("before validate")
+        if form.validate_on_submit():
+            print("after validated form")
+            if request.method == 'POST':
+                
+
+                # Retrieve form data
+                weight = float(form.current_weight.data)
+                goal_weight = float(form.goal_weight.data)
+                measurements = {
+                    'waist': float(form.waist.data),
+                    'hips': float(form.hips.data),
+                    'chest': float(form.chest.data),
+                }
+                notes = form.notes.data
+
+                existing_entry = mongo.db.progress.find_one({'email': email, 'date': now})
+                if existing_entry:
+                    # Update existing entry
+                    mongo.db.progress.update_one(
+                        {'email': email, 'date': now},
+                        {'$set': {
+                            'weight': weight,
+                            'goal_weight': goal_weight,
+                            'measurements': measurements,
+                            'notes': notes
+                        }}
+                    )
+                else:
+                    # Insert new entry
+                    mongo.db.progress.insert_one({
+                        'date': now,
+                        'email': email,
+                        'weight': weight,
+                        'goal_weight': goal_weight,
+                        'measurements': measurements,
+                        'notes': notes
+                    })
+
+                flash('Progress successfully saved', 'success')
+                print("success")
+                return redirect(url_for('progress_monitor'))
+    else:
+        return redirect(url_for('home'))
+
+    return render_template('progress.html', form=form, date=now)
 
 
 @app.route("/display_profile", methods=['GET', 'POST'])

@@ -18,9 +18,9 @@ https://github.com/VibhavDeo/FitnessApp
 # from flask import app
 """Importing modules to create forms"""
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, DecimalField, FileField, DateField, TextAreaField, SubmitField
 from wtforms.fields.core import DateField, SelectField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional, NumberRange
 from apps import App
 
 
@@ -92,6 +92,23 @@ class CalorieForm(FlaskForm):
 
     burnout = StringField('Burn Out', validators=[DataRequired()])
     submit = SubmitField('Save')
+
+class ProgressForm(FlaskForm):
+    # Weight
+    date = DateField('Date', format='%Y-%m-%d', validators=[Optional()])
+    current_weight = DecimalField('Current Weight (kg)', validators=[Optional(), NumberRange(min=0, max=500, message="Current Weight must be between 0 and 500 kg")])
+
+    goal_weight = DecimalField('Goal Weight (kg)', validators=[Optional(), NumberRange(min=0, max=500, message="Goal Weight must be between 0 and 500 kg")])
+    
+    # Measurements
+    waist = DecimalField('Waist (cm)', validators=[Optional(), NumberRange(min=50, max=150, message="Waist must be between 50 and 150 cm")])
+    hips = DecimalField('Hips (cm)', validators=[Optional(), NumberRange(min=70, max=160, message="Hips must be between 70 and 160 cm")])
+    chest = DecimalField('Chest (cm)', validators=[Optional(), NumberRange(min=70, max=500, message="Chest must be between 70 and 150 cm")])
+    
+    # Additional Notes
+    notes = TextAreaField('Notes', validators=[Optional()])
+    
+    submit = SubmitField('Submit')
 
 
 class UserProfileForm(FlaskForm):

@@ -224,11 +224,8 @@ def progress_monitor():
 
     if email is not None:
         form = ProgressForm()
-        print("before validate")
         if form.validate_on_submit():
-            print("after validated form")
             if request.method == 'POST':
-                
 
                 # Retrieve form data
                 weight = float(form.current_weight.data)
@@ -271,6 +268,18 @@ def progress_monitor():
 
     return render_template('progress.html', form=form, date=now)
 
+@app.route("/progress_history", methods=['GET', 'POST'])
+def progress_history():
+    email = session.get('email')
+    
+    if email is not None:
+        progress_entries = mongo.db.progress.find({'email': email}).sort("date", -1)
+        
+        progress_data = list(progress_entries)
+        
+        return render_template('progress_history.html', progress_data=progress_data)
+    else:
+        return redirect(url_for('home'))
 
 @app.route("/display_profile", methods=['GET', 'POST'])
 def display_profile():

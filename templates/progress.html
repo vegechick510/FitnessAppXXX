@@ -66,8 +66,12 @@
     </fieldset>
 
     <!-- Submit Button -->
-    <div class="form-group">
+    <div class="form-group mb-4">
       {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+
+    <div class="justify-content-center mb-4">
+      <a href="{{ url_for('progress_history') }}" class="btn btn-primary">View Progress History</a>
     </div>
   </form>
 </div>

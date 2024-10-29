@@ -18,7 +18,7 @@ https://github.com/VibhavDeo/FitnessApp
 # from flask import app
 """Importing modules to create forms"""
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, DecimalField, FileField, DateField, TextAreaField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, DecimalField, DateField, TextAreaField, SubmitField, IntegerField
 from wtforms.fields.core import DateField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional, NumberRange
 from apps import App
@@ -165,3 +165,13 @@ class ReviewForm(FlaskForm):
             DataRequired(), Length(
                 min=2, max=200)])
     submit = SubmitField('Submit')
+
+class StreakForm(FlaskForm):
+    """Form to manage workout streak updates"""
+    
+    current_streak = IntegerField('Current Streak (days)', validators=[Optional()], render_kw={'readonly': True})
+    new_streak = IntegerField('Start New Streak (days)', validators=[Optional()])
+    update_streak = IntegerField('Update Streak (days)', validators=[Optional()])
+    notes = StringField('Notes (Optional)', validators=[Optional()])
+    
+    submit = SubmitField('Save Streak')

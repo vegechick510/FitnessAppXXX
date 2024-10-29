@@ -24,7 +24,7 @@ from flask import render_template, session, url_for, flash, redirect, request, F
 from flask_mail import Mail, Message
 from flask_pymongo import PyMongo
 from tabulate import tabulate
-from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm,ReviewForm, ProgressForm
+from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm,ReviewForm, ProgressForm, StreakForm
 from insert_db_data import insertfooddata,insertexercisedata
 import schedule
 from threading import Thread
@@ -487,6 +487,47 @@ def progress_history():
 @app.route("/wellness_log", methods=['GET', 'POST'])
 def wellness_log():
     return render_template('wellness_log.html')
+
+@app.route("/update_streak", methods=['GET', 'POST'])
+def update_streak():
+    email = session.get('email')
+    if email is None:
+        return redirect(url_for('home'))
+    today = datetime.now().strftime('%Y-%m-%d')
+    form = StreakForm()
+    last_entry = mongo.db.streaks.find_one({'email': email}, sort=[('date', -1)])
+    current_streak = last_entry.get('streak', 0) if last_entry else 0
+    last_date = datetime.strptime(last_entry['date'], '%Y-%m-%d') if last_entry else None
+    if form.validate_on_submit() and request.method == 'POST':
+        action = request.form.get('action') 
+        if action == "update":
+            if last_entry and (datetime.now() - last_date).days == 1:
+                current_streak += 1  
+            else:
+                current_streak = 1 
+        elif action == "reset":
+            current_streak = 0
+            print("inside reset")
+        mongo.db.streaks.update_one(
+            {'email': email, 'date': today},
+            {
+                '$set': {
+                    'streak': current_streak,
+                    'date': today
+                }
+            },
+            upsert=True  # Create a new entry if it doesn't exist
+        )
+        flash(f'Your workout streak is now {current_streak} days!', 'success')
+        return redirect(url_for('update_streak'))
+    last_entry = mongo.db.streaks.find_one({'email': email}, sort=[('date', -1)])
+    current_streak = last_entry.get('streak', 0) if last_entry else 0
+    print(current_streak)
+    return render_template('workout_streak.html', form=form, current_streak=current_streak)
+
+@app.route("/workout_streak", methods=['GET', 'POST'])
+def workout_streak():
+    return render_template('workout_streak.html')
 
 @app.route("/display_profile", methods=['GET', 'POST'])
 def display_profile():

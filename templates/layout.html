@@ -43,6 +43,7 @@
             </div>
             {% else %}
             <div class="navbar-nav ml-auto d-flex justify-content-start align-items-start gap-3">
+              <a class="nav-item nav-link" href="{{ url_for('progress_monitor') }}">Progress Monitor</a>
               <a class="nav-item nav-link" href="{{ url_for('calories') }}">Enter Calories</a>
               <a class="nav-item nav-link" href="{{ url_for('history') }}">History</a>
               <a class="nav-item nav-link" href="{{ url_for('water') }}">Water</a>

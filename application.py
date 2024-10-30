@@ -155,38 +155,30 @@ def home():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    """"
-    login() function displays the Login form (login.html) template
-    route "/login" will redirect to login() function.
-    LoginForm() called and if the form is submitted then various values are fetched and verified from the database entries
-    Input: Email, Password, Login Type
-    Output: Account Authentication and redirecting to Dashboard
-    """
     if not session.get('email'):
         form = LoginForm()
         if form.validate_on_submit():
-            temp = mongo.db.user.find_one({'email': form.email.data}, {
-                'email', 'pwd','name'})
-            if temp is not None and temp['email'] == form.email.data and (
-                bcrypt.checkpw(
-                    form.password.data.encode("utf-8"),
-                    temp['pwd']) or temp['temp'] == form.password.data):
+            # Find user by email
+            user = mongo.db.user.find_one({'email': form.email.data}, {'email', 'pwd', 'name', 'user_type'})
+            if user and bcrypt.checkpw(form.password.data.encode("utf-8"), user['pwd']):
                 flash('You have been logged in!', 'success')
-                print(temp)
-                session['email'] = temp['email']
-                session['name']=temp['name']
-                #session['login_type'] = form.type.data
-                return redirect(url_for('dashboard'))
+                session['email'] = user['email']
+                session['name'] = user['name']
+
+                # Now fetch the user type
+                user_type = user.get('user_type')  # Get user type from the fetched user data
+
+                # Redirect based on user type
+                if user_type == 'coach':
+                    return redirect(url_for('coach_dashboard'))
+                else:
+                    return redirect(url_for('dashboard'))
             else:
-                flash(
-                    'Login Unsuccessful. Please check username and password',
-                    'danger')
+                flash('Login Unsuccessful. Please check username and password', 'danger')
     else:
         return redirect(url_for('home'))
-    return render_template(
-        'login.html',
-        title='Login',
-        form=form)
+
+    return render_template('login.html', title='Login', form=form)
 
 
 @app.route("/logout", methods=['GET', 'POST'])
@@ -202,44 +194,60 @@ def logout():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    """
-    register() function displays the Registration portal (register.html) template
-    route "/register" will redirect to register() function.
-    RegistrationForm() called and if the form is submitted then various values are fetched and updated into database
-    Input: Username, Email, Password, Confirm Password
-    Output: Value update in database and redirected to home login page
-    """
-    now = datetime.now()
-    now = now.strftime('%Y-%m-%d')
+    now = datetime.now().strftime('%Y-%m-%d')
 
     if not session.get('email'):
         form = RegistrationForm()
-        if form.validate_on_submit():
-            if request.method == 'POST':
-                username = request.form.get('username')
-                email = request.form.get('email')
-                password = request.form.get('password')
+        
+        # Fetch all coaches and create a list for the dropdown display
+        coaches = mongo.db.profile.find({"user_type": "coach"})
+        coach_list = [{"name": coach["name"], "specialization": coach["specialization"]} for coach in coaches]
+        
+        # Create choices for the form field that only stores the coach's name
+        coach_choices = [(coach["name"], f"{coach['name']} - {coach['specialization']}") for coach in coach_list]
+        form.coach.choices = coach_choices
 
-                mongo.db.user.insert({'name': username, 'email': email, 'pwd': bcrypt.hashpw(
-                    password.encode("utf-8"), bcrypt.gensalt())})
-                
-                weight = request.form.get('weight')
-                height = request.form.get('height')
-                goal = request.form.get('goal')
-                target_weight = request.form.get('target_weight')
-                temp = mongo.db.profile.find_one({'email': email, 'date': now}, {'height', 'weight', 'goal', 'target_weight'})
-                mongo.db.profile.insert({'email': email,
-                                             'date': now,
-                                             'height': height,
-                                             'weight': weight,
-                                             'goal': goal,
-                                             'target_weight': target_weight})
-            flash(f'Account created for {form.username.data}!', 'success')
+        if form.validate_on_submit() and request.method == 'POST':
+            # Common fields for both coach and student
+            username = form.username.data
+            email = form.email.data
+            password = form.password.data
+            user_type = form.user_type.data
+
+            # Prepare user_data for insertion
+            user_data = {
+                'name': username,
+                'email': email,
+                'pwd': bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()),
+                'user_type': user_type,
+                'date': now
+            }
+            mongo.db.user.insert_one(user_data)
+            
+            # Profile data
+            profile_data = {
+                'name': username,
+                'user_type': user_type,
+                'email': email,
+                'weight': form.weight.data if user_type == 'student' else None,
+                'height': form.height.data if user_type == 'student' else None,
+                'goal': form.goal.data if user_type == 'student' else None,
+                'target_weight': form.target_weight.data if user_type == 'student' else None,
+                'coach': form.coach.data if user_type == 'student' else None,  # Store only the coach name
+                'specialization': form.specialization.data if user_type == 'coach' else None,
+                'experience': form.experience.data if user_type == 'coach' else None,
+                'date': now
+            }
+            mongo.db.profile.insert_one(profile_data)
+            
+            flash(f'Account created for {username}!', 'success')
             return redirect(url_for('home'))
+
     else:
         return redirect(url_for('home'))
-    return render_template('register.html', title='Register', form=form)
 
+    # Pass coach_list to the template
+    return render_template('register.html', title='Register', form=form, coach_list=coach_list)
 
 @app.route('/recommend_workout', methods=['GET', 'POST'])
 def recommend_workout():
@@ -1285,6 +1293,125 @@ def submit_reviews():
 def blog():
     # 处理 "blog" 页面的逻辑
     return render_template('blog.html')
+
+
+@app.route("/coach_dashboard", methods=["GET"])
+def coach_dashboard():
+    if not session.get("email"):
+        return redirect(url_for("login"))
+
+    coach_email = session["email"]
+    coach_data = mongo.db.user.find_one({"email": coach_email})
+    students = list(mongo.db.user.find({"user_type": "student", "coach": coach_data["name"]}))
+    form_reviews = list(mongo.db.form_reviews.find({"coach_email": coach_email}))
+    meetings = list(mongo.db.meetings.find({"coach_email": coach_email}))
+    reminders = list(mongo.db.reminders.find({"coach_email": coach_email}))
+
+    return render_template(
+        "coach_dashboard.html",
+        title="Coach Dashboard",
+        students=students,
+        form_reviews=form_reviews,
+        meetings=meetings,
+        reminders=reminders,
+        coach=coach_data
+    )
+
+@app.route("/schedule_meeting", methods=["GET", "POST"])
+def schedule_meeting():
+    if not session.get("email"):
+        return redirect(url_for("login"))
+
+    coach_email = session["email"]
+
+    if request.method == "POST":
+        # Handle form submission
+        student_id = request.form["student_id"]
+        meeting_date = request.form["date"]
+        meeting_time = request.form["time"]
+        meeting_link = request.form["link"]
+
+        # Insert the meeting into the database for the specific student
+        mongo.db.meetings.insert_one({
+            "coach_email": coach_email,
+            "student_id": student_id,
+            "date": meeting_date,
+            "time": meeting_time,
+            "link": meeting_link
+        })
+        flash("Meeting scheduled successfully!", "success")
+        return redirect(url_for("coach_dashboard"))
+
+    # Fetch all students of the coach
+    coach_data = mongo.db.user.find_one({"email": coach_email})
+    students = list(mongo.db.profile.find({"user_type": "student", "coach": coach_data["name"]}))
+
+    return render_template("schedule_meetings.html", title="Schedule Meeting", students=students)
+
+# Route to Submit Feedback on Form Review
+@app.route("/submit_feedback", methods=["GET", "POST"])
+def submit_feedback():
+    if not session.get("email"):
+        return redirect(url_for("login"))
+
+    if request.method == "POST":
+        # Handle form submission
+        review_id = request.form.get("review_id")
+        feedback = request.form["feedback"]
+
+        mongo.db.form_reviews.update_one(
+            {"_id": ObjectId(review_id)},
+            {"$set": {"feedback": feedback, "feedback_date": datetime.now()}}
+        )
+        flash("Feedback submitted successfully!", "success")
+        return redirect(url_for("coach_dashboard"))
+    
+    # Render the feedback submission form
+    return render_template("submit_feedback.html", title="Submit Feedback")
+
+# Route to Set a Reminder
+@app.route("/set_reminder", methods=["GET", "POST"])
+def set_reminder():
+    if not session.get("email"):
+        return redirect(url_for("login"))
+
+    coach_email = session["email"]
+
+    if request.method == "POST":
+        # Handle form submission
+        student_id = request.form["student_id"]
+        reminder_text = request.form["reminder"]
+        reminder_date = request.form["date"]
+        reminder_time = request.form["time"]
+
+        # Insert the reminder into the database for the specific student
+        mongo.db.reminders.insert_one({
+            "coach_email": coach_email,
+            "student_id": student_id,
+            "reminder_text": reminder_text,
+            "date": reminder_date,
+            "time": reminder_time
+        })
+        flash("Reminder set successfully!", "success")
+        return redirect(url_for("coach_dashboard"))
+
+    # If GET request, fetch all students of the coach
+    coach_data = mongo.db.user.find_one({"email": coach_email})
+    students = list(mongo.db.profile.find({"user_type": "student", "coach": coach_data["name"]}))
+
+    return render_template("set_reminder.html", title="Set Reminder", students=students)
+
+@app.route("/form_reviews", methods=["GET"])
+def form_reviews():
+    if not session.get("email"):
+        return redirect(url_for("login"))
+
+    coach_email = session["email"]
+    # Fetch all unreviewed videos for students under the coach
+    reviews = list(mongo.db.form_reviews.find({"reviewed": False, "coach_email": coach_email}))
+
+    return render_template("form_review.html", title="Form Reviews", reviews=reviews)
+
 
 
 if __name__ == '__main__':

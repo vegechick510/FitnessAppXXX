@@ -10,6 +10,17 @@ For macOS:
 https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/
 
 ## Step 2:
+
+Run MongoDB locally to be used by the application:
+
+For Windows(If You Did Not Install MongoDB as a Windows Service):
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/#std-label-run-mongodb-from-cmd
+
+
+For macOS:
+`brew services start mongodb-community@8.0`
+
+## Step 2:
 Git Clone the Repository
 
     git clone https://github.com/SEFall24-Team61/FitnessAppNew.git

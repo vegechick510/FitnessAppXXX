@@ -75,7 +75,7 @@
         {% if edit_plan and edit_plan.steps %}
           {% for step in edit_plan.steps %}
           <div class="step-container">
-            <h5>Step {{ loop.index }}</h5>
+            <h5 style="color: white;">Step {{ loop.index }}</h5>
             <div class="form-group">
               <label for="step_description_{{ loop.index }}">Description</label>
               <textarea class="form-control" name="step_description_{{ loop.index }}" required>{{ step.description }}</textarea>

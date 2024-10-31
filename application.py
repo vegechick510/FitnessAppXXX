@@ -422,6 +422,24 @@ def calories():
 
 @app.route("/progress_monitor", methods=['GET', 'POST'])
 def progress_monitor():
+    """
+    Handles user progress tracking and data entry on the progress monitor page.
+
+    This function renders a form for users to enter their daily progress data. If the user 
+    submits the form data, it checks for an existing entry for the current date. If an entry 
+    already exists, it updates it; otherwise, it inserts a new record.
+
+    Returns:
+        If the user is logged in and submits valid form data:
+            - Updates or inserts user progress data in the MongoDB 'progress' collection.
+            - Redirects back to the progress monitor page with a success message.
+        If the user is not logged in:
+            - Redirects the user to the home page.
+
+    Context Variables:
+        form: Instance of ProgressForm, used to capture the user's input for progress data.
+        date: String, today's date in 'YYYY-MM-DD' format.
+    """
     now = datetime.now().strftime('%Y-%m-%d')
     email = session.get('email')
 
@@ -471,8 +489,26 @@ def progress_monitor():
 
     return render_template('progress.html', form=form, date=now)
 
-@app.route("/progress_history", methods=['GET', 'POST'])
+@app.route("/progress_history", methods=['GET'])
 def progress_history():
+    """
+    Displays the user's progress history page.
+
+    This function retrieves all progress entries for the logged-in user from the 
+    MongoDB 'progress' collection, sorted in descending order by date. The retrieved 
+    entries include data on daily weight, goal weight, measurements, and notes. If 
+    the user is not logged in, they are redirected to the home page.
+
+    Returns:
+        If the user is logged in:
+            - Renders 'progress_history.html' with progress data for the user.
+        If the user is not logged in:
+            - Redirects the user to the home page.
+
+    Context Variables:
+        progress_data: List of dictionaries, each representing a progress entry 
+                       for the user, sorted from the most recent to oldest entry.
+    """
     email = session.get('email')
     
     if email is not None:
@@ -486,10 +522,32 @@ def progress_history():
     
 @app.route("/wellness_log", methods=['GET', 'POST'])
 def wellness_log():
+    """
+    Renders the wellness log page.
+    Returns:
+        Renders 'wellness_log.html', the template for the wellness log page.
+    """
     return render_template('wellness_log.html')
 
 @app.route("/update_streak", methods=['GET', 'POST'])
 def update_streak():
+    """
+    Updates the user's workout streak based on their activity.
+
+    Allows users to either increment or reset their workout streak. If the last recorded 
+    workout was yesterday, the streak is incremented; otherwise, it resets to 1. If "reset" 
+    is selected, the streak is set to zero. The streak data is saved in the 'streaks' 
+    collection in MongoDB.
+
+    Returns:
+        Redirects to the home page if the user is not logged in.
+        On POST, updates the streak data and redirects to the streak page.
+        On GET, renders 'workout_streak.html' with the current streak.
+
+    Context Variables:
+        form: StreakForm for capturing user input.
+        current_streak: Integer, the current streak value.
+    """
     email = session.get('email')
     if email is None:
         return redirect(url_for('home'))

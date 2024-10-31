@@ -1361,7 +1361,7 @@ def submit_feedback():
 
         mongo.db.form_reviews.update_one(
             {"_id": ObjectId(review_id)},
-            {"$set": {"feedback": feedback, "feedback_date": datetime.now()}}
+            {"$set": {"feedback": feedback, "reviewed": True, "feedback_date": datetime.now()}}
         )
         flash("Feedback submitted successfully!", "success")
         return redirect(url_for("coach_dashboard"))
@@ -1401,18 +1401,59 @@ def set_reminder():
 
     return render_template("set_reminder.html", title="Set Reminder", students=students)
 
-@app.route("/form_reviews", methods=["GET"])
-def form_reviews():
+@app.route("/coach_reviews")
+def coach_reviews():
     if not session.get("email"):
         return redirect(url_for("login"))
 
+    # Fetch the coach's name from the session or profile
     coach_email = session["email"]
-    # Fetch all unreviewed videos for students under the coach
-    reviews = list(mongo.db.form_reviews.find({"reviewed": False, "coach_email": coach_email}))
+    coach_profile = mongo.db.profile.find_one({"email": coach_email})
+    coach_name = coach_profile["name"]  # assuming coach's name is stored here
+    
+    # Get reviews assigned to this coach
+    reviews = mongo.db.form_reviews.find({"coach_name": coach_name})
+    
+    # Pass the reviews to the template
+    return render_template("coach_reviews.html", reviews=reviews)
 
-    return render_template("form_review.html", title="Form Reviews", reviews=reviews)
+@app.route("/upload_exercise_video", methods=["POST", "GET"])
+def upload_exercise_video():
+    if not session.get("email"):
+        return redirect(url_for("login"))
 
+    student_email = session["email"]
+    
+    if request.method == "POST":
+        # Get form data
+        exercise_type = request.form.get("exercise_type")
+        video_link = request.form.get("video_link")
 
+        # Fetch the assigned coach for the student
+        student_profile = mongo.db.profile.find_one({"email": student_email})
+        coach_name = student_profile["coach"]  # assuming the coach's name is stored here
+
+        # Insert data into MongoDB with coach details and initialize comments to null
+        mongo.db.form_reviews.insert_one({
+            "student_email": student_email,
+            "exercise_type": exercise_type,
+            "video_link": video_link,
+            "reviewed": False,
+            "submission_date": datetime.now(),
+            "coach_name": coach_name,
+            "comments": None,  # Initialize comments as null
+            "feedback": None,  # Initialize feedback as null
+            "feedback_date": None  # Initialize feedback_date as null
+        })
+
+        flash("Video submitted successfully for review!", "success")
+        return redirect(url_for("upload_exercise_video"))  # Redirect to the same page to show updated list
+
+    # Fetch all reviews for the logged-in student to display on the page
+    reviews = list(mongo.db.form_reviews.find({"student_email": student_email}))
+
+    # Render the upload form template with the reviews data
+    return render_template("student_review_form.html", reviews=reviews)
 
 if __name__ == '__main__':
     app.run(debug=True)

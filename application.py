@@ -1585,6 +1585,105 @@ def view_assigned_tutorials():
 
     return render_template("view_assigned_tutorials.html", tutorials=tutorials, progress=student.get("progress", 0))
 
+@app.route("/manage_plans", methods=["GET", "POST"])
+def manage_plans():
+    if not session.get("email"):
+        return redirect(url_for("login"))
+
+    coach_email = session["email"]
+    coach = mongo.db.profile.find_one({"email": coach_email, "user_type": "coach"})
+
+    # Check if editing an existing plan
+    edit_plan_id = request.args.get("edit_plan_id")
+    plan = mongo.db.plans.find_one({"_id": ObjectId(edit_plan_id)}) if edit_plan_id else None
+
+    if request.method == "POST":
+        if "create_or_edit_plan" in request.form:
+            # Create or Edit Plan
+            title = request.form.get("title")
+            description = request.form.get("description")
+            plan_type = request.form.get("type")
+            duration_weeks = int(request.form.get("duration_weeks"))
+
+            # Use a default value of 0 for step_count if it’s missing
+            step_count = int(request.form.get("step_count", 0))
+
+            # Get all steps from the form
+            steps = []
+            for i in range(1, step_count + 1):
+                step_description = request.form.get(f"step_description_{i}")
+                target_duration = request.form.get(f"target_duration_{i}")
+                frequency = request.form.get(f"frequency_{i}")
+                exercises = request.form.get(f"exercises_{i}").split(",") if request.form.get(f"exercises_{i}") else []
+                meal_plan = request.form.get(f"meal_plan_{i}").split(",") if request.form.get(f"meal_plan_{i}") else []
+
+                steps.append({
+                    "step_id": i,
+                    "description": step_description,
+                    "target_duration": target_duration,
+                    "frequency": frequency,
+                    "exercises": exercises,
+                    "meal_plan": meal_plan
+                })
+
+            # If editing an existing plan, update it
+            if edit_plan_id:
+                mongo.db.plans.update_one(
+                    {"_id": ObjectId(edit_plan_id)},
+                    {"$set": {
+                        "title": title,
+                        "description": description,
+                        "type": plan_type,
+                        "duration_weeks": duration_weeks,
+                        "steps": steps
+                    }}
+                )
+                flash("Plan updated successfully!", "success")
+            else:
+                # Otherwise, create a new plan
+                mongo.db.plans.insert_one({
+                    "title": title,
+                    "description": description,
+                    "type": plan_type,
+                    "duration_weeks": duration_weeks,
+                    "steps": steps,
+                    "coach_id": coach["_id"],
+                    "coach_name": coach["name"]
+                })
+                flash("Plan created successfully!", "success")
+
+            return redirect(url_for("manage_plans"))
+
+        elif "assign_plan" in request.form:
+            # Assign Plan to Students
+            plan_id = request.form.get("plan_id")
+            selected_students = request.form.getlist("students")
+            plan = mongo.db.plans.find_one({"_id": ObjectId(plan_id)})
+
+            for student_id in selected_students:
+                mongo.db.profile.update_one(
+                    {"_id": ObjectId(student_id), "user_type": "student"},
+                    {"$addToSet": {
+                        "assigned_plans": {
+                            "plan_id": plan_id,
+                            "title": plan["title"],
+                            "description": plan["description"],
+                            "type": plan["type"],
+                            "duration_weeks": plan["duration_weeks"],
+                            "steps": plan["steps"],
+                            "status": "assigned"
+                        }
+                    }}
+                )
+
+            flash("Plan assigned to selected students!", "success")
+            return redirect(url_for("manage_plans"))
+
+    # Fetch all plans and students for the coach
+    plans = list(mongo.db.plans.find({"coach_id": coach["_id"]}))
+    students = list(mongo.db.profile.find({"coach": coach["name"], "user_type": "student"}))
+
+    return render_template("manage_plans.html", plans=plans, students=students, edit_plan=plan)
 
 
 if __name__ == '__main__':

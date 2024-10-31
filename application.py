@@ -49,7 +49,6 @@ mail = Mail(app)
 insertfooddata()
 insertexercisedata()
 
-
 # data directory
 data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
@@ -702,15 +701,23 @@ def friends():
     # ##########################
     email = session.get('email')
 
+    #Create friends collection
+    if 'friends' not in mongo.db.list_collection_names():
+        # Create the collection if it does not exist
+        mongo.db.create_collection('friends')
+
     myFriends = list(mongo.db.friends.find(
         {'sender': email, 'accept': True}, {'sender', 'receiver', 'accept'}))
     myFriendsList = list()
-
     for f in myFriends:
         myFriendsList.append(f['receiver'])
 
-    print(myFriends)
+    print('My friends:  ', myFriends)
+
     allUsers = list(mongo.db.user.find({}, {'name', 'email'}))
+    allUsersList = list()
+    for u in allUsers:
+        allUsersList.append(u['email'])
 
     pendingRequests = list(mongo.db.friends.find(
         {'sender': email, 'accept': False}, {'sender', 'receiver', 'accept'}))
@@ -718,16 +725,18 @@ def friends():
     for p in pendingRequests:
         pendingReceivers.append(p['receiver'])
 
+    print('Pending Requests: ', pendingReceivers)
+
     pendingApproves = list()
     pendingApprovals = list(mongo.db.friends.find(
         {'receiver': email, 'accept': False}, {'sender', 'receiver', 'accept'}))
     for p in pendingApprovals:
         pendingApproves.append(p['sender'])
 
-    print(pendingApproves)
+    print('Pending Approvals: ', pendingApproves)
 
     # print(pendingRequests)
-    return render_template('friends.html', allUsers=allUsers, pendingRequests=pendingRequests, active=email,
+    return render_template('friends.html', allUsers=allUsersList, pendingRequests=pendingRequests, active=email,
                            pendingReceivers=pendingReceivers, pendingApproves=pendingApproves, myFriends=myFriends, myFriendsList=myFriendsList)
 
 @app.route('/bmi_calc', methods=['GET', 'POST'])
@@ -786,7 +795,10 @@ def send_email():
     for e in friend_email:
         print(e)
         server.sendmail(sender_email,e,message)
-        
+
+    #Success message for the user
+    flash('Calorie history shared successfully!', 'success')
+    
     server.quit()
     
     myFriends = list(mongo.db.friends.find(
@@ -830,6 +842,9 @@ def ajaxsendrequest():
         res = mongo.db.friends.insert_one(
             {'sender': email, 'receiver': receiver, 'accept': False})
         if res:
+            #Success message for the user
+            flash('Request sent!', 'success')
+
             return json.dumps({'status': True}), 200, {
                 'ContentType': 'application/json'}
     return json.dumps({'status': False}), 500, {
@@ -851,6 +866,9 @@ def ajaxcancelrequest():
         res = mongo.db.friends.delete_one(
             {'sender': email, 'receiver': receiver})
         if res:
+            #Success message for the user
+            flash('Request cancelled!', 'success')
+
             return json.dumps({'status': True}), 200, {
                 'ContentType': 'application/json'}
     return json.dumps({'status': False}), 500, {
@@ -875,6 +893,9 @@ def ajaxapproverequest():
         mongo.db.friends.insert_one(
             {'sender': email, 'receiver': receiver, 'accept': True})
         if res:
+            #Success message for the user
+            flash('Request approved!', 'success')
+
             return json.dumps({'status': True}), 200, {
                 'ContentType': 'application/json'}
     return json.dumps({'status': False}), 500, {

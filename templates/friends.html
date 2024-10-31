@@ -12,24 +12,16 @@
 <br />
 <details>
   <summary style="color: white">Add Friends</summary>
-  {% for friend in allUsers %} {% if friend.email != active and friend.email not
-  in pendingReceivers and friend.email not in pendingApproves and friend.email
-  not in myFriendsList %}
-  <details style="margin: 5px; background: white">
-    <summary style="color: black">{{friend.name}}</summary>
-    <p class="article-content" name="friend" style="color: black">
-      {{friend.email}}
-    </p>
-    <button
-      type="button"
-      class="btn btn-primary"
-      onclick="return sendRequest(event,this.id)"
-      id="{{friend.email}}"
-    >
-      Send Request
-    </button>
-  </details>
-  {% endif %} {% endfor %}
+  <div>
+    <form id="addFriendForm">
+      <textarea id="request" name="request" rows="1" cols="50" placeholder="Enter friend's email"></textarea>
+      <button type="button" class="btn btn-success inline ml-5" onclick="checkFriendConditions('{{ active }}', {{ pendingReceivers }}, {{ pendingApproves }}, {{ myFriendsList }}, {{ allUsers }})">
+        Add Friend
+      </button>
+    </form>
+  </div>
+  <!-- Placeholder for new friends section -->
+  <div id="sendRequestSection" style="display: none;"></div>
 </details>
 <br />
 <details>
@@ -83,5 +75,45 @@
   <br />
 </details>
 <br />
+
+<script>
+  function checkFriendConditions(active, pendingReceivers, pendingApproves, myFriendsList, allUsers) {
+      // Get the value
+      const requestEmail = document.getElementById('request').value.trim();
+
+      // Check conditions
+      if (allUsers.includes(requestEmail) &&
+          requestEmail !== active && 
+          !pendingReceivers.includes(requestEmail) && 
+          !pendingApproves.includes(requestEmail) && 
+          !myFriendsList.includes(requestEmail)) {
+
+          const sendRequestSection = document.getElementById('sendRequestSection');
+          sendRequestSection.innerHTML = `
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="return sendRequest(event,this.id)"
+                  id="${requestEmail}"
+                >
+                  Send Request
+                </button>
+            `;
+            sendRequestSection.style.display = 'block'; // Make it visible
+  
+      } else {
+          if(!allUsers.includes(requestEmail)) alert('User not found, no account created!');
+          else if (pendingReceivers.includes(requestEmail) || 
+                      pendingApproves.includes(requestEmail) || 
+                      myFriendsList.includes(requestEmail)) {
+            alert('Already a friend or request pending!');
+          }
+          else {
+            alert('Cannot add this friend!');
+          }
+      }
+  }
+</script>
+
 
 {% endblock content %}

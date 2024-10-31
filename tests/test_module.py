@@ -311,6 +311,113 @@ class TestApplication(unittest.TestCase):
                 sess['email'] = 'testuser@example.com'
             response = client.get('/more_recommendations')
             self.assertEqual(response.status_code, 200)
-        
+
+    def test_progress_monitor(self):
+
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            response = client.get('/progress_monitor')
+            self.assertEqual(response.status_code, 200)
+    
+    def test_progress_monitor_post_valid_data(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            form_data = {
+                'current_weight': '70',
+                'goal_weight': '65',
+                'waist': '30',
+                'hips': '35',
+                'chest': '40',
+                'notes': 'Good progress!'
+            }
+
+            response = client.post('/progress_monitor', data=form_data, follow_redirects=True)
+
+            self.assertEqual(response.status_code, 200)
+
+    def test_progress_monitor_post_missing_fields(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            form_data = {
+                'current_weight': '',  
+                'goal_weight': '65',
+                'waist': '30',
+                'hips': '75',
+                'chest': '75',
+                'notes': 'Waist measurements not within range'
+            }
+
+            response = client.post('/progress_monitor', data=form_data, follow_redirects=True)
+
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b'Waist must be between 50 and 150 ', response.data)  
+
+
+    def test_progress_history(self):
+
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            response = client.get('/progress_history')
+            self.assertEqual(response.status_code, 200)
+
+    def test_progress_history_get_no_session(self):
+        with self.app as client:
+            response = client.get('/progress_history', follow_redirects=True)
+            
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b'Log In', response.data)  
+    
+    def test_progress_history_post_request(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            response = client.post('/progress_history', follow_redirects=True)
+
+            self.assertEqual(response.status_code, 405)  
+
+    
+    def test_wellness_log(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            response = client.get('/wellness_log')
+            self.assertEqual(response.status_code, 200)
+
+    def test_update_streak(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            response = client.get('/update_streak')
+            self.assertEqual(response.status_code, 200)
+    
+    def test_update_streak_no_session(self):
+        with self.app as client:
+            response = client.get('/update_streak', follow_redirects=True)
+
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b'Log In', response.data)  
+
+    @patch('application.collection')  # Mock the MongoDB collection
+    def test_update_streak_get_with_session(self, mock_db):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            mock_db.db.streaks.insert_one({
+                'email': 'testuser@example.com',
+                'date': '2020-01-01',
+                'streak': 3
+            })
+
+            response = client.get('/update_streak')
+            self.assertEqual(response.status_code, 200)
+
 if __name__ == '__main__':
     unittest.main()

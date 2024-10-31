@@ -689,7 +689,7 @@ def ajaxhistory():
                     'ContentType': 'application/json'}
 
 
-@app.route("/friends", methods=['GET'])
+@app.route("/community", methods=['GET'])
 def friends():
     # ############################
     # friends() function displays the list of friends corrsponding to given email
@@ -735,9 +735,19 @@ def friends():
 
     print('Pending Approvals: ', pendingApproves)
 
-    # print(pendingRequests)
     return render_template('friends.html', allUsers=allUsersList, pendingRequests=pendingRequests, active=email,
                            pendingReceivers=pendingReceivers, pendingApproves=pendingApproves, myFriends=myFriends, myFriendsList=myFriendsList)
+
+
+@app.route('/delete_friend', methods=['GET', 'POST'])
+def delete_friend():
+    email = session.get('email')
+    friend_email = request.form.get('friend_email')
+    mongo.db.friends.delete_one({'sender': email, 'receiver': friend_email})
+    flash('Friendship deleted successfully!', 'success')
+
+    return redirect(url_for('friends'))
+
 
 @app.route('/bmi_calc', methods=['GET', 'POST'])
 def bmi_calci():
@@ -783,7 +793,6 @@ def send_email():
         table.append(tmp) 
     
     friend_email = str(request.form.get('share')).strip()
-    friend_email = str(friend_email).split(',')
     server = smtplib.SMTP_SSL("smtp.gmail.com",465)
     #Storing sender's email address and password
     sender_email = "burnoutapp2023@gmail.com"
@@ -792,39 +801,14 @@ def send_email():
     #Logging in with sender details
     server.login(sender_email,sender_password)
     message = 'Subject: Calorie History\n\n Your Friend '+str(temp['name'])+' has shared their calorie history with you!\n {}'.format(tabulate(table))
-    for e in friend_email:
-        print(e)
-        server.sendmail(sender_email,e,message)
+    server.sendmail(sender_email, friend_email, message)
 
     #Success message for the user
     flash('Calorie history shared successfully!', 'success')
     
     server.quit()
     
-    myFriends = list(mongo.db.friends.find(
-        {'sender': email, 'accept': True}, {'sender', 'receiver', 'accept'}))
-    myFriendsList = list()
-    
-    for f in myFriends:
-        myFriendsList.append(f['receiver'])
-
-    allUsers = list(mongo.db.user.find({}, {'name', 'email'}))
-    
-    pendingRequests = list(mongo.db.friends.find(
-        {'sender': email, 'accept': False}, {'sender', 'receiver', 'accept'}))
-    pendingReceivers = list()
-    for p in pendingRequests:
-        pendingReceivers.append(p['receiver'])
-
-    pendingApproves = list()
-    pendingApprovals = list(mongo.db.friends.find(
-        {'receiver': email, 'accept': False}, {'sender', 'receiver', 'accept'}))
-    for p in pendingApprovals:
-        pendingApproves.append(p['sender'])
-        
-    return render_template('friends.html', allUsers=allUsers, pendingRequests=pendingRequests, active=email,
-                           pendingReceivers=pendingReceivers, pendingApproves=pendingApproves, myFriends=myFriends, myFriendsList=myFriendsList)
-
+    return redirect(url_for('friends'))
 
 
 @app.route("/ajaxsendrequest", methods=['POST'])
@@ -863,7 +847,7 @@ def ajaxcancelrequest():
     email = get_session = session.get('email')
     if get_session is not None:
         receiver = request.form.get('receiver')
-        res = mongo.db.friends.delete_one(
+        res = mongo.db.friends.delete_many(
             {'sender': email, 'receiver': receiver})
         if res:
             #Success message for the user

@@ -26,6 +26,7 @@ from flask_pymongo import PyMongo
 from tabulate import tabulate
 from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm,ReviewForm, ProgressForm, StreakForm
 from insert_db_data import insertfooddata,insertexercisedata
+from insert_excercises import coaching_videos
 import schedule
 from threading import Thread
 import time
@@ -48,6 +49,7 @@ mail = Mail(app)
 
 insertfooddata()
 insertexercisedata()
+coaching_videos()
 
 
 # data directory
@@ -1454,6 +1456,136 @@ def upload_exercise_video():
 
     # Render the upload form template with the reviews data
     return render_template("student_review_form.html", reviews=reviews)
+
+@app.route("/coach_profile", methods=["GET", "POST"])
+def coach_profile():
+    if not session.get("email"):
+        return redirect(url_for("login"))
+
+    coach_email = session["email"]
+    coach_data = mongo.db.profile.find_one({"email": coach_email})
+    students = list(mongo.db.profile.find({"user_type": "student", "coach": coach_data["name"]}))
+    reviews = list(mongo.db.reviews.find({"coach_email": coach_email}))
+
+    if request.method == "POST":
+        # Handle review submission
+        review_content = request.form.get("review")
+        student_name = request.form.get("student_name")
+
+        mongo.db.reviews.insert_one({
+            "coach_email": coach_email,
+            "student_name": student_name,
+            "review_content": review_content,
+            "review_date": datetime.now()
+        })
+
+        flash("Review submitted successfully!", "success")
+        return redirect(url_for("coach_profile"))
+
+    return render_template(
+        "coach_profile.html",
+        title="Coach Profile",
+        coach=coach_data,
+        students=students,
+        reviews=reviews
+    )
+
+from flask import Flask, request, redirect, url_for, render_template, flash, session
+from bson import ObjectId
+from datetime import datetime
+
+@app.route("/upload_tutorial", methods=["GET", "POST"])
+def upload_tutorial():
+    if not session.get("email"):
+        return redirect(url_for("login"))
+
+    # Fetch coach's students based on the logged-in coach's email
+    coach_email = session["email"]
+    coach_data = mongo.db.user.find_one({"email": coach_email})
+    print(coach_data)  # This will help confirm the structure of the returned document
+
+    # Access the coach's name correctly using dictionary indexing
+    students = list(mongo.db.profile.find({"coach": coach_data["name"]}))
+
+
+    if request.method == "POST":
+        title = request.form.get("title")
+        description = request.form.get("description")
+        video_link = request.form.get("video_link")
+        assigned_students = request.form.getlist("assigned_students")  # List of student IDs
+
+        # Insert tutorial details in the `tutorials` collection
+        tutorial_id = mongo.db.tutorials.insert_one({
+            "title": title,
+            "description": description,
+            "video_link": video_link,
+            "upload_date": datetime.now(),
+            "coach_email": coach_email,
+        }).inserted_id
+
+        # Assign the tutorial to each selected student
+        for student_id in assigned_students:
+            mongo.db.profile.update_one(
+                {"_id": ObjectId(student_id)},
+                {"$push": {
+                    "assigned_tutorials": {
+                        "tutorial_id": tutorial_id,
+                        "status": "Not Started"
+                    }
+                }}
+            )
+
+        flash("Tutorial uploaded and assigned successfully!", "success")
+        return redirect(url_for("upload_tutorial"))
+
+    return render_template("upload_tutorial.html", title="Upload Tutorial", students=students)
+
+@app.route("/view_assigned_tutorials", methods=["GET", "POST"])
+def view_assigned_tutorials():
+    if not session.get("email"):
+        return redirect(url_for("login"))
+
+    # Get the logged-in student's profile
+    student_email = session["email"]
+    student = mongo.db.profile.find_one({"email": student_email})
+
+    # Retrieve assigned tutorials with their completion status
+    tutorials = []
+    for tutorial_entry in student.get("assigned_tutorials", []):
+        # Fetch full tutorial details
+        tutorial = mongo.db.tutorials.find_one({"_id": tutorial_entry["tutorial_id"]})
+        if tutorial:
+            tutorial["status"] = tutorial_entry["status"]
+            tutorials.append(tutorial)
+
+    # Handle marking a tutorial as completed
+    if request.method == "POST":
+        tutorial_id = request.form.get("tutorial_id")
+
+        # Update the tutorial status to "Completed"
+        mongo.db.profile.update_one(
+            {"_id": student["_id"], "assigned_tutorials.tutorial_id": ObjectId(tutorial_id)},
+            {"$set": {"assigned_tutorials.$.status": "Completed"}}
+        )
+
+        # Re-fetch the updated student data to recalculate progress
+        student = mongo.db.profile.find_one({"_id": student["_id"]})
+        completed_count = sum(1 for t in student["assigned_tutorials"] if t["status"] == "Completed")
+        total_tutorials = len(student["assigned_tutorials"])
+        progress = (completed_count / total_tutorials) * 100 if total_tutorials > 0 else 0
+
+        # Update the progress in the student's profile
+        mongo.db.profile.update_one(
+            {"_id": student["_id"]},
+            {"$set": {"progress": progress}}
+        )
+
+        flash("Tutorial marked as completed!", "success")
+        return redirect(url_for("view_assigned_tutorials"))
+
+    return render_template("view_assigned_tutorials.html", tutorials=tutorials, progress=student.get("progress", 0))
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

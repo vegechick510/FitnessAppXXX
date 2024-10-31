@@ -337,6 +337,7 @@ def recommend_exercises():
 @app.route('/more_recommendations', methods=['GET', 'POST'])
 def more_recommendations():
     exercise_data = []
+    user_input = {}
     selected_primary_muscle = ""
     if request.method == 'POST':
         selected_primary_muscle = request.cookies.get('selectedPrimaryMuscle', "")

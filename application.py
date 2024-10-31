@@ -1261,35 +1261,46 @@ def hrx():
 #                     'ContentType': 'application/json'}
 #             else:
 #                 return json.dumps({'email': "", 'Status': ""}), 200, {
-#                     'ContentType': 'application/json'}
+#                     'ContentType': 'applicration/json'}
 
-@app.route("/review", methods=['GET', 'POST'])
-def submit_reviews():
-    # ############################
-    # submit_reviews() function collects and displays the reviews submitted by different users
-    # route "/review" will redirect to submit_review() function which redirects to review.html page.
-    # Reviews are stored into a MongoDB collection and then retrieved immediately
-    # Input: Email
-    # Output: Name, Review
-    # ##########################
-    existing_reviews = mongo.db.reviews.find()
-    if session.get('email'):
-        print("Imhere2")
-        if request.method == 'POST':  # Check if it's a POST request
-            form = ReviewForm(request.form)  # Initialize the form with form data
-            if form.validate_on_submit():
-                print("imehere1")
-                email = session.get('email')
-                user = mongo.db.user.find_one({'email': email})
-                name = request.form.get('name')
-                review = request.form.get('review')  # Correct the field name
-                mongo.db.reviews.insert_one({'name': name, 'review': review})
-                return render_template("review.html", form=form, existing_reviews=existing_reviews)
-        else:
-            form = ReviewForm()  # Create an empty form for GET requests
-        return render_template('review.html', form=form, existing_reviews=existing_reviews)
-    else:
-        return "User not logged in"
+@app.route("/submit_review", methods=["GET", "POST"])
+def submit_review():
+    if not session.get("email"):
+        return redirect(url_for("login"))
+
+    student_email = session["email"]
+
+    # Retrieve the student's profile to get the assigned coach's ID
+    student_profile = mongo.db.profile.find_one({"email": student_email, "user_type": "student"})
+
+
+    # Retrieve coach's ID from student's profile and then get coach's details
+    coach_name = student_profile["coach"]
+
+    if request.method == "POST":
+        # Handle form submission
+        student_name = request.form["name"]
+        review_text = request.form["review"]
+
+        # Insert the review into the coach's profile
+        mongo.db.profile.update_one(
+            {"name": coach_name, "user_type": "coach"},
+            {"$push": {
+                "reviews": {
+                    "name": student_name,
+                    "review": review_text,
+                    "student_email": student_email
+                }
+            }}
+        )
+
+        flash("Review submitted successfully!", "success")
+        return redirect(url_for("dashboard"))
+
+    # Render the form and pass coach_name to the template
+    return render_template("review.html", title="Submit Review", coach_name=coach_name)
+
+
 
 @app.route('/blog')
 def blog():
@@ -1403,6 +1414,7 @@ def set_reminder():
 
     return render_template("set_reminder.html", title="Set Reminder", students=students)
 
+
 @app.route("/coach_reviews")
 def coach_reviews():
     if not session.get("email"):
@@ -1413,11 +1425,19 @@ def coach_reviews():
     coach_profile = mongo.db.profile.find_one({"email": coach_email})
     coach_name = coach_profile["name"]  # assuming coach's name is stored here
     
-    # Get reviews assigned to this coach
-    reviews = mongo.db.form_reviews.find({"coach_name": coach_name})
-    
-    # Pass the reviews to the template
-    return render_template("coach_reviews.html", reviews=reviews)
+    # Get form reviews assigned to this coach
+    reviews = list(mongo.db.form_reviews.find({"coach_name": coach_name}))
+
+    # Get students with their progress
+    students_progress = list(mongo.db.profile.find(
+        {"coach": coach_name, "user_type": "student"},
+        {"name": 1, "progress": 1}  # only retrieve relevant fields
+    ))
+
+    print(students_progress)
+
+    # Pass reviews and students' progress to the template
+    return render_template("coach_reviews.html", reviews=reviews, students_progress=students_progress)
 
 @app.route("/upload_exercise_video", methods=["POST", "GET"])
 def upload_exercise_video():
@@ -1463,21 +1483,32 @@ def coach_profile():
         return redirect(url_for("login"))
 
     coach_email = session["email"]
+    # Retrieve the coach profile
     coach_data = mongo.db.profile.find_one({"email": coach_email})
-    students = list(mongo.db.profile.find({"user_type": "student", "coach": coach_data["name"]}))
-    reviews = list(mongo.db.reviews.find({"coach_email": coach_email}))
 
+    # Get students assigned to this coach
+    students = list(mongo.db.profile.find({"user_type": "student", "coach": coach_data["name"]}))
+
+    # Fetch reviews directly from the coach's profile
+    reviews = coach_data.get("reviews", [])
+
+    # If it's a POST request, handle the review submission
     if request.method == "POST":
-        # Handle review submission
         review_content = request.form.get("review")
         student_name = request.form.get("student_name")
 
-        mongo.db.reviews.insert_one({
-            "coach_email": coach_email,
-            "student_name": student_name,
-            "review_content": review_content,
-            "review_date": datetime.now()
-        })
+        # Update the coach's profile by adding the new review
+        mongo.db.profile.update_one(
+            {"email": coach_email},
+            {"$push": {
+                "reviews": {
+                    "name": student_name,
+                    "review": review_content,
+                    "student_email": session["email"],
+                    "date": datetime.now().strftime("%Y-%m-%d")
+                }
+            }}
+        )
 
         flash("Review submitted successfully!", "success")
         return redirect(url_for("coach_profile"))
@@ -1490,9 +1521,6 @@ def coach_profile():
         reviews=reviews
     )
 
-from flask import Flask, request, redirect, url_for, render_template, flash, session
-from bson import ObjectId
-from datetime import datetime
 
 @app.route("/upload_tutorial", methods=["GET", "POST"])
 def upload_tutorial():
@@ -1593,23 +1621,21 @@ def manage_plans():
     coach_email = session["email"]
     coach = mongo.db.profile.find_one({"email": coach_email, "user_type": "coach"})
 
-    # Check if editing an existing plan
-    edit_plan_id = request.args.get("edit_plan_id")
+    # Check if we are editing an existing plan
+    edit_plan_id = request.args.get("edit_plan_id")  # Fetch the ID if provided
     plan = mongo.db.plans.find_one({"_id": ObjectId(edit_plan_id)}) if edit_plan_id else None
 
     if request.method == "POST":
         if "create_or_edit_plan" in request.form:
-            # Create or Edit Plan
+            # Handle creation or editing
             title = request.form.get("title")
             description = request.form.get("description")
             plan_type = request.form.get("type")
             duration_weeks = int(request.form.get("duration_weeks"))
 
-            # Use a default value of 0 for step_count if it’s missing
-            step_count = int(request.form.get("step_count", 0))
-
-            # Get all steps from the form
+            # Get steps
             steps = []
+            step_count = int(request.form.get("step_count", 0))
             for i in range(1, step_count + 1):
                 step_description = request.form.get(f"step_description_{i}")
                 target_duration = request.form.get(f"target_duration_{i}")
@@ -1626,8 +1652,9 @@ def manage_plans():
                     "meal_plan": meal_plan
                 })
 
-            # If editing an existing plan, update it
+            # Check if we are editing an existing plan
             if edit_plan_id:
+                # Update the existing plan
                 mongo.db.plans.update_one(
                     {"_id": ObjectId(edit_plan_id)},
                     {"$set": {
@@ -1638,9 +1665,24 @@ def manage_plans():
                         "steps": steps
                     }}
                 )
+
+                # Update the plan details in students' profiles if the plan was assigned
+                mongo.db.profile.update_many(
+                    {"user_type": "student", "assigned_plans.plan_id": edit_plan_id},
+                    {"$set": {
+                        "assigned_plans.$[elem].title": title,
+                        "assigned_plans.$[elem].description": description,
+                        "assigned_plans.$[elem].type": plan_type,
+                        "assigned_plans.$[elem].duration_weeks": duration_weeks,
+                        "assigned_plans.$[elem].steps": steps
+                    }},
+                    array_filters=[{"elem.plan_id": edit_plan_id}]
+                )
+
                 flash("Plan updated successfully!", "success")
+
             else:
-                # Otherwise, create a new plan
+                # If no `edit_plan_id`, insert a new plan
                 mongo.db.plans.insert_one({
                     "title": title,
                     "description": description,
@@ -1683,7 +1725,20 @@ def manage_plans():
     plans = list(mongo.db.plans.find({"coach_id": coach["_id"]}))
     students = list(mongo.db.profile.find({"coach": coach["name"], "user_type": "student"}))
 
-    return render_template("manage_plans.html", plans=plans, students=students, edit_plan=plan)
+    return render_template("manage_plans.html", plans=plans, students=students, edit_plan=plan, edit_plan_id=edit_plan_id)
+
+@app.route("/student_plans", methods=["GET"])
+def student_plans():
+    if not session.get("email"):
+        return redirect(url_for("login"))
+
+    student_email = session["email"]
+    student = mongo.db.profile.find_one({"email": student_email, "user_type": "student"})
+
+    # Retrieve assigned plans for the student
+    assigned_plans = student.get("assigned_plans", [])
+
+    return render_template("student_plans.html", assigned_plans=assigned_plans)
 
 
 if __name__ == '__main__':

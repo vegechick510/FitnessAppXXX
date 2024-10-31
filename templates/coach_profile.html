@@ -51,15 +51,16 @@
     <!-- Existing Reviews Section -->
     <div class="card mb-4">
       <div class="card-header bg-dark text-white">
-        Reviews Recieved 
+        Reviews Received
       </div>
       <div class="card-body">
         {% if reviews %}
           <ul class="list-group">
             {% for review in reviews %}
               <li class="list-group-item">
-                <strong>{{ review.student_name }}:</strong> {{ review.review_content }}<br>
-                <small class="text-muted">{{ review.review_date.strftime('%Y-%m-%d') }}</small>
+                <strong>{{ review.name }}:</strong> {{ review.review }}<br>
+                <small class="text-muted">Date: {{ review.date }}</small><br>
+                <small class="text-muted">From: {{ review.student_email }}</small>
               </li>
             {% endfor %}
           </ul>

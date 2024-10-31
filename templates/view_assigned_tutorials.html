@@ -14,6 +14,9 @@
     .progress-container {
       margin-bottom: 30px;
     }
+    .text-white-custom {
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -21,10 +24,10 @@
   {% block content %}
 
   <main role="main" class="container mt-5">
-    <h1 class="text-center mb-4">My Assigned Tutorials</h1>
+    <h1 class="text-center text-white-custom mb-4">My Assigned Tutorials</h1>
 
     <div class="progress-container text-center mb-4">
-      <h4>Progress: {{ progress }}%</h4>
+      <h4 class="text-white-custom">Progress: {{ progress }}%</h4>
       <div class="progress" style="height: 20px;">
         <div class="progress-bar bg-success" role="progressbar" style="width: {{ progress }}%;" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
           {{ progress }}%

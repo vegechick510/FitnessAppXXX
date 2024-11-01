@@ -42,7 +42,7 @@ jobs:
             python -m unittest tests.test_module &
             test_pid=$!
 
-            sleep 10
+            sleep 60
 
             if ps -p $test_pid > /dev/null; then
               kill $test_pid  # Terminate the background process

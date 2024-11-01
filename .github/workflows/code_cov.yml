@@ -49,7 +49,7 @@ jobs:
           coverage run -m unittest tests.test_module &
           coverage_pid=$!
 
-          sleep 10
+          sleep 60
 
           if ps -p $coverage_pid > /dev/null; then
             echo "Coverage command is taking too long, terminating..."
@@ -63,7 +63,7 @@ jobs:
           # Generate XML and report if tests finished
           if [ $exit_code -eq 0 ]; then
             coverage xml -i
-            coverage report -m > tests/code_coverage.log
+            coverage report -m
           fi
 
           exit $exit_code

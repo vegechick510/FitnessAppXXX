@@ -16,7 +16,7 @@ import json, os
 from datetime import datetime
 import plotly.express as px
 import plotly.graph_objects as go
-from bson import ObjectId
+from bson.objectid import ObjectId, InvalidId 
 import bcrypt
 import smtplib
 from flask import json,jsonify,Flask
@@ -1359,12 +1359,19 @@ def submit_review():
 
     student_email = session["email"]
 
-    # Retrieve the student's profile to get the assigned coach's ID
+    # Retrieve the student's profile to get the assigned coach's name
     student_profile = mongo.db.profile.find_one({"email": student_email, "user_type": "student"})
+    
+    # Check if student_profile is found
+    if not student_profile:
+        flash("Student profile not found. Please log in with a valid student account.", "error")
+        return redirect(url_for("login"))
 
-
-    # Retrieve coach's ID from student's profile and then get coach's details
-    coach_name = student_profile["coach"]
+    # Ensure 'coach' field exists in the profile to avoid further errors
+    coach_name = student_profile.get("coach")
+    if not coach_name:
+        flash("No coach assigned to this student profile.", "error")
+        return redirect(url_for("dashboard"))  # Redirect to a dashboard or error page
 
     if request.method == "POST":
         # Handle form submission
@@ -1389,8 +1396,6 @@ def submit_review():
     # Render the form and pass coach_name to the template
     return render_template("review.html", title="Submit Review", coach_name=coach_name)
 
-
-
 @app.route('/blog')
 def blog():
     # 处理 "blog" 页面的逻辑
@@ -1408,6 +1413,12 @@ def coach_dashboard():
 
     coach_email = session["email"]
     coach_data = mongo.db.user.find_one({"email": coach_email})
+
+    # Check if the coach_data exists
+    if not coach_data:
+        flash("Coach profile not found.", "error")
+        return redirect(url_for("login"))
+
     students = list(mongo.db.user.find({"user_type": "student", "coach": coach_data["name"]}))
     form_reviews = list(mongo.db.form_reviews.find({"coach_email": coach_email}))
     reminders = list(mongo.db.reminders.find({"coach_email": coach_email}))
@@ -1417,7 +1428,6 @@ def coach_dashboard():
         "coach_email": coach_email
     }).sort("created_at", -1).limit(5))
     
-    print(upcoming_meetings)
     return render_template(
         "coach_dashboard.html",
         title="Coach Dashboard",
@@ -1427,6 +1437,7 @@ def coach_dashboard():
         reminders=reminders,
         coach=coach_data
     )
+
 
 @app.route("/schedule_meeting", methods=["GET", "POST"])
 def schedule_meeting():
@@ -1453,11 +1464,19 @@ def schedule_meeting():
         flash("Meeting scheduled successfully!", "success")
         return redirect(url_for("coach_dashboard"))
 
-    # Fetch all students of the coach
+    # Fetch the coach's data
     coach_data = mongo.db.user.find_one({"email": coach_email})
+
+    # Check if coach data exists
+    if coach_data is None:
+        flash("Coach profile not found. Please contact support.", "error")
+        return redirect(url_for("schedule_meeting"))
+
+    # Fetch students assigned to the coach
     students = list(mongo.db.profile.find({"user_type": "student", "coach": coach_data["name"]}))
 
     return render_template("schedule_meetings.html", title="Schedule Meeting", students=students)
+
 
 # Route to Submit Feedback on Form Review
 @app.route("/submit_feedback", methods=["GET", "POST"])
@@ -1470,8 +1489,16 @@ def submit_feedback():
         review_id = request.form.get("review_id")
         feedback = request.form["feedback"]
 
+        # Validate review_id to ensure it's a valid ObjectId
+        try:
+            review_object_id = ObjectId(review_id)
+        except InvalidId:
+            flash("Invalid review ID provided.", "error")
+            return redirect(url_for("submit_feedback"))
+
+        # Update feedback in the database
         mongo.db.form_reviews.update_one(
-            {"_id": ObjectId(review_id)},
+            {"_id": review_object_id},
             {"$set": {"feedback": feedback, "reviewed": True, "feedback_date": datetime.now()}}
         )
         flash("Feedback submitted successfully!", "success")
@@ -1508,9 +1535,17 @@ def set_reminder():
 
     # If GET request, fetch all students of the coach
     coach_data = mongo.db.user.find_one({"email": coach_email})
+
+    # Check if coach data is found
+    if coach_data is None:
+        flash("Coach profile not found. Please contact support.", "error")
+        return redirect(url_for("set_reminder"))
+
+    # Fetch students assigned to the coach
     students = list(mongo.db.profile.find({"user_type": "student", "coach": coach_data["name"]}))
 
     return render_template("set_reminder.html", title="Set Reminder", students=students)
+
 
 
 @app.route("/coach_reviews")
@@ -1543,15 +1578,22 @@ def upload_exercise_video():
         return redirect(url_for("login"))
 
     student_email = session["email"]
-    
+
+    # Fetch the assigned coach for the student
+    student_profile = mongo.db.profile.find_one({"email": student_email})
+
+    # Check if student profile exists
+    if student_profile is None:
+        flash("Student profile not found. Please contact support.", "error")
+        return redirect(url_for("upload_exercise_video"))
+
+    # Fetch the coach's name if the student profile is found
+    coach_name = student_profile.get("coach", "Unknown")  # default to "Unknown" if "coach" is missing
+
     if request.method == "POST":
         # Get form data
         exercise_type = request.form.get("exercise_type")
         video_link = request.form.get("video_link")
-
-        # Fetch the assigned coach for the student
-        student_profile = mongo.db.profile.find_one({"email": student_email})
-        coach_name = student_profile["coach"]  # assuming the coach's name is stored here
 
         # Insert data into MongoDB with coach details and initialize comments to null
         mongo.db.form_reviews.insert_one({
@@ -1575,6 +1617,7 @@ def upload_exercise_video():
     # Render the upload form template with the reviews data
     return render_template("student_review_form.html", reviews=reviews)
 
+
 @app.route("/coach_profile", methods=["GET", "POST"])
 def coach_profile():
     if not session.get("email"):
@@ -1583,6 +1626,11 @@ def coach_profile():
     coach_email = session["email"]
     # Retrieve the coach profile
     coach_data = mongo.db.profile.find_one({"email": coach_email})
+
+    # Check if the coach_data exists
+    if not coach_data:
+        flash("Coach profile not found.", "error")
+        return redirect(url_for("login"))
 
     # Get students assigned to this coach
     students = list(mongo.db.profile.find({"user_type": "student", "coach": coach_data["name"]}))
@@ -1625,14 +1673,17 @@ def upload_tutorial():
     if not session.get("email"):
         return redirect(url_for("login"))
 
-    # Fetch coach's students based on the logged-in coach's email
+    # Fetch coach's data based on the logged-in coach's email
     coach_email = session["email"]
     coach_data = mongo.db.user.find_one({"email": coach_email})
-    print(coach_data)  # This will help confirm the structure of the returned document
 
-    # Access the coach's name correctly using dictionary indexing
+    # Check if coach data is found
+    if coach_data is None:
+        flash("Coach profile not found. Please contact support.", "error")
+        return redirect(url_for("login"))
+
+    # Fetch students assigned to the coach
     students = list(mongo.db.profile.find({"coach": coach_data["name"]}))
-
 
     if request.method == "POST":
         title = request.form.get("title")
@@ -1675,6 +1726,11 @@ def view_assigned_tutorials():
     student_email = session["email"]
     student = mongo.db.profile.find_one({"email": student_email})
 
+    # Check if student data exists
+    if student is None:
+        flash("Student profile not found. Please contact support.", "error")
+        return redirect(url_for("login"))
+
     # Retrieve assigned tutorials with their completion status
     tutorials = []
     for tutorial_entry in student.get("assigned_tutorials", []):
@@ -1710,6 +1766,7 @@ def view_assigned_tutorials():
         return redirect(url_for("view_assigned_tutorials"))
 
     return render_template("view_assigned_tutorials.html", tutorials=tutorials, progress=student.get("progress", 0))
+
 
 @app.route("/manage_plans", methods=["GET", "POST"])
 def manage_plans():

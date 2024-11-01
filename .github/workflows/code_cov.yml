@@ -63,7 +63,11 @@ jobs:
           # Generate XML and report if tests finished
           if [ $exit_code -eq 0 ]; then
             coverage xml -i
+<<<<<<< HEAD
             coverage report -m > tests/code_coverage.log
+=======
+            coverage report -m  # Display coverage report in the logs
+>>>>>>> b46894a (fixed workflows to run on new code changes)
           fi
 
           exit $exit_code

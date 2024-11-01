@@ -833,6 +833,7 @@ def delete_friend():
     email = session.get('email')
     friend_email = request.form.get('friend_email')
     mongo.db.friends.delete_one({'sender': email, 'receiver': friend_email})
+    mongo.db.friends.delete_one({'sender': friend_email, 'receiver': email})
     flash('Friendship deleted successfully!', 'success')
 
     return redirect(url_for('friends'))
@@ -1413,7 +1414,6 @@ def submit_review():
 
 @app.route('/blog')
 def blog():
-    # 处理 "blog" 页面的逻辑
     return render_template('blog.html')
 
 

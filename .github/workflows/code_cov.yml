@@ -46,15 +46,19 @@ jobs:
         python application.py &
         sleep 5
         {
-          coverage run -m unittest tests.test_module &
+          echo "Running tests..."
+          coverage run -m unittest tests.test_module > test_output.log 2>&1 &
           coverage_pid=$!
 
           sleep 60
 
           if ps -p $coverage_pid > /dev/null; then
-            echo "Coverage command is taking too long, terminating..."
             kill $coverage_pid  # Terminate the background process
-            exit_code=0         # Treat the timeout as a pass
+            if grep -q "FAILED" test_output.log; then
+                exit_code=1        # Fail if any tests failed
+            else
+              exit_code=0
+            fi
           else
             wait $coverage_pid   # Wait for the process to finish and get the exit code
             exit_code=$?        # Capture the exit code
@@ -66,5 +70,6 @@ jobs:
             coverage report -m
           fi
 
+          cat test_output.log
           exit $exit_code
         }

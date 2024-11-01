@@ -153,92 +153,91 @@ This document serves as a comprehensive reference point for users, giving them i
 
 ## Register
 
-<img src=https://raw.githubusercontent.com/VibhavDeo/FitnessApp/main/static/img/registerPic.PNG>
+<img src="https://raw.githubusercontent.com/VibhavDeo/FitnessApp/main/static/img/registerPic.PNG">
 
 ## Login
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/loginPic.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/loginPic.PNG">
 
 ## Dashboard
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/dashboardPic.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/dashboardPic.PNG">
 
-## Excercise Section
+## Exercise Section
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/excercisePic.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/excercisePic.PNG">
 
 ## Must Try Workout Section
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/musttryworkoutPic.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/musttryworkoutPic.PNG">
 
 ## Popular Workout Section
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/popularworkoutPic.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/popularworkoutPic.PNG">
 
 ## Spirit Curation Section
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/spirit.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/spirit.PNG">
 
 ## Enter Calories
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/historyPic.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/historyPic.PNG">
 
-## Enter water intakes
+## Enter Water Intakes
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/water.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/water.PNG">
 
 ## Blog
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/blog.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/blog.PNG">
 
-## Shop workout gears
+## Shop Workout Gears
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/shop.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/shop.PNG">
 
 ## Check History
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/caloriesPic.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/caloriesPic.PNG">
 
 ## Add Friends
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/friendsPic.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/friendsPic.PNG">
 
 ## Calculate BMI
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/bmiPic.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/bmiPic.PNG">
 
-## Add an Excercise to Favourites
+## Add an Exercise to Favourites
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/favPic.PNG>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/favPic.PNG">
 
 ## Submit a Review
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/reviewPic.jpeg>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/reviewPic.jpeg">
 
 ## View User Profile
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/profile1.0.jpeg>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/profile1.0.jpeg">
 
 ## View User Profile 2.0
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/profile2.0.jpeg>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/profile2.0.jpeg">
 
 ## Update Your Profile
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/updateProfile.jpeg>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/updateProfile.jpeg">
 
 ## Signup As Coach
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/new_signup.png>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/new_signup.png">
 
 ## Get Personalized Workouts
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/personalized_workouts.png>
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/personalized_workouts.png">
 
 ## Track Student Progress
 
-<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/student_progress.png>
-
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/student_progress.png">
 # Steps for execution
 
 Step 1:

@@ -20,6 +20,7 @@ from flask import session
 from unittest.mock import patch, MagicMock
 from unittest import TestCase
 import numpy as np
+from bson.objectid import ObjectId, InvalidId 
 
 class TestApplication(unittest.TestCase):
 
@@ -124,14 +125,26 @@ class TestApplication(unittest.TestCase):
                 response = client.get(route)
                 self.assertEqual(response.status_code, 200)  
 
-    ##TODO: fix by shardul (recent commit)
-    # def test_submit_reviews_route(self):
-    
-    #     with self.app as client:
-    #         with client.session_transaction() as sess:
-    #             sess['email'] = 'testuser@example.com'
-    #         response = client.get('/review')
-    #         self.assertEqual(response.status_code, 200)
+    @patch("application.mongo.db.profile.find_one")
+    @patch("application.mongo.db.profile.update_one")
+    def test_submit_reviews_route(self, mock_update_one, mock_find_one):
+        # Mock find_one to return a valid student profile with a coach
+        mock_find_one.return_value = {
+            "email": "testuser@example.com",
+            "user_type": "student",
+            "coach": "Coach1"  # Ensures that 'coach' is present
+        }
+        
+        mock_update_one.return_value = MagicMock()
+
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            response = client.get('/submit_review', follow_redirects=True)
+            
+            self.assertEqual(response.status_code, 200)
+            
 
     # @patch('application.mongo.db.profile.find_one')
     # def test_display_profile_route(self, mock_find_one):
@@ -405,7 +418,7 @@ class TestApplication(unittest.TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'Log In', response.data)  
 
-    @patch('application.collection')  # Mock the MongoDB collection
+    @patch('application.collection')
     def test_update_streak_get_with_session(self, mock_db):
         with self.app as client:
             with client.session_transaction() as sess:
@@ -418,6 +431,317 @@ class TestApplication(unittest.TestCase):
             })
 
             response = client.get('/update_streak')
+            self.assertEqual(response.status_code, 200)
+
+    @patch("application.mongo.db.user.find_one")
+    @patch("application.mongo.db.user.find")
+    @patch("application.mongo.db.form_reviews.find")
+    @patch("application.mongo.db.reminders.find")
+    @patch("application.mongo.db.meetings.find")
+    def test_coach_dashboard(self, mock_meetings_find, mock_reminders_find, mock_form_reviews_find, mock_user_find, mock_user_find_one):
+        mock_user_find_one.return_value = {
+            "_id": "67243ab605507b344c2e1609",
+            "name": "Coach1",
+            "user_type": "coach",
+            "email": "coach5@gmail.com",
+            "weight": None,
+            "height": None,
+            "goal": None,
+            "target_weight": None,
+            "coach": None,
+            "specialization": "pilates",
+            "experience": 10,
+            "date": "2024-10-31"
+        }
+        mock_user_find.return_value = [{"name": "Student 1"}]
+        mock_form_reviews_find.return_value = [{"review": "Good form!"}]
+        mock_reminders_find.return_value = [{"reminder_text": "Reminder 1"}]
+        mock_meetings_find.return_value = [{"meeting": "Meeting 1"}]
+
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'coach5@gmail.com'
+            
+            # Perform GET request on /coach_dashboard
+            response = client.get('/coach_dashboard')
+            
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Coach Dashboard", response.data) 
+
+    def test_submit_feedback_without_login(self):
+        with self.app as client:
+            # No session setup to simulate missing login
+            
+            form_data = {
+                "review_id": str(ObjectId()),
+                "feedback": "Great job!"
+            }
+            response = client.post('/submit_feedback', data=form_data)
+            
+            # Expect a redirect to the login page
+            self.assertEqual(response.status_code, 302)
+            self.assertIn('/login', response.location)
+
+    @patch("application.mongo.db.form_reviews.update_one")
+    def test_submit_feedback_invalid_review_id(self, mock_update_one):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'coach@example.com'
+            
+            # Use an invalid review_id format
+            form_data = {
+                "review_id": "invalid_id",
+                "feedback": "Great job!"
+            }
+            response = client.post('/submit_feedback', data=form_data)
+            
+            # Expect redirect back to submit_feedback or an error flash message
+            self.assertEqual(response.status_code, 302)
+            self.assertIn('/submit_feedback', response.location)
+
+    def test_set_reminder_post_missing_fields(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'coach@example.com'
+            
+            # Missing "date" and "time" fields
+            form_data = {
+                "student_id": "12345",
+                "reminder": "Drink water"
+            }
+            response = client.post('/set_reminder', data=form_data)
+            
+            self.assertEqual(response.status_code, 400)
+
+    def test_coach_dashboard_unauthorized_access(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'student@example.com'
+            
+            response = client.get('/coach_dashboard')
+            
+            self.assertEqual(response.status_code, 302)
+            self.assertIn('/login', response.location)
+
+    def test_upload_exercise_video_get_unauthorized_access(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'coach@example.com'
+            
+            response = client.get('/upload_exercise_video')
+            self.assertEqual(response.status_code, 302)
+
+    @patch("application.mongo.db.meetings.insert_one")
+    def test_schedule_meeting_post_invalid_student_id(self, mock_insert_one):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'coach@example.com'
+            
+            form_data = {
+                "student_id": "invalid_id",
+                "date": "2024-11-01",
+                "time": "08:00",
+                "link": "http://meeting.link"
+            }
+            response = client.post('/schedule_meeting', data=form_data)
+            
+            self.assertEqual(response.status_code, 302)
+            self.assertIn('/coach_dashboard', response.location)
+
+    @patch("application.mongo.db.profile")  
+    @patch("application.mongo.db.user")
+    def test_schedule_meeting_get(self, mock_user_collection, mock_profile_collection):
+        mock_user_collection.find_one.return_value = {
+            "email": "coach@example.com",
+            "name": "Coach Name"
+        }
+
+        mock_profile_collection.find.return_value = [
+            {"_id": ObjectId(), "name": "Student 1"},
+            {"_id": ObjectId(), "name": "Student 2"}
+        ]
+
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'coach@example.com'
+            
+            response = client.get('/schedule_meeting')
+
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Schedule Meeting", response.data)
+
+
+    def test_schedule_meeting_post(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'coach@example.com'
+            
+            form_data = {
+                "student_id": "12345",
+                "date": "2024-11-01",
+                "time": "08:00",
+                "link": "http://meeting.link"
+            }
+            response = client.post('/schedule_meeting', data=form_data)
+            self.assertEqual(response.status_code, 302)  # Redirect after scheduling
+            self.assertEqual(response.location, 'http://localhost/coach_dashboard')
+
+
+    @patch("application.mongo.db.form_reviews.update_one")
+    def test_submit_feedback(self, mock_update_one):
+        mock_update_one.return_value = MagicMock()
+
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'coach@example.com'
+            
+            form_data = {
+                "review_id": str(ObjectId()),
+                "feedback": "Great job!"
+            }
+            response = client.post('/submit_feedback', data=form_data)
+            
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(response.location, 'http://localhost/coach_dashboard')
+
+
+    @patch("application.mongo.db.user")
+    @patch("application.mongo.db.profile")
+    def test_set_reminder_get(self, mock_profile_collection, mock_user_collection):
+        mock_user_collection.find_one.return_value = {
+            "email": "coach@example.com",
+            "name": "Coach Name"
+        }
+
+        mock_profile_collection.find.return_value = [
+            {"_id": "student_id_1", "name": "Student One"},
+            {"_id": "student_id_2", "name": "Student Two"}
+        ]
+
+        with self.app as client:
+
+            with client.session_transaction() as sess:
+                sess['email'] = 'coach@example.com'
+
+            response = client.get('/set_reminder')
+
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Set Reminder", response.data)
+
+
+    def test_set_reminder_post(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'coach@example.com'
+            
+            form_data = {
+                "student_id": "12345",
+                "reminder": "Drink water",
+                "date": "2024-11-01",
+                "time": "08:00"
+            }
+            response = client.post('/set_reminder', data=form_data)
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(response.location, 'http://localhost/coach_dashboard')
+
+
+    def test_upload_exercise_video_get(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'student@example.com'
+            
+            response = client.get('/upload_exercise_video')
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Upload Exercise Video", response.data)
+
+
+    def test_upload_exercise_video_post(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'student@example.com'
+            
+            form_data = {
+                "exercise_type": "Push-ups",
+                "video_link": "http://video.link"
+            }
+            response = client.post('/upload_exercise_video', data=form_data)
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(response.location, 'http://localhost/upload_exercise_video')
+
+
+    @patch('application.mongo.db.profile')      
+    @patch('application.mongo.db.form_reviews')  
+    def test_upload_exercise_video_get(self, mock_form_reviews_collection, mock_profile_collection):
+        mock_profile_collection.find_one.return_value = {
+            "email": "student@example.com",
+            "_id": ObjectId(),
+            "coach": "Coach Name"
+        }
+
+        mock_form_reviews_collection.find.return_value = []
+
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'student@example.com'
+
+            response = client.get('/upload_exercise_video')
+            
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Upload Exercise Video", response.data)
+
+    @patch('application.mongo.db.user')
+    @patch('application.mongo.db.profile')  
+    @patch('application.mongo.db.tutorials')  
+    def test_upload_tutorial_post(self, mock_tutorials_collection, mock_profile_collection, mock_user_collection):
+        mock_user_collection.find_one.return_value = {
+            "email": "coach@example.com",
+            "name": "Coach Name"
+        }
+
+        mock_profile_collection.find.return_value = [
+            {"_id": ObjectId(), "name": "Student 1"},
+            {"_id": ObjectId(), "name": "Student 2"}
+        ]
+
+        mock_tutorials_collection.insert_one.return_value = MagicMock(inserted_id=ObjectId())
+
+        mock_profile_collection.update_one.return_value = MagicMock()
+
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'coach@example.com'
+            
+            form_data = {
+                "title": "New Tutorial",
+                "description": "Tutorial description",
+                "video_link": "http://tutorial.link",
+                "assigned_students": [str(ObjectId())]
+            }
+
+            response = client.post('/upload_tutorial', data=form_data)
+
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(response.location, 'http://localhost/upload_tutorial')
+
+    @patch('application.mongo.db.profile')  
+    @patch('application.mongo.db.tutorials')  
+    def test_view_assigned_tutorials_get(self, mock_tutorials_collection, mock_profile_collection):
+        mock_profile_collection.find_one.return_value = {
+            "email": "student@example.com",
+            "_id": "student_id",
+            "assigned_tutorials": [
+                {"tutorial_id": "tutorial_1", "status": "Incomplete"}
+            ],
+            "progress": 0
+        }
+
+        mock_tutorials_collection.find_one.return_value = None
+
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'student@example.com'
+            
+            response = client.get('/view_assigned_tutorials')
             self.assertEqual(response.status_code, 200)
 
 if __name__ == '__main__':

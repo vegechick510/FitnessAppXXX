@@ -146,7 +146,6 @@ class TestApplication(unittest.TestCase):
             self.assertEqual(response.status_code, 200)
             
 
-
     # @patch('application.mongo.db.profile.find_one')
     # def test_display_profile_route(self, mock_find_one):
     #     mock_find_one.return_value = {'target_weight': 70.0}

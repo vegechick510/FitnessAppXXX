@@ -272,6 +272,23 @@ def register():
 
 @app.route('/recommend_workout', methods=['GET', 'POST'])
 def recommend_workout():
+    """
+    Handles workout level recommendations based on user selection.
+
+    This route supports both GET and POST requests:
+    
+    - On a GET request, it renders the 'recommend_workout.html' template,
+      which contains a form for the user to select their desired workout level.
+    
+    - On a POST request, it processes the submitted form:
+        - Retrieves the selected workout level using `request.form.get('selectedLevel')`.
+        - If the selected level is 'Beginner', the user is redirected to the 'beginner' route.
+        - For any other selection (presumably 'Advanced'), the user is redirected to the 'advanced' route.
+    
+    Returns:
+        - On GET: Renders the 'recommend_workout.html' template.
+        - On POST: Redirects the user to the corresponding workout level page based on their selection.
+    """
     if request.method == 'POST':
         # Handle form submission for level
         selected_level = request.form.get('selectedLevel')
@@ -285,6 +302,17 @@ def recommend_workout():
 
 @app.route('/beginner', methods=['GET', 'POST'])
 def beginner():
+    """
+    Handles the '/beginner' route, allowing users to select their primary muscle group for beginner workout recommendations.
+
+    On GET requests, it renders the 'beginner.html' template with a list of primary muscles to select.
+    On POST requests, it updates the selected primary muscle based on user input from the form.
+    The selected primary muscle is stored in a cookie for future reference.
+
+    Returns:
+        - On GET: Renders 'beginner.html' with primary muscle options and the selected primary muscle from cookies.
+        - On POST: Redirects to 'recommend_exercises' and sets a cookie with the selected primary muscle.
+    """
     primary_muscles = ["Chest", "Biceps", "Abdominals", "Quadriceps", "Middle Back", "Glutes", "Hamstrings", "Calves "]
     selected_primary_muscle = request.cookies.get('selectedPrimaryMuscle')
     if request.method == 'POST':
@@ -300,6 +328,17 @@ def beginner():
 
 @app.route('/advanced', methods=['GET', 'POST'])
 def advanced():
+    """
+    Handles the '/advanced' route, allowing users to select their primary muscle group for advanced workouts.
+
+    On GET requests, it renders the 'advanced.html' template with a comprehensive list of primary muscles.
+    On POST requests, it updates the selected primary muscle based on user input from the form.
+    The selected primary muscle is stored in a cookie for future reference.
+
+    Returns:
+        - On GET: Renders 'advanced.html' with primary muscle options and the selected primary muscle from cookies.
+        - On POST: Redirects to 'recommend_exercises' and sets a cookie with the selected primary muscle.
+    """
     primary_muscles = ["Neck", "Shoulders", "Chest", "Biceps", "Forearms", "Abdominals", "Quadriceps", "Adductors", "Calves",
                        "Traps", "Triceps", "Lats", "Middle Back", "Lower Back", "Abductors", "Glutes", "Hamstrings", "Calves "]
     selected_primary_muscle = request.cookies.get('selectedPrimaryMuscle')
@@ -316,6 +355,16 @@ def advanced():
 
 @app.route('/recommend', methods=['GET', 'POST'])
 def recommend_exercises():
+    """
+    Handles the '/recommend' route to provide exercise recommendations based on user input.
+
+    On POST requests, it processes user input, retrieves the selected primary muscle from cookies,
+    and computes recommendations using TF-IDF and cosine similarity.
+
+    Returns:
+        - On POST: Renders 'recommendations.html' with a list of recommended exercises based on user preferences.
+        - On GET: Renders 'recommendations.html' without recommendations, preparing for user input.
+    """
     exercise_data = []
     user_input = {}
     selected_primary_muscle= ""
@@ -366,6 +415,15 @@ def recommend_exercises():
 
 @app.route('/more_recommendations', methods=['GET', 'POST'])
 def more_recommendations():
+    """
+    Handles the '/more_recommendations' route to provide additional exercise recommendations based on user input.
+
+    On POST requests, it processes user input and computes further recommendations using cosine similarity.
+
+    Returns:
+        - On POST: Renders 'more_recommendations.html' with additional exercise recommendations based on user preferences.
+        - On GET: Renders 'more_recommendations.html' without recommendations, preparing for user input.
+    """
     exercise_data = []
     user_input = {}
     selected_primary_muscle = ""

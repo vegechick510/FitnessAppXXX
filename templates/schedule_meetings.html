@@ -1,5 +1,7 @@
 {% extends "coach_layout.html" %}
 
+{% block title %}Schedule a Meeting{% endblock %}
+
 {% block content %}
 <main role="main" class="container mt-5">
   <h1 class="text-center text-white mb-4">Schedule a Meeting</h1>
@@ -32,4 +34,41 @@
     <button type="submit" class="btn btn-primary mt-3">Schedule Meeting</button>
   </form>
 </main>
+
+<footer class="bg-dark text-white pt-4 pb-4 mt-5">
+  <div class="container text-center text-md-left">
+    <div class="row">
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">BURNOUT</h5>
+        <p class="small">Turning excuses into results...</p>
+      </div>
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h5>
+        <p><i class="fas fa-home mr-3"></i> Raleigh, NC 27606, US</p>
+        <p><i class="fas fa-envelope mr-3"></i> burnoutapp@example.com</p>
+        <p><i class="fas fa-phone mr-3"></i> +1 (919) 555-5555</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Sticky footer styles */
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #343a40; /* Dark background */
+    color: white; /* Light text for readability */
+  }
+
+  main.container {
+    flex: 1;
+  }
+
+  footer {
+    margin-top: auto;
+  }
+</style>
 {% endblock %}

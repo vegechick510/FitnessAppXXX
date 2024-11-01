@@ -38,7 +38,7 @@
       </a>
     </div>
 
-    <!-- Sections for Coach Actions -->
+    <!-- Coach Actions Section -->
     <div class="row">
       <!-- Schedule Meeting Card -->
       <div class="col-md-4 mb-4">
@@ -77,10 +77,77 @@
       </div>
     </div>
 
+    <!-- Workout Streak Card -->
+    <div class="container site-section" id="workout-streak">
+      <a href="{{ url_for('update_streak') }}" style="text-decoration: none;">
+        <div class="card workout-card"
+          style="width: 400px; margin: auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); text-align: center; background-color: #2a2a2a; color: white;">
+          <div class="card-body">
+            <h4 class="card-title text-white">Workout Streak</h4>
+            <p class="card-text" style="color: rgba(255, 255, 255, 0.7);">
+              Keep your streak going strong! Track how many days you've worked out in a row.
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Upcoming Meetings Section -->
+    <div class="container mt-5">
+      <h4 class="text-white">Upcoming Meetings</h4>
+      {% if upcoming_meetings %}
+        <ul class="list-group">
+          {% for meeting in upcoming_meetings %}
+            <li class="list-group-item bg-dark text-white">
+              <strong>Date:</strong> {{ meeting.date }} <br>
+              <strong>Time:</strong> {{ meeting.time }} <br>
+              <strong>Student ID:</strong> {{ meeting.student_id }} <br>
+              <strong>Meeting Link:</strong> <a href="{{ meeting.link }}" class="text-info" target="_blank">Join Meeting</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">No upcoming meetings scheduled.</p>
+      {% endif %}
+    </div>
+
+    <!-- Popular Workouts Section -->
+    <div class="container site-section mt-5" id="yoga">
+      <h2 style="color: white"><strong>Must Try Workouts</strong></h2>
+      <div class="row" style="margin-top: 20px">
+        <div class="col-4">
+          <div class="card" style="width: 325px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); text-align: center;">
+            <a href="{{ url_for('walk') }}"><img class="img-thumbnail" src="../static/img/walk.jpg" /></a>
+            <div class="card-body">
+              <h4 class="card-title">Walk Fitness</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 325px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); text-align: center;">
+            <a href="{{ url_for('dance') }}"><img class="img-thumbnail" src="../static/img/R22.jpg" /></a>
+            <div class="card-body">
+              <h4 class="card-title">Dance Fitness</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 325px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); text-align: center;">
+            <a href="{{ url_for('hrx') }}"><img class="img-thumbnail" src="../static/img/R23.jpg" /></a>
+            <div class="card-body">
+              <h4 class="card-title">HRX Fitness</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
   {% endblock %}
 </body>
 </html>

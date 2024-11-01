@@ -202,8 +202,13 @@ def register():
         form = RegistrationForm()
         
         # Fetch all coaches and create a list for the dropdown display
-        coaches = mongo.db.profile.find({"user_type": "coach"})
-        coach_list = [{"name": coach["name"], "specialization": coach["specialization"]} for coach in coaches]
+        try:
+            coaches = mongo.db.profile.find({"user_type": "coach"})
+            coach_list = [{"name": coach.get("name"), "specialization": coach.get("specialization")} for coach in coaches]
+            print("Fetched coaches:", coach_list)  # Debugging line
+        except Exception as e:
+            print(f"Error fetching coaches: {e}")
+            coach_list = []
         
         # Create choices for the form field that only stores the coach's name
         coach_choices = [(coach["name"], f"{coach['name']} - {coach['specialization']}") for coach in coach_list]
@@ -1308,6 +1313,10 @@ def blog():
     return render_template('blog.html')
 
 
+from flask import render_template, session, redirect, url_for, request, flash
+from datetime import datetime
+from bson.objectid import ObjectId
+
 @app.route("/coach_dashboard", methods=["GET"])
 def coach_dashboard():
     if not session.get("email"):
@@ -1317,15 +1326,20 @@ def coach_dashboard():
     coach_data = mongo.db.user.find_one({"email": coach_email})
     students = list(mongo.db.user.find({"user_type": "student", "coach": coach_data["name"]}))
     form_reviews = list(mongo.db.form_reviews.find({"coach_email": coach_email}))
-    meetings = list(mongo.db.meetings.find({"coach_email": coach_email}))
     reminders = list(mongo.db.reminders.find({"coach_email": coach_email}))
 
+    # Retrieve upcoming meetings, limited to next 5, sorted by date
+    upcoming_meetings = list(mongo.db.meetings.find({
+        "coach_email": coach_email
+    }).sort("created_at", -1).limit(5))
+    
+    print(upcoming_meetings)
     return render_template(
         "coach_dashboard.html",
         title="Coach Dashboard",
         students=students,
         form_reviews=form_reviews,
-        meetings=meetings,
+        upcoming_meetings=upcoming_meetings,
         reminders=reminders,
         coach=coach_data
     )

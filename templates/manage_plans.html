@@ -6,13 +6,30 @@
   <title>Manage Plans</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
+    /* Flexbox layout for sticky footer */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    main {
+      flex-grow: 1;
+    }
+
     .step-container {
       border: 1px solid #ddd;
       padding: 15px;
       margin-bottom: 15px;
       border-radius: 5px;
     }
+
     label {
+      color: white;
+    }
+
+    h1, h2, h4, h5 {
       color: white;
     }
   </style>
@@ -23,8 +40,7 @@
   {% block content %}
 
   <main role="main" class="container mt-5">
-
-    <h1 class="text-center mb-4" style="color: white;">Manage Plans</h1>
+    <h1 class="text-center mb-4" style="color: white;">Manage Specialized Workout Plans</h1>
 
     <!-- Plan Creation and Editing Form -->
     <form method="POST" action="{{ url_for('manage_plans') }}" onsubmit="return validateForm()">
@@ -54,12 +70,12 @@
       </div>
 
       <hr>
-      <h4 style="color: white;">Steps</h4>
+      <h4 style="color: white;">Routine</h4>
       <div id="steps-container">
         {% if edit_plan and edit_plan.steps %}
           {% for step in edit_plan.steps %}
           <div class="step-container">
-            <h5 style="color: white;">Step {{ loop.index }}</h5>
+            <h5>Step {{ loop.index }}</h5>
             <div class="form-group">
               <label for="step_description_{{ loop.index }}">Description</label>
               <textarea class="form-control" name="step_description_{{ loop.index }}" required>{{ step.description }}</textarea>
@@ -98,7 +114,7 @@
     <hr>
 
     <!-- All Plans Section -->
-    <h2 class="mt-5" style="color: white;">All Plans</h2>
+    <h2 style="color: white;" class="mt-5">All Workout Plans</h2>
     <ul class="list-group mb-4">
       {% for plan in plans %}
       <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -206,6 +222,6 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</body>
 {% endblock %}
+</body>
 </html>

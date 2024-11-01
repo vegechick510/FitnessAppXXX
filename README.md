@@ -291,9 +291,9 @@ https://github.com/token1029/FitnessApp
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/Itaru-Shin"><img src="https://avatars.githubusercontent.com/u/143905092?v=4" width="75px;" alt=""/><br /><sub><b>Shardul Khare</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/KingBanshou"><img src="https://avatars.githubusercontent.com/u/143905049?v=4" width="75px;" alt=""/><br /><sub><b>Shruti Dhond</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/token1029"><img src="https://avatars.githubusercontent.com/u/38797209?v=4" width="75px;" alt=""/><br /><sub><b>Pranav Manbhekar</b></sub></a></td>
+    <td align="center"><a href="https://github.com/LuDraa"><img src="https://avatars.githubusercontent.com/u/143905092?v=4" width="75px;" alt=""/><br /><sub><b>Shardul Khare</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/shrutid02"><img src="https://avatars.githubusercontent.com/u/143905049?v=4" width="75px;" alt=""/><br /><sub><b>Shruti Dhond</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/pranavman11"><img src="https://avatars.githubusercontent.com/u/38797209?v=4" width="75px;" alt=""/><br /><sub><b>Pranav Manbhekar</b></sub></a></td>
   </tr>
 </table>
 

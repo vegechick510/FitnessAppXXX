@@ -1697,10 +1697,8 @@ def coach_profile():
         return redirect(url_for("login"))
 
     coach_email = session["email"]
-    # Retrieve the coach profile
     coach_data = mongo.db.profile.find_one({"email": coach_email})
 
-    # Check if the coach_data exists
     if not coach_data:
         flash("Coach profile not found.", "error")
         return redirect(url_for("login"))

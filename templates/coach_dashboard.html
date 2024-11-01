@@ -38,45 +38,6 @@
       </a>
     </div>
 
-    <!-- Coach Actions Section -->
-    <div class="row">
-      <!-- Schedule Meeting Card -->
-      <div class="col-md-4 mb-4">
-        <div class="card text-center" style="width: 100%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
-          <img src="../static/img/meeting.jpg" class="card-img-top" alt="Schedule Meeting">
-          <div class="card-body">
-            <h5 class="card-title">Schedule a Meeting</h5>
-            <p class="card-text">Arrange one-on-one meetings with your students.</p>
-            <a href="{{ url_for('schedule_meeting') }}" class="btn btn-primary">Schedule Now</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- View Feedback Card -->
-      <div class="col-md-4 mb-4">
-        <div class="card text-center" style="width: 100%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
-          <img src="../static/img/feedback.jpg" class="card-img-top" alt="View Feedback">
-          <div class="card-body">
-            <h5 class="card-title">Submit Feedback</h5>
-            <p class="card-text">Provide feedback on students' progress and submissions.</p>
-            <a href="{{ url_for('submit_feedback') }}" class="btn btn-primary">Submit Feedback</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Set Reminder Card -->
-      <div class="col-md-4 mb-4">
-        <div class="card text-center" style="width: 100%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
-          <img src="../static/img/reminder.jpg" class="card-img-top" alt="Set Reminder">
-          <div class="card-body">
-            <h5 class="card-title">Set a Reminder</h5>
-            <p class="card-text">Keep track of important tasks and reminders.</p>
-            <a href="{{ url_for('set_reminder') }}" class="btn btn-primary">Set Reminder</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Workout Streak Card -->
     <div class="container site-section" id="workout-streak">
       <a href="{{ url_for('update_streak') }}" style="text-decoration: none;">

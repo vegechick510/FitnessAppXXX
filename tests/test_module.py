@@ -19,6 +19,7 @@ from application import app
 from flask import session
 from unittest.mock import patch, MagicMock
 from unittest import TestCase
+from datetime import datetime
 import numpy as np
 from bson.objectid import ObjectId, InvalidId 
 
@@ -369,8 +370,47 @@ class TestApplication(unittest.TestCase):
             response = client.post('/progress_monitor', data=form_data, follow_redirects=True)
 
             self.assertEqual(response.status_code, 200)
-            self.assertIn(b'Waist must be between 50 and 150 ', response.data)  
+            self.assertIn(b'Waist must be between 50 and 150 ', response.data) 
+    
+    def test_progress_monitor_post_missing_fields(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            form_data = {
+                'current_weight': '',  
+                'goal_weight': '65',
+                'waist': '75',
+                'hips': '30',
+                'chest': '75',
+                'notes': 'Hips measurements not within range'
+            }
 
+            response = client.post('/progress_monitor', data=form_data, follow_redirects=True)
+
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b'Hips must be between 70 and 160 cm', response.data) 
+
+    def test_progress_monitor_post_missing_fields(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            form_data = {
+                'current_weight': '',  
+                'goal_weight': '65',
+                'waist': '75',
+                'hips': '75',
+                'chest': '30',
+                'notes': 'Hips measurements not within range'
+            }
+
+            response = client.post('/progress_monitor', data=form_data, follow_redirects=True)
+
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b'Chest must be between 70 and 150 cm', response.data) 
+
+    
 
     def test_progress_history(self):
 
@@ -395,8 +435,27 @@ class TestApplication(unittest.TestCase):
             response = client.post('/progress_history', follow_redirects=True)
 
             self.assertEqual(response.status_code, 405)  
-
     
+    @patch('application.collection')
+    def test_progress_history_no_entries(self, mock_db):
+        """Test the /progress_history page when there are no entries for the user."""
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            # Mock an empty response from the database
+            mock_db.db.progress.find.return_value = []
+            
+            response = client.get('/progress_history')
+            self.assertEqual(response.status_code, 200)
+
+    def test_progress_history_redirect_logged_out(self):
+        """Test that a logged-out user is redirected to the home page when accessing /progress_history."""
+        with self.app as client:
+            response = client.get('/progress_history', follow_redirects=True)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b'Log In', response.data)  # Check if redirected to the login page
+
     def test_wellness_log(self):
         with self.app as client:
             with client.session_transaction() as sess:
@@ -417,6 +476,12 @@ class TestApplication(unittest.TestCase):
 
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'Log In', response.data)  
+
+    def test_update_streak_no_session(self):
+        with self.app as client:
+            response = client.get('/update_strea', follow_redirects=True)
+
+            self.assertEqual(response.status_code, 404)
 
     @patch('application.collection')
     def test_update_streak_get_with_session(self, mock_db):

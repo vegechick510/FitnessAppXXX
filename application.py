@@ -196,24 +196,32 @@ def logout():
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     now = datetime.now().strftime('%Y-%m-%d')
+    print("Inside register route")  # Debugging
 
     if not session.get('email'):
         form = RegistrationForm()
         
-        # Fetch all coaches and create a list for the dropdown display
+        # Fetch all coaches for the dropdown display
         try:
             coaches = mongo.db.profile.find({"user_type": "coach"})
             coach_list = [{"name": coach.get("name"), "specialization": coach.get("specialization")} for coach in coaches]
-            print("Fetched coaches:", coach_list)  # Debugging line
         except Exception as e:
             print(f"Error fetching coaches: {e}")
             coach_list = []
-        
-        # Create choices for the form field that only stores the coach's name
+
         coach_choices = [(coach["name"], f"{coach['name']} - {coach['specialization']}") for coach in coach_list]
         form.coach.choices = coach_choices
-
+        
+        print("Request method:", request.method)  # Debugging
+        print("Form validate_on_submit result:", form.validate_on_submit())  # Debugging
+        print("Form Data", form.data )
         if form.validate_on_submit() and request.method == 'POST':
+            print("Form validated successfully")  # Debugging
+            # Check for existing user to prevent duplicates
+            if mongo.db.user.find_one({"email": form.email.data}):
+                flash("Email already exists. Please try logging in.", "danger")
+                return redirect(url_for('register'))
+            
             # Common fields for both coach and student
             username = form.username.data
             email = form.email.data
@@ -229,8 +237,8 @@ def register():
                 'date': now
             }
             mongo.db.user.insert_one(user_data)
-            
-            # Profile data
+
+            # Prepare profile data for insertion, clearing unnecessary fields
             profile_data = {
                 'name': username,
                 'user_type': user_type,
@@ -239,16 +247,23 @@ def register():
                 'height': form.height.data if user_type == 'student' else None,
                 'goal': form.goal.data if user_type == 'student' else None,
                 'target_weight': form.target_weight.data if user_type == 'student' else None,
-                'coach': form.coach.data if user_type == 'student' else None,  # Store only the coach name
+                'coach': form.coach.data if user_type == 'student' else None,
                 'specialization': form.specialization.data if user_type == 'coach' else None,
                 'experience': form.experience.data if user_type == 'coach' else None,
                 'date': now
             }
             mongo.db.profile.insert_one(profile_data)
-            
+
             flash(f'Account created for {username}!', 'success')
             return redirect(url_for('home'))
-
+        
+        else:
+            # Debug: Print form errors if validation fails
+            print("Form submission failed.")
+            if form.errors:
+                print("Form validation errors:", form.errors)
+            print("Form data received:", request.form)  # Debugging
+    
     else:
         return redirect(url_for('home'))
 

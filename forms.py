@@ -60,28 +60,39 @@ class RegistrationForm(FlaskForm):
         """Override validate to conditionally apply field validation based on user_type."""
         rv = FlaskForm.validate(self)
         if not rv:
+            print("Base validation failed.")
             return False
 
+        # Debugging user type
+        print("User type data:", self.user_type.data)
+
         if self.user_type.data == 'student':
-            if not self.weight.data or not self.height.data or not self.goal.data or not self.target_weight.data or not self.coach.data:
-                if not self.weight.data:
-                    self.weight.errors.append('Weight is required for students.')
-                if not self.height.data:
-                    self.height.errors.append('Height is required for students.')
-                if not self.goal.data:
-                    self.goal.errors.append('Goal is required for students.')
-                if not self.target_weight.data:
-                    self.target_weight.errors.append('Target Weight is required for students.')
-                if not self.coach.data:
-                    self.coach.errors.append('Coach selection is required for students.')
+            print("Validating student-specific fields")
+            # Check if all student-specific fields are filled
+            required_fields = [self.weight, self.height, self.goal, self.target_weight, self.coach]
+            missing_fields = [field.label.text for field in required_fields if not field.data]
+            
+            if missing_fields:
+                for field in required_fields:
+                    if not field.data:
+                        field.errors.append(f"{field.label.text} is required for students.")
+                print("Missing fields for student:", missing_fields)
                 return False
 
-        if self.user_type.data == 'coach':
+        elif self.user_type.data == 'coach':
+            print("Validating coach-specific fields")
+            # Check if all coach-specific fields are filled
             if not self.specialization.data:
                 self.specialization.errors.append('Specialization is required for coaches.')
             if self.experience.data is None or self.experience.data < 0:
                 self.experience.errors.append('Experience is required for coaches and must be a non-negative number.')
-            return bool(self.specialization.data and self.experience.data is not None and self.experience.data >= 0)
+            
+            if self.specialization.errors or self.experience.errors:
+                print("Coach field errors:", self.specialization.errors, self.experience.errors)
+                return False
+
+        return True
+
 
 
 class LoginForm(FlaskForm):

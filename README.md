@@ -7,13 +7,13 @@ https://www.youtube.com/watch?v=e3Jg1mSQiNs
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14027020.svg)](https://doi.org/10.5281/zenodo.14027020)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/VibhavDeo/FitnessApp/main)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/SEFall24-Team61/FitnessAppNew/main)
 [![Python application](https://github.com/VibhavDeo/FitnessApp/actions/workflows/python-app.yml/badge.svg)](https://github.com/VibhavDeo/FitnessApp/actions/workflows/python-app.yml)
 [![Lint](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/syntax_checker.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/syntax_checker.yml)
 [![Pylint](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/pylint.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/pylint.yml)
 [![Tests On Push](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/unit_test.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/unit_test.yml)
 [![Code Coverage](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/code_cov.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/code_cov.yml)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/SEFall24-Team61/FitnessAppNew)
+![GitHub code size in bytes](https://img.shields.io/github/repo-size/SEFall24-Team61/FitnessAppNew)
 
 <!--Badges-->
 <!-- Forks -->
@@ -91,6 +91,13 @@ https://github.com/user-attachments/assets/23fbcd81-6461-4fec-9066-f7af804c861f
 
 11. **Reviews:** Users can leave reviews and feedback on the fitness programs they've participated in, sharing their experiences with the community and helping others make informed choices.
 
+12. **Personalized Feedback and Check-Ins:** Coaches can design tailored workout plans that align with users' goals (e.g., weight loss, strength-building) and adjust difficulty as users improve, ensuring steady progress.
+
+13. **Detailed Instructions and Exercise Alternatives:** Users receive regular check-ins and feedback from coaches based on their performance metrics, keeping routines adaptable and responsive to user needs.
+
+14. **Goal-Based and Progressive Plans:** Each plan includes clear exercise instructions, videos, and alternative exercises for users without specific equipment, making workouts accessible and effective.
+
+
 This document serves as a comprehensive reference point for users, giving them insight into the functionalities of BurnOut and encouraging them to participate in its development as an open-source software project. As an open-source project, the community can contribute additional features and enhancements to make BurnOut even more robust and tailored to individual needs before its official market release. Furthermore, it assists developers by providing a clear understanding of the codebase and serves as a valuable resource for the project's continued development.
 
 # Table of Contents
@@ -112,6 +119,9 @@ This document serves as a comprehensive reference point for users, giving them i
   - [View User Profile](#view-user-profile)
   - [View User Profile 2.0](#view-user-profile-2.0)
   - [Update Your Profile](#update-your-profile)
+  - [Signup As Coach](#signup-as-coach)
+  - [Get Personalized Workouts](#get-personalized-workouts)
+  - [Track Student Progress](#track-student-progress)
 - [Steps for Execution:](#steps-for-execution)
 - [Source Code](#source-code)
 - [Future Scope](#future-scope)
@@ -129,6 +139,8 @@ This document serves as a comprehensive reference point for users, giving them i
 - Enrollment into numerous yoga and workout sessions.
 - Daily automated reminders for working out and exercising.
 - Accessible to everyone and easy to use.
+- Register as a coach and guide students.
+- Get personalized workouts and diet plan from coaches.
 
 # TechStack Used for the Development of Project
 
@@ -145,75 +157,87 @@ This document serves as a comprehensive reference point for users, giving them i
 
 ## Login
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/loginPic.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/loginPic.PNG>
 
 ## Dashboard
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/dashboardPic.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/dashboardPic.PNG>
 
 ## Excercise Section
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/excercisePic.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/excercisePic.PNG>
 
 ## Must Try Workout Section
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/musttryworkoutPic.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/musttryworkoutPic.PNG>
 
 ## Popular Workout Section
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/popularworkoutPic.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/popularworkoutPic.PNG>
 
 ## Spirit Curation Section
 
-<img src=https://github.com/token1029/FitnessApp/blob/main/static/img/spirit.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/spirit.PNG>
 
 ## Enter Calories
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/historyPic.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/historyPic.PNG>
 
 ## Enter water intakes
 
-<img src=https://github.com/token1029/FitnessApp/blob/main/static/img/water.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/water.PNG>
 
 ## Blog
 
-<img src=https://github.com/token1029/FitnessApp/blob/main/static/img/blog.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/blog.PNG>
 
 ## Shop workout gears
 
-<img src=https://github.com/token1029/FitnessApp/blob/main/static/img/shop.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/shop.PNG>
 
 ## Check History
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/caloriesPic.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/caloriesPic.PNG>
 
 ## Add Friends
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/friendsPic.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/friendsPic.PNG>
 
 ## Calculate BMI
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/bmiPic.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/bmiPic.PNG>
 
 ## Add an Excercise to Favourites
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/favPic.PNG>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/favPic.PNG>
 
 ## Submit a Review
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/reviewPic.jpeg>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/reviewPic.jpeg>
 
 ## View User Profile
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/profile1.0.jpeg>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/profile1.0.jpeg>
 
 ## View User Profile 2.0
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/profile2.0.jpeg>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/profile2.0.jpeg>
 
 ## Update Your Profile
 
-<img src=https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/updateProfile.jpeg>
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/updateProfile.jpeg>
+
+## Signup As Coach
+
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/new_signup.png>
+
+## Get Personalized Workouts
+
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/personalized_workouts.png>
+
+## Track Student Progress
+
+<img src=https://github.com/SEFall24-Team61/FitnessAppNew/tree/main/static/img/student_progress.png>
 
 # Steps for execution
 
@@ -268,21 +292,20 @@ https://github.com/token1029/FitnessApp
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/WeizhiGao"><img src="https://avatars.githubusercontent.com/u/57804858?v=4" width="75px;" alt=""/><br /><sub><b>Weizhi Gao</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/Itaru-Shin"><img src="https://avatars.githubusercontent.com/u/143905092?v=4" width="75px;" alt=""/><br /><sub><b>Fucheng Guo</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/KingBanshou"><img src="https://avatars.githubusercontent.com/u/143905049?v=4" width="75px;" alt=""/><br /><sub><b>Zikang Wang</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/token1029"><img src="https://avatars.githubusercontent.com/u/38797209?v=4" width="75px;" alt=""/><br /><sub><b>Dongming Wu</b></sub></a></td>
+    <td align="center"><a href="https://github.com/Itaru-Shin"><img src="https://avatars.githubusercontent.com/u/143905092?v=4" width="75px;" alt=""/><br /><sub><b>Shardul Khare</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/KingBanshou"><img src="https://avatars.githubusercontent.com/u/143905049?v=4" width="75px;" alt=""/><br /><sub><b>Shruti Dhond</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/token1029"><img src="https://avatars.githubusercontent.com/u/38797209?v=4" width="75px;" alt=""/><br /><sub><b>Pranav Manbhekar</b></sub></a></td>
   </tr>
 </table>
 
 # Contribution
 
-Please refer the [CONTRIBUTING.md](https://github.com/token1029/FitnessApp/blob/main/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
+Please refer the [CONTRIBUTING.md](https://github.com/SEFall24-Team61/FitnessAppNew/blob/main/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
 
   <p align="center">
-    <a href="https://github.com/token1029/FitnessApp/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/SEFall24-Team61/FitnessAppNew/issues/new/choose">Report Bug</a>
     /
-    <a href="https://github.com/token1029/FitnessApp/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/SEFall24-Team61/FitnessAppNew/issues/new/choose">Request Feature</a>
   </p>
 
 # License

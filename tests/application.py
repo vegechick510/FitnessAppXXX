@@ -1,6 +1,6 @@
 
 """
-Copyright (c) 2023 Rajat Chandak, Shubham Saboo, Vibhav Deo, Chinmay Nayak
+Copyright 2024 Shardul Rajesh Khare, Shruti Dhond, Pranav Manbhekar
 This code is licensed under MIT license (see LICENSE for details)
 
 @author: Burnout
@@ -9,7 +9,7 @@ This code is licensed under MIT license (see LICENSE for details)
 This python file is used in and is part of the Burnout project.
 
 For more information about the Burnout project, visit:
-https://github.com/VibhavDeo/FitnessApp
+https://github.com/SEFall24-Team61/FitnessAppNew
 
 """
 

@@ -904,11 +904,31 @@ def dashboard():
     # dashboard() called and displays the list of activities
     # Output: redirected to dashboard.html
     # ##########################
-    exercises = [
-        {"id": 1, "name": "Yoga"},
-        {"id": 2, "name": "Swimming"},
-        ]
-    return render_template('dashboard.html', title='Dashboard', exercises=exercises)
+    email = session.get('email')
+    if email:
+        student = mongo.db.profile.find_one({"email": email})
+
+        if student:
+            print('671ea6c405d47736f9539064' ,student["_id"])
+            student_id = student["_id"]
+            # Fetch the meetings where the student ID matches the profile's _id
+            upcoming_meetings = list(mongo.db.meetings.find({
+                "student_id": str(student["_id"]) # Using the ObjectId directly
+            }).sort("created_at", -1).limit(5))
+            print("upc",upcoming_meetings)
+            # List of exercises (example data)
+            exercises = [
+                {"id": 1, "name": "Yoga"},
+                {"id": 2, "name": "Swimming"},
+            ]
+        else:
+            upcoming_meetings = []
+            exercises = []
+    else:
+        upcoming_meetings = []
+        exercises = []
+
+    return render_template('dashboard.html', title='Dashboard', exercises=exercises, upcoming_meetings = upcoming_meetings)
 
 
 @app.route('/add_favorite', methods=['POST'])

@@ -18,48 +18,70 @@ https://github.com/VibhavDeo/FitnessApp
 # from flask import app
 """Importing modules to create forms"""
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, DecimalField, DateField, TextAreaField, SubmitField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, DecimalField, DateField,FloatField, TextAreaField, SubmitField, IntegerField
 from wtforms.fields.core import DateField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional, NumberRange
 from apps import App
 
 
 class RegistrationForm(FlaskForm):
-    """Form to collect the registration data of the user"""
-    username = StringField('Username',
-                           validators=[DataRequired(), Length(min=2, max=20)])
-    email = StringField('Email',
-                        validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField(
-        'Confirm Password', validators=[
-            DataRequired(), EqualTo('password')])
-    weight = StringField(
-        'Weight', validators=[
-            DataRequired(), Length(
-                min=2, max=20)])
-    height = StringField(
-        'Height', validators=[
-            DataRequired(), Length(
-                min=2, max=20)])
-    goal = StringField(
-        'Goal (Weight Loss/ Muscle Gain)', validators=[
-            DataRequired(), Length(
-                min=2, max=20)])
-    target_weight = StringField(
-        'Target Weight', validators=[
-            DataRequired(), Length(
-                min=2, max=20)])
+    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    user_type = SelectField('User Type', choices=[('', 'Please select user type'), ('student', 'Student'), ('coach', 'Coach')], validators=[DataRequired()])
+
+    
+    # Student-specific fields
+    weight = FloatField('Weight', validators=[Optional(), NumberRange(min=20, max=200)])
+    height = FloatField('Height', validators=[Optional(), NumberRange(min=100, max=250)])
+    goal = StringField('Goal', validators=[Optional(), Length(min=2, max=50)])
+    target_weight = FloatField('Target Weight', validators=[Optional(), NumberRange(min=20, max=200)])
+    coach = SelectField('Coach', choices=[], validators=[Optional()])  # Dropdown for student to select a coach
+    
+    # Coach-specific fields
+    specialization = SelectField(
+        'Specialization', 
+        choices=[
+            ('yoga', 'Yoga'), 
+            ('strength', 'Strength Training'), 
+            ('cardio', 'Cardio'), 
+            ('nutrition', 'Nutrition Coaching'),
+            ('pilates', 'Pilates'),
+            ('crossfit', 'CrossFit')
+        ], 
+        validators=[Optional()],
+    )
+    experience = FloatField('Experience (years)', validators=[Optional(), NumberRange(min=0)])  
+
     submit = SubmitField('Sign Up')
 
-    def validate_email(self, email):
-        """Function to validate the entered email"""
-        app_object = App()
-        mongo = app_object.mongo
+    def validate(self):
+        """Override validate to conditionally apply field validation based on user_type."""
+        rv = FlaskForm.validate(self)
+        if not rv:
+            return False
 
-        temp = mongo.db.user.find_one({'email': email.data}, {'email', 'pwd'})
-        if temp:
-            raise ValidationError('Email already exists!')
+        if self.user_type.data == 'student':
+            if not self.weight.data or not self.height.data or not self.goal.data or not self.target_weight.data or not self.coach.data:
+                if not self.weight.data:
+                    self.weight.errors.append('Weight is required for students.')
+                if not self.height.data:
+                    self.height.errors.append('Height is required for students.')
+                if not self.goal.data:
+                    self.goal.errors.append('Goal is required for students.')
+                if not self.target_weight.data:
+                    self.target_weight.errors.append('Target Weight is required for students.')
+                if not self.coach.data:
+                    self.coach.errors.append('Coach selection is required for students.')
+                return False
+
+        if self.user_type.data == 'coach':
+            if not self.specialization.data:
+                self.specialization.errors.append('Specialization is required for coaches.')
+            if self.experience.data is None or self.experience.data < 0:
+                self.experience.errors.append('Experience is required for coaches and must be a non-negative number.')
+            return bool(self.specialization.data and self.experience.data is not None and self.experience.data >= 0)
 
 
 class LoginForm(FlaskForm):

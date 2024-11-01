@@ -39,18 +39,24 @@ jobs:
           sleep 5
           {
             # Start the test command in the background
-            python -m unittest tests.test_module &
+            echo "Running tests..."
+            python -m unittest tests.test_module > test_output.log 2>&1 &
             test_pid=$!
 
             sleep 60
 
             if ps -p $test_pid > /dev/null; then
               kill $test_pid  # Terminate the background process
-              exit_code=0     # Treat the timeout as a pass
+              if grep -q "FAILED" test_output.log; then
+                exit_code=1        # Fail if any tests failed
+              else
+                exit_code=0
+              fi
             else
               wait $test_pid  # Wait for the process to finish and get the exit code
               exit_code=$?    # Capture the exit code
             fi
 
+            cat test_output.log
             exit $exit_code
           }

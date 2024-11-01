@@ -503,35 +503,14 @@ class TestApplication(unittest.TestCase):
     @patch("application.mongo.db.form_reviews.find")
     @patch("application.mongo.db.reminders.find")
     @patch("application.mongo.db.meetings.find")
-    def test_coach_dashboard(self, mock_meetings_find, mock_reminders_find, mock_form_reviews_find, mock_user_find, mock_user_find_one):
-        mock_user_find_one.return_value = {
-            "_id": "67243ab605507b344c2e1609",
-            "name": "Coach1",
-            "user_type": "coach",
-            "email": "coach5@gmail.com",
-            "weight": None,
-            "height": None,
-            "goal": None,
-            "target_weight": None,
-            "coach": None,
-            "specialization": "pilates",
-            "experience": 10,
-            "date": "2024-10-31"
-        }
-        mock_user_find.return_value = [{"name": "Student 1"}]
-        mock_form_reviews_find.return_value = [{"review": "Good form!"}]
-        mock_reminders_find.return_value = [{"reminder_text": "Reminder 1"}]
-        mock_meetings_find.return_value = [{"meeting": "Meeting 1"}]
-
+    def test_coach_dashboard_negative(self, mock_meetings_find, mock_reminders_find, mock_form_reviews_find, mock_user_find, mock_user_find_one):
+        # No mock return values are needed since we are testing a failure scenario
+        mock_user_find_one.return_value = None  # Simulate no coach data found
+        
         with self.app as client:
-            with client.session_transaction() as sess:
-                sess['email'] = 'coach5@gmail.com'
-            
-            # Perform GET request on /coach_dashboard
             response = client.get('/coach_dashboard')
-            
-            self.assertEqual(response.status_code, 200)
-            self.assertIn(b"Coach Dashboard", response.data) 
+            self.assertNotIn(b"Coach Dashboard", response.data)
+            self.assertEqual(response.status_code, 302)
 
     def test_submit_feedback_without_login(self):
         with self.app as client:

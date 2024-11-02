@@ -81,8 +81,6 @@ https://github.com/user-attachments/assets/23fbcd81-6461-4fec-9066-f7af804c861f
 
 6. **Water Intake:** Users can now record their daiy water intake to keep track of their drinking habits.
 
-7. **Blog:** Introduce the beginner with the fitness and how to make effectively workout plan.
-
 8. **Shop:** Places where user can shop for workout gears.
 
 9. **BMI Calculator:** The newly added BMI (Body Mass Index) calculator helps users understand their current physical health status and aids in setting realistic weight management goals.
@@ -105,20 +103,17 @@ This document serves as a comprehensive reference point for users, giving them i
 - [Why use BurnOut?](#why-use-burnout)
 - [TechStack Used for the Development of Project:](#techstack-used-for-the-development-of-project)
 - [Core Functionalities of the Application:](#core-functionalities)
-  - [Register](#register)
   - [Login](#login)
-  - [Set User Profile](#set-user-profile)
-  - [Enter Calories in and burnt](#enter-calories-in-and-burnt)
+  - [Dashboard](#dashboard)
+  - [Exercise section](#exercise-section)
+  - [Enter Calories](#enter-calories)
   - [Enter Water Intakes](#enter-water-intakes)
-  - [Blog](#blog)
-  - [Shop](#shop)
-  - [Check History](#check-history)
-  - [Adding Friends](#adding-friends)
-  - [Add an Excercise to Favourites](#add-an-excercise-to-favourites)
-  - [Submit a Review](#submit-a-review)
   - [View User Profile](#view-user-profile)
-  - [View User Profile 2.0](#view-user-profile-2.0)
-  - [Update Your Profile](#update-your-profile)
+  - [Progress Monitor](#progress-monitor)
+  - [Wellness Log](#wellness-log)
+  - [Workout Streak](#workout-streak)
+  - [Workout recommender](#workout-recommender)
+  - [Community](#community)
   - [Signup As Coach](#signup-as-coach)
   - [Get Personalized Workouts](#get-personalized-workouts)
   - [Track Student Progress](#track-student-progress)
@@ -151,10 +146,6 @@ This document serves as a comprehensive reference point for users, giving them i
 
 # Core Functionalities of the Application
 
-## Register
-
-<img src="https://raw.githubusercontent.com/VibhavDeo/FitnessApp/main/static/img/registerPic.PNG">
-
 ## Login
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/loginPic.PNG">
@@ -167,10 +158,6 @@ This document serves as a comprehensive reference point for users, giving them i
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/excercisePic.PNG">
 
-## Must Try Workout Section
-
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/musttryworkoutPic.PNG">
-
 ## Enter Calories
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/historyPic.PNG">
@@ -179,29 +166,9 @@ This document serves as a comprehensive reference point for users, giving them i
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/water.PNG">
 
-## Blog
-
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/blog.PNG">
-
-## Shop Workout Gears
-
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/shop.PNG">
-
-## Check History
-
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/caloriesPic.PNG">
-
 ## View User Profile
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/profile1.0.jpeg">
-
-## View User Profile 2.0
-
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/profile2.0.jpeg">
-
-## Update Your Profile
-
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/updateProfile.jpeg">
 
 # #
 # New features added #
@@ -237,6 +204,7 @@ This document serves as a comprehensive reference point for users, giving them i
 ## Track Student Progress
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/student_progress.png">
+
 # Steps for execution
 
 Step 1:
@@ -251,11 +219,11 @@ https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/
 Step 2:
 Git Clone the Repository
 
-    git clone https://github.com/VibhavDeo/FitnessApp.git
+    git clone https://github.com/SEFall24-Team61/FitnessAppNew.git
 
 (OR) Download the .zip file on your local machine
 
-    https://github.com/VibhavDeo/FitnessApp.git
+    https://github.com/SEFall24-Team61/FitnessAppNew.git
 
 Step 3:
 Install the required packages by running the following command in the terminal
@@ -281,7 +249,12 @@ If you get error regarding any of the following packages - pymongo and bson, the
 # Source Code
 
 Link to the repository:
-https://github.com/SEFall24-Team61/FitnessAppNew
+https://github.com/token1029/FitnessApp
+
+## Total code coverage
+
+Stmts -> 1511
+Coverage -> 71%
 
 # Future Scope
 

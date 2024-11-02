@@ -94,6 +94,14 @@ https://github.com/user-attachments/assets/23fbcd81-6461-4fec-9066-f7af804c861f
 13. **Detailed Instructions and Exercise Alternatives:** Users receive regular check-ins and feedback from coaches based on their performance metrics, keeping routines adaptable and responsive to user needs.
 
 14. **Goal-Based and Progressive Plans:** Each plan includes clear exercise instructions, videos, and alternative exercises for users without specific equipment, making workouts accessible and effective.
+    
+16. **Progress Monitoring:** Stay motivated by tracking your fitness journey. Input your measurements daily, review your progress history, and celebrate every milestone along the way.
+    
+18. **Workout Streaks:** Keep the momentum going by logging your workouts each day to maintain a streak. If you miss a day, the streak resets, pushing you to stay consistent and achieve your goals.
+    
+20. **Personalized Workout Recommender:** Get workouts tailored specifically to you. Input your experience level, target muscles, and available equipment, and BurnOut will recommend the most effective exercises, complete with images to guide your form.
+    
+22. **Friends & Community Support:** Connect with friends within the app, accept friend requests, and share your daily progress to support and motivate each other in achieving your fitness goals.
 
 
 This document serves as a comprehensive reference point for users, giving them insight into the functionalities of BurnOut and encouraging them to participate in its development as an open-source software project. As an open-source project, the community can contribute additional features and enhancements to make BurnOut even more robust and tailored to individual needs before its official market release. Furthermore, it assists developers by providing a clear understanding of the codebase and serves as a valuable resource for the project's continued development.

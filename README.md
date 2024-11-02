@@ -191,15 +191,6 @@ This document serves as a comprehensive reference point for users, giving them i
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/caloriesPic.PNG">
 
-## Add Friends
-
-<img width="1162" alt="Screenshot 2024-11-01 at 10 25 30 PM" src="https://github.com/user-attachments/assets/da87baef-d545-407c-81c6-7082ea8876a2">
-
-
-## Calculate BMI
-
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/bmiPic.PNG">
-
 ## View User Profile
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/profile1.0.jpeg">
@@ -211,6 +202,29 @@ This document serves as a comprehensive reference point for users, giving them i
 ## Update Your Profile
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/updateProfile.jpeg">
+
+# #
+# New features added #
+
+## Progress Monitor
+
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/progressMonitorPic.png">
+
+## Wellness Log
+
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/wellnessLogPic.png">
+
+## Workout Streak
+
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/workoutstreakPic.png">
+
+## Workout recommender
+
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/recommenderPic.png">
+
+## Community
+
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/friendsPic.png">
 
 ## Signup As Coach
 
@@ -228,7 +242,11 @@ This document serves as a comprehensive reference point for users, giving them i
 Step 1:
 Install MongoDB using the following link:
 
+Windows:
 https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows
+
+MacOS:
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/
 
 Step 2:
 Git Clone the Repository
@@ -274,6 +292,8 @@ https://github.com/SEFall24-Team61/FitnessAppNew
 **Recipe Suggestions:** Provide a rotating selection of simple, healthy recipes or snacks within the app for users to try based on their fitness goals.
 
 **Customizable Dashboard:** Let users customize their dashboard with their most-used features, like calorie tracking, hydration, workout logs etc.
+
+**Medical History Consideration:** Provide users with option to get recommendations based on their medical history and injuries.
 
 # Team Members
 

@@ -1,6 +1,6 @@
 # Link to new features video:
 
-https://www.youtube.com/watch?v=e3Jg1mSQiNs
+[Link](https://drive.google.com/file/d/1JrFG1_1Hd8auymBR45ZmKW4HuM_TYOi6/view?usp=sharing)
 <br>
 <br>
 
@@ -171,14 +171,6 @@ This document serves as a comprehensive reference point for users, giving them i
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/musttryworkoutPic.PNG">
 
-## Popular Workout Section
-
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/popularworkoutPic.PNG">
-
-## Spirit Curation Section
-
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/spirit.PNG">
-
 ## Enter Calories
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/historyPic.PNG">
@@ -201,19 +193,12 @@ This document serves as a comprehensive reference point for users, giving them i
 
 ## Add Friends
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/friendsPic.PNG">
+<img width="1162" alt="Screenshot 2024-11-01 at 10 25 30 PM" src="https://github.com/user-attachments/assets/da87baef-d545-407c-81c6-7082ea8876a2">
+
 
 ## Calculate BMI
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/bmiPic.PNG">
-
-## Add an Exercise to Favourites
-
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/favPic.PNG">
-
-## Submit a Review
-
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/reviewPic.jpeg">
 
 ## View User Profile
 
@@ -278,7 +263,7 @@ If you get error regarding any of the following packages - pymongo and bson, the
 # Source Code
 
 Link to the repository:
-https://github.com/token1029/FitnessApp
+https://github.com/SEFall24-Team61/FitnessAppNew
 
 # Future Scope
 

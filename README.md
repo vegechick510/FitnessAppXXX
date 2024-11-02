@@ -282,10 +282,13 @@ https://github.com/token1029/FitnessApp
 
 # Future Scope
 
-1. Bug fixes
-2. Show the enrollment lists for all the courses
-3. Email verification for loggin
-4. Use openAI api to enhance bot performance.
+**Goal Setting & Reminders:** Allow users to set specific fitness goals and enable push notifications to remind them of their goals or scheduled workouts.
+
+**Mood Tracker: **Include a mood tracking option so users can log how they feel before or after workouts for better self-awareness.
+
+**Recipe Suggestions:** Provide a rotating selection of simple, healthy recipes or snacks within the app for users to try based on their fitness goals.
+
+**Customizable Dashboard:** Let users customize their dashboard with their most-used features, like calorie tracking, hydration, workout logs etc.
 
 # Team Members
 

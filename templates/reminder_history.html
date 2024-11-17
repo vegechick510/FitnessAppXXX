@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <style>
+    .list-group-item {
+      border-radius: 12px !important;  
+      border: 1px solid white; 
+      padding: 15px; 
+      background-color: white; 
+    }
+    .delete-button {
+      color: white;
+      background-color: red;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+  <h2 class="text-white">Your Reminder History</h2>
+  
+  {% if reminder_data %}
+    <div class="list-group">
+      {% for entry in reminder_data %}
+        <div class="list-group-item mb-4">
+          <h5 class="mb-1">Set Date: {{ entry['set_date'] }}</h5>
+          <p>Reminder Email: {{ entry['reminder_email'] }}</p>
+          <p>Reminder Type: {{ entry['reminder_type']|capitalize}}</p>
+          <p>Current Weight: {{ entry['weight'] }} kg</p>
+          <p>Goal Weight: {{ entry['goal_weight'] }} kg</p>
+          <p>Notes: {{ entry['notes'] }}</p>
+          <form method="POST" action="/delete-reminder/{{ entry['id'] }}">
+            <button class="delete-button" type="submit">Delete</button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No progress entries found.</p>
+  {% endif %}
+</div>
+{% endblock content %}

@@ -631,57 +631,117 @@ def reminders():
     """
     now = datetime.now().strftime('%Y-%m-%d')
     email = session.get('email')
+    try:
+        reminder_type = request.args.get('reminder_type')
+    except:
+        raise ValueError("Reminder type not found")
+    if not reminder_type:
+        reminder_type = 'goal'
+    
+    try:
+        workout_title = request.args.get('workout_title')
+    except:
+        raise ValueError("Workout Plan not found")
+    
+    print("Reminder type:", reminder_type) # Debugging
+    print("Workout title:", workout_title) # Debugging
 
     if email is not None:
         form = ReminderForm()
-        
-        # Fetch all workout plans for the dropdown display
-        try:
-            user_profile = mongo.db.profile.find({"email": email, "user_type": "student"})[0]
-            workout_list = [{"title": workout["title"], "workout": workout} for workout in user_profile["assigned_plans"]]
-            print("User profile:", workout_list)
-        except Exception as e:
-            print(f"Error fetching workouts: {e}")
-            workout_list = []
+        form.reminder_type.data = reminder_type
 
-        workout_choices = [(workout["title"], workout["workout"]) for workout in workout_list]
-        print("Workout list:", workout_choices)
-        form.workout.choices = workout_choices
-        
-        print("Request method:", request.method)  # Debugging
-        print("Form validate_on_submit result:", form.validate_on_submit())  # Debugging
-        print("is_submitted", form.is_submitted())
-        print("validate", form.validate())
-        print("Form Data", form.data )
+        if reminder_type == 'workout':
+            form.workout_title.data = workout_title
+            form.goal_weight.data = 0.0
 
-        if form.validate_on_submit() and request.method == 'POST':
-            reminder_email = form.reminder_email.data
-            reminder_type = form.reminder_type.data
-
-            reminder_data = {
-                'email': email,
-                'reminder_email': reminder_email,
-                'reminder_type': reminder_type,
-                'goal_start_date': form.goal_start_date.data if reminder_type == 'goal' else None,
-                'goal_end_date': form.goal_end_date.data if reminder_type == 'goal' else None,
-                'weight_goal': float(form.weight_goal.data) if reminder_type == 'goal' else None,
-                'remind_time_ahead': form.remind_time_ahead.data if reminder_type == 'workout' else None,
-                'workout': form.workout.data if reminder_type == 'workout' else None
-            }
+            try:
+                user_profile = mongo.db.profile.find({"user_type": "student", "email": email})[0]
+                workout_list = [workout for workout in user_profile["assigned_plans"]]
+            except Exception as e:
+                print(f"Error fetching workout plans: {e}")
+                workout_title_list = []
+            print("Workout list:", workout_list) # Debugging
             
-            mongo.db.reminder.insert_one(reminder_data)
+            workout_title_choices = [(workout["title"], workout["title"]) for workout in workout_list]
+            form.workout_title.choices = workout_title_choices
 
-            flash('Reminder successfully saved', 'success')
-            return redirect(url_for('home'))
 
-        else:
-            print("Form submission failed.")
-            if form.errors:
-                print("Form validation errors:", form.errors)
-            print("Form data received:", request.form)  # Debugging
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                # Retrieve form data
+                reminder_email = form.reminder_email.data
+                weight = float(form.current_weight.data)
+                goal_weight = float(form.goal_weight.data)
+
+                notes = form.notes.data
+
+                existing_entry = mongo.db.remindertest.find_one({'email': email, 'reminder_email':reminder_email, 'reminder_type': reminder_type})
+                if existing_entry:
+                    # Update existing entry
+                    mongo.db.remindertest.update_one(
+                        {'email': email, 'reminder_email':reminder_email},
+                        {'$set': {
+                            'set_date': now, 
+                            'weight': weight,
+                            'goal_weight': goal_weight,
+                            'reminder_type': reminder_type,
+                            'notes': notes,
+                            'workout_title': workout_title
+                        }}
+                    )
+                else:
+                    # Insert new entry
+                    mongo.db.remindertest.insert_one({
+                        'reminder_email': reminder_email,
+                        'set_date': now,
+                        'email': email,
+                        'weight': weight,
+                        'goal_weight': goal_weight,
+                        'reminder_type': reminder_type,
+                        'notes': notes,
+                        'workout_title': workout_title
+                    })
+
+                flash('Progress successfully saved', 'success')
+                print("success")
+                return redirect(url_for('reminders'))
     else:
         return redirect(url_for('home'))
 
+    return render_template('reminders.html', form=form, set_date=now, reminder_type=reminder_type, workout_title=workout_title)
+
+
+@app.route("/reminder_history", methods=['GET'])
+def reminder_history():
+    """
+    Displays the user's progress history page.
+
+    This function retrieves all progress entries for the logged-in user from the 
+    MongoDB 'progress' collection, sorted in descending order by date. The retrieved 
+    entries include data on daily weight, goal weight, measurements, and notes. If 
+    the user is not logged in, they are redirected to the home page.
+
+    Returns:
+        If the user is logged in:
+            - Renders 'progress_history.html' with progress data for the user.
+        If the user is not logged in:
+            - Redirects the user to the home page.
+
+    Context Variables:
+        progress_data: List of dictionaries, each representing a progress entry 
+                       for the user, sorted from the most recent to oldest entry.
+    """
+    email = session.get('email')
+    
+    if email is not None:
+        reminder_entries = mongo.db.remindertest.find({'email': email}).sort("date", -1)
+        
+        reminder_data = list(reminder_entries)
+        
+        return render_template('reminder_history.html', reminder_data=reminder_data)
+    else:
+        return redirect(url_for('home'))
+    
     
 @app.route("/wellness_log", methods=['GET', 'POST'])
 def wellness_log():

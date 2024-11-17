@@ -94,59 +94,6 @@ class RegistrationForm(FlaskForm):
         return True
 
 
-
-class ReminderForm(FlaskForm):
-    date = DateField('Date', format='%Y-%m-%d', validators=[Optional()])
-    reminder_email = StringField('Reminder Email', validators=[Optional(), Email()])
-    reminder_type = SelectField('Reminder for', choices=[('', 'Please select reminder for goals or workouts.'), ('goal', 'Goal'), ('workout', 'Workout')], validators=[Optional()])
-
-    # Goal-specific fields
-    goal_start_date = DateField('Goal Start Date', format='%Y-%m-%d', validators=[Optional()])
-    goal_end_date = DateField('Goal End Date', format='%Y-%m-%d', validators=[Optional()])
-    weight_goal = DecimalField('Weight Goal (kg)', validators=[Optional(), NumberRange(min=40, max=500, message="Weight Goal must be between 40 and 500 kg")])
-
-    # Workout-specific fields
-    workout = SelectField('Workout', choices=[], validators=[Optional()]) 
-    remind_time_ahead = IntegerField('Remind Time Ahead (hours)', validators=[Optional(), NumberRange(min=0, max=24, message="Remind Time Ahead must be between 0 and 24 hours")])
-    
-    submit = SubmitField('Set Reminder')
-    def validate(self):
-        """Override validate to conditionally apply field validation based on user_type."""
-        rv = FlaskForm.validate(self)
-        if not rv:
-            print("Base validation failed.")
-            return False
-
-        # Debugging user type
-        print("User type data:", self.user_type.data)
-
-        if self.reminder_type.data == 'goal':
-            required_fields = [self.goal_start_date, self.goal_end_date, self.weight_goal]
-            missing_fields = [field.label.text for field in required_fields if not field.data]
-            
-            if missing_fields:
-                for field in required_fields:
-                    if not field.data:
-                        field.errors.append(f"{field.label.text} is required for setting a goal reminder.")
-                print("Missing fields for student:", missing_fields)
-                return False
-
-        elif self.reminder_type.data == 'workout':
-            print("Validating coach-specific fields")
-            # Check if all coach-specific fields are filled
-            required_fields = [self.workout, self.remind_time_ahead]
-            missing_fields = [field.label.text for field in required_fields if not field.data]
-
-            if missing_fields:
-                for field in required_fields:
-                    if not field.data:
-                        field.errors.append(f"{field.label.text} is required for setting a workout reminder.")
-                print("Missing fields for coach:", missing_fields)
-                return False
-        return True
-    
-
-
 class LoginForm(FlaskForm):
     """Login form to log in to the application"""
     email = StringField('Email',
@@ -194,6 +141,29 @@ class ProgressForm(FlaskForm):
     notes = TextAreaField('Notes', validators=[Optional()])
     
     submit = SubmitField('Submit')
+
+
+class ReminderForm(FlaskForm):
+    # Weight
+    reminder_email = StringField('Reminder Email', validators=[Optional(), Email()])
+    set_date = DateField('Set Date', format='%Y-%m-%d', validators=[Optional()])
+    current_weight = DecimalField('Current Weight (kg)', validators=[Optional(), NumberRange(min=0, max=500, message="Current Weight must be between 0 and 500 kg")])
+
+    reminder_type = SelectField('Reminder Type', choices=[('goal', 'Goal'), ('workout', 'Workout')], validators=[DataRequired()])
+
+    # Goal-specific fields
+    goal_weight = DecimalField('Goal Weight (kg)', validators=[Optional(), NumberRange(min=0, max=500, message="Goal Weight must be between 0 and 500 kg")])
+
+    # Workout-specific fields
+    # workout_title = StringField('Workout Plan', validators=[Optional()])
+    workout_title = SelectField('Workout Plan', choices=[], validators=[Optional()])  # Dropdown for student to select a coach
+
+
+    # Additional Notes
+    notes = TextAreaField('Notes', validators=[Optional()])
+    
+    submit = SubmitField('Submit')
+
 
 class UserProfileForm(FlaskForm):
     """Form to input user details to store their height, weight, goal and target weight"""

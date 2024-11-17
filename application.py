@@ -33,6 +33,7 @@ import time
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
+from flask_wtf import FlaskForm
 
 app = Flask(__name__, template_folder='templates', static_url_path='/static')
 app.secret_key = 'secret'
@@ -637,59 +638,47 @@ def reminders():
         # Fetch all workout plans for the dropdown display
         try:
             user_profile = mongo.db.profile.find({"email": email, "user_type": "student"})[0]
-            # print("User profile:", user_profile)
+            workout_list = [{"title": workout["title"], "workout": workout} for workout in user_profile["assigned_plans"]]
+            print("User profile:", workout_list)
         except Exception as e:
             print(f"Error fetching workouts: {e}")
             workout_list = []
 
-        workout_choices = [workout["title"] for workout in user_profile["assigned_plans"]]
+        workout_choices = [(workout["title"], workout["workout"]) for workout in workout_list]
         print("Workout list:", workout_choices)
-        form.workouts.choices = workout_choices
+        form.workout.choices = workout_choices
         
         print("Request method:", request.method)  # Debugging
         print("Form validate_on_submit result:", form.validate_on_submit())  # Debugging
+        print("is_submitted", form.is_submitted())
+        print("validate", form.validate())
         print("Form Data", form.data )
 
-        if form.validate_on_submit():
-            if request.method == 'POST':
+        if form.validate_on_submit() and request.method == 'POST':
+            reminder_email = form.reminder_email.data
+            reminder_type = form.reminder_type.data
 
-                # Retrieve form data
-                reminder_email = form.reminder_email.data
-                reminder_type = form.reminder_type.data
-                goal_start_date = form.goal_start_date.data
-                goal_end_date = form.goal_end_date.data
-                weight_goal = float(form.weight_goal.data)
+            reminder_data = {
+                'email': email,
+                'reminder_email': reminder_email,
+                'reminder_type': reminder_type,
+                'goal_start_date': form.goal_start_date.data if reminder_type == 'goal' else None,
+                'goal_end_date': form.goal_end_date.data if reminder_type == 'goal' else None,
+                'weight_goal': float(form.weight_goal.data) if reminder_type == 'goal' else None,
+                'remind_time_ahead': form.remind_time_ahead.data if reminder_type == 'workout' else None,
+                'workout': form.workout.data if reminder_type == 'workout' else None
+            }
+            
+            mongo.db.reminder.insert_one(reminder_data)
 
-                remind_time_ahead = form.remind_time_ahead.data
+            flash('Reminder successfully saved', 'success')
+            return redirect(url_for('home'))
 
-                existing_entry = mongo.db.reminders.find_one({'email': email, 'reminder_email':reminder_email, 'reminder_type': reminder_type})
-                
-                if existing_entry:
-                    # Update existing entry
-                    mongo.db.reminders.update_one(
-                        {'email': email, 'reminder_email':reminder_email, 'reminder_type': reminder_type},
-                        {'$set': {
-                            'goal_start_date': goal_start_date,
-                            'goal_end_date': goal_end_date,
-                            'weight_goal': weight_goal,
-                            'remind_time_ahead': remind_time_ahead
-                        }}
-                    )
-                else:
-                    # Insert new entry
-                    mongo.db.reminders.insert_one({
-                        'email': email,
-                        'reminder_email': reminder_email,
-                        'reminder_type': reminder_type,
-                        'goal_start_date': goal_start_date,
-                        'goal_end_date': goal_end_date,
-                        'weight_goal': weight_goal,
-                        'remind_time_ahead': remind_time_ahead
-                    })
-
-                flash('Reminder successfully saved', 'success')
-                print("success")
-                return redirect(url_for('reminders'))
+        else:
+            print("Form submission failed.")
+            if form.errors:
+                print("Form validation errors:", form.errors)
+            print("Form data received:", request.form)  # Debugging
     else:
         return redirect(url_for('home'))
 

@@ -96,20 +96,20 @@ class RegistrationForm(FlaskForm):
 
 
 class ReminderForm(FlaskForm):
-    # Weight
     date = DateField('Date', format='%Y-%m-%d', validators=[Optional()])
-    reminder_email = StringField('Reminder Email', validators=[DataRequired(), Email()])
-    reminder_type = SelectField('Reminder for', choices=[('', 'Please select reminder for goals or workouts.'), ('goals', 'Goals'), ('workouts', 'Workouts')], validators=[DataRequired()])
+    reminder_email = StringField('Reminder Email', validators=[Optional(), Email()])
+    reminder_type = SelectField('Reminder for', choices=[('', 'Please select reminder for goals or workouts.'), ('goal', 'Goal'), ('workout', 'Workout')], validators=[Optional()])
 
     # Goal-specific fields
-    goal_start_date = DateField('Goal Start Date', format='%Y-%m-%d', validators=[DataRequired()])
-    goal_end_date = DateField('Goal End Date', format='%Y-%m-%d', validators=[DataRequired()])
+    goal_start_date = DateField('Goal Start Date', format='%Y-%m-%d', validators=[Optional()])
+    goal_end_date = DateField('Goal End Date', format='%Y-%m-%d', validators=[Optional()])
     weight_goal = DecimalField('Weight Goal (kg)', validators=[Optional(), NumberRange(min=40, max=500, message="Weight Goal must be between 40 and 500 kg")])
 
     # Workout-specific fields
-    workouts = SelectField('Workouts', choices=[('', 'Please select specialization')], validators=[Optional()])
+    workout = SelectField('Workout', choices=[], validators=[Optional()]) 
     remind_time_ahead = IntegerField('Remind Time Ahead (hours)', validators=[Optional(), NumberRange(min=0, max=24, message="Remind Time Ahead must be between 0 and 24 hours")])
     
+    submit = SubmitField('Set Reminder')
     def validate(self):
         """Override validate to conditionally apply field validation based on user_type."""
         rv = FlaskForm.validate(self)
@@ -120,10 +120,8 @@ class ReminderForm(FlaskForm):
         # Debugging user type
         print("User type data:", self.user_type.data)
 
-        if self.reminder_type.data == 'goals':
-            print("Validating student-specific fields")
-            # Check if all student-specific fields are filled
-            required_fields = [self.goal_start_date, self.goal_end_date, self.weight_goal, self.waist_goal]
+        if self.reminder_type.data == 'goal':
+            required_fields = [self.goal_start_date, self.goal_end_date, self.weight_goal]
             missing_fields = [field.label.text for field in required_fields if not field.data]
             
             if missing_fields:
@@ -133,10 +131,10 @@ class ReminderForm(FlaskForm):
                 print("Missing fields for student:", missing_fields)
                 return False
 
-        elif self.reminder_type.data == 'workouts':
+        elif self.reminder_type.data == 'workout':
             print("Validating coach-specific fields")
             # Check if all coach-specific fields are filled
-            required_fields = [self.workouts, self.remind_time_ahead]
+            required_fields = [self.workout, self.remind_time_ahead]
             missing_fields = [field.label.text for field in required_fields if not field.data]
 
             if missing_fields:

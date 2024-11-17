@@ -1,153 +1,114 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="content-section">
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Today</legend>
-
-                <!-- Remainder Email Field -->
-                <div class="form-group">
-                    {{ form.reminder_email.label(class="form-control-label") }}
-                    {% if form.reminder_email.errors %}
-                        {{ form.reminder_email(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.reminder_email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.reminder_email(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-
-                <!-- Reminder Type Selection -->
-                <div class="form-group">
-                    {{ form.reminder_type.label(class="form-control-label") }}
-                    {% if form.reminder_type.errors %}
-                        {{ form.reminder_type(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.reminder_type.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.reminder_type(class="form-control form-control-lg", id="reminder_type") }}
-                    {% endif %}
-                </div>
-
-                <!-- Goal Reminder Fields (goal_start_date, goal_end_date, weight_goal) -->
-                <div id="gaol-reminder-fields" style="display: none;">
-                    <div class="form-group">
-                        {{ form.goal_start_date.label(class="form-control-label") }}
-                        {% if form.goal_start_date.errors %}
-                            {{ form.goal_start_date(class="form-control form-control-lg is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in form.goal_start_date.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.goal_start_date(class="form-control form-control-lg") }}
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form.goal_end_date.label(class="form-control-label") }}
-                        {% if form.goal_end_date.errors %}
-                            {{ form.goal_end_date(class="form-control form-control-lg is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in form.goal_end_date.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.goal_end_date(class="form-control form-control-lg") }}
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form.weight_goal.label(class="form-control-label") }}
-                        {% if form.weight_goal.errors %}
-                            {{ form.weight_goal(class="form-control form-control-lg is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in form.weight_goal.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.weight_goal(class="form-control form-control-lg") }}
-                        {% endif %}
-                    </div>
-                </div>
-
-                <!-- Workout Reminder Fields (workouts, remind_time_ahead) -->
-                <div id="coach-fields" style="display: none;">
-                    <!-- Workouts Selection -->
-                    <div class="form-group">
-                        <label class="form-control-label">Select Workout</label>
-                        {% if workout_list %}
-                            <select class="form-control form-control-lg" name="coach">
-                                {% for coach in workout_list %}
-                                    <option value="{{ workout.name }}">{{ workout.name }} - {{ coach.specialization }}</option>
-                                {% endfor %}
-                            </select>
-                        {% else %}
-                            <p class="text-muted">No workout available at this time.</p>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form.remind_time_ahead.label(class="form-control-label") }}
-                        {% if form.remind_time_ahead.errors %}
-                            {{ form.remind_time_ahead(class="form-control form-control-lg is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in form.remind_time_ahead.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.remind_time_ahead(class="form-control form-control-lg") }}
-                        {% endif %}
-                    </div>
-
-                </div>
-            </fieldset>
-
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
+<div class="content-section d-flex justify-content-center min-vh-90 align-items-center">
+    <form method="POST" name="reminderform">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Remind Yourself!</legend>
+            
+            <!-- Display Form Errors (For Debugging) -->
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                {% for field, errors in form.errors.items() %}
+                    {% for error in errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                </ul>
             </div>
-        </form>
-    </div>
+            {% endif %}
+            
+            <!-- Date Display -->
+            <div class="form-group">
+                <label class="form-control-label">Date</label>
+                <p class="form-control form-control-lg" name="time">{{ date }}</p>
+            </div>
+            
+            <!-- Remainder Email Field -->
+            <div class="form-group">
+                {{ form.reminder_email.label(class="form-control-label") }}
+                {{ form.reminder_email(class="form-control form-control-lg") }}
+            </div>
 
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            Already Have An Account? <a class="ml-2" href="{{ url_for('reminders') }}">Sign In</a>
-        </small>
-    </div>
+            <!-- Reminder Type Selection -->
+            <div class="form-group">                   
+                {{ form.reminder_type.label(class="form-control-label") }}
+                {{ form.reminder_type(class="form-control form-control-lg", , id="reminder_type") }}
+            </div>
 
-    <!-- JavaScript for Conditional Display of Fields -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const userTypeField = document.querySelector('#user_type');
-            const studentFields = document.getElementById('student-fields');
-            const coachFields = document.getElementById('coach-fields');
+            <!-- Goal Reminder Fields (goal_start_date, goal_end_date, weight_goal) -->
+            <div id="goal-fields" style="display: none;">
+                <div class="form-group">
+                    {{ form.goal_start_date.label(class="form-control-label") }}
+                    {{ form.goal_start_date(class="form-control form-control-lg") }}
+                </div>
 
-            function toggleFields() {
-                if (userTypeField.value === 'coach') {
-                    studentFields.style.display = 'none';
-                    coachFields.style.display = 'block';
-                } else if (userTypeField.value === 'student') {
-                    studentFields.style.display = 'block';
-                    coachFields.style.display = 'none';
-                } else {
-                    studentFields.style.display = 'none';
-                    coachFields.style.display = 'none';
-                }
+                <div class="form-group">
+                    {{ form.goal_end_date.label(class="form-control-label") }}
+                    {{ form.goal_end_date(class="form-control form-control-lg") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.weight_goal.label(class="form-control-label") }}
+                    {{ form.weight_goal(class="form-control form-control-lg") }}
+                </div>
+            </div>
+
+            <!-- Workout Reminder Fields (workouts, remind_time_ahead) -->
+            <div id="workout-fields" style="display: none;">
+                <!-- Workouts Selection -->
+                <div class="form-group">
+                    <label class="form-control-label">Select Workout</label>
+                    {% if workout_list %}
+                        <select class="form-control form-control-lg" name="workout">
+                            {% for workout in workout_list %}
+                                <option value="{{ workout.name }}">{{ workout.name }}</option>
+                            {% endfor %}
+                        </select>
+                    {% else %}
+                        <p class="text-muted">No workout available at this time.</p>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.remind_time_ahead.label(class="form-control-label") }}
+                    {{ form.remind_time_ahead(class="form-control form-control-lg") }}
+                </div>
+
+            </div>
+        </fieldset>
+
+        <!-- Submit Button -->
+        <div class="form-group mb-4">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+
+    </form>
+</div>
+
+<!-- JavaScript for Conditional Display of Fields -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const reminderTypeField = document.querySelector('#reminder_type');
+        const goalFields = document.getElementById('goal-fields');
+        const workoutFields = document.getElementById('workout-fields');
+
+        function toggleFields() {
+            if (reminderTypeField.value === 'goal') {
+                goalFields.style.display = 'none';
+                workoutFields.style.display = 'block';
+            } else if (reminderTypeField.value === 'workout') {
+                goalFields.style.display = 'block';
+                workoutFields.style.display = 'none';
+            } else {
+                goalFields.style.display = 'none';
+                workoutFields.style.display = 'none';
             }
+        }
 
-            userTypeField.addEventListener('change', toggleFields);
-            toggleFields(); // Initial toggle based on current selection
-        });
-    </script>
+        reminderTypeField.addEventListener('change', toggleFields);
+        toggleFields(); // Initial toggle based on current selection
+    });
+</script>
 {% endblock content %}

@@ -37,7 +37,25 @@
     <div id="assigned-plans">
       {% if assigned_plans %}
         {% for plan in assigned_plans %}
-        <div class="plan-container">
+        <div class="plan-container position-relative">
+          <!-- Add Reminder Button -->
+          <button 
+            id="add-reminder-btn-{{ plan.id }}" 
+            class="btn btn-primary btn-sm position-absolute" 
+            style="top: 10px; right: 150px;" 
+            onclick="handleAddReminder({{ plan.id }})">
+            Add Reminder
+          </button>
+          
+          <!-- Delete Reminder Button -->
+          <button 
+            id="delete-reminder-btn-{{ plan.id }}" 
+            class="btn btn-danger btn-sm position-absolute" 
+            style="top: 10px; right: 10px;" 
+            onclick="handleDeleteReminder({{ plan.id }})">
+            Delete Reminder
+          </button>
+          
           <h4>{{ plan.title }}</h4>
           <p><strong>Type:</strong> {{ plan.type }}</p>
           <p><strong>Duration:</strong> {{ plan.duration_weeks }} weeks</p>
@@ -70,6 +88,27 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script>
+    // Handle Add Reminder
+    function handleAddReminder(planId) {
+      alert(`Adding a reminder for Plan ID: ${planId}`);
+      // Add your functionality here, such as opening a form or making an API call
+    }
+  
+    // Handle Delete Reminder
+    function handleDeleteReminder(planId) {
+      const confirmation = confirm(`Are you sure you want to delete the reminder for Plan ID: ${planId}?`);
+      if (confirmation) {
+        alert(`Reminder for Plan ID: ${planId} deleted!`);
+        // Add functionality here to delete the reminder, e.g., send an API request
+        // Example: 
+        // fetch(`/api/delete-reminder/${planId}`, { method: 'DELETE' })
+        //   .then(response => response.json())
+        //   .then(data => console.log(data));
+      }
+    }
+  </script>
+  
 </body>
 {% endblock %}
 </html>

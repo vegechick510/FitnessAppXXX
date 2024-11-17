@@ -24,7 +24,7 @@ from flask import render_template, session, url_for, flash, redirect, request, F
 from flask_mail import Mail, Message
 from flask_pymongo import PyMongo
 from tabulate import tabulate
-from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm,ReviewForm, ProgressForm, StreakForm
+from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm,ReviewForm, ProgressForm, StreakForm, ReminderForm
 from insert_db_data import insertfooddata,insertexercisedata
 from insert_excercises import coaching_videos
 import schedule
@@ -607,6 +607,92 @@ def progress_history():
         return render_template('progress_history.html', progress_data=progress_data)
     else:
         return redirect(url_for('home'))
+    
+@app.route("/reminders", methods=['GET', 'POST'])
+def reminders():
+    """
+    Handles user progress tracking and data entry on the progress monitor page.
+
+    This function renders a form for users to enter their daily progress data. If the user 
+    submits the form data, it checks for an existing entry for the current date. If an entry 
+    already exists, it updates it; otherwise, it inserts a new record.
+
+    Returns:
+        If the user is logged in and submits valid form data:
+            - Updates or inserts user progress data in the MongoDB 'progress' collection.
+            - Redirects back to the progress monitor page with a success message.
+        If the user is not logged in:
+            - Redirects the user to the home page.
+
+    Context Variables:
+        form: Instance of ProgressForm, used to capture the user's input for progress data.
+        date: String, today's date in 'YYYY-MM-DD' format.
+    """
+    now = datetime.now().strftime('%Y-%m-%d')
+    email = session.get('email')
+
+    if email is not None:
+        form = ReminderForm()
+        
+        # Fetch all workout plans for the dropdown display
+        try:
+            user_profile = mongo.db.profile.find({"email": email, "user_type": "student"})[0]
+            # print("User profile:", user_profile)
+        except Exception as e:
+            print(f"Error fetching workouts: {e}")
+            workout_list = []
+
+        workout_choices = [workout["title"] for workout in user_profile["assigned_plans"]]
+        print("Workout list:", workout_choices)
+        form.workouts.choices = workout_choices
+        
+        print("Request method:", request.method)  # Debugging
+        print("Form validate_on_submit result:", form.validate_on_submit())  # Debugging
+        print("Form Data", form.data )
+
+        if form.validate_on_submit():
+            if request.method == 'POST':
+
+                # Retrieve form data
+                reminder_email = form.reminder_email.data
+                reminder_type = form.reminder_type.data
+                goal_start_date = form.goal_start_date.data
+                goal_end_date = form.goal_end_date.data
+                weight_goal = float(form.weight_goal.data)
+
+                remind_time_ahead = form.remind_time_ahead.data
+
+                existing_entry = mongo.db.reminders.find_one({'email': email, 'reminder_email':reminder_email, 'reminder_type': reminder_type})
+                
+                if existing_entry:
+                    # Update existing entry
+                    mongo.db.reminders.update_one(
+                        {'email': email, 'reminder_email':reminder_email, 'reminder_type': reminder_type},
+                        {'$set': {
+                            'goal_start_date': goal_start_date,
+                            'goal_end_date': goal_end_date,
+                            'weight_goal': weight_goal,
+                            'remind_time_ahead': remind_time_ahead
+                        }}
+                    )
+                else:
+                    # Insert new entry
+                    mongo.db.reminders.insert_one({
+                        'email': email,
+                        'reminder_email': reminder_email,
+                        'reminder_type': reminder_type,
+                        'goal_start_date': goal_start_date,
+                        'goal_end_date': goal_end_date,
+                        'weight_goal': weight_goal,
+                        'remind_time_ahead': remind_time_ahead
+                    })
+
+                flash('Reminder successfully saved', 'success')
+                print("success")
+                return redirect(url_for('reminders'))
+    else:
+        return redirect(url_for('home'))
+
     
 @app.route("/wellness_log", methods=['GET', 'POST'])
 def wellness_log():

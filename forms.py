@@ -95,6 +95,60 @@ class RegistrationForm(FlaskForm):
 
 
 
+class ReminderForm(FlaskForm):
+    # Weight
+    date = DateField('Date', format='%Y-%m-%d', validators=[Optional()])
+    reminder_email = StringField('Reminder Email', validators=[DataRequired(), Email()])
+    reminder_type = SelectField('Reminder for', choices=[('', 'Please select reminder for goals or workouts.'), ('goals', 'Goals'), ('workouts', 'Workouts')], validators=[DataRequired()])
+
+    # Goal-specific fields
+    goal_start_date = DateField('Goal Start Date', format='%Y-%m-%d', validators=[DataRequired()])
+    goal_end_date = DateField('Goal End Date', format='%Y-%m-%d', validators=[DataRequired()])
+    weight_goal = DecimalField('Weight Goal (kg)', validators=[Optional(), NumberRange(min=40, max=500, message="Weight Goal must be between 40 and 500 kg")])
+
+    # Workout-specific fields
+    workouts = SelectField('Workouts', choices=[('', 'Please select specialization')], validators=[Optional()])
+    remind_time_ahead = IntegerField('Remind Time Ahead (hours)', validators=[Optional(), NumberRange(min=0, max=24, message="Remind Time Ahead must be between 0 and 24 hours")])
+    
+    def validate(self):
+        """Override validate to conditionally apply field validation based on user_type."""
+        rv = FlaskForm.validate(self)
+        if not rv:
+            print("Base validation failed.")
+            return False
+
+        # Debugging user type
+        print("User type data:", self.user_type.data)
+
+        if self.reminder_type.data == 'goals':
+            print("Validating student-specific fields")
+            # Check if all student-specific fields are filled
+            required_fields = [self.goal_start_date, self.goal_end_date, self.weight_goal, self.waist_goal]
+            missing_fields = [field.label.text for field in required_fields if not field.data]
+            
+            if missing_fields:
+                for field in required_fields:
+                    if not field.data:
+                        field.errors.append(f"{field.label.text} is required for setting a goal reminder.")
+                print("Missing fields for student:", missing_fields)
+                return False
+
+        elif self.reminder_type.data == 'workouts':
+            print("Validating coach-specific fields")
+            # Check if all coach-specific fields are filled
+            required_fields = [self.workouts, self.remind_time_ahead]
+            missing_fields = [field.label.text for field in required_fields if not field.data]
+
+            if missing_fields:
+                for field in required_fields:
+                    if not field.data:
+                        field.errors.append(f"{field.label.text} is required for setting a workout reminder.")
+                print("Missing fields for coach:", missing_fields)
+                return False
+        return True
+    
+
+
 class LoginForm(FlaskForm):
     """Login form to log in to the application"""
     email = StringField('Email',
@@ -142,7 +196,6 @@ class ProgressForm(FlaskForm):
     notes = TextAreaField('Notes', validators=[Optional()])
     
     submit = SubmitField('Submit')
-
 
 class UserProfileForm(FlaskForm):
     """Form to input user details to store their height, weight, goal and target weight"""

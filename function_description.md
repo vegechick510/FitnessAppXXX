@@ -77,6 +77,9 @@ progress_monitor()
 progress_history() 
 - This function shows the user's progress history with data visualizations
 
+reminders() 
+- This function shows the user's reminder settings
+
 wellness_log() 
 - This function displays the wellness log page
 

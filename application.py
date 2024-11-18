@@ -629,82 +629,106 @@ def reminders():
         form: Instance of ProgressForm, used to capture the user's input for progress data.
         date: String, today's date in 'YYYY-MM-DD' format.
     """
-    now = datetime.now().strftime('%Y-%m-%d')
+    # now = datetime.now().strftime('%Y-%m-%d')
+    now = "2024-11-16"
     email = session.get('email')
+    reminder_type = None
+    workout_title = None
     try:
         reminder_type = request.args.get('reminder_type')
     except:
         raise ValueError("Reminder type not found")
-    if not reminder_type:
-        reminder_type = 'goal'
-    
+     
     try:
         workout_title = request.args.get('workout_title')
     except:
         raise ValueError("Workout Plan not found")
-    
+       
     print("Reminder type:", reminder_type) # Debugging
     print("Workout title:", workout_title) # Debugging
 
     if email is not None:
         form = ReminderForm()
-        form.reminder_type.data = reminder_type
+        print("form.reminder_type.data", form.reminder_type.data)
+        print("reminder_type", reminder_type)
+        if reminder_type == None:
+            reminder_type = form.reminder_type.data
+        else:
+            form.reminder_type.data = reminder_type
 
-        if reminder_type == 'workout':
-            form.workout_title.data = workout_title
-            form.goal_weight.data = 0.0
+        print("form.reminder_type.data", form.reminder_type.data)
+        print("reminder_type", reminder_type)
 
-            try:
-                user_profile = mongo.db.profile.find({"user_type": "student", "email": email})[0]
-                workout_list = [workout for workout in user_profile["assigned_plans"]]
-            except Exception as e:
-                print(f"Error fetching workout plans: {e}")
-                workout_title_list = []
-            print("Workout list:", workout_list) # Debugging
-            
+        try:
+            user_profile = mongo.db.profile.find({"user_type": "student", "email": email})[0]
+            workout_list = [workout for workout in user_profile["assigned_plans"]]
             workout_title_choices = [(workout["title"], workout["title"]) for workout in workout_list]
             form.workout_title.choices = workout_title_choices
+        except Exception as e:
+            print(f"Error fetching workout plans: {e}")
+            workout_title_list = []
+            form.workout_title.choices = []
+        print("Workout list:", workout_list) # Debugging
+        
+        if reminder_type == 'workout':
+            if workout_title:
+                form.workout_title.data = workout_title
+            else:
+                workout_title = form.workout_title.data
+            form.goal_weight.data = 0.0
 
-
-        if form.validate_on_submit():
-            if request.method == 'POST':
-                # Retrieve form data
-                reminder_email = form.reminder_email.data
-                weight = float(form.current_weight.data)
+        if form.validate_on_submit() and request.method == 'POST':
+            # Retrieve form data
+            reminder_email = form.reminder_email.data
+            notes = form.notes.data
+            if reminder_type == 'workout':
+                workout_title = form.workout_title.data
+                goal_weight = form.goal_weight.data
+                print(2)
+                existing_entry = mongo.db.reminders.find_one({'email': email, 'reminder_email':reminder_email, 'reminder_type': reminder_type, 'workout_title': workout_title})
+                print(3)
+                if not existing_entry:
+                    mongo.db.reminders.insert_one({
+                    'reminder_email': reminder_email,
+                    'set_date': now,
+                    'email': email,
+                    'goal_weight': goal_weight,
+                    'reminder_type': reminder_type,
+                    'notes': notes,
+                    'workout_title': workout_title
+                })
+            elif reminder_type == 'goal':
                 goal_weight = float(form.goal_weight.data)
-
                 notes = form.notes.data
 
-                existing_entry = mongo.db.remindertest.find_one({'email': email, 'reminder_email':reminder_email, 'reminder_type': reminder_type})
+                existing_entry = mongo.db.reminders.find_one({'email': email, 'reminder_email':reminder_email, 'reminder_type': reminder_type, 'set_date': now})
                 if existing_entry:
                     # Update existing entry
-                    mongo.db.remindertest.update_one(
-                        {'email': email, 'reminder_email':reminder_email},
+                    mongo.db.reminders.update_one(
+                        {'email': email, 'reminder_email':reminder_email, 'reminder_type': reminder_type, 'set_date': now},
                         {'$set': {
-                            'set_date': now, 
-                            'weight': weight,
                             'goal_weight': goal_weight,
-                            'reminder_type': reminder_type,
                             'notes': notes,
                             'workout_title': workout_title
                         }}
                     )
                 else:
                     # Insert new entry
-                    mongo.db.remindertest.insert_one({
+                    mongo.db.reminders.insert_one({
                         'reminder_email': reminder_email,
                         'set_date': now,
                         'email': email,
-                        'weight': weight,
                         'goal_weight': goal_weight,
                         'reminder_type': reminder_type,
                         'notes': notes,
                         'workout_title': workout_title
                     })
-
-                flash('Progress successfully saved', 'success')
-                print("success")
-                return redirect(url_for('reminders'))
+            print(4)
+            flash('Progress successfully saved', 'success')
+            print(5)
+            print("success")
+            print(6)
+            return redirect(url_for('reminders'))
     else:
         return redirect(url_for('home'))
 
@@ -734,7 +758,7 @@ def reminder_history():
     email = session.get('email')
     
     if email is not None:
-        reminder_entries = mongo.db.remindertest.find({'email': email}).sort("date", -1)
+        reminder_entries = mongo.db.reminders.find({'email': email}).sort("date", -1)
         
         reminder_data = list(reminder_entries)
         
@@ -880,7 +904,7 @@ def user_profile():
                                                 'goal': goal,
                                                 'target_weight':target_weight}})
                 else:
-                    mongo.db.profile.insert({'email': email,
+                    mongo.db.profile.insert_one({'email': email,
                                              'date': now,
                                              'height': height,
                                              'weight': weight,
@@ -1194,6 +1218,14 @@ def dashboard():
                 {"id": 1, "name": "Yoga"},
                 {"id": 2, "name": "Swimming"},
             ]
+
+            # Fetch the user's reminders
+            # Goal Reminder
+            goal_reminder, goal_weight, latest_weight, original_weight, progress = get_goal_reminder(email)
+            
+            # Workout Reminder
+            workout_reminder, workout_plans = get_workout_reminder(email)
+
         else:
             upcoming_meetings = []
             exercises = []
@@ -1201,7 +1233,84 @@ def dashboard():
         upcoming_meetings = []
         exercises = []
 
-    return render_template('dashboard.html', title='Dashboard', exercises=exercises, upcoming_meetings = upcoming_meetings)
+    return render_template('dashboard.html', title='Dashboard', exercises=exercises, upcoming_meetings = upcoming_meetings, \
+                           goal_reminder=goal_reminder, goal_weight=goal_weight, \
+                            latest_weight=latest_weight, original_weight=original_weight, progress=progress, \
+                            workout_reminder=workout_reminder, workout_plans=workout_plans)
+
+def get_goal_reminder(email):
+    reminder_data = get_reminder_data(email, 'goal')[0]
+
+    if not reminder_data:
+        goal_reminder = False
+        goal_weight = None
+        latest_weight = None
+        original_weight = None
+        progress = None
+    else:
+        goal_reminder = True
+        goal_weight = reminder_data["goal_weight"]
+        latest_weight, original_weight = get_latest_profile_data(email, reminder_data["set_date"], 'weight')
+        if original_weight is None:
+            latest_weight = -1
+            original_weight = -1
+            progress = None
+        else:
+            if goal_weight >= original_weight:
+                progress = round(((latest_weight - original_weight) / (goal_weight - original_weight)) * 100, 2)
+            else:
+                progress = round(((original_weight - latest_weight) / (original_weight - goal_weight)) * 100, 2)
+    return goal_reminder, goal_weight, latest_weight, original_weight, progress
+
+def get_workout_reminder(email):
+    reminder_data = get_reminder_data(email, 'workout')
+    if reminder_data is not None and len(reminder_data) > 0:
+        workout_reminder = True
+        workout_plans = [reminder["workout_title"] for reminder in reminder_data]
+    else:
+        workout_reminder = False
+        workout_plans = None
+    print("Workout reminder:", workout_reminder) # Debugging
+    print("Workout plans:", workout_plans) # Debugging
+    return workout_reminder, workout_plans    
+
+def get_reminder_data(email, reminder_type='goal'):
+    # Fetch the user's reminders
+    reminders = mongo.db.reminders.find({"email": email, "reminder_type": reminder_type})
+    if reminders is None:
+        return None
+    # print("Reminders:", reminders) # Debugging
+    reminder_data = sorted(
+        reminders, 
+        key=lambda x: datetime.strptime(x['set_date'], '%Y-%m-%d'),  # Adjust format if needed
+        reverse=True
+    )
+    # print("Reminder data:", reminder_data) # Debugging
+    return reminder_data
+
+def get_latest_profile_data(email, date, profile_type):
+    # Fetch the user's reminders
+    profiles = mongo.db.profile.find({"email": email})
+    if profiles is None:
+        return None, None
+    
+    profiles = [p for p in profiles if datetime.strptime(p['date'], '%Y-%m-%d') >= datetime.strptime(date, '%Y-%m-%d')]
+    profiles = sorted(
+        profiles, 
+        key=lambda x: datetime.strptime(x['date'], '%Y-%m-%d'),  # Adjust format if needed
+        reverse=True
+    )
+    latest_profile_data = profiles[0]
+
+    original_profile_data = profiles[-1]
+    # print("Profile data:", latest_profile_data) # Debugging
+    # print("Profile data:", latest_profile_data[profile_type]) # Debugging
+    # print("Profile date:", latest_profile_data["date"]) # Debugging
+    # print("Profile date:", original_profile_data["date"]) # Debugging
+    # print("Goal date:", date) # Debugging
+    assert latest_profile_data[profile_type]
+    assert original_profile_data[profile_type]
+    return float(latest_profile_data[profile_type]), float(original_profile_data[profile_type])
 
 
 @app.route('/add_favorite', methods=['POST'])

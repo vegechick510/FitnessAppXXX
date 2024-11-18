@@ -27,7 +27,6 @@
           <h5 class="mb-1">Set Date: {{ entry['set_date'] }}</h5>
           <p>Reminder Email: {{ entry['reminder_email'] }}</p>
           <p>Reminder Type: {{ entry['reminder_type']|capitalize}}</p>
-          <p>Current Weight: {{ entry['weight'] }} kg</p>
           <p>Goal Weight: {{ entry['goal_weight'] }} kg</p>
           <p>Notes: {{ entry['notes'] }}</p>
           <form method="POST" action="/delete-reminder/{{ entry['id'] }}">

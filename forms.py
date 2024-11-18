@@ -147,7 +147,6 @@ class ReminderForm(FlaskForm):
     # Weight
     reminder_email = StringField('Reminder Email', validators=[Optional(), Email()])
     set_date = DateField('Set Date', format='%Y-%m-%d', validators=[Optional()])
-    current_weight = DecimalField('Current Weight (kg)', validators=[Optional(), NumberRange(min=0, max=500, message="Current Weight must be between 0 and 500 kg")])
 
     reminder_type = SelectField('Reminder Type', choices=[('goal', 'Goal'), ('workout', 'Workout')], validators=[DataRequired()])
 
@@ -155,9 +154,7 @@ class ReminderForm(FlaskForm):
     goal_weight = DecimalField('Goal Weight (kg)', validators=[Optional(), NumberRange(min=0, max=500, message="Goal Weight must be between 0 and 500 kg")])
 
     # Workout-specific fields
-    # workout_title = StringField('Workout Plan', validators=[Optional()])
-    workout_title = SelectField('Workout Plan', choices=[], validators=[Optional()])  # Dropdown for student to select a coach
-
+    workout_title = SelectField('Workout Plan', choices=[], validators=[Optional()])
 
     # Additional Notes
     notes = TextAreaField('Notes', validators=[Optional()])

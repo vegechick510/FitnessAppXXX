@@ -679,17 +679,13 @@ def reminders():
 
         if form.validate_on_submit() and request.method == 'POST':
             # Retrieve form data
-            reminder_email = form.reminder_email.data
             notes = form.notes.data
             if reminder_type == 'workout':
                 workout_title = form.workout_title.data
                 goal_weight = form.goal_weight.data
-                print(2)
-                existing_entry = mongo.db.reminders.find_one({'email': email, 'reminder_email':reminder_email, 'reminder_type': reminder_type, 'workout_title': workout_title})
-                print(3)
+                existing_entry = mongo.db.reminders.find_one({'email': email, 'reminder_type': reminder_type, 'workout_title': workout_title})
                 if not existing_entry:
                     mongo.db.reminders.insert_one({
-                    'reminder_email': reminder_email,
                     'set_date': now,
                     'email': email,
                     'goal_weight': goal_weight,
@@ -701,11 +697,11 @@ def reminders():
                 goal_weight = float(form.goal_weight.data)
                 notes = form.notes.data
 
-                existing_entry = mongo.db.reminders.find_one({'email': email, 'reminder_email':reminder_email, 'reminder_type': reminder_type, 'set_date': now})
+                existing_entry = mongo.db.reminders.find_one({'email': email, 'reminder_type': reminder_type, 'set_date': now})
                 if existing_entry:
                     # Update existing entry
                     mongo.db.reminders.update_one(
-                        {'email': email, 'reminder_email':reminder_email, 'reminder_type': reminder_type, 'set_date': now},
+                        {'email': email, 'reminder_type': reminder_type, 'set_date': now},
                         {'$set': {
                             'goal_weight': goal_weight,
                             'notes': notes,
@@ -715,7 +711,6 @@ def reminders():
                 else:
                     # Insert new entry
                     mongo.db.reminders.insert_one({
-                        'reminder_email': reminder_email,
                         'set_date': now,
                         'email': email,
                         'goal_weight': goal_weight,
@@ -723,11 +718,8 @@ def reminders():
                         'notes': notes,
                         'workout_title': workout_title
                     })
-            print(4)
             flash('Progress successfully saved', 'success')
-            print(5)
             print("success")
-            print(6)
             return redirect(url_for('reminders'))
     else:
         return redirect(url_for('home'))
@@ -1239,15 +1231,9 @@ def dashboard():
                             workout_reminder=workout_reminder, workout_plans=workout_plans)
 
 def get_goal_reminder(email):
-    reminder_data = get_reminder_data(email, 'goal')[0]
-
-    if not reminder_data:
-        goal_reminder = False
-        goal_weight = None
-        latest_weight = None
-        original_weight = None
-        progress = None
-    else:
+    reminder_data = get_reminder_data(email, 'goal')
+    if reminder_data and len(reminder_data) > 0:
+        reminder_data = get_reminder_data(email, 'goal')[0]
         goal_reminder = True
         goal_weight = reminder_data["goal_weight"]
         latest_weight, original_weight = get_latest_profile_data(email, reminder_data["set_date"], 'weight')
@@ -1260,6 +1246,14 @@ def get_goal_reminder(email):
                 progress = round(((latest_weight - original_weight) / (goal_weight - original_weight)) * 100, 2)
             else:
                 progress = round(((original_weight - latest_weight) / (original_weight - goal_weight)) * 100, 2)
+    else:
+        reminder_data = None
+        goal_reminder = False
+        goal_weight = None
+        latest_weight = None
+        original_weight = None
+        progress = None
+        
     return goal_reminder, goal_weight, latest_weight, original_weight, progress
 
 def get_workout_reminder(email):

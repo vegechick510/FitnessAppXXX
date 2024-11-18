@@ -145,7 +145,7 @@ class ProgressForm(FlaskForm):
 
 class ReminderForm(FlaskForm):
     # Weight
-    reminder_email = StringField('Reminder Email', validators=[Optional(), Email()])
+    # reminder_email = StringField('Reminder Email', validators=[Optional(), Email()])
     set_date = DateField('Set Date', format='%Y-%m-%d', validators=[Optional()])
 
     reminder_type = SelectField('Reminder Type', choices=[('goal', 'Goal'), ('workout', 'Workout')], validators=[DataRequired()])

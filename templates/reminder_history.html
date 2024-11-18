@@ -5,17 +5,9 @@
   <style>
     .list-group-item {
       border-radius: 12px !important;  
-      border: 1px solid white; 
+      border: 1px solid rgb(255, 255, 255, 0.9); 
       padding: 15px; 
-      background-color: white; 
-    }
-    .delete-button {
-      color: white;
-      background-color: red;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: pointer;
+      background-color: rgb(255, 255, 255, 0.9); 
     }
   </style>
   <h2 class="text-white">Your Reminder History</h2>
@@ -25,13 +17,10 @@
       {% for entry in reminder_data %}
         <div class="list-group-item mb-4">
           <h5 class="mb-1">Set Date: {{ entry['set_date'] }}</h5>
-          <p>Reminder Email: {{ entry['reminder_email'] }}</p>
           <p>Reminder Type: {{ entry['reminder_type']|capitalize}}</p>
           <p>Goal Weight: {{ entry['goal_weight'] }} kg</p>
+          <p>Workout Plan: {{ entry['workout_title'] }}</p>
           <p>Notes: {{ entry['notes'] }}</p>
-          <form method="POST" action="/delete-reminder/{{ entry['id'] }}">
-            <button class="delete-button" type="submit">Delete</button>
-          </form>
         </div>
       {% endfor %}
     </div>

@@ -140,6 +140,7 @@
                 </div>
               {% endif %}
             </div>
+            <h5> Left {{ 100 - progress }} % Goal Unfinished! Fighting!</h5>
           </div>
         </div>
       {% else %}
@@ -195,7 +196,7 @@
         justify-content: center; /* Center items in the container */
       }
     </style>
-    <h4 class="text-white" style="font-family: 'Poppins', sans-serif;">WorkoutPlan Reminder</h4>
+    <h4 class="text-white" style="font-family: 'Poppins', sans-serif;">Workout Plan Reminder</h4>
     <div class="plan-container">
       {% if workout_reminder %}
         {% for plan in workout_plans %}

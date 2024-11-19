@@ -24,7 +24,7 @@ from flask import render_template, session, url_for, flash, redirect, request, F
 from flask_mail import Mail, Message
 from flask_pymongo import PyMongo
 from tabulate import tabulate
-from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm,ReviewForm, ProgressForm, StreakForm
+from forms import HistoryForm, RegistrationForm, LoginForm, CalorieForm, UserProfileForm, EnrollForm,ReviewForm, ProgressForm, StreakForm, MoodForm
 from insert_db_data import insertfooddata,insertexercisedata
 from insert_excercises import coaching_videos
 import schedule
@@ -1965,6 +1965,62 @@ def student_plans():
     assigned_plans = student.get("assigned_plans", [])
 
     return render_template("student_plans.html", assigned_plans=assigned_plans)
+
+
+
+@app.route("/mood_tracker", methods=['GET', 'POST'])
+def mood_tracker():
+    """
+    Handles user mood tracking and data entry on the mood tracker page.
+
+    This function renders a form for users to enter their mood before or after exercise. 
+    If the user submits the form data, it saves the mood data to the MongoDB 'mood' collection.
+
+    Returns:
+        If the user is logged in:
+            - Saves mood data in the MongoDB 'mood' collection.
+            - Displays all saved mood entries on the page.
+        If the user is not logged in:
+            - Redirects the user to the home page.
+    """
+    now = datetime.now().strftime('%Y-%m-%d')
+    email = session.get('email')
+
+    if email is not None:
+        form = MoodForm()
+        ProgressForm
+        if form.validate_on_submit():
+            if request.method == 'POST':
+                # Retrieve form data
+                mood_type = form.type.data  # "before" or "after"
+                mood = form.mood.data
+
+                # Insert mood data into the database
+                mongo.db.mood.insert_one({
+                    'date': now,
+                    'email': email,
+                    'type': mood_type,
+                    'mood': mood
+                })
+
+                flash('Mood successfully saved', 'success')
+                return redirect(url_for('mood_tracker'))
+
+        # Fetch all mood entries for the current user
+        mood_entries = mongo.db.mood.find({'email': email}).sort('date', -1)
+        mood_list = [
+            {
+                'date': entry['date'],
+                'type': entry['type'],
+                'mood': entry['mood']
+            }
+            for entry in mood_entries
+        ]
+    else:
+        return redirect(url_for('home'))
+
+    return render_template('mood.html', form=form, date=now, mood_list=mood_list)
+
 
 
 if __name__ == '__main__':

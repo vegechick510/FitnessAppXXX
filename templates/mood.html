@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div
+  class="content-section d-flex justify-content-center min-vh-90 align-items-center"
+>
+  <form method="POST" enctype="multipart/form-data" name="moodform">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Track Your Mood</legend>
+
+      <!-- Display Form Errors (For Debugging) -->
+      {% if form.errors %}
+        <div class="alert alert-danger">
+          <ul>
+            {% for field, errors in form.errors.items() %}
+              {% for error in errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      <!-- Date Display -->
+      <div class="form-group">
+        <label class="form-control-label">Date</label>
+        <p class="form-control form-control-lg">{{ date }}</p>
+      </div>
+
+      <!-- Mood Type -->
+      <div class="form-group">
+        {{ form.type.label(class="form-control-label") }}
+        {{ form.type(class="form-control form-control-lg") }}
+      </div>
+
+      <!-- Mood Description -->
+      <div class="form-group">
+        {{ form.mood.label(class="form-control-label") }}
+        {{ form.mood(class="form-control form-control-lg") }}
+      </div>
+    </fieldset>
+
+    <!-- Submit Button -->
+    <div class="form-group mb-4">
+      {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+  </form>
+</div>
+
+<!-- Mood History -->
+<div class="container mt-5">
+    <h3 class="text-center text-light">Your Mood History</h3>
+    <table class="table table-striped table-dark"> 
+      <thead class="thead-light"> 
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Mood</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for mood_entry in mood_list %}
+          <tr>
+            <td>{{ mood_entry.date }}</td>
+            <td>{{ mood_entry.type | capitalize }}</td>
+            <td>{{ mood_entry.mood }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endblock content %}

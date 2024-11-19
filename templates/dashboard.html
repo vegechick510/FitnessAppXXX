@@ -59,6 +59,86 @@
     </ol>
   </div>
 
+
+  
+  <div class="carousel slide" data-bs-ride="carousel" id="fitness-recipes">
+    <h3 class="text-center mt-3" style="color: #fff;">Fitness Recipes</h3>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="d-flex flex-column align-items-center" style="height: 300px;">
+          <!-- 食谱图片 -->
+          <img
+            src="../static/img/recipe1.png"
+            alt="Grilled Chicken Salad"
+            style="width: 80%; height: 150px; object-fit: cover; border-radius: 8px;"
+          />
+          <!-- 食谱文字描述 -->
+          <p style="color: #fff; margin-top: 10px; text-align: center;">
+            <strong>Grilled Chicken Salad</strong><br />
+            A high-protein, low-carb salad with greens, grilled chicken, and a light dressing.
+          </p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="d-flex flex-column align-items-center" style="height: 300px;">
+          <img
+            src="../static/img/recipe2.jpg"
+            alt="Protein Smoothie Bowl"
+            style="width: 80%; height: 150px; object-fit: cover; border-radius: 8px;"
+          />
+          <p style="color: #fff; margin-top: 10px; text-align: center;">
+            <strong>Protein Smoothie Bowl</strong><br />
+            A delicious smoothie bowl with protein powder, fresh fruits, and nuts.
+          </p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="d-flex flex-column align-items-center" style="height: 300px;">
+          <img
+            src="../static/img/recipe3.jpg"
+            alt="Quinoa Veggie Stir-fry"
+            style="width: 80%; height: 150px; object-fit: cover; border-radius: 8px;"
+          />
+          <p style="color: #fff; margin-top: 10px; text-align: center;">
+            <strong>Quinoa Veggie Stir-fry</strong><br />
+            A healthy stir-fry with quinoa, broccoli, bell peppers, and tofu.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- 左右切换按钮 -->
+    <div>
+      <a
+        class="carousel-control-prev"
+        href="#fitness-recipes"
+        role="button"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#fitness-recipes"
+        role="button"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+    </div>
+    <!-- 圆点指示器 -->
+    <ol class="carousel-indicators">
+      <li data-bs-target="#fitness-recipes" data-bs-slide-to="0" class="active"></li>
+      <li data-bs-target="#fitness-recipes" data-bs-slide-to="1"></li>
+      <li data-bs-target="#fitness-recipes" data-bs-slide-to="2"></li>
+    </ol>
+  </div>
+  
+  
+
+
+
   <div class="container site-section" id="workout-streak">
     <a href="{{ url_for('update_streak') }}" style="text-decoration: none;">
       <div
@@ -81,6 +161,7 @@
       </div>
     </a>
   </div>
+
   <style>
     .workout-card:hover {
       transform: scale(1.15); 

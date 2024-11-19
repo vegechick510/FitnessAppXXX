@@ -1983,12 +1983,12 @@ def mood_tracker():
         If the user is not logged in:
             - Redirects the user to the home page.
     """
-    now = datetime.now().strftime('%Y-%m-%d')
+    time = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+    date = datetime.now().strftime('%Y-%m-%d')
     email = session.get('email')
 
     if email is not None:
         form = MoodForm()
-        ProgressForm
         if form.validate_on_submit():
             if request.method == 'POST':
                 # Retrieve form data
@@ -1997,7 +1997,7 @@ def mood_tracker():
 
                 # Insert mood data into the database
                 mongo.db.mood.insert_one({
-                    'date': now,
+                    'time': time,
                     'email': email,
                     'type': mood_type,
                     'mood': mood
@@ -2007,10 +2007,10 @@ def mood_tracker():
                 return redirect(url_for('mood_tracker'))
 
         # Fetch all mood entries for the current user
-        mood_entries = mongo.db.mood.find({'email': email}).sort('date', -1)
+        mood_entries = mongo.db.mood.find({'email': email}).sort('time', -1)
         mood_list = [
             {
-                'date': entry['date'],
+                'time': entry['time'],
                 'type': entry['type'],
                 'mood': entry['mood']
             }
@@ -2019,7 +2019,7 @@ def mood_tracker():
     else:
         return redirect(url_for('home'))
 
-    return render_template('mood.html', form=form, date=now, mood_list=mood_list)
+    return render_template('mood.html', form=form, date=date, mood_list=mood_list)
 
 
 

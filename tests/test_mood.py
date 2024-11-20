@@ -27,17 +27,27 @@ class TestApplication(unittest.TestCase):
         app.testing = True
         self.app = app.test_client()
 
-    def test_mood_tracker_route_access(self):
+    def test_mood_tracker_route_access_1(self):
         """
-        测试未登录用户访问 /mood_tracker 时被重定向到登录页面
+        test login
         """
         response = self.app.get('/mood_tracker', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Log In", response.data)  
+        #self.assertIn(b"Log In", response.data)  
+
+
+    def test_mood_tracker_route_access_2(self):
+        """
+        test login
+        """
+        response = self.app.get('/mood_tracker', follow_redirects=True)
+        #self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Log In", response.data)
+      
 
     def test_mood_tracker_form_render_1(self):
         """
-        测试登录用户是否能够正确访问并渲染表单
+        test 
         """
         with self.app as client:
             with client.session_transaction() as sess:
@@ -65,7 +75,7 @@ class TestApplication(unittest.TestCase):
 
     def test_mood_tracker_form_render_3(self):
         """
-        测试登录用户是否能够正确访问并渲染表单
+        test if the login user can render
         """
         with self.app as client:
             with client.session_transaction() as sess:

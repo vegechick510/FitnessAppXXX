@@ -629,8 +629,8 @@ def reminders():
         form: Instance of ProgressForm, used to capture the user's input for progress data.
         date: String, today's date in 'YYYY-MM-DD' format.
     """
-    # now = datetime.now().strftime('%Y-%m-%d')
-    now = "2024-11-16"
+    now = datetime.now().strftime('%Y-%m-%d')
+    # now = "2024-11-16"
     email = session.get('email')
     reminder_type = None
     workout_title = None
@@ -666,7 +666,7 @@ def reminders():
             form.workout_title.choices = workout_title_choices
         except Exception as e:
             print(f"Error fetching workout plans: {e}")
-            workout_title_list = []
+            workout_list = []
             form.workout_title.choices = []
         print("Workout list:", workout_list) # Debugging
         
@@ -1194,6 +1194,13 @@ def dashboard():
     # Output: redirected to dashboard.html
     # ##########################
     email = session.get('email')
+    goal_reminder=None
+    goal_weight=None
+    latest_weight=None
+    original_weight=None
+    progress=None
+    workout_reminder=None
+    workout_plans=None
     if email:
         student = mongo.db.profile.find_one({"email": email})
 

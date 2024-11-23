@@ -425,9 +425,9 @@ class TestApplication(unittest.TestCase):
                 'workout_reminder': True,
                 'workout_plans': ['Morning Yoga', 'Evening Pilates']
             }
-            response = client.get('/dashboard', data=goal_data, follow_redirects=True)
             
+            response = client.get('/dashboard', data=goal_data, follow_redirects=True)
             self.assertEqual(response.status_code, 200)
-
+        
 if __name__ == '__main__':
     unittest.main()

@@ -1194,7 +1194,7 @@ def dashboard():
     # Output: redirected to dashboard.html
     # ##########################
     email = session.get('email')
-    goal_reminder=None
+    goal_reminder=session.get('goal_reminder')
     goal_weight=None
     latest_weight=None
     original_weight=None

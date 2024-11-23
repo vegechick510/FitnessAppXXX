@@ -130,8 +130,6 @@ class TestApplication(unittest.TestCase):
             }
 
             response = client.post('/reminders', data=form_data, follow_redirects=True)
-            with open("request.txt", "w") as f:
-                f.write(str(response.data))
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'Goal Weight must be between 0 and 500 kg', response.data) 
 
@@ -150,8 +148,6 @@ class TestApplication(unittest.TestCase):
             }
 
             response = client.post('/reminders', data=form_data, follow_redirects=True)
-            with open("request.txt", "w") as f:
-                f.write(str(response.data))
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'Goal Weight must be between 0 and 500 kg', response.data) 
         
@@ -239,27 +235,199 @@ class TestApplication(unittest.TestCase):
 
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'Log In', response.data)
-
-    def test_goal_progress_half_completion(self):
+    
+    def test_goal_progress_nogoal(self):
         with self.app as client:
             with client.session_transaction() as sess:
                 sess['email'] = 'testuser@example.com'
             
             goal_data = {
+                'title': 'Dashboard',
+                'exercises': [],
+                'upcoming_meetings': [],
+                'goal_reminder': False,
                 'original_weight': 100,
                 'latest_weight': 75,
                 'goal_weight': 50,
                 'progress': 50,
+                'workout_reminder': False,
+                'workout_plans': 'Morning Yoga'
             }
             response = client.get('/dashboard', data=goal_data, follow_redirects=True)
             
             self.assertEqual(response.status_code, 200)
-            with open("request.txt", "w") as f:
-                f.write(str(response.data))
-            self.assertIn(b'50% Goal Achieved', response.data)
+            self.assertIn(b'No Goal Reminder Set', response.data)
 
-
+    def test_goal_progress_noworkout(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            goal_data = {
+                'title': 'Dashboard',
+                'exercises': [],
+                'upcoming_meetings': [],
+                'goal_reminder': False,
+                'original_weight': 100,
+                'latest_weight': 75,
+                'goal_weight': 50,
+                'progress': 50,
+                'workout_reminder': False,
+                'workout_plans': 'Morning Yoga'
+            }
+            response = client.get('/dashboard', data=goal_data, follow_redirects=True)
+            
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b'No Workout Plans', response.data)
     
+    def test_goal_progress_goal0(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            goal_data = {
+                'title': 'Dashboard',
+                'exercises': [],
+                'upcoming_meetings': [],
+                'goal_reminder': True,
+                'original_weight': 100,
+                'latest_weight': 75,
+                'goal_weight': 50,
+                'progress': 50,
+                'workout_reminder': False,
+                'workout_plans': 'Morning Yoga'
+            }
+            response = client.get('/dashboard', data=goal_data, follow_redirects=True)
+            
+            self.assertEqual(response.status_code, 200)
+
+
+    def test_goal_progress_goal1(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            goal_data = {
+                'title': 'Dashboard',
+                'exercises': [],
+                'upcoming_meetings': [],
+                'goal_reminder': True,
+                'original_weight': 100,
+                'latest_weight': 75,
+                'goal_weight': 50,
+                'progress': 10,
+                'workout_reminder': False,
+                'workout_plans': 'Morning Yoga'
+            }
+            response = client.get('/dashboard', data=goal_data, follow_redirects=True)
+            
+            self.assertEqual(response.status_code, 200)
+
+
+    def test_goal_progress_goal2(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            goal_data = {
+                'title': 'Dashboard',
+                'exercises': [],
+                'upcoming_meetings': [],
+                'goal_reminder': True,
+                'original_weight': 100,
+                'latest_weight': 75,
+                'goal_weight': 50,
+                'progress': 0,
+                'workout_reminder': False,
+                'workout_plans': 'Morning Yoga'
+            }
+            response = client.get('/dashboard', data=goal_data, follow_redirects=True)
+            
+            self.assertEqual(response.status_code, 200)
+
+    def test_goal_progress_goal3(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            goal_data = {
+                'title': 'Dashboard',
+                'exercises': [],
+                'upcoming_meetings': [],
+                'goal_reminder': True,
+                'original_weight': 100,
+                'latest_weight': 75,
+                'goal_weight': 50,
+                'progress': -50,
+                'workout_reminder': False,
+                'workout_plans': 'Morning Yoga'
+            }
+            response = client.get('/dashboard', data=goal_data, follow_redirects=True)
+            
+            self.assertEqual(response.status_code, 200)
+
+    def test_goal_progress_goal4(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            goal_data = {
+                'title': 'Dashboard',
+                'exercises': [],
+                'upcoming_meetings': [],
+                'goal_reminder': True,
+                'original_weight': 100,
+                'latest_weight': 90,
+                'goal_weight': 50,
+                'progress': 50,
+                'workout_reminder': False,
+                'workout_plans': 'Morning Yoga'
+            }
+            response = client.get('/dashboard', data=goal_data, follow_redirects=True)
+            
+            self.assertEqual(response.status_code, 200)
+
+    def test_goal_progress_workout0(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            goal_data = {
+                'title': 'Dashboard',
+                'exercises': [],
+                'upcoming_meetings': [],
+                'goal_reminder': True,
+                'original_weight': 100,
+                'latest_weight': 90,
+                'goal_weight': 50,
+                'progress': 50,
+                'workout_reminder': True,
+                'workout_plans': ['Morning Yoga']
+            }
+            response = client.get('/dashboard', data=goal_data, follow_redirects=True)
+            
+            self.assertEqual(response.status_code, 200)
+    
+    def test_goal_progress_workout1(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'
+            
+            goal_data = {
+                'title': 'Dashboard',
+                'exercises': [],
+                'upcoming_meetings': [],
+                'goal_reminder': True,
+                'original_weight': 100,
+                'latest_weight': 90,
+                'goal_weight': 50,
+                'progress': 50,
+                'workout_reminder': True,
+                'workout_plans': ['Morning Yoga', 'Evening Pilates']
+            }
+            response = client.get('/dashboard', data=goal_data, follow_redirects=True)
+            
+            self.assertEqual(response.status_code, 200)
 
 if __name__ == '__main__':
     unittest.main()

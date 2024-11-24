@@ -40,7 +40,8 @@ jobs:
           {
             # Start the test command in the background
             echo "Running tests..."
-            python -m unittest tests.test_module > test_output.log 2>&1 &
+            # python -m unittest tests.test_module > test_output.log 2>&1 &
+            python -m unittest discover -s tests -p "test*.py" > test_output.log 2>&1 &
             test_pid=$!
 
             sleep 60

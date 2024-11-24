@@ -788,5 +788,6 @@ class TestApplication(unittest.TestCase):
             response = client.get('/view_assigned_tutorials')
             self.assertEqual(response.status_code, 200)
 
+
 if __name__ == '__main__':
     unittest.main()

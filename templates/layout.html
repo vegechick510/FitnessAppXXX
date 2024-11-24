@@ -62,6 +62,7 @@
             <!-- Left-aligned links -->
             {% if session.get("email") %}
             <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{{ url_for('mood_tracker') }}">Mood Tracker</a>
               <a class="nav-item nav-link" href="{{ url_for('progress_monitor') }}">Progress Monitor</a>
               <a class="nav-item nav-link" href="{{ url_for('wellness_log') }}">Wellness Log</a>
               <a class="nav-item nav-link" href="{{url_for('friends')}}">Community</a>

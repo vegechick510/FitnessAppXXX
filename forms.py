@@ -226,3 +226,18 @@ class StreakForm(FlaskForm):
     notes = StringField('Notes (Optional)', validators=[Optional()])
     
     submit = SubmitField('Save Streak')
+
+class MoodForm(FlaskForm):
+    """
+    Form for tracking mood before and after exercise.
+    """
+    type = SelectField(
+        'Mood Type',
+        choices=[('before', 'Before Exercise'), ('after', 'After Exercise')],
+        validators=[DataRequired()]
+    )
+    mood = TextAreaField(
+        'Mood Description',
+        validators=[DataRequired(), Length(max=500, message="Mood must be less than 500 characters.")]
+    )
+    submit = SubmitField('Submit')

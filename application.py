@@ -173,8 +173,8 @@ def home():
     if session.get('email'):
         return redirect(url_for('dashboard'))
     else:
-        redirect(url_for('login'))
-        return jsonify({"status": "error", "message": "Unauthorized access."}), 401
+        return redirect(url_for('login'))
+        # return jsonify({"status": "error", "message": "Unauthorized access."}), 401
     
 
 

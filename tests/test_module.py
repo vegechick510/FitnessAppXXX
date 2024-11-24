@@ -31,7 +31,7 @@ class TestApplication(unittest.TestCase):
 
     def test_home_route(self):
         response = self.app.get('/')
-        self.assertEqual(response.status_code, 302)  
+        self.assertEqual(response.status_code, 401)  
 
     def test_login_route(self):
         response = self.app.get('/login')
@@ -424,8 +424,8 @@ class TestApplication(unittest.TestCase):
         with self.app as client:
             response = client.get('/progress_history', follow_redirects=True)
             
-            self.assertEqual(response.status_code, 200)
-            self.assertIn(b'Log In', response.data)  
+            self.assertEqual(response.status_code, 401)
+            self.assertIn(b'Unauthorized access.', response.data)  
     
     def test_progress_history_post_request(self):
         with self.app as client:
@@ -453,8 +453,8 @@ class TestApplication(unittest.TestCase):
         """Test that a logged-out user is redirected to the home page when accessing /progress_history."""
         with self.app as client:
             response = client.get('/progress_history', follow_redirects=True)
-            self.assertEqual(response.status_code, 200)
-            self.assertIn(b'Log In', response.data)  # Check if redirected to the login page
+            self.assertEqual(response.status_code, 401)
+            self.assertIn(b'Unauthorized access.', response.data)  # Check if redirected to the login page
 
     def test_wellness_log(self):
         with self.app as client:

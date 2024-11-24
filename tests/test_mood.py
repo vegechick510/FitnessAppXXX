@@ -29,16 +29,16 @@ class TestApplication(unittest.TestCase):
 
     def test_mood_tracker_route_access_1(self):
         response = self.app.get('/mood_tracker', follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 401)
 
     def test_mood_tracker_route_access_2(self):
         response = self.app.get('/mood_tracker', follow_redirects=True)
-        self.assertIn(b"Log In", response.data)
+        self.assertIn(b"Unauthorized access", response.data)
 
     def test_mood_tracker_route_access_3(self):
         response = self.app.get('/mood_tracker', follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Log In", response.data)
+        self.assertEqual(response.status_code, 401)
+        self.assertIn(b"Unauthorized access.", response.data)
         
     def test_mood_tracker_form_render_1(self):
         """

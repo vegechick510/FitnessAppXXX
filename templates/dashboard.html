@@ -301,6 +301,12 @@
   
   
     <div class="card workout-card" id="workout-streak"  data-id="workout-streak" draggable="true">
+      <style>
+        .workout-card:hover {
+          transform: scale(1.15); 
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+        }
+      </style>
       <a href="{{ url_for('update_streak') }}" style="text-decoration: none;">
         <div
           class="card workout-card"
@@ -323,12 +329,7 @@
       </a>
     </div>
 
-    <style>
-      .workout-card:hover {
-        transform: scale(1.15); 
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
-      }
-    </style>
+
 
     <!-- Upcoming Meetings Section -->
     <div class="container mt-5" id="upcoming-meetings" data-id="upcoming-meetings" draggable="true">

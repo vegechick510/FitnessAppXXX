@@ -173,7 +173,7 @@ def home():
     if session.get('email'):
         return redirect(url_for('dashboard'))
     else:
-        # return redirect(url_for('login'))
+        redirect(url_for('login'))
         return jsonify({"status": "error", "message": "Unauthorized access."}), 401
     
 
@@ -2322,7 +2322,9 @@ def update_module_order():
         return jsonify({"status": "error", "message": "Invalid module order."}), 400
 
     # Example of stricter validation:
-    valid_ids = ["upcoming-meetings", "workout-streak", "gallery", "must-try", "most-popular", "meditation", "carousel-1", "introduction-video"]  # Add all possible module IDs
+    valid_ids = ["upcoming-meetings", "workout-streak", "gallery", "must-try", "most-popular", "meditation", "carousel-1", "introduction-video", 
+"fitness-recipes", "workout-reminder", 
+"progress-bar"]  # Add all possible module IDs
     if any(module not in valid_ids for module in new_order):
         return jsonify({"status": "error", "message": "Invalid module IDs."}), 400
     
@@ -2332,7 +2334,7 @@ def update_module_order():
     if len(new_order) != len(set(new_order)):
         return jsonify({"status": "error", "message": "Duplicate module IDs detected."}), 400
 
-    if len(new_order) > 10:
+    if len(new_order) > 50:
         return jsonify({"status": "error", "message": "Payload too large."}), 413
 
     try:

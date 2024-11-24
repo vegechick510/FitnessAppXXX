@@ -40,8 +40,8 @@ class TestApplication(unittest.TestCase):
     def test_reminders_route_no_session(self):
         with self.app as client:
             response = client.get('/reminders', follow_redirects=True)
-            self.assertEqual(response.status_code, 401)
-            self.assertIn(b'Unauthorized access', response.data)  # Ensure redirection to the login page
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b'Log In', response.data)  # Ensure redirection to the login page
 
     @patch("application.mongo.db.reminders.insert_one")
     def test_create_workout_reminder(self, mock_insert_one):
@@ -76,15 +76,15 @@ class TestApplication(unittest.TestCase):
     def test_reminders_get_no_session(self):
         """Test accessing the reminders page without login."""
         response = self.app.get('/reminders', follow_redirects=True)
-        self.assertEqual(response.status_code, 401)
-        self.assertIn(b'Unauthorized access.', response.data)  # Assuming redirection to login page
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Log In', response.data)  # Assuming redirection to login page
 
   
     def test_reminder_history_no_session(self):
         """Test accessing the reminder history without login."""
         response = self.app.get('/reminder_history', follow_redirects=True)
-        self.assertEqual(response.status_code, 401)
-        self.assertIn(b'Unauthorized access.', response.data)  # Assuming redirection to login page
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Log In', response.data)  # Assuming redirection to login page
 
     def test_reminders_post_missing_fields(self):
         with self.app as client:
@@ -233,8 +233,8 @@ class TestApplication(unittest.TestCase):
         with self.app as client:
             response = client.get('/reminder_history', follow_redirects=True)
 
-            self.assertEqual(response.status_code, 401)
-            self.assertIn(b'Unauthorized access.', response.data)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b'Log In', response.data)
     
     def test_goal_progress_nogoal(self):
         with self.app as client:

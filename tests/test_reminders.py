@@ -41,7 +41,7 @@ class TestApplication(unittest.TestCase):
         with self.app as client:
             response = client.get('/reminders', follow_redirects=True)
             self.assertEqual(response.status_code, 401)
-            self.assertIn(b'Log In', response.data)  # Ensure redirection to the login page
+            self.assertIn(b'Unauthorized access', response.data)  # Ensure redirection to the login page
 
     @patch("application.mongo.db.reminders.insert_one")
     def test_create_workout_reminder(self, mock_insert_one):

@@ -77,6 +77,12 @@ progress_monitor()
 progress_history() 
 - This function shows the user's progress history with data visualizations
 
+reminders() 
+- This function shows the user's reminder settings.
+
+reminder_history()
+- This function shows the user's reminder history.
+  
 wellness_log() 
 - This function displays the wellness log page
 
@@ -166,3 +172,5 @@ manage_plans()
 
 student_plans() 
 - This function allows students to view their assigned workout plans
+
+

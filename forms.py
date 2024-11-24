@@ -94,7 +94,6 @@ class RegistrationForm(FlaskForm):
         return True
 
 
-
 class LoginForm(FlaskForm):
     """Login form to log in to the application"""
     email = StringField('Email',
@@ -138,6 +137,25 @@ class ProgressForm(FlaskForm):
     hips = DecimalField('Hips (cm)', validators=[Optional(), NumberRange(min=70, max=160, message="Hips must be between 70 and 160 cm")])
     chest = DecimalField('Chest (cm)', validators=[Optional(), NumberRange(min=70, max=500, message="Chest must be between 70 and 150 cm")])
     
+    # Additional Notes
+    notes = TextAreaField('Notes', validators=[Optional()])
+    
+    submit = SubmitField('Submit')
+
+
+class ReminderForm(FlaskForm):
+    # Weight
+    # reminder_email = StringField('Reminder Email', validators=[Optional(), Email()])
+    set_date = DateField('Set Date', format='%Y-%m-%d', validators=[Optional()])
+
+    reminder_type = SelectField('Reminder Type', choices=[('goal', 'Goal'), ('workout', 'Workout')], validators=[DataRequired()])
+
+    # Goal-specific fields
+    goal_weight = DecimalField('Goal Weight (kg)', validators=[Optional(), NumberRange(min=0, max=500, message="Goal Weight must be between 0 and 500 kg")])
+
+    # Workout-specific fields
+    workout_title = SelectField('Workout Plan', choices=[], validators=[Optional()])
+
     # Additional Notes
     notes = TextAreaField('Notes', validators=[Optional()])
     

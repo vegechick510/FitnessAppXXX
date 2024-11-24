@@ -37,8 +37,11 @@
     <div id="assigned-plans">
       {% if assigned_plans %}
         {% for plan in assigned_plans %}
-        <div class="plan-container">
-          <h4>{{ plan.title }}</h4>
+        <div class="plan-container position-relative">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0">{{ plan.title }}</h4>
+            <a href="{{ url_for('reminders', reminder_type='workout', workout_title=plan.title) }}" class="btn btn-primary">Add Reminder</a>
+          </div>
           <p><strong>Type:</strong> {{ plan.type }}</p>
           <p><strong>Duration:</strong> {{ plan.duration_weeks }} weeks</p>
           <p><strong>Description:</strong> {{ plan.description }}</p>
@@ -70,6 +73,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  
 </body>
 {% endblock %}
 </html>

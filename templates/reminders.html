@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="content-section d-flex justify-content-center min-vh-90 align-items-center">
+  <form method="POST" enctype="multipart/form-data" name="reminderform">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Reminder Setting</legend>
+
+      <!-- Display Form Errors (For Debugging) -->
+      {% if form.errors %}
+      <div class="alert alert-danger">
+        <ul>
+          {% for field, errors in form.errors.items() %}
+            {% for error in errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <!-- Date Display -->
+      <div class="form-group">
+        <label class="form-control-label">Set Date</label>
+        <p class="form-control form-control-lg" name="time">{{ set_date }}</p>
+      </div>  
+
+      <!-- Reminder Type Selection -->
+      <div class="form-group">
+        {{ form.reminder_type.label(class="form-control-label") }}
+        {{ form.reminder_type(class="form-control form-control-lg") }}
+      </div>
+
+      <!-- Workout-Specific Fields (Workout Plan)-->
+      <div id="workout-fields" style="display: none;">
+        <!-- Workout Title -->
+        <div class="form-group">
+          {{ form.workout_title.label(class="form-control-label") }}
+          {{ form.workout_title(class="form-control form-control-lg") }}
+        </div>
+      </div>
+
+      <!-- Goal-Specific Fields (Goal Weight)-->
+      <div id="goal-fields" style="display: none;">
+        <!-- Goal Weight -->
+        <div class="form-group">
+          {{ form.goal_weight.label(class="form-control-label") }}
+          {{ form.goal_weight(class="form-control form-control-lg") }}
+        </div>
+      </div>
+    
+      <!-- Notes -->
+      <div class="form-group">
+        {{ form.notes.label(class="form-control-label") }}
+        {{ form.notes(class="form-control form-control-lg") }}
+      </div>
+    </fieldset>
+
+  
+    <!-- Submit Button -->
+    <div class="form-group mb-4">
+      {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+
+    <div class="justify-content-center mb-4">
+      <a href="{{ url_for('reminder_history') }}" class="btn btn-primary">Reminder History</a>
+    </div>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+            const reminderTypeField = document.querySelector('#reminder_type');
+            const workoutFields = document.getElementById('workout-fields');
+            const goalFields = document.getElementById('goal-fields');
+
+            function toggleFields() {
+                if (reminderTypeField.value === 'workout') {
+                  workoutFields.style.display = 'block';
+                  goalFields.style.display = 'none';
+                } else if (reminderTypeField.value === 'goal') {
+                  workoutFields.style.display = 'none';
+                  goalFields.style.display = 'block';
+                } else {
+                  workoutFields.style.display = 'none';
+                  goalFields.style.display = 'none';
+                }
+            }
+            reminderTypeField.addEventListener('change', toggleFields);
+            toggleFields(); // Initial toggle based on current selection
+        });
+</script>
+{% endblock content %}

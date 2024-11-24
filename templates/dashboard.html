@@ -58,6 +58,165 @@
       <li data-bs-target="#carousel-1" data-bs-slide-to="2"></li>
     </ol>
   </div>
+  
+  <!-- Progress Bar for Goal Reminder -->
+  <div class="container site-section mt-5" style="margin: 0px !important;">
+    <style>
+      /* Additional styles for progress-card */
+      .progress-card {
+        width: 90%;
+        height: 120px;
+        margin: auto;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: #2a2a2a; /* Dark background */
+        color: rgb(255, 255, 255); /* Text color */
+        border-radius: 20px; /* Rounded corners */
+        padding: 13px; /* Internal padding */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation effects */
+      }
+
+      /* Hover effect for the card */
+      .progress-card:hover {
+        transform: scale(1.05); /* Slightly enlarge on hover */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+      }
+
+      /* Style adjustments for card body text */
+      .progress-card .card-body h5 {
+        font-size: 1rem; /* Larger font size */
+        font-weight: 600; /* Bolder text */
+        margin-bottom: 10px; /* Spacing between lines */
+        color: rgb(200, 200, 200);
+      }
+
+      /* Style adjustments for progress bar */
+      .progress {
+        background-color: #444; /* Background for the bar container */
+        border-radius: 15px; /* Smooth rounded edges */
+        overflow: hidden; /* Ensure the bar fits nicely */
+        height: 32px; /* Height of the bar */ 
+      }
+
+      .progress-bar {
+        font-size: 1rem; /* Font size inside the bar */
+        line-height: 25px; /* Center the text vertically */
+        font-weight: bold; /* Bold text inside the bar */
+        border-radius: 11px; /* Rounded edges for the bar */
+        font-family: 'Poppins', sans-serif; /* Custom font */
+      }
+
+      .text-warning {
+        color: rgb(255, 255, 255, 0.9) !important; /* Orange color, override with !important */
+      }   
+    </style>
+    <h4 class="text-white" style="font-family: 'Poppins', sans-serif;">Goal Progress Reminder</h4>
+    {% if goal_reminder%}
+      {% if original_weight != -1%}
+        <div class="card progress-card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5>Original Weight: {{original_weight}} kg</h5>
+              <h5>Current Weight: {{latest_weight}} kg</h5>
+              <h5>Goal Weight: {{goal_weight}} kg</h5>
+            </div>
+            <div class="progress">
+              {% if progress <=0 %}
+                <div class="progress-bar bg-success" role="progressbar"
+                  style="width: 10%;" 
+                  aria-valuenow="{{ latest_weight }}" 
+                  aria-valuemin="0" 
+                  aria-valuemax="{{ goal_weight }}"
+                >
+                  {{ progress }}%
+                </div>
+              {% else %}
+                <div class="progress-bar bg-success" role="progressbar"
+                  style="width: {{ progress }}%;" 
+                  aria-valuenow="{{ latest_weight }}" 
+                  aria-valuemin="0" 
+                  aria-valuemax="{{ goal_weight }}"
+                >
+                {{ progress }}%
+                </div>
+              {% endif %}
+            </div>
+            <h5> Left {{ 100 - progress }} % Goal Unfinished! Fighting!</h5>
+          </div>
+        </div>
+      {% else %}
+        <div class="card progress-card">
+          <div class="card-body text-center">
+            <h5 class="text-warning">No user date. Please update your profile.</h5>
+          </div>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="card progress-card">
+        <div class="card-body text-center">
+          <h5 class="text-warning">No Goal Reminder Set</h5>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Workout Reminders -->
+  <div class="container workout-plan-section site-section mt-5" 
+    style="margin-top: -50px !important; margin-bottom: -50px !important; ">
+    <style>
+      /* Scoped styles for workout-plan-section */
+      .workout-plan-section .progress-card {
+        width: 240px; /* Fixed width for cards */
+        height: 80px;
+        margin: 10px; /* Margin for spacing between cards */
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: #2a2a2a; /* Dark background */
+        color: rgb(255, 255, 255); /* Text color */
+        border-radius: 20px; /* Rounded corners */
+        padding: 13px; /* Internal padding */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation effects */
+      }
+  
+      /* Hover effect for the card */
+      .workout-plan-section .progress-card:hover {
+        transform: scale(1.05); /* Slightly enlarge on hover */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+      }
+  
+      /* Style adjustments for card body text */
+      .workout-plan-section .progress-card .card-body h5 {
+        font-size: 1rem; /* Larger font size */
+        font-weight: 600; /* Bolder text */
+        margin-bottom: 10px; /* Spacing between lines */
+        color: rgb(200, 200, 200);
+      }
+  
+      /* Flexbox container for responsive layout */
+      .workout-plan-section .plan-container {
+        display: flex;
+        flex-wrap: wrap; /* Allow items to wrap to the next row */
+        justify-content: center; /* Center items in the container */
+      }
+    </style>
+    <h4 class="text-white" style="font-family: 'Poppins', sans-serif;">Workout Plan Reminder</h4>
+    <div class="plan-container">
+      {% if workout_reminder %}
+        {% for plan in workout_plans %}
+        <div class="card progress-card">
+          <div class="card-body text-center">
+            <h5 class="text-warning">{{ plan }}</h5>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="card progress-card">
+          <div class="card-body text-center">
+            <h5 class="text-warning">No Workout Plans</h5>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  
 
   <div class="container site-section" id="workout-streak">
     <a href="{{ url_for('update_streak') }}" style="text-decoration: none;">

@@ -28,50 +28,38 @@ class TestApplication(unittest.TestCase):
         self.app = app.test_client()
 
     def test_mood_tracker_route_access_1(self):
-        """
-        test login
-        """
         response = self.app.get('/mood_tracker', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-        #self.assertIn(b"Log In", response.data)  
-
 
     def test_mood_tracker_route_access_2(self):
-        """
-        test login
-        """
         response = self.app.get('/mood_tracker', follow_redirects=True)
-        #self.assertEqual(response.status_code, 200)
         self.assertIn(b"Log In", response.data)
-      
 
+    def test_mood_tracker_route_access_3(self):
+        response = self.app.get('/mood_tracker', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Log In", response.data)
+        
     def test_mood_tracker_form_render_1(self):
         """
         test 
         """
         with self.app as client:
             with client.session_transaction() as sess:
-                sess['email'] = 'testuser@example.com'  # 模拟登录用户
+                sess['email'] = 'testuser@example.com'  
 
             response = client.get('/mood_tracker')
             self.assertEqual(response.status_code, 200)
-            #self.assertIn(b"Track Your Mood", response.data)  # 页面标题
-            #self.assertIn(b"Mood Description", response.data)  # 表单字段
-            #self.assertIn(b"Submit", response.data)  # 提交按钮
 
     def test_mood_tracker_form_render_2(self):
-        """
-        测试登录用户是否能够正确访问并渲染表单
-        """
+        
         with self.app as client:
             with client.session_transaction() as sess:
-                sess['email'] = 'testuser@example.com'  # 模拟登录用户
+                sess['email'] = 'testuser@example.com'  
 
             response = client.get('/mood_tracker')
-            #self.assertEqual(response.status_code, 200)
-            self.assertIn(b"Track Your Mood", response.data)  # 页面标题
-            #self.assertIn(b"Mood Description", response.data)  # 表单字段
-            #self.assertIn(b"Submit", response.data)  # 提交按钮
+            self.assertIn(b"Track Your Mood", response.data)  
+
 
     def test_mood_tracker_form_render_3(self):
         """
@@ -79,27 +67,79 @@ class TestApplication(unittest.TestCase):
         """
         with self.app as client:
             with client.session_transaction() as sess:
-                sess['email'] = 'testuser@example.com'  # 模拟登录用户
-
+                sess['email'] = 'testuser@example.com' 
             response = client.get('/mood_tracker')
-            #self.assertEqual(response.status_code, 200)
-            #self.assertIn(b"Track Your Mood", response.data)  # 页面标题
-            self.assertIn(b"Mood Description", response.data)  # 表单字段
-            #self.assertIn(b"Submit", response.data)  # 提交按钮
+            self.assertIn(b"Mood Description", response.data)  
 
     def test_mood_tracker_form_render_4(self):
-        """
-        测试登录用户是否能够正确访问并渲染表单
-        """
+
         with self.app as client:
             with client.session_transaction() as sess:
-                sess['email'] = 'testuser@example.com'  # 模拟登录用户
-
+                sess['email'] = 'testuser@example.com'  
             response = client.get('/mood_tracker')
-            #self.assertEqual(response.status_code, 200)
-            #self.assertIn(b"Track Your Mood", response.data)  # 页面标题
-            #self.assertIn(b"Mood Description", response.data)  # 表单字段
-            self.assertIn(b"Submit", response.data)  # 提交按钮
+        
+            self.assertIn(b"Submit", response.data) 
+
+
+    def test_mood_tracker_form_render_5(self):
+
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'  
+            response = client.get('/mood_tracker')
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Submit", response.data)
+
+    def test_mood_tracker_form_render_6(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'  
+            response = client.get('/mood_tracker')
+            self.assertEqual(response.status_code, 200)  
+            self.assertIn(b"Mood Description", response.data)  
+
+    def test_mood_tracker_form_render_7(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'  
+            response = client.get('/mood_tracker')
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b"Track Your Mood", response.data)  
+ 
+
+    def test_mood_tracker_form_render_8(self):
+    
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'  
+            response = client.get('/mood_tracker')
+            self.assertIn(b"Track Your Mood", response.data)  
+            self.assertIn(b"Mood Description", response.data)   
+
+
+    def test_mood_tracker_form_render_9(self):
+        
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'  
+            response = client.get('/mood_tracker')
+            self.assertIn(b"Mood Description", response.data)  
+            self.assertIn(b"Submit", response.data)
+
+
+    def test_mood_tracker_form_submission(self):
+        with self.app as client:
+            with client.session_transaction() as sess:
+                sess['email'] = 'testuser@example.com'  
+
+            form_data = {
+                'type': 'before',
+                'mood': 'Feeling great before workout!',
+                'submit': True
+            }
+            response = client.post('/mood_tracker', data=form_data, follow_redirects=True)
+            self.assertEqual(response.status_code, 200)
+            #self.assertIn(b"Mood successfully saved", response.data)      
 
 if __name__ == '__main__':
     unittest.main()

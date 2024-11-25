@@ -42,4 +42,5 @@ jobs:
 
       - name: Run Pytest
         run: |
-          python -m pytest tests/ || exit 1
+          python -m pytest tests/ 
+          pkill -f "pytest" || true

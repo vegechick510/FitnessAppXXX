@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          pip install pytest 
+          pip install pytest pytest-timeout
 
       - name: Cleanup MongoDB container
         run: |
@@ -42,7 +42,4 @@ jobs:
 
       - name: Run Pytest
         run: |
-          python -m pytest tests/ 
-      - name: Cleanup Background Processes
-        run: |
-          pkill -f "python" || true
+          timeout 15s python -m pytest tests/

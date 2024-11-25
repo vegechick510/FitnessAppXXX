@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2024 Pranav Manbhekar, Shardul Khare, Shruti Dhond
+Copyright (c) 2024 Xiang Lan, Xianting Lu, Xingyue Shi
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

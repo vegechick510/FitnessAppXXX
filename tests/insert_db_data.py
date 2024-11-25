@@ -1,4 +1,3 @@
-
 """
 Copyright (c) 2024 Shardul Rajesh Khare, Shruti Dhond, Pranav Manbhekar
 This code is licensed under MIT license (see LICENSE for details)
@@ -12,25 +11,28 @@ For more information about the Burnout project, visit:
 https://github.com/SEFall24-Team61/FitnessAppNew
 
 """
+
 """"Importing app from apps.py"""
 from apps import App
+
 app = App()
 mongo = app.mongo
 
 
 def insertfooddata():
     """Inserting the food data from CSV file to MongoDB"""
-    #with open("food_data/calories.csv", "r", encoding="ISO-8859-1") as file:
+    # with open("food_data/calories.csv", "r", encoding="ISO-8859-1") as file:
     f = open("food_data/calories.csv", "r", encoding="ISO-8859-1")
     l = f.readlines()
 
     for i in range(1, len(l)):
-        l[i] = l[i][1:len(l[i]) - 2]
+        l[i] = l[i][1 : len(l[i]) - 2]
 
     for i in range(1, len(l)):
         temp = l[i].split(",")
         mongo.db.food.update_one(
-            {'food': temp[0]}, {'$set': {'calories': temp[1]}}, upsert=True)
+            {"food": temp[0]}, {"$set": {"calories": temp[1]}}, upsert=True
+        )
 
 
 def insertexercisedata():
@@ -43,7 +45,7 @@ def insertexercisedata():
             "video_link": "https://www.youtube.com/watch?v=c8hjhRqIwHE",
             "name": "Yoga for Beginners",
             "description": "New to Yoga? You are at the right place! Learn easy yoga poses to build strength, flexibility, and mental clarity.",
-            "href": "yoga"
+            "href": "yoga",
         },
         {
             "email": "email",
@@ -52,7 +54,7 @@ def insertexercisedata():
             "video_link": "https://www.youtube.com/watch?v=oM4sHl1hTEE",
             "name": "Swimming",
             "description": "Swimming is an activity that burns lots of calories, is easy on the joints, supports your weight, builds muscular strength and endurance.",
-            "href": "swim"
+            "href": "swim",
         },
         {
             "email": "email",
@@ -61,7 +63,7 @@ def insertexercisedata():
             "video_link": "https://www.youtube.com/watch?v=z6GxFSsx84E",
             "name": "Abs Smash",
             "description": "Whether your goal is a six-pack or just a little more definition around your midsection, we will help get you there!",
-            "href": "abbs"
+            "href": "abbs",
         },
         {
             "email": "email",
@@ -70,7 +72,7 @@ def insertexercisedata():
             "video_link": "https://www.youtube.com/watch?v=3hlUMzWh8jY",
             "name": "Walk Fitness",
             "description": "Join us to get the best of the walk workouts to burn more calories than a stroll around the park.",
-            "href": "walk"
+            "href": "walk",
         },
         {
             "email": "email",
@@ -79,7 +81,7 @@ def insertexercisedata():
             "video_link": "https://www.youtube.com/watch?v=8MAtXXXUvqo",
             "name": "Belly Burner",
             "description": "Join Sasha for a 30-minute no-equipment workout that will work on that stubborn belly fat.",
-            "href": "belly"
+            "href": "belly",
         },
         {
             "email": "email",
@@ -88,7 +90,7 @@ def insertexercisedata():
             "video_link": "https://www.youtube.com/watch?v=Qf0L-xtMUjg",
             "name": "Dance Fitness",
             "description": "Shake it off and groove to some fun tracks with Tom and his squad in this dance fitness session!",
-            "href": "dance"
+            "href": "dance",
         },
         {
             "email": "email",
@@ -97,7 +99,7 @@ def insertexercisedata():
             "video_link": "https://www.youtube.com/watch?v=Ze7zzMgCdko",
             "name": "HRX Fitness",
             "description": "It's time to push yourself to the limit! Join us for some intense workout sessions.",
-            "href": "hrx"
+            "href": "hrx",
         },
         {
             "email": "email",
@@ -106,7 +108,7 @@ def insertexercisedata():
             "video_link": "https://www.youtube.com/watch?v=XH7mBWRG9q0",
             "name": "Core Conditioning",
             "description": "Develop core muscle strength that improves posture and contributes to a trimmer appearance.",
-            "href": "core"
+            "href": "core",
         },
         {
             "email": "email",
@@ -115,8 +117,8 @@ def insertexercisedata():
             "video_link": "https://www.youtube.com/watch?v=8IjCdiweJQo",
             "name": "Gym",
             "description": "A collection of Dumbbells workouts by skilled trainers specific to a particular muscle group.",
-            "href": "gym"
-        }
+            "href": "gym",
+        },
     ]
 
     # Connect to MongoDB

@@ -12,8 +12,7 @@
 [![pytest](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml)
 [![Autopep8](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml)
 [![Pylint](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pylint.yml/badge.svg)](https://github.com/vegechick510/DollarBot/actions/workflows/pylint.yml)
-
-
+<br>
 <!-- Open Issues -->
 <a href="https://github.com/vegechick510/FitnessAppXXX/issues" target="blank">
   <img src="https://img.shields.io/github/issues/vegechick510/FitnessAppXXX?style=flat-square" alt="FitnessAppXXX open issues"/>

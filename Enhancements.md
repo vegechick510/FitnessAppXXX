@@ -1,15 +1,14 @@
 # Added Features in the Burnout v4.0 (What's new?)
 
-### <li> Created a favourites tab to enable quick access to the user's favourite exercises
+### <li> Goal Setting & Reminders: 
+Allow users to set specific fitness goals and enable push notifications to remind them of their goals or scheduled workouts.
 
-### <li> Enabled daily reminders via email to remind users to exercise
+### <li> Mood Tracker: 
+Include a mood tracking option so users can log how they feel before or after workouts for better self-awareness.
 
-### <li> Implemented a feature to calculate the BMI of the user based on their height and weight
+### <li> Recipe Suggestions: 
+Provide a rotating selection of simple, healthy recipes or snacks within the app for users to try based on their fitness goals.
 
-### <li> Enhanced the history functionality to highlight the progress made by the user through graphs
+### <li> Customizable Dashboard: 
+Let users customize their dashboard with their most-used features, like calorie tracking, hydration, workout logs etc.
 
-### <li> Added a feature for collecting and displaying user reviews
-
-### <li> Enhanced the user interface to make the website more appealing
-
-### <li> Bug fixes

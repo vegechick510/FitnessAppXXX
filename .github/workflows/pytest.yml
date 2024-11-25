@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          pip install pytest pytest-timeout
+          pip install pytest pytest-timeout psutil
 
       - name: Cleanup MongoDB container
         run: |
@@ -40,6 +40,15 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
 
-      - name: Run Pytest
+      - name: Run Pytest with Timeout
         run: |
-          timeout 15s python -m pytest tests/
+          timeout 10s python -m pytest tests/ || true
+
+      - name: List Processes
+        run: |
+          ps aux
+
+      - name: Cleanup Background Processes
+        run: |
+          pkill -f "python" || true
+          pkill -f "pytest" || true

@@ -11,7 +11,7 @@
 [![Code Coverage](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/code_cov.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/code_cov.yml)
 [![pytest](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml)
 [![Autopep8](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml)
-[![Pylint](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pylint.yml/badge.svg)](https://github.com/vegechick510/DollarBot/actions/workflows/pylint.yml)
+[![Pylint](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pylint.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pylint.yml)
 [![Black](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/black.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/black.yml)
 <br>
 <!-- Open Issues -->

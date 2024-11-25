@@ -25,6 +25,7 @@
       /* Adjust navbar styling for alignment */
       .navbar-nav .nav-item {
         padding: 0 8px; /* Reduce padding */
+        margin: 5px 10px;
       }
 
       .navbar-collapse {
@@ -39,6 +40,7 @@
         .navbar-nav.ml-auto {
           display: flex;
           flex-direction: column;
+          justify-content: flex-end;
         }
       }
     </style>
@@ -99,7 +101,7 @@
 
             <!-- Right-aligned links -->
             {% if session.get("email") %}
-            <div class="navbar-nav ml-auto d-flex align-items-center">
+            <div class="navbar-nav">
               <a class="nav-item nav-link" href="{{url_for('upload_exercise_video')}}">Review Form</a>
               <a class="nav-item nav-link" href="{{url_for('view_assigned_tutorials')}}">Coaching Tutorials</a>
               <a class="nav-item nav-link" href="{{url_for('student_plans')}}">Workout Plan</a>

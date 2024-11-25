@@ -53,7 +53,30 @@
             <img src="static/img/fire.gif" alt="Burnout Logo" style="width:98px;height:38px;">
             BURNOUT
           </a>
+          <style>
+            .navbar-toggler-icon {
+              background-image: none; /* Remove default icon */
+            }
+            .navbar-toggler-icon::before {
+              content: '';
+              display: block;
+              width: 25px;
+              height: 3px;
+              background-color: #fff; /* Set your desired color */
+              margin: 5px 0; /* Adjust spacing */
+              border-radius: 2px; /* Optional: Rounded edges */
+              box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
+            }
 
+            .navbar-toggler-icon::after {
+              content: '';
+              display: block;
+              width: 25px;
+              height: 3px;
+              background-color: #fff; /* Same color as above */
+              border-radius: 2px;
+            }
+          </style>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

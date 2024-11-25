@@ -12,6 +12,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest  # Specify the environment (Ubuntu in this case)
+    strategy:
+      matrix:
+        mongodb-version: ['7.0']
 
     steps:
       - name: Checkout code
@@ -26,6 +29,16 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install pytest 
+
+      - name: Cleanup MongoDB container
+        run: |
+          if [ "$(docker ps -aq -f name=mongodb)" ]; then
+            docker rm -f mongodb || true
+          fi
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.10.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
 
       - name: Run Pytest
         run: |

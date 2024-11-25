@@ -3,14 +3,12 @@
 [Link](https://drive.google.com/file/d/1JrFG1_1Hd8auymBR45ZmKW4HuM_TYOi6/view?usp=sharing)
 <br>
 <br>
-
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/vegechick510/FitnessAppXXX/main)
 <br>
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14027020.svg)](https://doi.org/10.5281/zenodo.14027020)
 [![Code Coverage](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/code_cov.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/code_cov.yml)
-
 [![pytest](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml)
 [![Autopep8](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml)
 [![Pylint](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pylint.yml/badge.svg)](https://github.com/vegechick510/DollarBot/actions/workflows/pylint.yml)

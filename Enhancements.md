@@ -1,4 +1,4 @@
-# Added Features in the Burnout v4.0 (What's new?)
+# Added Features in the FitnessAppXXX (What's new?)
 
 ### <li> Goal Setting & Reminders: 
 Allow users to set specific fitness goals and enable push notifications to remind them of their goals or scheduled workouts.

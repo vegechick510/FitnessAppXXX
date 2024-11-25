@@ -43,4 +43,6 @@ jobs:
       - name: Run Pytest
         run: |
           python -m pytest tests/ 
-          pkill -f "pytest" || true
+      - name: Cleanup Background Processes
+        run: |
+          pkill -f "python" || true

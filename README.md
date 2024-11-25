@@ -5,55 +5,34 @@
 <br>
 
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14027020.svg)](https://doi.org/10.5281/zenodo.14027020)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/SEFall24-Team61/FitnessAppNew/main)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/vegechick510/FitnessAppXXX/main)
+<br>
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14027020.svg)](https://doi.org/10.5281/zenodo.14027020)
 [![Python application](https://github.com/VibhavDeo/FitnessApp/actions/workflows/python-app.yml/badge.svg)](https://github.com/VibhavDeo/FitnessApp/actions/workflows/python-app.yml)
 [![Lint](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/syntax_checker.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/syntax_checker.yml)
 [![Pylint](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/pylint.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/pylint.yml)
 [![Tests On Push](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/unit_test.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/unit_test.yml)
 [![Code Coverage](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/code_cov.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/code_cov.yml)
-![GitHub code size in bytes](https://img.shields.io/github/repo-size/SEFall24-Team61/FitnessAppNew)
-
-<!--Badges-->
-<!-- Forks -->
-<a href="https://github.com/SEFall24-Team61/FitnessAppNew/fork" target="blank">
-  <img src="https://img.shields.io/github/forks/SEFall24-Team61/FitnessAppNew?style=flat-square" alt="FitnessAppNew forks"/>
-</a>
-
-<!-- Stars -->
-<a href="https://github.com/SEFall24-Team61/FitnessAppNew/stargazers" target="blank">
-  <img src="https://img.shields.io/github/stars/SEFall24-Team61/FitnessAppNew?style=flat-square" alt="FitnessAppNew stars"/>
-</a>
 
 <!-- Open Issues -->
-<a href="https://github.com/SEFall24-Team61/FitnessAppNew/issues" target="blank">
-  <img src="https://img.shields.io/github/issues/SEFall24-Team61/FitnessAppNew?style=flat-square" alt="FitnessAppNew open issues"/>
+<a href="https://github.com/vegechick510/FitnessAppXXX/issues" target="blank">
+  <img src="https://img.shields.io/github/issues/vegechick510/FitnessAppXXX?style=flat-square" alt="FitnessAppXXX open issues"/>
 </a>
 
 <!-- Closed Issues -->
-<a href="https://github.com/SEFall24-Team61/FitnessAppNew/issues?q=is%3Aissue+is%3Aclosed" target="blank">
-  <img src="https://img.shields.io/github/issues-closed/SEFall24-Team61/FitnessAppNew" alt="FitnessAppNew closed issues"/>
+<a href="https://github.com/vegechick510/FitnessAppXXX/issues?q=is%3Aissue+is%3Aclosed" target="blank">
+  <img src="https://img.shields.io/github/issues-closed/vegechick510/FitnessAppXXX" alt="FitnessAppXXX closed issues"/>
 </a>
 
 <!-- Pull Requests -->
-<a href="https://github.com/SEFall24-Team61/FitnessAppNew/pulls" target="blank">
-  <img src="https://img.shields.io/github/issues-pr/SEFall24-Team61/FitnessAppNew?style=flat-square" alt="FitnessAppNew pull requests"/>
-</a>
-
-<!-- Contributors -->
-<a href="https://github.com/SEFall24-Team61/FitnessAppNew/graphs/contributors" target="blank">
-  <img src="https://img.shields.io/github/contributors/SEFall24-Team61/FitnessAppNew" alt="FitnessAppNew contributors"/>
-</a>
-
-<!-- Commit Activity -->
-<a href="https://github.com/SEFall24-Team61/FitnessAppNew/graphs/commit-activity" target="blank">
-  <img src="https://img.shields.io/github/commit-activity/w/SEFall24-Team61/FitnessAppNew" alt="FitnessAppNew weekly commit activity"/>
+<a href="https://github.com/vegechick510/FitnessAppXXX/pulls" target="blank">
+  <img src="https://img.shields.io/github/issues-pr/vegechick510/FitnessAppXXX?style=flat-square" alt="FitnessAppXXX pull requests"/>
 </a>
 
 <!-- Repository Size -->
-<a href="https://github.com/SEFall24-Team61/FitnessAppNew" target="blank">
-  <img src="https://img.shields.io/github/repo-size/SEFall24-Team61/FitnessAppNew" alt="FitnessAppNew repository size"/>
+<a href="https://github.com/vegechick510/FitnessAppXXX" target="blank">
+  <img src="https://img.shields.io/github/repo-size/vegechick510/FitnessAppXXX" alt="FitnessAppXXX repository size"/>
 </a>
 
 # BurnOut
@@ -263,7 +242,7 @@ https://github.com/SEFall24-Team61/FitnessAppNew
 
 **New feature:** Allow 
 
-**New:** Include a
+**New feature:** Include 
 
 
 # Team Members

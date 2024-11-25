@@ -181,7 +181,7 @@ This document serves as a comprehensive reference point for users, giving them i
 # #
 # New features added #
 
-## Progress Monitor
+## 
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/progressMonitorPic.png">
 
@@ -257,44 +257,25 @@ If you get error regarding any of the following packages - pymongo and bson, the
 # Source Code
 
 Link to the repository:
-https://github.com/token1029/FitnessApp
-
-## Total code coverage
-
-Stmts -> 1511
-Coverage -> 71%
+https://github.com/SEFall24-Team61/FitnessAppNew
 
 # Future Scope
 
-**Goal Setting & Reminders:** Allow users to set specific fitness goals and enable push notifications to remind them of their goals or scheduled workouts.
+**New feature:** Allow 
 
-**Mood Tracker:** Include a mood tracking option so users can log how they feel before or after workouts for better self-awareness.
+**New:** Include a
 
-**Recipe Suggestions:** Provide a rotating selection of simple, healthy recipes or snacks within the app for users to try based on their fitness goals.
-
-**Customizable Dashboard:** Let users customize their dashboard with their most-used features, like calorie tracking, hydration, workout logs etc.
-
-**Medical History Consideration:** Provide users with option to get recommendations based on their medical history and injuries.
 
 # Team Members
-
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/LuDraa"><img src="https://avatars.githubusercontent.com/u/143905092?v=4" width="75px;" alt=""/><br /><sub><b>Shardul Khare</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/shrutid02"><img src="https://avatars.githubusercontent.com/u/143905049?v=4" width="75px;" alt=""/><br /><sub><b>Shruti Dhond</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/pranavman11"><img src="https://avatars.githubusercontent.com/u/38797209?v=4" width="75px;" alt=""/><br /><sub><b>Pranav Manbhekar</b></sub></a></td>
-  </tr>
-</table>
+- [@Xianting Lu](https://github.com/xiantinglu)
+- [@Xiang Lan](https://github.com/xianglan010)
+- [@Xingyue Shi](https://github.com/AMShek)
 
 # Contribution
 
-Please refer the [CONTRIBUTING.md](https://github.com/SEFall24-Team61/FitnessAppNew/blob/main/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
-
-  <p align="center">
-    <a href="https://github.com/SEFall24-Team61/FitnessAppNew/issues/new/choose">Report Bug</a>
-    /
-    <a href="https://github.com/SEFall24-Team61/FitnessAppNew/issues/new/choose">Request Feature</a>
-  </p>
+Please refer the [CONTRIBUTING.md](https://github.com/vegechick510/FitnessAppXXX/blob/main/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
+<a href="https://github.com/vegechick510/FitnessAppXXX/issues/new/choose">Report Bug</a>
+<a href="https://github.com/vegechick510/FitnessAppXXX/issues/new/choose">Request Feature</a>
 
 # License
 

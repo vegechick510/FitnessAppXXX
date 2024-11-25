@@ -1,9 +1,9 @@
-name: pylint
+name: Autopep8
 
 on: [push, pull_request]
 
 jobs:
-  pylint:
+  autopep8:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,8 +15,8 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install pylint
-        run: pip install pylint
+      - name: Install autopep8
+        run: pip install autopep8
 
-      - name: Run pylint check
-        run: find . -name "*.py" | xargs pylint --exit-zero
+      - name: Run autopep8 check
+        run: autopep8 --diff --recursive .

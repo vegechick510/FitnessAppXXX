@@ -9,11 +9,12 @@
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/vegechick510/FitnessAppXXX/main)
 <br>
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14027020.svg)](https://doi.org/10.5281/zenodo.14027020)
-[![Python application](https://github.com/VibhavDeo/FitnessApp/actions/workflows/python-app.yml/badge.svg)](https://github.com/VibhavDeo/FitnessApp/actions/workflows/python-app.yml)
-[![Lint](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/syntax_checker.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/syntax_checker.yml)
-[![Pylint](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/pylint.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/pylint.yml)
-[![Tests On Push](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/unit_test.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/unit_test.yml)
 [![Code Coverage](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/code_cov.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/code_cov.yml)
+
+[![pytest](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml)
+[![Autopep8](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml)
+[![Pylint](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pylint.yml/badge.svg)](https://github.com/vegechick510/DollarBot/actions/workflows/pylint.yml)
+
 
 <!-- Open Issues -->
 <a href="https://github.com/vegechick510/FitnessAppXXX/issues" target="blank">

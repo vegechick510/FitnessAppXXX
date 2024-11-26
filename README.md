@@ -8,7 +8,7 @@
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/vegechick510/FitnessAppXXX/main)
 <br>
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14027020.svg)](https://doi.org/10.5281/zenodo.14027020)
-[![Code Coverage](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/code_cov.yml/badge.svg)](https://github.com/SEFall24-Team61/FitnessAppNew/actions/workflows/code_cov.yml)
+[![Code Coverage](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/code_cov.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/code_cov.yml)
 [![pytest](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml)
 [![Autopep8](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml)
 [![Pylint](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pylint.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pylint.yml)
@@ -96,12 +96,19 @@ This document serves as a comprehensive reference point for users, giving them i
 
 # Table of Contents
 
+- [Link to new features video:](#link-to-new-features-video)
+- [BurnOut](#burnout)
+- [BurnOut - Your Wellness Companion](#burnout---your-wellness-companion)
+  - [What's new:](#whats-new)
+  - [Key Features:](#key-features)
+- [Table of Contents](#table-of-contents)
 - [Why use BurnOut?](#why-use-burnout)
-- [TechStack Used for the Development of Project:](#techstack-used-for-the-development-of-project)
-- [Core Functionalities of the Application:](#core-functionalities)
+- [TechStack Used for the Development of Project](#techstack-used-for-the-development-of-project)
+- [New features added](#new-features-added)
+- [Core Functionalities of the Application](#core-functionalities-of-the-application)
   - [Login](#login)
   - [Dashboard](#dashboard)
-  - [Exercise section](#exercise-section)
+  - [Exercise Section](#exercise-section)
   - [Enter Calories](#enter-calories)
   - [Enter Water Intakes](#enter-water-intakes)
   - [View User Profile](#view-user-profile)
@@ -113,7 +120,11 @@ This document serves as a comprehensive reference point for users, giving them i
   - [Signup As Coach](#signup-as-coach)
   - [Get Personalized Workouts](#get-personalized-workouts)
   - [Track Student Progress](#track-student-progress)
-- [Steps for Execution:](#steps-for-execution)
+  - [Goal Setting \& Reminders](#goal-setting--reminders)
+  - [Mood Tracker](#mood-tracker)
+  - [Recipe Suggestions](#recipe-suggestions)
+  - [Customizable Dashboard](#customizable-dashboard)
+- [Steps for execution](#steps-for-execution)
 - [Source Code](#source-code)
 - [Future Scope](#future-scope)
 - [Team Members](#team-members)
@@ -150,60 +161,75 @@ This document serves as a comprehensive reference point for users, giving them i
 
 ## Login
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/loginPic.PNG">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/loginPic.PNG">
 
 ## Dashboard
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/dashboardPic.PNG">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/dashboardPic.PNG">
 
 ## Exercise Section
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/excercisePic.PNG">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/excercisePic.PNG">
 
 ## Enter Calories
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/historyPic.PNG">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/historyPic.PNG">
 
 ## Enter Water Intakes
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/water.PNG">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/water.PNG">
 
 ## View User Profile
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/profile1.0.jpeg">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/profile1.0.jpeg">
 
 ## Progress Monitor
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/progressMonitorPic.png">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/progressMonitorPic.png">
 
 ## Wellness Log
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/wellnessLogPic.png">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/wellnessLogPic.png">
 
 ## Workout Streak
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/workoutstreakPic.png">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/workoutstreakPic.png">
 
 ## Workout recommender
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/recommenderPic.png">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/recommenderPic.png">
 
 ## Community
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/friendsPic.png">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/friendsPic.png">
 
 ## Signup As Coach
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/new_signup.png">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/new_signup.png">
 
 ## Get Personalized Workouts
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/personalized_workouts.png">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/personalized_workouts.png">
 
 ## Track Student Progress
 
-<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/student_progress.png">
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/student_progress.png">
 
+
+## Goal Setting & Reminders
+
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/reminder.png">
+
+## Mood Tracker
+
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/mood_tracker.png">
+
+## Recipe Suggestions
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/food_recommendation.png">
+
+## Customizable Dashboard
+
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/customizable_dashboard.png">
 
 # Steps for execution
 
@@ -219,11 +245,11 @@ https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/
 Step 2:
 Git Clone the Repository
 
-    git clone https://github.com/SEFall24-Team61/FitnessAppNew.git
+    git clone https://github.com/vegechick510/FitnessAppXXX.git
 
 (OR) Download the .zip file on your local machine
 
-    https://github.com/SEFall24-Team61/FitnessAppNew.git
+    https://github.com/vegechick510/FitnessAppXXX.git
 
 Step 3:
 Install the required packages by running the following command in the terminal
@@ -249,7 +275,7 @@ If you get error regarding any of the following packages - pymongo and bson, the
 # Source Code
 
 Link to the repository:
-https://github.com/SEFall24-Team61/FitnessAppNew
+https://github.com/vegechick510/FitnessAppXXX
 
 # Future Scope
 

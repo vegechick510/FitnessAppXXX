@@ -1,6 +1,6 @@
 # Link to new features video:
 
-[Link](https://www.youtube.com/watch?v=2oOMdZBmv4I)
+<!--[Link](https://www.youtube.com/watch?v=2oOMdZBmv4I)-->
 [![FitnessAppXXX Demo Video](https://img.youtube.com/vi/2oOMdZBmv4I/0.jpg)](https://www.youtube.com/watch?v=2oOMdZBmv4I)
 <br>
 <br>

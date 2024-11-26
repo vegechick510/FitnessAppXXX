@@ -106,6 +106,10 @@ This document serves as a comprehensive reference point for users, giving them i
 - [Why use BurnOut?](#why-use-burnout)
 - [TechStack Used for the Development of Project](#techstack-used-for-the-development-of-project)
 - [New features added](#new-features-added)
+  - [Goal Setting \& Reminders](#goal-setting--reminders)
+  - [Mood Tracker](#mood-tracker)
+  - [Recipe Suggestions](#recipe-suggestions)
+  - [Customizable Dashboard](#customizable-dashboard)
 - [Core Functionalities of the Application](#core-functionalities-of-the-application)
   - [Login](#login)
   - [Dashboard](#dashboard)
@@ -121,10 +125,10 @@ This document serves as a comprehensive reference point for users, giving them i
   - [Signup As Coach](#signup-as-coach)
   - [Get Personalized Workouts](#get-personalized-workouts)
   - [Track Student Progress](#track-student-progress)
-  - [Goal Setting \& Reminders](#goal-setting--reminders)
-  - [Mood Tracker](#mood-tracker)
-  - [Recipe Suggestions](#recipe-suggestions)
-  - [Customizable Dashboard](#customizable-dashboard)
+  - [Goal Setting \& Reminders](#goal-setting--reminders-1)
+  - [Mood Tracker](#mood-tracker-1)
+  - [Recipe Suggestions](#recipe-suggestions-1)
+  - [Customizable Dashboard](#customizable-dashboard-1)
 - [Steps for execution](#steps-for-execution)
 - [Source Code](#source-code)
 - [Future Scope](#future-scope)
@@ -155,7 +159,21 @@ This document serves as a comprehensive reference point for users, giving them i
 
 # New features added #
 
+## Goal Setting & Reminders
 
+<p align="center"><img width="700" src="./static/gif/reminder.gif"></p>
+
+## Mood Tracker
+
+<p align="center"><img width="700" src="./static/gif/mood_tracker.gif"></p>
+
+## Recipe Suggestions
+
+<p align="center"><img width="700" src="./static/gif/food_recommendation.gif"></p>
+
+## Customizable Dashboard
+
+<p align="center"><img width="700" src="./static/gif/customizable_dashboard.gif"></p>
 
 
 # Core Functionalities of the Application
@@ -226,10 +244,12 @@ This document serves as a comprehensive reference point for users, giving them i
 <img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/mood_tracker.png">
 
 ## Recipe Suggestions
+
 <img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/food_recommendation.png">
 
 ## Customizable Dashboard
-<p align="center"><img width="700" src="./static/gif/customizable_dashboard.gif"></p>
+
+<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/customizable_dashboard.png">
 
 # Steps for execution
 

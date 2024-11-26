@@ -228,8 +228,7 @@ This document serves as a comprehensive reference point for users, giving them i
 <img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/food_recommendation.png">
 
 ## Customizable Dashboard
-
-<img src="https://raw.githubusercontent.com/vegechick510/FitnessAppXXX/main/static/img/customizable_dashboard.png">
+<p align="center"><img width="700" src="./static/gif/customizable_dashboard.gif"></p>
 
 # Steps for execution
 

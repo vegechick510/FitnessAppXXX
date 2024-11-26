@@ -2,9 +2,6 @@
 
 [Link](https://www.youtube.com/watch?v=2oOMdZBmv4I)
 
-## Demo Video
-
-[![Watch the video](images/video-thumbnail.png)](https://www.youtube.com/watch?v=2oOMdZBmv4I)
 
 
 <br>

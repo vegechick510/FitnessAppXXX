@@ -1,14 +1,8 @@
-# Link to new features video:
-
-<!--[Link](https://www.youtube.com/watch?v=2oOMdZBmv4I)-->
-[![FitnessAppXXX Demo Video](https://img.youtube.com/vi/2oOMdZBmv4I/0.jpg)](https://www.youtube.com/watch?v=2oOMdZBmv4I)
-<br>
-<br>
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/vegechick510/FitnessAppXXX/main)
 <br>
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14027020.svg)](https://doi.org/10.5281/zenodo.14027020)
+[![DOI](https://zenodo.org/badge/886030907.svg)](https://doi.org/10.5281/zenodo.14226263)
 [![Code Coverage](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/code_cov.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/code_cov.yml)
 [![pytest](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml)
 [![Autopep8](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml)
@@ -35,13 +29,26 @@
   <img src="https://img.shields.io/github/repo-size/vegechick510/FitnessAppXXX" alt="FitnessAppXXX repository size"/>
 </a>
 
-# BurnOut
+# FitnessAppXXX
 
-![WhatsApp Image 2021-09-28 at 2 48 00 PM](https://user-images.githubusercontent.com/25662536/135546154-cfae1d2e-439a-4edc-b0bb-57f693ef5a83.jpeg)
+![WhatsApp Image 2021-09-28 at 2 48 00 PM](banner.jpg)
 
-# BurnOut - Your Wellness Companion
+## New Features at a Glance
+[![Watch the Overview](canva-thumnail.jpg)](https://www.canva.com/design/DAGXm5xC-hs/TqQeX_XJpQ0JBkIrQ3qMSw/watch?utm_content=DAGXm5xC-hs&utm_campaign=designshare&utm_medium=link&utm_source=editor)
 
-BurnOut is an easy-to-use application designed to help users manage their daily calorie intake and expenditure as well as drinking habits, and it has now been enhanced with additional features. This all-in-one wellness app is not only a user-friendly calorie tracker but also offers a comprehensive suite of tools to support individuals in achieving their fitness and weight management goals.
+Discover the latest updates in FitnessAppXXX that make tracking your fitness journey more engaging and effective!
+
+---
+
+## See It in Action
+[![Watch the Demo](youtube-thumbnail.jpg)](https://www.youtube.com/watch?v=2oOMdZBmv4I)
+
+Learn how to leverage our features like Mood Tracker, Goal Progress Reminder, and more to maximize your fitness goals!
+
+
+# FitnessAppXXX - Your Wellness Companion
+
+FitnessAppXXX is an easy-to-use application designed to help users manage their daily calorie intake and expenditure as well as drinking habits, and it has now been enhanced with additional features. This all-in-one wellness app is not only a user-friendly calorie tracker but also offers a comprehensive suite of tools to support individuals in achieving their fitness and weight management goals.
 
 https://github.com/user-attachments/assets/23fbcd81-6461-4fec-9066-f7af804c861f
 
@@ -58,11 +65,11 @@ https://github.com/user-attachments/assets/23fbcd81-6461-4fec-9066-f7af804c861f
 
 ## Key Features:
 
-1. **Calorie Tracking:** BurnOut allows users to effortlessly keep track of their daily calorie intake and calories burnt through physical activities, helping them maintain a healthy lifestyle.
+1. **Calorie Tracking:** FitnessAppXXX allows users to effortlessly keep track of their daily calorie intake and calories burnt through physical activities, helping them maintain a healthy lifestyle.
 
 2. **Profile Customization:** Users can personalize their profiles by entering their height, weight, fitness goals (weight loss or gain), and target weight. This information is crucial for creating tailored fitness and dietary plans.
 
-3. **Fitness Programs:** BurnOut offers a variety of fitness programs, including yoga classes and workout sessions, catering to users with different fitness preferences and skill levels.
+3. **Fitness Programs:** FitnessAppXXX offers a variety of fitness programs, including yoga classes and workout sessions, catering to users with different fitness preferences and skill levels.
 
 4. **Social Connectivity:** The application facilitates social interaction among users. They can connect with friends by sending and accepting friend requests, enabling them to share their fitness journeys and progress, and provide support and motivation to one another.
 
@@ -74,7 +81,7 @@ https://github.com/user-attachments/assets/23fbcd81-6461-4fec-9066-f7af804c861f
 
 9. **BMI Calculator:** The newly added BMI (Body Mass Index) calculator helps users understand their current physical health status and aids in setting realistic weight management goals.
 
-10. **Tracking User History:** BurnOut enables users to maintain a history of their fitness and dietary activities, providing insights into their progress over time and allowing for data-driven adjustments.
+10. **Tracking User History:** FitnessAppXXX enables users to maintain a history of their fitness and dietary activities, providing insights into their progress over time and allowing for data-driven adjustments.
 
 11. **Reviews:** Users can leave reviews and feedback on the fitness programs they've participated in, sharing their experiences with the community and helping others make informed choices.
 
@@ -88,22 +95,22 @@ https://github.com/user-attachments/assets/23fbcd81-6461-4fec-9066-f7af804c861f
     
 18. **Workout Streaks:** Keep the momentum going by logging your workouts each day to maintain a streak. If you miss a day, the streak resets, pushing you to stay consistent and achieve your goals.
     
-20. **Personalized Workout Recommender:** Get workouts tailored specifically to you. Input your experience level, target muscles, and available equipment, and BurnOut will recommend the most effective exercises, complete with images to guide your form.
+20. **Personalized Workout Recommender:** Get workouts tailored specifically to you. Input your experience level, target muscles, and available equipment, and FitnessAppXXX will recommend the most effective exercises, complete with images to guide your form.
     
 22. **Friends & Community Support:** Connect with friends within the app, accept friend requests, and share your daily progress to support and motivate each other in achieving your fitness goals.
 
 
-This document serves as a comprehensive reference point for users, giving them insight into the functionalities of BurnOut and encouraging them to participate in its development as an open-source software project. As an open-source project, the community can contribute additional features and enhancements to make BurnOut even more robust and tailored to individual needs before its official market release. Furthermore, it assists developers by providing a clear understanding of the codebase and serves as a valuable resource for the project's continued development.
+This document serves as a comprehensive reference point for users, giving them insight into the functionalities of FitnessAppXXX and encouraging them to participate in its development as an open-source software project. As an open-source project, the community can contribute additional features and enhancements to make FitnessAppXXX even more robust and tailored to individual needs before its official market release. Furthermore, it assists developers by providing a clear understanding of the codebase and serves as a valuable resource for the project's continued development.
 
 # Table of Contents
 
 - [Link to new features video:](#link-to-new-features-video)
-- [BurnOut](#burnout)
-- [BurnOut - Your Wellness Companion](#burnout---your-wellness-companion)
+- [FitnessAppXXX](#FitnessAppXXX)
+- [FitnessAppXXX - Your Wellness Companion](#FitnessAppXXX---your-wellness-companion)
   - [What's new:](#whats-new)
   - [Key Features:](#key-features)
 - [Table of Contents](#table-of-contents)
-- [Why use BurnOut?](#why-use-burnout)
+- [Why use FitnessAppXXX?](#why-use-FitnessAppXXX)
 - [TechStack Used for the Development of Project](#techstack-used-for-the-development-of-project)
 - [New features added](#new-features-added)
   - [Goal Setting \& Reminders](#goal-setting--reminders)
@@ -136,7 +143,7 @@ This document serves as a comprehensive reference point for users, giving them i
 - [Contribution](#contribution)
 - [License](#license)
 
-# Why use BurnOut?
+# Why use FitnessAppXXX?
 
 - User can keep a track of their calorie intake and drinking habits.
 - User just needs to input the food they've had, calories get calculated automatically.

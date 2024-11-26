@@ -16,11 +16,19 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
 
+      - name: Clear pip cache
+        run: |
+          pip cache purge
+
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+          pip install pymongo>=3.12,<5 flask-pymongo>=2.3,<3
           pip install pytest pytest-cov
 
+      - name: Debug installed packages
+        run: |
+          pip freeze
 
       - name: Run tests
         run: python -m pytest --cov --cov-report=xml
@@ -29,3 +37,4 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+

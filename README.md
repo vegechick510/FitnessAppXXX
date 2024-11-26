@@ -140,6 +140,12 @@ This document serves as a comprehensive reference point for users, giving them i
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-plain.svg" alt="html" width="20" height="20"> CSS3 </br>
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-plain.svg" alt="css" width="20" height="20"> HTML 5 </br>
 
+
+# New features added #
+
+
+
+
 # Core Functionalities of the Application
 
 ## Login
@@ -166,11 +172,37 @@ This document serves as a comprehensive reference point for users, giving them i
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/profile1.0.jpeg">
 
-# New features added #
+## Progress Monitor
+
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/progressMonitorPic.png">
 
 ## Wellness Log
 
 <img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/wellnessLogPic.png">
+
+## Workout Streak
+
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/workoutstreakPic.png">
+
+## Workout recommender
+
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/recommenderPic.png">
+
+## Community
+
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/friendsPic.png">
+
+## Signup As Coach
+
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/new_signup.png">
+
+## Get Personalized Workouts
+
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/personalized_workouts.png">
+
+## Track Student Progress
+
+<img src="https://raw.githubusercontent.com/SEFall24-Team61/FitnessAppNew/main/static/img/student_progress.png">
 
 
 # Steps for execution

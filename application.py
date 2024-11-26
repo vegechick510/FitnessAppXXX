@@ -1646,8 +1646,6 @@ def get_latest_profile_data(email, date, profile_type):
         if datetime.strptime(p["date"], "%Y-%m-%d")
         >= datetime.strptime(date, "%Y-%m-%d")
     ]
-    if len(profiles) <= 0:
-        return None, None
     profiles = sorted(
         profiles,
         key=lambda x: datetime.strptime(
@@ -1655,6 +1653,8 @@ def get_latest_profile_data(email, date, profile_type):
         ),  # Adjust format if needed
         reverse=True,
     )
+    if len(profiles) <= 0:
+        return None, None
     latest_profile_data = profiles[0]
 
     original_profile_data = profiles[-1]

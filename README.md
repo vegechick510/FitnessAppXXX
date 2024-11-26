@@ -42,6 +42,7 @@ Discover the latest updates in FitnessAppXXX that make tracking your fitness jou
 
 ## See It in Action
 [![Watch the Demo](https://img.youtube.com/vi/2oOMdZBmv4I/0.jpg)](https://www.youtube.com/watch?v=2oOMdZBmv4I)
+
 Learn how to leverage our features like Mood Tracker, Goal Progress Reminder, and more to maximize your fitness goals!
 
 

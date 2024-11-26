@@ -1,13 +1,4 @@
-steps:
-  - name: Run tests
-    run: pytest --cov=your_project --cov-report=xml
-  - name: Upload coverage to Codecov
-    uses: codecov/codecov-action@v3
-    with:
-      files: ./coverage.xml
-
-
-name: Run tests and upload coverage
+name: codecov
 
 on:
   push

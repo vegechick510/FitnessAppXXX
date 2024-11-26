@@ -3,7 +3,7 @@
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/vegechick510/FitnessAppXXX/main)
 <br>
 [![DOI](https://zenodo.org/badge/886030907.svg)](https://doi.org/10.5281/zenodo.14226263)
-[![Code Coverage](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/code_cov.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/code_cov.yml)
+[![Code Coverage](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/codecov.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/codecov.yml)
 [![pytest](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pytest.yml)
 [![Autopep8](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/autopep8.yml)
 [![Pylint](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pylint.yml/badge.svg)](https://github.com/vegechick510/FitnessAppXXX/actions/workflows/pylint.yml)

@@ -1,6 +1,6 @@
 # Link to new features video:
 
-[Link](https://drive.google.com/file/d/1JrFG1_1Hd8auymBR45ZmKW4HuM_TYOi6/view?usp=sharing)
+[Link](https://www.youtube.com/watch?v=2oOMdZBmv4I)
 <br>
 <br>
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)

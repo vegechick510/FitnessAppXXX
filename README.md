@@ -31,7 +31,7 @@
 
 # FitnessAppXXX
 
-![WhatsApp Image 2021-09-28 at 2 48 00 PM](https://user-images.githubusercontent.com/25662536/135546154-cfae1d2e-439a-4edc-b0bb-57f693ef5a83.jpeg)
+![WhatsApp Image 2021-09-28 at 2 48 00 PM](banner.jpg)
 
 ## New Features at a Glance
 [![Watch the Overview](canva-thumnail.jpg)](https://www.canva.com/design/DAGXm5xC-hs/TqQeX_XJpQ0JBkIrQ3qMSw/watch?utm_content=DAGXm5xC-hs&utm_campaign=designshare&utm_medium=link&utm_source=editor)

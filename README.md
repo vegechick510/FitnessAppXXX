@@ -1,6 +1,7 @@
 # Link to new features video:
 
 [Link](https://www.youtube.com/watch?v=2oOMdZBmv4I)
+[![FitnessAppXXX Demo Video](https://img.youtube.com/vi/2oOMdZBmv4I/0.jpg)](https://www.youtube.com/watch?v=2oOMdZBmv4I)
 <br>
 <br>
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)

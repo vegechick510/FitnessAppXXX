@@ -34,14 +34,14 @@
 ![WhatsApp Image 2021-09-28 at 2 48 00 PM](https://user-images.githubusercontent.com/25662536/135546154-cfae1d2e-439a-4edc-b0bb-57f693ef5a83.jpeg)
 
 ## New Features at a Glance
-[![Watch the Overview](/canva-thumbnail.jpg)](https://www.canva.com/design/DAGXm5xC-hs/TqQeX_XJpQ0JBkIrQ3qMSw/watch?utm_content=DAGXm5xC-hs&utm_campaign=designshare&utm_medium=link&utm_source=editor)
+[![Watch the Overview](canva-thumnail.jpg)](https://www.canva.com/design/DAGXm5xC-hs/TqQeX_XJpQ0JBkIrQ3qMSw/watch?utm_content=DAGXm5xC-hs&utm_campaign=designshare&utm_medium=link&utm_source=editor)
 
 Discover the latest updates in FitnessAppXXX that make tracking your fitness journey more engaging and effective!
 
 ---
 
 ## See It in Action
-[![Watch the Demo](https://img.youtube.com/vi/2oOMdZBmv4I/0.jpg)](https://www.youtube.com/watch?v=2oOMdZBmv4I)
+[![Watch the Demo](youtube-thumbnail.jpg)](https://www.youtube.com/watch?v=2oOMdZBmv4I)
 
 Learn how to leverage our features like Mood Tracker, Goal Progress Reminder, and more to maximize your fitness goals!
 

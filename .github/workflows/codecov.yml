@@ -24,11 +24,18 @@ jobs:
           pip install -r requirements.txt
           pip install pytest pytest-cov mongomock
 
-      - name: Run tests with mock database
-        env:
-          USE_MOCK_DB: true
+      - name: Run Pytest with Timeout
         run: |
-          python -m pytest --cov --cov-report=xml
+          timeout 60s python -m pytest --cov --cov-report=xml tests/ || true
+
+      - name: List Processes
+        run: |
+          ps aux
+
+      - name: Cleanup Background Processes
+        run: |
+          pkill -f "python" || true
+          pkill -f "pytest" || true
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4

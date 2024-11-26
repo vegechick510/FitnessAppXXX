@@ -7,7 +7,6 @@ The Mood Tracker feature allows users to log their emotional state before or aft
 - **Mood Logging**: Users can log their mood on a predefined scale (e.g., Happy, Sad, Energized, Tired, Neutral) or provide a brief custom note about their emotional state.
 - **Pre- and Post-Workout Tracking**: Users can specify whether they’re logging their mood before or after a workout, offering a clear view of emotional changes associated with exercise.
 
-
 ## Benefits
 - **Enhanced Self-Awareness**: Provides users with a better understanding of their emotional well-being in relation to their exercise habits.
 - **Motivation and Accountability**: Positive mood trends can encourage users to maintain regular workouts, while tracking negative patterns can help them identify areas for improvement.
@@ -15,4 +14,7 @@ The Mood Tracker feature allows users to log their emotional state before or aft
 
 ## Implementation
 The Mood Tracker feature is implemented in mood_tracker() in application.py and integrated with existing logging and analytics modules.
+
+## Usage
+On top menu of the app, select the mood option, you can input your feeling.
 

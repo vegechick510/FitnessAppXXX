@@ -278,10 +278,13 @@ https://github.com/vegechick510/FitnessAppXXX
 
 # Future Scope
 
-**New feature:** Allow 
+**Delete Data:** Enables users to delete records like workout logs, mood entries, or food data, helping manage data effectively while maintaining privacy and control.
 
-**New feature:** Include 
+**Multiple Goal Reminders:** Allows users to set multiple fitness goals and reminders, supporting specific objectives like targeting muscle groups or achieving milestones, encouraging a diverse fitness journey.
 
+**AI-Powered Recommendations:** Uses AI to suggest personalized workout plans, recipes, or reminders based on user habits and preferences, tailoring guidance to energy levels and goals.
+
+**Search and Filter:** Adds search and filter options to exercise and recipe databases, helping users quickly find workouts or meals based on categories like difficulty, duration, or dietary needs.
 
 # Team Members
 - [@Xianting Lu](https://github.com/xiantinglu)
